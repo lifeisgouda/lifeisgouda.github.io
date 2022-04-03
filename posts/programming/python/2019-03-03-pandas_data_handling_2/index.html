@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [python] Pandas를 이용한 데이터 전처리 2 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling_2/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[python] Pandas를 이용한 데이터 전처리 2" />
+<meta property="og:description" content="The efficient way to loop through data frames with Pandas 먼저 데이터 프레임을 만든다.
+1import pandas as pd 2 3member = [&#39;라이언&#39;, &#39;무지&#39;, &#39;콘&#39;, &#39;프로도&#39;, &#39;제이지&#39;, &#39;네오&#39;, &#39;어피치&#39;] 4weight = [&#39;30&#39;, &#39;25&#39;, &#39;5&#39;, &#39;20&#39;, &#39;25&#39;, &#39;15&#39;, &#39;20&#39;] 5age = [&#39;5&#39;, &#39;4&#39;, &#39;10&#39;, &#39;3&#39;, &#39;7&#39;, &#39;6&#39;, &#39;11&#39;] 6 7kakao_friends = pd.DataFrame() 8kakao_friends[&#39;member&#39;] = member 9kakao_friends[&#39;weight&#39;] = weight 10kakao_friends[&#39;age&#39;] = age     member weight age     0 라이언 30 5   1 무지 25 4   2 콘 5 10   3 프로도 20 3   4 제이지 25 7   5 네오 15 6   6 어피치 20 11    1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling_2/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[python] Pandas를 이용한 데이터 전처리 2"/>
+<meta name="twitter:description" content="The efficient way to loop through data frames with Pandas 먼저 데이터 프레임을 만든다.
+1import pandas as pd 2 3member = [&#39;라이언&#39;, &#39;무지&#39;, &#39;콘&#39;, &#39;프로도&#39;, &#39;제이지&#39;, &#39;네오&#39;, &#39;어피치&#39;] 4weight = [&#39;30&#39;, &#39;25&#39;, &#39;5&#39;, &#39;20&#39;, &#39;25&#39;, &#39;15&#39;, &#39;20&#39;] 5age = [&#39;5&#39;, &#39;4&#39;, &#39;10&#39;, &#39;3&#39;, &#39;7&#39;, &#39;6&#39;, &#39;11&#39;] 6 7kakao_friends = pd.DataFrame() 8kakao_friends[&#39;member&#39;] = member 9kakao_friends[&#39;weight&#39;] = weight 10kakao_friends[&#39;age&#39;] = age     member weight age     0 라이언 30 5   1 무지 25 4   2 콘 5 10   3 프로도 20 3   4 제이지 25 7   5 네오 15 6   6 어피치 20 11    1."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/python/2018-03-26-python_classnote/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&text=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&is_video=false&description=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&name=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202&description=The%20efficient%20way%20to%20loop%20through%20data%20frames%20with%20Pandas%20%eb%a8%bc%ec%a0%80%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ed%94%84%eb%a0%88%ec%9e%84%ec%9d%84%20%eb%a7%8c%eb%93%a0%eb%8b%a4.%0a1import%20pandas%20as%20pd%202%203member%20%3d%20%5b%26%2339%3b%eb%9d%bc%ec%9d%b4%ec%96%b8%26%2339%3b%2c%20%26%2339%3b%eb%ac%b4%ec%a7%80%26%2339%3b%2c%20%26%2339%3b%ec%bd%98%26%2339%3b%2c%20%26%2339%3b%ed%94%84%eb%a1%9c%eb%8f%84%26%2339%3b%2c%20%26%2339%3b%ec%a0%9c%ec%9d%b4%ec%a7%80%26%2339%3b%2c%20%26%2339%3b%eb%84%a4%ec%98%a4%26%2339%3b%2c%20%26%2339%3b%ec%96%b4%ed%94%bc%ec%b9%98%26%2339%3b%5d%204weight%20%3d%20%5b%26%2339%3b30%26%2339%3b%2c%20%26%2339%3b25%26%2339%3b%2c%20%26%2339%3b5%26%2339%3b%2c%20%26%2339%3b20%26%2339%3b%2c%20%26%2339%3b25%26%2339%3b%2c%20%26%2339%3b15%26%2339%3b%2c%20%26%2339%3b20%26%2339%3b%5d%205age%20%3d%20%5b%26%2339%3b5%26%2339%3b%2c%20%26%2339%3b4%26%2339%3b%2c%20%26%2339%3b10%26%2339%3b%2c%20%26%2339%3b3%26%2339%3b%2c%20%26%2339%3b7%26%2339%3b%2c%20%26%2339%3b6%26%2339%3b%2c%20%26%2339%3b11%26%2339%3b%5d%206%207kakao_friends%20%3d%20pd.DataFrame%28%29%208kakao_friends%5b%26%2339%3bmember%26%2339%3b%5d%20%3d%20member%209kakao_friends%5b%26%2339%3bweight%26%2339%3b%5d%20%3d%20weight%2010kakao_friends%5b%26%2339%3bage%26%2339%3b%5d%20%3d%20age%20%20%20%20%20member%20weight%20age%20%20%20%20%200%20%eb%9d%bc%ec%9d%b4%ec%96%b8%2030%205%20%20%201%20%eb%ac%b4%ec%a7%80%2025%204%20%20%202%20%ec%bd%98%205%2010%20%20%203%20%ed%94%84%eb%a1%9c%eb%8f%84%2020%203%20%20%204%20%ec%a0%9c%ec%9d%b4%ec%a7%80%2025%207%20%20%205%20%eb%84%a4%ec%98%a4%2015%206%20%20%206%20%ec%96%b4%ed%94%bc%ec%b9%98%2020%2011%20%20%20%201." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&t=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-efficient-way-to-loop-through-data-frames-with-pandas">The efficient way to loop through data frames with Pandas</a>
+      <ul>
+        <li><a href="#1-iterrows">1. <code>iterrows</code></a></li>
+        <li><a href="#2-itertuples">2. <code>itertuples</code></a></li>
+        <li><a href="#3-zip-과-enumerate-사용">3. <code>zip</code> 과 <code>enumerate</code> 사용</a></li>
+        <li><a href="#추천하지-않는-방법">추천하지 않는 방법</a></li>
+        <li><a href="#crude-looping-in-pandas-or-that-thing-you-should-never-ever-do">Crude looping in Pandas, or That Thing You Should Never Ever Do</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [python] Pandas를 이용한 데이터 전처리 2
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          5 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="the-efficient-way-to-loop-through-data-frames-with-pandas">The efficient way to loop through data frames with Pandas</h2>
+<p>먼저 데이터 프레임을 만든다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>member <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;라이언&#39;</span>, <span style="color:#f1fa8c">&#39;무지&#39;</span>, <span style="color:#f1fa8c">&#39;콘&#39;</span>, <span style="color:#f1fa8c">&#39;프로도&#39;</span>, <span style="color:#f1fa8c">&#39;제이지&#39;</span>, <span style="color:#f1fa8c">&#39;네오&#39;</span>, <span style="color:#f1fa8c">&#39;어피치&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>weight <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;30&#39;</span>, <span style="color:#f1fa8c">&#39;25&#39;</span>, <span style="color:#f1fa8c">&#39;5&#39;</span>, <span style="color:#f1fa8c">&#39;20&#39;</span>, <span style="color:#f1fa8c">&#39;25&#39;</span>, <span style="color:#f1fa8c">&#39;15&#39;</span>, <span style="color:#f1fa8c">&#39;20&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>age <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;5&#39;</span>, <span style="color:#f1fa8c">&#39;4&#39;</span>, <span style="color:#f1fa8c">&#39;10&#39;</span>, <span style="color:#f1fa8c">&#39;3&#39;</span>, <span style="color:#f1fa8c">&#39;7&#39;</span>, <span style="color:#f1fa8c">&#39;6&#39;</span>, <span style="color:#f1fa8c">&#39;11&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>kakao_friends <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>DataFrame()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>] <span style="color:#ff79c6">=</span> member
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>kakao_friends[<span style="color:#f1fa8c">&#39;weight&#39;</span>] <span style="color:#ff79c6">=</span> weight
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>kakao_friends[<span style="color:#f1fa8c">&#39;age&#39;</span>] <span style="color:#ff79c6">=</span> age
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th></th>
+<th>member</th>
+<th>weight</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>라이언</td>
+<td>30</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>무지</td>
+<td>25</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>콘</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>프로도</td>
+<td>20</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>제이지</td>
+<td>25</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>네오</td>
+<td>15</td>
+<td>6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>어피치</td>
+<td>20</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-iterrows">1. <code>iterrows</code></h3>
+<p>첫번째 변수<code>idx</code> 에 인덱스를 받고,  member는 member 열의 행에 하나씩 접근하여 출력한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4"># Iterate over rows of kako friends</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">for</span> idx, member <span style="color:#ff79c6">in</span> kakao_friends<span style="color:#ff79c6">.</span>iterrows():
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(idx, member)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">-------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#bd93f9">0</span> member    라이언
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>weight     <span style="color:#bd93f9">30</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>age         <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>Name: <span style="color:#bd93f9">0</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#bd93f9">1</span> member    무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>weight    <span style="color:#bd93f9">25</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>age        <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>Name: <span style="color:#bd93f9">1</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#bd93f9">2</span> member     콘
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>weight     <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>age       <span style="color:#bd93f9">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>Name: <span style="color:#bd93f9">2</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#bd93f9">3</span> member    프로도
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>weight     <span style="color:#bd93f9">20</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>age         <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>Name: <span style="color:#bd93f9">3</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#bd93f9">4</span> member    제이지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>weight     <span style="color:#bd93f9">25</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>age         <span style="color:#bd93f9">7</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>Name: <span style="color:#bd93f9">4</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#bd93f9">5</span> member    네오
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>weight    <span style="color:#bd93f9">15</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>age        <span style="color:#bd93f9">6</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>Name: <span style="color:#bd93f9">5</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span><span style="color:#bd93f9">6</span> member    어피치
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>weight     <span style="color:#bd93f9">20</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>age        <span style="color:#bd93f9">11</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>Name: <span style="color:#bd93f9">6</span>, dtype: <span style="color:#8be9fd;font-style:italic">object</span>
+</span></span></code></pre></div><p>아래와 같이 입력해도 결과는 동일하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4"># 1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">for</span> member, row <span style="color:#ff79c6">in</span> kakao_friends<span style="color:#ff79c6">.</span>iterrows():
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(member, row)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4"># 2    </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">for</span> weight, row <span style="color:#ff79c6">in</span> kakao_friends<span style="color:#ff79c6">.</span>iterrows():
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(weight, row)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"># 3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#ff79c6">for</span> age, row <span style="color:#ff79c6">in</span> kakao_friends<span style="color:#ff79c6">.</span>iterrows():
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(age, row)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4"># 4: 아래과 같이 출력할 수도 있다.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">for</span> index, row <span style="color:#ff79c6">in</span> kakao_friends<span style="color:#ff79c6">.</span>iterrows():
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(row[<span style="color:#f1fa8c">&#34;member&#34;</span>], row[<span style="color:#f1fa8c">&#34;age&#34;</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">----------------</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>라이언 <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>무지 <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>콘 <span style="color:#bd93f9">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>프로도 <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>제이지 <span style="color:#bd93f9">7</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>네오 <span style="color:#bd93f9">6</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>어피치 <span style="color:#bd93f9">11</span>
+</span></span></code></pre></div><h3 id="2-itertuples">2. <code>itertuples</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">for</span> row <span style="color:#ff79c6">in</span> kakao_friends<span style="color:#ff79c6">.</span>itertuples(index<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#8be9fd;font-style:italic">getattr</span>(row, <span style="color:#f1fa8c">&#34;member&#34;</span>), <span style="color:#8be9fd;font-style:italic">getattr</span>(row, <span style="color:#f1fa8c">&#34;age&#34;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">-----------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>라이언 <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>무지 <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>콘 <span style="color:#bd93f9">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>프로도 <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>제이지 <span style="color:#bd93f9">7</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>네오 <span style="color:#bd93f9">6</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>어피치 <span style="color:#bd93f9">11</span>
+</span></span></code></pre></div><ul>
+<li>
+<p><code>itertuples()</code> is supposed to be faster than <code>iterrows()</code> .</p>
+</li>
+<li>
+<p><code>itertuples</code> 사용에 있어서 주의할 점이 있다. 공식문서에서 아래와 같이 밝히고 있다.</p>
+<blockquote>
+<p>According to the docs (pandas 0.21.1 at the moment):</p>
+<ul>
+<li>iterrows: <code>dtype</code> might not match from row to row</li>
+</ul>
+<blockquote>
+<p>Because iterrows returns a Series for each row, it <strong>does not preserve</strong>dtypes across the rows (dtypes are preserved across columns for DataFrames).</p>
+</blockquote>
+<ul>
+<li>iterrows: Do not modify rows</li>
+</ul>
+<blockquote>
+<p>You should <strong>never modify</strong> something you are iterating over. This is not guaranteed to work in all cases. Depending on the data types, the iterator returns a copy and not a view, and writing to it will have no effect.</p>
+</blockquote>
+<p>Use <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html">DataFrame.apply()</a> instead:</p>
+<pre tabindex="0"><code>new_df = df.apply(lambda x: x * 2)
+</code></pre><ul>
+<li>itertuples:</li>
+</ul>
+<blockquote>
+<p>The column names will be renamed to positional names if they are invalid Python identifiers, repeated, or start with an underscore. With a large number of columns (&gt;255), regular tuples are returned.</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-zip-과-enumerate-사용">3. <code>zip</code> 과 <code>enumerate</code> 사용</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">for</span> index, (member, age) <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(<span style="color:#8be9fd;font-style:italic">zip</span>(kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>], kakao_friends[<span style="color:#f1fa8c">&#39;age&#39;</span>])):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(index, member, age)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">-----------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#bd93f9">0</span> 라이언 <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#bd93f9">1</span> 무지 <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#bd93f9">2</span> 콘 <span style="color:#bd93f9">10</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#bd93f9">3</span> 프로도 <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#bd93f9">4</span> 제이지 <span style="color:#bd93f9">7</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#bd93f9">5</span> 네오 <span style="color:#bd93f9">6</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#bd93f9">6</span> 어피치 <span style="color:#bd93f9">11</span>
+</span></span></code></pre></div><h3 id="추천하지-않는-방법">추천하지 않는 방법</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#8be9fd;font-style:italic">len</span>(kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>])):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>][i])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">-------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>라이언
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>콘
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>프로도
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>제이지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>네오
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>어피치
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">%%</span>timeit
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#8be9fd;font-style:italic">len</span>(kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>])):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>][i])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#bd93f9">843</span> µs ± <span style="color:#bd93f9">14.1</span> µs per loop (mean ± std<span style="color:#ff79c6">.</span> dev<span style="color:#ff79c6">.</span> of <span style="color:#bd93f9">7</span> runs, <span style="color:#bd93f9">1000</span> loops each)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#ff79c6">%%</span>timeit
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> kakao_friends[<span style="color:#f1fa8c">&#39;member&#39;</span>]:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(i)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#bd93f9">742</span> µs ± <span style="color:#bd93f9">8.22</span> µs per loop (mean ± std<span style="color:#ff79c6">.</span> dev<span style="color:#ff79c6">.</span> of <span style="color:#bd93f9">7</span> runs, <span style="color:#bd93f9">1000</span> loops each)
+</span></span></code></pre></div><blockquote>
+<h3 id="crude-looping-in-pandas-or-that-thing-you-should-never-ever-do">Crude looping in Pandas, or That Thing You Should Never Ever Do</h3>
+<p>To start, let’s quickly review the fundamentals of Pandas data structures. The basic Pandas structures come in two flavors: a <strong>DataFrame</strong> and a <strong>Series</strong>. A DataFrame is a two-dimensional <strong>array</strong> with labeled axes. In other words, a DataFrame is a matrix of rows and columns that have labels — column names for columns, and index labels for rows. A single column or row in a Pandas DataFrame is a Pandas series — a one-dimensional array with axis labels.</p>
+<p>Just about every Pandas beginner I’ve ever worked with (including yours truly) has, at some point, attempted to apply a custom function by looping over DataFrame rows one at a time. The advantage of this approach is that it is consistent with the way one would interact with other iterable Python objects; for example, the way one might loop through a list or a tuple. Conversely, the downside is that a crude loop, in Pandas, is the slowest way to get anything done. Unlike the approaches we will discuss below, crude looping in Pandas does not take advantage of any built-in optimizations, making it extremely inefficient (and often much less readable) by comparison.</p>
+</blockquote>
+<ul>
+<li>참고 글 : <a href="https://aldente0630.github.io/data-science/2018/08/05/a-beginners-guide-to-optimizing-pandas-code-for-speed.html">https://aldente0630.github.io/data-science/2018/08/05/a-beginners-guide-to-optimizing-pandas-code-for-speed.html</a></li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-efficient-way-to-loop-through-data-frames-with-pandas">The efficient way to loop through data frames with Pandas</a>
+      <ul>
+        <li><a href="#1-iterrows">1. <code>iterrows</code></a></li>
+        <li><a href="#2-itertuples">2. <code>itertuples</code></a></li>
+        <li><a href="#3-zip-과-enumerate-사용">3. <code>zip</code> 과 <code>enumerate</code> 사용</a></li>
+        <li><a href="#추천하지-않는-방법">추천하지 않는 방법</a></li>
+        <li><a href="#crude-looping-in-pandas-or-that-thing-you-should-never-ever-do">Crude looping in Pandas, or That Thing You Should Never Ever Do</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&text=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&is_video=false&description=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&name=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202&description=The%20efficient%20way%20to%20loop%20through%20data%20frames%20with%20Pandas%20%eb%a8%bc%ec%a0%80%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ed%94%84%eb%a0%88%ec%9e%84%ec%9d%84%20%eb%a7%8c%eb%93%a0%eb%8b%a4.%0a1import%20pandas%20as%20pd%202%203member%20%3d%20%5b%26%2339%3b%eb%9d%bc%ec%9d%b4%ec%96%b8%26%2339%3b%2c%20%26%2339%3b%eb%ac%b4%ec%a7%80%26%2339%3b%2c%20%26%2339%3b%ec%bd%98%26%2339%3b%2c%20%26%2339%3b%ed%94%84%eb%a1%9c%eb%8f%84%26%2339%3b%2c%20%26%2339%3b%ec%a0%9c%ec%9d%b4%ec%a7%80%26%2339%3b%2c%20%26%2339%3b%eb%84%a4%ec%98%a4%26%2339%3b%2c%20%26%2339%3b%ec%96%b4%ed%94%bc%ec%b9%98%26%2339%3b%5d%204weight%20%3d%20%5b%26%2339%3b30%26%2339%3b%2c%20%26%2339%3b25%26%2339%3b%2c%20%26%2339%3b5%26%2339%3b%2c%20%26%2339%3b20%26%2339%3b%2c%20%26%2339%3b25%26%2339%3b%2c%20%26%2339%3b15%26%2339%3b%2c%20%26%2339%3b20%26%2339%3b%5d%205age%20%3d%20%5b%26%2339%3b5%26%2339%3b%2c%20%26%2339%3b4%26%2339%3b%2c%20%26%2339%3b10%26%2339%3b%2c%20%26%2339%3b3%26%2339%3b%2c%20%26%2339%3b7%26%2339%3b%2c%20%26%2339%3b6%26%2339%3b%2c%20%26%2339%3b11%26%2339%3b%5d%206%207kakao_friends%20%3d%20pd.DataFrame%28%29%208kakao_friends%5b%26%2339%3bmember%26%2339%3b%5d%20%3d%20member%209kakao_friends%5b%26%2339%3bweight%26%2339%3b%5d%20%3d%20weight%2010kakao_friends%5b%26%2339%3bage%26%2339%3b%5d%20%3d%20age%20%20%20%20%20member%20weight%20age%20%20%20%20%200%20%eb%9d%bc%ec%9d%b4%ec%96%b8%2030%205%20%20%201%20%eb%ac%b4%ec%a7%80%2025%204%20%20%202%20%ec%bd%98%205%2010%20%20%203%20%ed%94%84%eb%a1%9c%eb%8f%84%2020%203%20%20%204%20%ec%a0%9c%ec%9d%b4%ec%a7%80%2025%207%20%20%205%20%eb%84%a4%ec%98%a4%2015%206%20%20%206%20%ec%96%b4%ed%94%bc%ec%b9%98%2020%2011%20%20%20%201." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling_2%2f&t=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%202" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

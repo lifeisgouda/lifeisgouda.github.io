@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [React] Movie app clone coding : Ajax in React | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_6_1_ajax_in_react/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[React] Movie app clone coding : Ajax in React" />
+<meta property="og:description" content="6-1. Ajax in React Ajax Ajax는 Asynchronous Javascript and XML의 약자이다.
+JSON은 Javascript Object Notation의 약자이다. Object를 Javascript로 작성하는 기법이다.
+Fetch FETCH를 이용해서 URL에서 정보를 GET 하는 방법을 배운다. movie app에 사용할 URL은 API-YTS torrent movie database에서 가져 온다. ( https://yts.am/api#list_movies )
+https://yts.am/api#list_movies 에서 Examples에 있는 URL을 복사한다.
+복사한 https://yts.am/api/v2/list_movies.json 를 열면 javascript object를 볼 수 있다. 이것을 react에서 불러올 수 있어야 한다.
+사이트에서 보면 아래와 같은 정보가 나오는데 이것을 활용하여 리스트를 필터, 정렬을 할 수 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_6_1_ajax_in_react/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[React] Movie app clone coding : Ajax in React"/>
+<meta name="twitter:description" content="6-1. Ajax in React Ajax Ajax는 Asynchronous Javascript and XML의 약자이다.
+JSON은 Javascript Object Notation의 약자이다. Object를 Javascript로 작성하는 기법이다.
+Fetch FETCH를 이용해서 URL에서 정보를 GET 하는 방법을 배운다. movie app에 사용할 URL은 API-YTS torrent movie database에서 가져 온다. ( https://yts.am/api#list_movies )
+https://yts.am/api#list_movies 에서 Examples에 있는 URL을 복사한다.
+복사한 https://yts.am/api/v2/list_movies.json 를 열면 javascript object를 볼 수 있다. 이것을 react에서 불러올 수 있어야 한다.
+사이트에서 보면 아래와 같은 정보가 나오는데 이것을 활용하여 리스트를 필터, 정렬을 할 수 있다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_3_async_await_in_react/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React&description=6-1.%20Ajax%20in%20React%20Ajax%20Ajax%eb%8a%94%20Asynchronous%20Javascript%20and%20XML%ec%9d%98%20%ec%95%bd%ec%9e%90%ec%9d%b4%eb%8b%a4.%0aJSON%ec%9d%80%20Javascript%20Object%20Notation%ec%9d%98%20%ec%95%bd%ec%9e%90%ec%9d%b4%eb%8b%a4.%20Object%eb%a5%bc%20Javascript%eb%a1%9c%20%ec%9e%91%ec%84%b1%ed%95%98%eb%8a%94%20%ea%b8%b0%eb%b2%95%ec%9d%b4%eb%8b%a4.%0aFetch%20FETCH%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%b4%ec%84%9c%20URL%ec%97%90%ec%84%9c%20%ec%a0%95%eb%b3%b4%eb%a5%bc%20GET%20%ed%95%98%eb%8a%94%20%eb%b0%a9%eb%b2%95%ec%9d%84%20%eb%b0%b0%ec%9a%b4%eb%8b%a4.%20movie%20app%ec%97%90%20%ec%82%ac%ec%9a%a9%ed%95%a0%20URL%ec%9d%80%20API-YTS%20torrent%20movie%20database%ec%97%90%ec%84%9c%20%ea%b0%80%ec%a0%b8%20%ec%98%a8%eb%8b%a4.%20%28%20https%3a%2f%2fyts.am%2fapi%23list_movies%20%29%0ahttps%3a%2f%2fyts.am%2fapi%23list_movies%20%ec%97%90%ec%84%9c%20Examples%ec%97%90%20%ec%9e%88%eb%8a%94%20URL%ec%9d%84%20%eb%b3%b5%ec%82%ac%ed%95%9c%eb%8b%a4.%0a%eb%b3%b5%ec%82%ac%ed%95%9c%20https%3a%2f%2fyts.am%2fapi%2fv2%2flist_movies.json%20%eb%a5%bc%20%ec%97%b4%eb%a9%b4%20javascript%20object%eb%a5%bc%20%eb%b3%bc%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%20%ec%9d%b4%ea%b2%83%ec%9d%84%20react%ec%97%90%ec%84%9c%20%eb%b6%88%eb%9f%ac%ec%98%ac%20%ec%88%98%20%ec%9e%88%ec%96%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4.%0a%ec%82%ac%ec%9d%b4%ed%8a%b8%ec%97%90%ec%84%9c%20%eb%b3%b4%eb%a9%b4%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%80%20%ec%a0%95%eb%b3%b4%ea%b0%80%20%eb%82%98%ec%98%a4%eb%8a%94%eb%8d%b0%20%ec%9d%b4%ea%b2%83%ec%9d%84%20%ed%99%9c%ec%9a%a9%ed%95%98%ec%97%ac%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%eb%a5%bc%20%ed%95%84%ed%84%b0%2c%20%ec%a0%95%eb%a0%ac%ec%9d%84%20%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ajax">Ajax</a></li>
+    <li><a href="#fetch">Fetch</a>
+      <ul>
+        <li><a href="#componentdidmount-fetch">componentDidMount() Fetch</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [React] Movie app clone coding : Ajax in React
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          3 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/clonecoding" rel="tag">clonecoding</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react" rel="tag">react</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/jsx" rel="tag">jsx</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="6-1-ajax-in-react">6-1. Ajax in React</h1>
+<!-- raw HTML omitted -->
+<h2 id="ajax">Ajax</h2>
+<p>Ajax는 Asynchronous Javascript and XML의 약자이다.</p>
+<p>JSON은 Javascript Object Notation의 약자이다. Object를 Javascript로 작성하는 기법이다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="fetch">Fetch</h2>
+<p>FETCH를 이용해서 URL에서 정보를 GET 하는 방법을 배운다. movie app에 사용할 URL은 API-YTS torrent movie database에서 가져 온다. ( <a href="https://yts.am/api#list_movies">https://yts.am/api#list_movies</a> )</p>
+<p><a href="https://yts.am/api#list_movies">https://yts.am/api#list_movies</a> 에서 Examples에 있는 URL을 복사한다.</p>
+<p>복사한 <code>https://yts.am/api/v2/list_movies.json</code> 를 열면 javascript object를 볼 수 있다. 이것을 react에서 불러올 수 있어야 한다.</p>
+<p>사이트에서 보면 아래와 같은 정보가 나오는데 이것을 활용하여 리스트를 필터, 정렬을 할 수 있다.</p>
+<!-- raw HTML omitted -->
+<p><strong>Endpoint Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limit</code></td>
+<td></td>
+<td>Integer between 1 - 50 (inclusive)</td>
+<td>20</td>
+<td>The limit of results per page that has been set</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td></td>
+<td>Integer (Unsigned)</td>
+<td>1</td>
+<td>Used to see the next page of movies, eg limit=15 and page=2 will show you movies 15-30</td>
+</tr>
+<tr>
+<td><code>quality</code></td>
+<td></td>
+<td>String (720p, 1080p, 3D)</td>
+<td>All</td>
+<td>Used to filter by a given quality</td>
+</tr>
+<tr>
+<td><code>minimum_rating</code></td>
+<td></td>
+<td>Integer between 0 - 9 (inclusive)</td>
+<td>0</td>
+<td>Used to filter movie by a given minimum IMDb rating</td>
+</tr>
+<tr>
+<td><code>query_term</code></td>
+<td></td>
+<td>String</td>
+<td>0</td>
+<td>Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code</td>
+</tr>
+<tr>
+<td><code>genre</code></td>
+<td></td>
+<td>String</td>
+<td>All</td>
+<td>Used to filter by a given genre (See <a href="http://www.imdb.com/genre/">http://www.imdb.com/genre/</a> for full list)</td>
+</tr>
+<tr>
+<td><code>sort_by</code></td>
+<td></td>
+<td>String (title, year, rating, peers, seeds, download_count, like_count, date_added)</td>
+<td>date_added</td>
+<td>Sorts the results by choosen value</td>
+</tr>
+<tr>
+<td><code>order_by</code></td>
+<td></td>
+<td>String (desc, asc)</td>
+<td>desc</td>
+<td>Orders the results by either Ascending or Descending order</td>
+</tr>
+<tr>
+<td><code>with_rt_ratings</code></td>
+<td></td>
+<td>Boolean</td>
+<td>false</td>
+<td>Returns the list with the Rotten Tomatoes rating included</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>예를들어 <code>https://yts.am/api/v2/list_movies.json</code> 에 <code>sort_by=rating</code> 를 붙여서 <code>https://yts.am/api/v2/list_movies.json?sort_by=rating</code> 에 접속하면 DB가 평점순으로 정렬된 것을 확인할 수 있다. 최종적으로 이 URL이 React에서 불러들이려고 하는 것이다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="componentdidmount-fetch">componentDidMount() Fetch</h3>
+<p>root component ( <code>class App extends Component</code> )로 가서 <code>componentDidMount</code> 에 이전에 작업한 timeout, 매트릭스, 올드보이 등 영화대신  영화 DB를 넣는다.</p>
+<p>component가 DidMount 했을 때 불러들이게 만들려고 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// App.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">class</span> App <span style="color:#ff79c6">extends</span> Component {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>  state <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  componentDidMount(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    fetch(<span style="color:#f1fa8c">&#39;https://yts.am/api/v2/list_movies.json?sort_by=rating&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  ...
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>네트워크 상태를 살펴보면 아래와 같은 순서로 불러들인다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>다시 정리하면, <code>component</code> 가 <code>mount</code> 되면 (<code>componentDidMount</code>) , <code>fetch()</code> 안의 URL로 가서 fetch해 오는 것이다.</p>
+<p>💡 <strong>Ajax는 URL을 javascript로 <code>asynchronous (비동기화) 방법</code> 으로 불러온다.</strong> <strong>데이터를 불러올 때마다 페이지를 새로고침 하고 싶지 않기 때문에 Ajax를 사용한다.</strong> 예를들어, 로딩을 하면 API를 불러온다. 동시에 평점을 가져오기도 한다. 즉, <strong>Javascript와 함께 데이터를 다룰 수 있다.</strong></p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ajax">Ajax</a></li>
+    <li><a href="#fetch">Fetch</a>
+      <ul>
+        <li><a href="#componentdidmount-fetch">componentDidMount() Fetch</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React&description=6-1.%20Ajax%20in%20React%20Ajax%20Ajax%eb%8a%94%20Asynchronous%20Javascript%20and%20XML%ec%9d%98%20%ec%95%bd%ec%9e%90%ec%9d%b4%eb%8b%a4.%0aJSON%ec%9d%80%20Javascript%20Object%20Notation%ec%9d%98%20%ec%95%bd%ec%9e%90%ec%9d%b4%eb%8b%a4.%20Object%eb%a5%bc%20Javascript%eb%a1%9c%20%ec%9e%91%ec%84%b1%ed%95%98%eb%8a%94%20%ea%b8%b0%eb%b2%95%ec%9d%b4%eb%8b%a4.%0aFetch%20FETCH%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%b4%ec%84%9c%20URL%ec%97%90%ec%84%9c%20%ec%a0%95%eb%b3%b4%eb%a5%bc%20GET%20%ed%95%98%eb%8a%94%20%eb%b0%a9%eb%b2%95%ec%9d%84%20%eb%b0%b0%ec%9a%b4%eb%8b%a4.%20movie%20app%ec%97%90%20%ec%82%ac%ec%9a%a9%ed%95%a0%20URL%ec%9d%80%20API-YTS%20torrent%20movie%20database%ec%97%90%ec%84%9c%20%ea%b0%80%ec%a0%b8%20%ec%98%a8%eb%8b%a4.%20%28%20https%3a%2f%2fyts.am%2fapi%23list_movies%20%29%0ahttps%3a%2f%2fyts.am%2fapi%23list_movies%20%ec%97%90%ec%84%9c%20Examples%ec%97%90%20%ec%9e%88%eb%8a%94%20URL%ec%9d%84%20%eb%b3%b5%ec%82%ac%ed%95%9c%eb%8b%a4.%0a%eb%b3%b5%ec%82%ac%ed%95%9c%20https%3a%2f%2fyts.am%2fapi%2fv2%2flist_movies.json%20%eb%a5%bc%20%ec%97%b4%eb%a9%b4%20javascript%20object%eb%a5%bc%20%eb%b3%bc%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%20%ec%9d%b4%ea%b2%83%ec%9d%84%20react%ec%97%90%ec%84%9c%20%eb%b6%88%eb%9f%ac%ec%98%ac%20%ec%88%98%20%ec%9e%88%ec%96%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4.%0a%ec%82%ac%ec%9d%b4%ed%8a%b8%ec%97%90%ec%84%9c%20%eb%b3%b4%eb%a9%b4%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%80%20%ec%a0%95%eb%b3%b4%ea%b0%80%20%eb%82%98%ec%98%a4%eb%8a%94%eb%8d%b0%20%ec%9d%b4%ea%b2%83%ec%9d%84%20%ed%99%9c%ec%9a%a9%ed%95%98%ec%97%ac%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%eb%a5%bc%20%ed%95%84%ed%84%b0%2c%20%ec%a0%95%eb%a0%ac%ec%9d%84%20%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_6_1_ajax_in_react%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Ajax%20in%20React" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

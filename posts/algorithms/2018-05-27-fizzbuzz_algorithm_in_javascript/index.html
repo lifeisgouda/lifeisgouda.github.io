@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Algorithms] FizzBuzz in Javascript | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Algorithms] FizzBuzz in Javascript" />
+<meta property="og:description" content="문제 3으로 나누어떨어지는 수일 때는 fizz, 5로 나누어떨어지는 수일 때는 buzz, 3과 5 둘 다 나누어떨어질 때는 fizzbuzz로 숫자를 대체한다.
+Modulus Operator 나누어서 나머지를 출력해주는 연산자로 &lsquo;%&lsquo;를 사용할 수 있다.
+1console.log(100%30); // 10 2console.log(7%3) // 1 Algorithm 먼저 문제를 해결할 function을 만든다.
+1function fizzbuzz(num){} 예를들어, 20이 주어지면 결과가 1부터 20까지 출력되고, 위 조건의 숫자만 fizz, buzz, fizzbuzz로 대체 된다. 그러므로 1부터 20까지 출력될 수 있는 for문을 작성한다.
+1function fizzbuzz(num){ 2 for(let i=1; i &lt;= num; i&#43;&#43;){ 3 /* each number which is represented by the variable i */ 4 } 5} num이나 i가 3으로 나누어 떨어지면 숫자 대신에 fizz, 5로 나누어 떨어지면 buzz, 3과 5 둘다 나누어 떨어지는 수이면 fizzbuzz가 출력되어야 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithms] FizzBuzz in Javascript"/>
+<meta name="twitter:description" content="문제 3으로 나누어떨어지는 수일 때는 fizz, 5로 나누어떨어지는 수일 때는 buzz, 3과 5 둘 다 나누어떨어질 때는 fizzbuzz로 숫자를 대체한다.
+Modulus Operator 나누어서 나머지를 출력해주는 연산자로 &lsquo;%&lsquo;를 사용할 수 있다.
+1console.log(100%30); // 10 2console.log(7%3) // 1 Algorithm 먼저 문제를 해결할 function을 만든다.
+1function fizzbuzz(num){} 예를들어, 20이 주어지면 결과가 1부터 20까지 출력되고, 위 조건의 숫자만 fizz, buzz, fizzbuzz로 대체 된다. 그러므로 1부터 20까지 출력될 수 있는 for문을 작성한다.
+1function fizzbuzz(num){ 2 for(let i=1; i &lt;= num; i&#43;&#43;){ 3 /* each number which is represented by the variable i */ 4 } 5} num이나 i가 3으로 나누어 떨어지면 숫자 대신에 fizz, 5로 나누어 떨어지면 buzz, 3과 5 둘다 나누어 떨어지는 수이면 fizzbuzz가 출력되어야 한다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/algorithms/2018-02-28-leetcode_9/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&text=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&title=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&is_video=false&description=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&title=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&title=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&name=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript&description=%eb%ac%b8%ec%a0%9c%203%ec%9c%bc%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%eb%96%a8%ec%96%b4%ec%a7%80%eb%8a%94%20%ec%88%98%ec%9d%bc%20%eb%95%8c%eb%8a%94%20fizz%2c%205%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%eb%96%a8%ec%96%b4%ec%a7%80%eb%8a%94%20%ec%88%98%ec%9d%bc%20%eb%95%8c%eb%8a%94%20buzz%2c%203%ea%b3%bc%205%20%eb%91%98%20%eb%8b%a4%20%eb%82%98%eb%88%84%ec%96%b4%eb%96%a8%ec%96%b4%ec%a7%88%20%eb%95%8c%eb%8a%94%20fizzbuzz%eb%a1%9c%20%ec%88%ab%ec%9e%90%eb%a5%bc%20%eb%8c%80%ec%b2%b4%ed%95%9c%eb%8b%a4.%0aModulus%20Operator%20%eb%82%98%eb%88%84%ec%96%b4%ec%84%9c%20%eb%82%98%eb%a8%b8%ec%a7%80%eb%a5%bc%20%ec%b6%9c%eb%a0%a5%ed%95%b4%ec%a3%bc%eb%8a%94%20%ec%97%b0%ec%82%b0%ec%9e%90%eb%a1%9c%20%26lsquo%3b%25%26lsquo%3b%eb%a5%bc%20%ec%82%ac%ec%9a%a9%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%0a1console.log%28100%2530%29%3b%20%2f%2f%2010%202console.log%287%253%29%20%2f%2f%201%20Algorithm%20%eb%a8%bc%ec%a0%80%20%eb%ac%b8%ec%a0%9c%eb%a5%bc%20%ed%95%b4%ea%b2%b0%ed%95%a0%20function%ec%9d%84%20%eb%a7%8c%eb%93%a0%eb%8b%a4.%0a1function%20fizzbuzz%28num%29%7b%7d%20%ec%98%88%eb%a5%bc%eb%93%a4%ec%96%b4%2c%2020%ec%9d%b4%20%ec%a3%bc%ec%96%b4%ec%a7%80%eb%a9%b4%20%ea%b2%b0%ea%b3%bc%ea%b0%80%201%eb%b6%80%ed%84%b0%2020%ea%b9%8c%ec%a7%80%20%ec%b6%9c%eb%a0%a5%eb%90%98%ea%b3%a0%2c%20%ec%9c%84%20%ec%a1%b0%ea%b1%b4%ec%9d%98%20%ec%88%ab%ec%9e%90%eb%a7%8c%20fizz%2c%20buzz%2c%20fizzbuzz%eb%a1%9c%20%eb%8c%80%ec%b2%b4%20%eb%90%9c%eb%8b%a4.%20%ea%b7%b8%eb%9f%ac%eb%af%80%eb%a1%9c%201%eb%b6%80%ed%84%b0%2020%ea%b9%8c%ec%a7%80%20%ec%b6%9c%eb%a0%a5%eb%90%a0%20%ec%88%98%20%ec%9e%88%eb%8a%94%20for%eb%ac%b8%ec%9d%84%20%ec%9e%91%ec%84%b1%ed%95%9c%eb%8b%a4.%0a1function%20fizzbuzz%28num%29%7b%202%20for%28let%20i%3d1%3b%20i%20%26lt%3b%3d%20num%3b%20i%2b%2b%29%7b%203%20%2f%2a%20each%20number%20which%20is%20represented%20by%20the%20variable%20i%20%2a%2f%204%20%7d%205%7d%20num%ec%9d%b4%eb%82%98%20i%ea%b0%80%203%ec%9c%bc%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%20%eb%96%a8%ec%96%b4%ec%a7%80%eb%a9%b4%20%ec%88%ab%ec%9e%90%20%eb%8c%80%ec%8b%a0%ec%97%90%20fizz%2c%205%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%20%eb%96%a8%ec%96%b4%ec%a7%80%eb%a9%b4%20buzz%2c%203%ea%b3%bc%205%20%eb%91%98%eb%8b%a4%20%eb%82%98%eb%88%84%ec%96%b4%20%eb%96%a8%ec%96%b4%ec%a7%80%eb%8a%94%20%ec%88%98%ec%9d%b4%eb%a9%b4%20fizzbuzz%ea%b0%80%20%ec%b6%9c%eb%a0%a5%eb%90%98%ec%96%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&t=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#modulus-operator">Modulus Operator</a></li>
+    <li><a href="#algorithm">Algorithm</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Algorithms] FizzBuzz in Javascript
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          3 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/algorithms" rel="tag">algorithms</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="문제">문제</h1>
+<p>3으로 나누어떨어지는 수일 때는 fizz, 5로 나누어떨어지는 수일 때는  buzz, 3과 5 둘 다 나누어떨어질 때는 fizzbuzz로 숫자를 대체한다.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="modulus-operator">Modulus Operator</h2>
+<p>나누어서 나머지를 출력해주는 연산자로 &lsquo;%&lsquo;를 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>console.log(<span style="color:#bd93f9">100</span><span style="color:#ff79c6">%</span><span style="color:#bd93f9">30</span>);    <span style="color:#6272a4">// 10
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>console.log(<span style="color:#bd93f9">7</span><span style="color:#ff79c6">%</span><span style="color:#bd93f9">3</span>)        <span style="color:#6272a4">// 1
+</span></span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="algorithm">Algorithm</h2>
+<p>먼저 문제를 해결할 function을 만든다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> fizzbuzz(num){}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>예를들어, 20이 주어지면 결과가 1부터 20까지 출력되고, 위 조건의 숫자만 fizz, buzz, fizzbuzz로 대체 된다. 그러므로 1부터 20까지 출력될 수 있는 for문을 작성한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> fizzbuzz(num){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">let</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> num; i<span style="color:#ff79c6">++</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#6272a4">/* each number which is represented by the variable i */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>num이나 i가 3으로 나누어 떨어지면 숫자 대신에 fizz, 5로 나누어 떨어지면 buzz, 3과 5 둘다 나누어 떨어지는 수이면 fizzbuzz가 출력되어야 한다. 앞에서 정리한 modulus operator를 사용하여 조건문을 만들 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> fizzbuzz(num){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> num; i<span style="color:#ff79c6">++</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) console.log(<span style="color:#f1fa8c">&#39;fizz&#39;</span>);      <span style="color:#6272a4">// the number is divisible by 3.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">5</span> <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) console.log(<span style="color:#f1fa8c">&#39;buzz&#39;</span>); <span style="color:#6272a4">// the number is divsible by 5.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">15</span> <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) console.log(<span style="color:#f1fa8c">&#39;fizzbuzz&#39;</span>); <span style="color:#6272a4">// the number is divisible by both 3 and 5.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// else if (i % 3 === 0 &amp;&amp; i % 5 === 0) console.log(&#39;fizzbuzz&#39;)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>위 조건문은 한가지 문제점이 있는데 3이나 5로 나누어 떨어지는 조건에 먼저 부합하게 되면 3과 5 둘다 나누어 떨어지는 수는 buzzfizz로 출력될 수 없게 된다. 그러므로 이를 해결하기 위해 3과 5 둘다 나누어지는 조건이 맨 첫번째 if 문으로 위치해야 한다.</p>
+<p>나머지 값은 i 값이 그대로 출력되도록 마지막 else문을 만든다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> fizzbuzz(num){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> num; i<span style="color:#ff79c6">++</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">15</span> <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) console.log(<span style="color:#f1fa8c">&#39;fizzbuzz&#39;</span>); 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) console.log(<span style="color:#f1fa8c">&#39;fizz&#39;</span>); 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">5</span> <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) console.log(<span style="color:#f1fa8c">&#39;buzz&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        <span style="color:#ff79c6">else</span> console.log(i);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>}
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#modulus-operator">Modulus Operator</a></li>
+    <li><a href="#algorithm">Algorithm</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&text=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&title=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&is_video=false&description=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&title=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&title=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&name=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript&description=%eb%ac%b8%ec%a0%9c%203%ec%9c%bc%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%eb%96%a8%ec%96%b4%ec%a7%80%eb%8a%94%20%ec%88%98%ec%9d%bc%20%eb%95%8c%eb%8a%94%20fizz%2c%205%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%eb%96%a8%ec%96%b4%ec%a7%80%eb%8a%94%20%ec%88%98%ec%9d%bc%20%eb%95%8c%eb%8a%94%20buzz%2c%203%ea%b3%bc%205%20%eb%91%98%20%eb%8b%a4%20%eb%82%98%eb%88%84%ec%96%b4%eb%96%a8%ec%96%b4%ec%a7%88%20%eb%95%8c%eb%8a%94%20fizzbuzz%eb%a1%9c%20%ec%88%ab%ec%9e%90%eb%a5%bc%20%eb%8c%80%ec%b2%b4%ed%95%9c%eb%8b%a4.%0aModulus%20Operator%20%eb%82%98%eb%88%84%ec%96%b4%ec%84%9c%20%eb%82%98%eb%a8%b8%ec%a7%80%eb%a5%bc%20%ec%b6%9c%eb%a0%a5%ed%95%b4%ec%a3%bc%eb%8a%94%20%ec%97%b0%ec%82%b0%ec%9e%90%eb%a1%9c%20%26lsquo%3b%25%26lsquo%3b%eb%a5%bc%20%ec%82%ac%ec%9a%a9%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%0a1console.log%28100%2530%29%3b%20%2f%2f%2010%202console.log%287%253%29%20%2f%2f%201%20Algorithm%20%eb%a8%bc%ec%a0%80%20%eb%ac%b8%ec%a0%9c%eb%a5%bc%20%ed%95%b4%ea%b2%b0%ed%95%a0%20function%ec%9d%84%20%eb%a7%8c%eb%93%a0%eb%8b%a4.%0a1function%20fizzbuzz%28num%29%7b%7d%20%ec%98%88%eb%a5%bc%eb%93%a4%ec%96%b4%2c%2020%ec%9d%b4%20%ec%a3%bc%ec%96%b4%ec%a7%80%eb%a9%b4%20%ea%b2%b0%ea%b3%bc%ea%b0%80%201%eb%b6%80%ed%84%b0%2020%ea%b9%8c%ec%a7%80%20%ec%b6%9c%eb%a0%a5%eb%90%98%ea%b3%a0%2c%20%ec%9c%84%20%ec%a1%b0%ea%b1%b4%ec%9d%98%20%ec%88%ab%ec%9e%90%eb%a7%8c%20fizz%2c%20buzz%2c%20fizzbuzz%eb%a1%9c%20%eb%8c%80%ec%b2%b4%20%eb%90%9c%eb%8b%a4.%20%ea%b7%b8%eb%9f%ac%eb%af%80%eb%a1%9c%201%eb%b6%80%ed%84%b0%2020%ea%b9%8c%ec%a7%80%20%ec%b6%9c%eb%a0%a5%eb%90%a0%20%ec%88%98%20%ec%9e%88%eb%8a%94%20for%eb%ac%b8%ec%9d%84%20%ec%9e%91%ec%84%b1%ed%95%9c%eb%8b%a4.%0a1function%20fizzbuzz%28num%29%7b%202%20for%28let%20i%3d1%3b%20i%20%26lt%3b%3d%20num%3b%20i%2b%2b%29%7b%203%20%2f%2a%20each%20number%20which%20is%20represented%20by%20the%20variable%20i%20%2a%2f%204%20%7d%205%7d%20num%ec%9d%b4%eb%82%98%20i%ea%b0%80%203%ec%9c%bc%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%20%eb%96%a8%ec%96%b4%ec%a7%80%eb%a9%b4%20%ec%88%ab%ec%9e%90%20%eb%8c%80%ec%8b%a0%ec%97%90%20fizz%2c%205%eb%a1%9c%20%eb%82%98%eb%88%84%ec%96%b4%20%eb%96%a8%ec%96%b4%ec%a7%80%eb%a9%b4%20buzz%2c%203%ea%b3%bc%205%20%eb%91%98%eb%8b%a4%20%eb%82%98%eb%88%84%ec%96%b4%20%eb%96%a8%ec%96%b4%ec%a7%80%eb%8a%94%20%ec%88%98%ec%9d%b4%eb%a9%b4%20fizzbuzz%ea%b0%80%20%ec%b6%9c%eb%a0%a5%eb%90%98%ec%96%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-05-27-fizzbuzz_algorithm_in_javascript%2f&t=%5bAlgorithms%5d%20FizzBuzz%20in%20Javascript" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

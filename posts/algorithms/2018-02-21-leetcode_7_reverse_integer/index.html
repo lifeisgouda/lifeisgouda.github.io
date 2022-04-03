@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Algorithms] 7. Reverse Integer | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/algorithms/2018-02-21-leetcode_7_reverse_integer/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Algorithms] 7. Reverse Integer" />
+<meta property="og:description" content="[LeetCode] 7. Reverse Integer https://leetcode.com/problems/two-sum/description/
+ Given a 32-bit signed integer, reverse digits of an integer.
+주어진 32비트의 부호있는 정수의 자릿 수를 뒤집는 문제.
+Example 1:
+Input: 123 Output: 321 Example 2:
+Input: -123 Output: -321 Example 3:
+Input: 120 Output: 21 Note: Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/algorithms/2018-02-21-leetcode_7_reverse_integer/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithms] 7. Reverse Integer"/>
+<meta name="twitter:description" content="[LeetCode] 7. Reverse Integer https://leetcode.com/problems/two-sum/description/
+ Given a 32-bit signed integer, reverse digits of an integer.
+주어진 32비트의 부호있는 정수의 자릿 수를 뒤집는 문제.
+Example 1:
+Input: 123 Output: 321 Example 2:
+Input: -123 Output: -321 Example 3:
+Input: 120 Output: 21 Note: Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/algorithms/2018-04-09-leetcode_807/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/algorithms/2018-02-14-leetcode_1_two_sum/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&text=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&title=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&is_video=false&description=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%207.%20Reverse%20Integer&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&title=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&title=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&name=%5bAlgorithms%5d%207.%20Reverse%20Integer&description=%5bLeetCode%5d%207.%20Reverse%20Integer%20https%3a%2f%2fleetcode.com%2fproblems%2ftwo-sum%2fdescription%2f%0a%20Given%20a%2032-bit%20signed%20integer%2c%20reverse%20digits%20of%20an%20integer.%0a%ec%a3%bc%ec%96%b4%ec%a7%84%2032%eb%b9%84%ed%8a%b8%ec%9d%98%20%eb%b6%80%ed%98%b8%ec%9e%88%eb%8a%94%20%ec%a0%95%ec%88%98%ec%9d%98%20%ec%9e%90%eb%a6%bf%20%ec%88%98%eb%a5%bc%20%eb%92%a4%ec%a7%91%eb%8a%94%20%eb%ac%b8%ec%a0%9c.%0aExample%201%3a%0aInput%3a%20123%20Output%3a%20321%20Example%202%3a%0aInput%3a%20-123%20Output%3a%20-321%20Example%203%3a%0aInput%3a%20120%20Output%3a%2021%20Note%3a%20Assume%20we%20are%20dealing%20with%20an%20environment%20which%20could%20only%20hold%20integers%20within%20the%2032-bit%20signed%20integer%20range.%20For%20the%20purpose%20of%20this%20problem%2c%20assume%20that%20your%20function%20returns%200%20when%20the%20reversed%20integer%20overflows." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&t=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#1-the-flow-of-thought">1. The flow of thought</a></li>
+        <li><a href="#2-solution">2. Solution</a></li>
+        <li><a href="#3-another-solution">3. Another solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Algorithms] 7. Reverse Integer
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          2 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="leetcode-7-reverse-integer">[LeetCode] 7. Reverse Integer</h1>
+<p><a href="https://leetcode.com/problems/two-sum/description/">https://leetcode.com/problems/two-sum/description/</a></p>
+<blockquote>
+<p>Given a 32-bit signed integer, reverse digits of an integer.</p>
+<p>주어진 32비트의 부호있는 정수의 자릿 수를 뒤집는 문제.</p>
+<p><strong>Example 1:</strong></p>
+<pre tabindex="0"><code>Input: 123
+Output:  321
+</code></pre><p><strong>Example 2:</strong></p>
+<pre tabindex="0"><code>Input: -123
+Output: -321
+</code></pre><p><strong>Example 3:</strong></p>
+<pre tabindex="0"><code>Input: 120
+Output: 21
+</code></pre><p><strong>Note:</strong>
+Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</p>
+<p>32비트의 부호 있는 정수의 범위 안에서만 정수를 저장할 수 있다고 가정한다. 반전된 정수가 오버플로우되면 함수가  0을 반환한다고 가정한다.</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h2 id="approach">Approach</h2>
+<h3 id="1-the-flow-of-thought">1. The flow of thought</h3>
+<p>문제를 보고 처음 든 생각은 조건을 어떻게 처리할 것인가이다.</p>
+<p>조건은 총 2가지인데, <!-- raw HTML omitted -->32비트 범위<!-- raw HTML omitted -->라는 것과 <!-- raw HTML omitted -->부호가 있다는 것<!-- raw HTML omitted -->이다. 둘다 따로 처리하는 게 편할 것 같아서 각각 따로 처리하는 조건문을 만들었다. (J가 부호를 따로 처리하라고 힌트를 줌)</p>
+<ol>
+<li>
+<p>입력값 x의 부호가 양수인지, 음수인지 판단 <code>sign = 1 ``if (x&lt;0): sign = -1</code> <!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>자릿수 뒤집는 연산 시행 <code>int(str(sign(x)*x)[::-1]</code> <!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>32비트 내의 정수인지 판단 <code>r &gt; 2**31 -1</code> <!-- raw HTML omitted --></p>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<h3 id="2-solution">2. Solution</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">reverse</span>(x):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    sign <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#ff79c6">if</span> (x <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        sign <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    r <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">int</span>(<span style="color:#8be9fd;font-style:italic">str</span>(sign<span style="color:#ff79c6">*</span>x)[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#ff79c6">return</span> (sign<span style="color:#ff79c6">*</span>r, <span style="color:#bd93f9">0</span>)[r <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">**</span><span style="color:#bd93f9">31</span> <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>]
+</span></span></code></pre></div><h3 id="3-another-solution">3. Another solution</h3>
+<p>python 솔루션 중 Vote를 가장 많이 받은 코드이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">reverse</span>(x):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    s <span style="color:#ff79c6">=</span> cmp(x, <span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    r <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">int</span>(`s<span style="color:#ff79c6">*</span>x`[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#ff79c6">return</span> s<span style="color:#ff79c6">*</span>r <span style="color:#ff79c6">*</span> (r <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">**</span><span style="color:#bd93f9">31</span>)
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#1-the-flow-of-thought">1. The flow of thought</a></li>
+        <li><a href="#2-solution">2. Solution</a></li>
+        <li><a href="#3-another-solution">3. Another solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&text=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&title=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&is_video=false&description=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%207.%20Reverse%20Integer&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&title=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&title=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&name=%5bAlgorithms%5d%207.%20Reverse%20Integer&description=%5bLeetCode%5d%207.%20Reverse%20Integer%20https%3a%2f%2fleetcode.com%2fproblems%2ftwo-sum%2fdescription%2f%0a%20Given%20a%2032-bit%20signed%20integer%2c%20reverse%20digits%20of%20an%20integer.%0a%ec%a3%bc%ec%96%b4%ec%a7%84%2032%eb%b9%84%ed%8a%b8%ec%9d%98%20%eb%b6%80%ed%98%b8%ec%9e%88%eb%8a%94%20%ec%a0%95%ec%88%98%ec%9d%98%20%ec%9e%90%eb%a6%bf%20%ec%88%98%eb%a5%bc%20%eb%92%a4%ec%a7%91%eb%8a%94%20%eb%ac%b8%ec%a0%9c.%0aExample%201%3a%0aInput%3a%20123%20Output%3a%20321%20Example%202%3a%0aInput%3a%20-123%20Output%3a%20-321%20Example%203%3a%0aInput%3a%20120%20Output%3a%2021%20Note%3a%20Assume%20we%20are%20dealing%20with%20an%20environment%20which%20could%20only%20hold%20integers%20within%20the%2032-bit%20signed%20integer%20range.%20For%20the%20purpose%20of%20this%20problem%2c%20assume%20that%20your%20function%20returns%200%20when%20the%20reversed%20integer%20overflows." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-02-21-leetcode_7_reverse_integer%2f&t=%5bAlgorithms%5d%207.%20Reverse%20Integer" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

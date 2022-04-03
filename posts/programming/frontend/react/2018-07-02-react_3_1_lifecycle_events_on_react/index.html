@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [React] Movie app clone coding : Lifecycle Events on React | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_3_1_lifecycle_events_on_react/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[React] Movie app clone coding : Lifecycle Events on React" />
+<meta property="og:description" content="3-1. Lifecycle Events on React React Component Lifecycle   Compenent Lifecycle
+https://reactjs.org/docs/react-component.html#the-component-lifecycle
+  Render Component가 여러 기능들을 정해진 순서대로 실행하는 것을 학습한다. Render를 할 때(Componenet를 띄울 때) 아래 순서대로 하게 된다.
+ Render : componentWillMount() → render() → componentDidMount()  Component가 존재하기 시작하면, react 안에서는 willMount → render → DidMount() 를 수행한다.
+예를들어 영화앱을 만든다면, wiiMount 를 진행할 때 api에 작업을 요청한다. 해당 작업 수행이 완료되면 그 다음에 데이터 관련 작업을 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_3_1_lifecycle_events_on_react/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[React] Movie app clone coding : Lifecycle Events on React"/>
+<meta name="twitter:description" content="3-1. Lifecycle Events on React React Component Lifecycle   Compenent Lifecycle
+https://reactjs.org/docs/react-component.html#the-component-lifecycle
+  Render Component가 여러 기능들을 정해진 순서대로 실행하는 것을 학습한다. Render를 할 때(Componenet를 띄울 때) 아래 순서대로 하게 된다.
+ Render : componentWillMount() → render() → componentDidMount()  Component가 존재하기 시작하면, react 안에서는 willMount → render → DidMount() 를 수행한다.
+예를들어 영화앱을 만든다면, wiiMount 를 진행할 때 api에 작업을 요청한다. 해당 작업 수행이 완료되면 그 다음에 데이터 관련 작업을 한다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_3_list_with_map/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_2_giving_some_css_to/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React&description=3-1.%20Lifecycle%20Events%20on%20React%20React%20Component%20Lifecycle%20%20%20Compenent%20Lifecycle%0ahttps%3a%2f%2freactjs.org%2fdocs%2freact-component.html%23the-component-lifecycle%0a%20%20Render%20Component%ea%b0%80%20%ec%97%ac%eb%9f%ac%20%ea%b8%b0%eb%8a%a5%eb%93%a4%ec%9d%84%20%ec%a0%95%ed%95%b4%ec%a7%84%20%ec%88%9c%ec%84%9c%eb%8c%80%eb%a1%9c%20%ec%8b%a4%ed%96%89%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%84%20%ed%95%99%ec%8a%b5%ed%95%9c%eb%8b%a4.%20Render%eb%a5%bc%20%ed%95%a0%20%eb%95%8c%28Componenet%eb%a5%bc%20%eb%9d%84%ec%9a%b8%20%eb%95%8c%29%20%ec%95%84%eb%9e%98%20%ec%88%9c%ec%84%9c%eb%8c%80%eb%a1%9c%20%ed%95%98%ea%b2%8c%20%eb%90%9c%eb%8b%a4.%0a%20Render%20%3a%20componentWillMount%28%29%20%e2%86%92%20render%28%29%20%e2%86%92%20componentDidMount%28%29%20%20Component%ea%b0%80%20%ec%a1%b4%ec%9e%ac%ed%95%98%ea%b8%b0%20%ec%8b%9c%ec%9e%91%ed%95%98%eb%a9%b4%2c%20react%20%ec%95%88%ec%97%90%ec%84%9c%eb%8a%94%20willMount%20%e2%86%92%20render%20%e2%86%92%20DidMount%28%29%20%eb%a5%bc%20%ec%88%98%ed%96%89%ed%95%9c%eb%8b%a4.%0a%ec%98%88%eb%a5%bc%eb%93%a4%ec%96%b4%20%ec%98%81%ed%99%94%ec%95%b1%ec%9d%84%20%eb%a7%8c%eb%93%a0%eb%8b%a4%eb%a9%b4%2c%20wiiMount%20%eb%a5%bc%20%ec%a7%84%ed%96%89%ed%95%a0%20%eb%95%8c%20api%ec%97%90%20%ec%9e%91%ec%97%85%ec%9d%84%20%ec%9a%94%ec%b2%ad%ed%95%9c%eb%8b%a4.%20%ed%95%b4%eb%8b%b9%20%ec%9e%91%ec%97%85%20%ec%88%98%ed%96%89%ec%9d%b4%20%ec%99%84%eb%a3%8c%eb%90%98%eb%a9%b4%20%ea%b7%b8%20%eb%8b%a4%ec%9d%8c%ec%97%90%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ea%b4%80%eb%a0%a8%20%ec%9e%91%ec%97%85%ec%9d%84%20%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#3-1-lifecycle-events-on-react">3-1. Lifecycle Events on React</a></li>
+    <li><a href="#react-component-lifecycle">React Component Lifecycle</a>
+      <ul>
+        <li><a href="#render">Render</a></li>
+        <li><a href="#update">Update</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [React] Movie app clone coding : Lifecycle Events on React
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          2 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/clonecoding" rel="tag">clonecoding</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react" rel="tag">react</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/jsx" rel="tag">jsx</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="3-1-lifecycle-events-on-react">3-1. Lifecycle Events on React</h2>
+<!-- raw HTML omitted -->
+<h2 id="react-component-lifecycle">React Component Lifecycle</h2>
+<ul>
+<li>
+<p>Compenent Lifecycle</p>
+<p><a href="https://reactjs.org/docs/react-component.html#the-component-lifecycle">https://reactjs.org/docs/react-component.html#the-component-lifecycle</a></p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="render">Render</h3>
+<p>Component가 여러 기능들을 정해진 순서대로 실행하는 것을 학습한다. Render를 할 때(Componenet를 띄울 때) 아래 순서대로 하게 된다.</p>
+<!-- raw HTML omitted -->
+<ul>
+<li><strong>Render</strong> : <code>componentWillMount()</code> → <code>render()</code> → <code>componentDidMount()</code></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Component가 <code>존재</code>하기 시작하면, react 안에서는 <code>willMount → render → DidMount()</code> 를 수행한다.</p>
+<p>예를들어 영화앱을 만든다면, <code>wiiMount</code> 를 진행할 때 api에 작업을 요청한다. 해당 작업 수행이 완료되면 그 다음에 데이터 관련 작업을 한다.</p>
+<p>이 cycle이 중요한 이유는 component를 만드는데 도움이 되기 때문이다. <code>willMount</code> 를 보면 사이클이 시작되었음을 알 수 있고, <code>render</code> 를 보면 component가 react 내부에 존재하게 되었음을 알게되고, <code>didMount</code> 를 보면 성공적으로 react 안에 component가 자리잡았음을 알 수 있다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="update">Update</h3>
+<p><strong>Update</strong> : <code>componentwillReceiveProps()</code> → <code>shouldComponentUpdate()</code> → <code>componentiwillUpdate()</code> → <code>render()</code> → <code>componentDidUpdate()</code></p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p><code>componentwillReceiveProps()</code> : 컴포넌트가 새로운 proprs을 받음</p>
+</li>
+<li>
+<p><code>shouldComponentUpdate()</code> : 리액트는 old props, new props를 살펴본 다음, 이전과 새로운 props가 다르면 <code>update=true</code> 라고 생각한다. 즉, <code>shouldComponentUpdate() === true</code> 하여 업데이트가 된다.</p>
+</li>
+<li>
+<p><code>componentiwillUpdate()</code> : componenet가 업데이트 할거라는 단계</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>예를들어 <code>componentWillUpdate()</code> 를 수행할 때는 어플리케이션에 빙글빙글 도는 spinner를 붙일 수 있다. 업데이트 후에 돌고 있던 &lsquo;로딩 중&rsquo; 메시지나 아이콘을 숨기면 된다.</p>
+<!-- raw HTML omitted -->
+<p>💡NOTE : Component는 많은 functions을 갖고 있고 그것들은 <code>자동으로</code> , <code>순서대로</code> 작동한다.</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#3-1-lifecycle-events-on-react">3-1. Lifecycle Events on React</a></li>
+    <li><a href="#react-component-lifecycle">React Component Lifecycle</a>
+      <ul>
+        <li><a href="#render">Render</a></li>
+        <li><a href="#update">Update</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React&description=3-1.%20Lifecycle%20Events%20on%20React%20React%20Component%20Lifecycle%20%20%20Compenent%20Lifecycle%0ahttps%3a%2f%2freactjs.org%2fdocs%2freact-component.html%23the-component-lifecycle%0a%20%20Render%20Component%ea%b0%80%20%ec%97%ac%eb%9f%ac%20%ea%b8%b0%eb%8a%a5%eb%93%a4%ec%9d%84%20%ec%a0%95%ed%95%b4%ec%a7%84%20%ec%88%9c%ec%84%9c%eb%8c%80%eb%a1%9c%20%ec%8b%a4%ed%96%89%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%84%20%ed%95%99%ec%8a%b5%ed%95%9c%eb%8b%a4.%20Render%eb%a5%bc%20%ed%95%a0%20%eb%95%8c%28Componenet%eb%a5%bc%20%eb%9d%84%ec%9a%b8%20%eb%95%8c%29%20%ec%95%84%eb%9e%98%20%ec%88%9c%ec%84%9c%eb%8c%80%eb%a1%9c%20%ed%95%98%ea%b2%8c%20%eb%90%9c%eb%8b%a4.%0a%20Render%20%3a%20componentWillMount%28%29%20%e2%86%92%20render%28%29%20%e2%86%92%20componentDidMount%28%29%20%20Component%ea%b0%80%20%ec%a1%b4%ec%9e%ac%ed%95%98%ea%b8%b0%20%ec%8b%9c%ec%9e%91%ed%95%98%eb%a9%b4%2c%20react%20%ec%95%88%ec%97%90%ec%84%9c%eb%8a%94%20willMount%20%e2%86%92%20render%20%e2%86%92%20DidMount%28%29%20%eb%a5%bc%20%ec%88%98%ed%96%89%ed%95%9c%eb%8b%a4.%0a%ec%98%88%eb%a5%bc%eb%93%a4%ec%96%b4%20%ec%98%81%ed%99%94%ec%95%b1%ec%9d%84%20%eb%a7%8c%eb%93%a0%eb%8b%a4%eb%a9%b4%2c%20wiiMount%20%eb%a5%bc%20%ec%a7%84%ed%96%89%ed%95%a0%20%eb%95%8c%20api%ec%97%90%20%ec%9e%91%ec%97%85%ec%9d%84%20%ec%9a%94%ec%b2%ad%ed%95%9c%eb%8b%a4.%20%ed%95%b4%eb%8b%b9%20%ec%9e%91%ec%97%85%20%ec%88%98%ed%96%89%ec%9d%b4%20%ec%99%84%eb%a3%8c%eb%90%98%eb%a9%b4%20%ea%b7%b8%20%eb%8b%a4%ec%9d%8c%ec%97%90%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ea%b4%80%eb%a0%a8%20%ec%9e%91%ec%97%85%ec%9d%84%20%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-02-react_3_1_lifecycle_events_on_react%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Lifecycle%20Events%20on%20React" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

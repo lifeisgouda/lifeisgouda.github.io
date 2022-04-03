@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data handling on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/data-handling/</link>
+    <description>Recent content in data handling on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/data-handling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[programming] 정규표현식 학습에 도움되는 사이트 및 자료</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-29-regular_expressions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-29-regular_expressions/</guid>
+      <description>Mozilla 정규표현식 자료 Mozilla : https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D 김민태님 슬라이드 자료 김민태님이 만든 슬라이드인데 책 보는 것보다 훨씬 유용하고, 실제 사용할만한 예시들이 있다.
+반복해서 보는 것을 추천한다.
+Slide : https://www.slideshare.net/ibare/ss-39274621 정규표현식 연습 사이트 regular_expressions site : https://regexr.</description>
+    </item>
+    
+  </channel>
+</rss>

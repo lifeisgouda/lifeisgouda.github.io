@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/mysql/</link>
+    <description>Recent content in MySQL on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[MySQL] Stored Procedure 알아보기 (in MySQL)</title>
+      <link>https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/</guid>
+      <description>1. 사전에 알아야할 용어 1.1 PL/SQL 정의
+ Procedural Language extension to SQL PL/SQL은 상용 관계형 데이터베이스 시스템인 오라클 DBMS에서 SQL 언어를 확장하기 위해 사용하는 컴퓨터 프로그래밍 언어 중 하나이다. SQL의 확장된 개념으로 PL/SQL Block 내에서 SQLdml DML(데이터 조작어)문과 Query(검색어)문, 절차형 언어(IF, LOOP) 등을 하용하여 절차적 프로그래밍을 가능하게 한 트랜잭션 언어  1.2 PL/SQL BLOCK  정의
+PL/SQL 소스 프로그램의 기본 단위를 블록(Block)이라고 하는데, 블록은 선언부, 실행부, 예외 처리부로 구성된다. 이 블록은 다시 이름이 없는 블록과 이름이 있는 블록으로 구분할 수 있는데 전자에 속하는 것이 익명 블록이며, 함수, 프로시저, 패키지 등이 후자에 속한다.</description>
+    </item>
+    
+  </channel>
+</rss>

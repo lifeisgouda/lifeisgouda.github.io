@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data structure on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/data-structure/</link>
+    <description>Recent content in data structure on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright>
+    <lastBuildDate>Sat, 31 Mar 2018 23:49:58 +0900</lastBuildDate><atom:link href="https://lifeisgouda.github.io/tags/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Algorithms] BFS(Breadth-First Search 너비우선탐색)</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-03-01-bfs/</link>
+      <pubDate>Sat, 31 Mar 2018 23:49:58 +0900</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-03-01-bfs/</guid>
+      <description>Graph Algorithms shortest-path problem(최단경로 문제)을 해결할 때 사용한다.
+순서  문제를 그래프로 모형화 너비 우선탐색으로 문제 해결  그래프 연결 집합을 모형화한 것을 그래프라고 한다.
+node와 edge로 이루어져 있다.
+출처 : http://mathworld.wolfram.com/GraphEdge.html
+너비우선탐색 개념 그래프 전체를 탐색하는 방법 중 하나이다. 너비우선탐색, 깊이우선탐색이 있다.
+Facebook에서 연결되는 사람(촌) 중에 과자 회사에 다니고 있는 사람이 있는지 찾으려고 한다고 가정해보자.
+A는 시작점인 &amp;lsquo;나&amp;rsquo;자신이고, B, C, D는 1촌, E, F, G, H는 2촌, I, J, K는 3촌이 된다.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] JavaScript Stack 구현</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-19-stack-javascript/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-19-stack-javascript/</guid>
+      <description>Stack 구현 1function Stack(){ 2 let items = []; 3 4 this.push = function(element) { 5 items.push(element); 6 }; 7 8 this.pop = function() { 9 return items.pop(); 10 }; 11 12 this.peek = function() { 13 return items[items.length-1]; 14 }; 15 16 this.isEmpty = function(){ 17 return items.length === 0; 18 }; 19 20 this.size = function(){ 21 return items.length; 22 }; 23 24 this.clear = function(){ 25 items = []; 26 }; 27 28 this.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] Graph</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/</guid>
+      <description>정의 네트워크 구조를 추상화한 모델. 간선(edge)으로 연결된 노드(node)의 집합이다.
+그래프에 대한 설명과 구현은 이 곳에 잘 나와있다.
+http://blog.benoitvallon.com/data-structures-in-javascript/the-graph-data-structure/
+그래프의 용어를 그림 하나로 정리해보면 아래와 같다.
+동적 그래프 자료구조는 인접리스트(adjacency list)로 표현 가능하다.
+위 그래프를 인접리스트로 나타낸 것이다.
+ A : B C D
+B : A E F
+C : A D G
+D : A C G H
+E : B I
+G : C D
+H : D</description>
+    </item>
+    
+    <item>
+      <title>[R] R의 Data Structure</title>
+      <link>https://lifeisgouda.github.io/posts/statistics/2018-02-19-rprogramming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/statistics/2018-02-19-rprogramming/</guid>
+      <description>[R] R의 Data structure 데이터 구조 종류   Scalar : element가 1개인 vector이다.
+1# scalar 만들기 2a &amp;lt;- &amp;#39;a&amp;#39; 3alphabet &amp;lt;- &amp;#39;abcdefg&amp;#39; 4num &amp;lt;- 1 ​
+  Vector : 같은 종류의 element가 여러개 들어 있는 1차원 matrix이다.
+1# vector 만들기 2table &amp;lt;- c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;) 3table &amp;lt;- c(1, 2, 3, 5) 4bool &amp;lt;- c(TRUE, FALSE) ​
+  Matrix : 2차원으로 된 배열. 일반적이 표 데이터를 생각하면 된다.
+1# matrix 만들기 2# 2 by 3 행렬 생성 3&amp;gt; mat &amp;lt;- matrix(c(&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;, &amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;, &amp;#34;f&amp;#34;), nrow = 2, ncol = 3) 4&amp;gt; mat 5 [,1] [,2] [,3] 6[1,] &amp;#34;a&amp;#34; &amp;#34;c&amp;#34; &amp;#34;e&amp;#34; 7[2,] &amp;#34;b&amp;#34; &amp;#34;d&amp;#34; &amp;#34;f&amp;#34; ​</description>
+    </item>
+    
+    <item>
+      <title>[R] 결측값 데이터 다루기</title>
+      <link>https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/</guid>
+      <description>1. 결측값 단순 삭제 na.omit() 결측값이 있는 행을 삭제하는 함수
+example
+1&amp;gt; dat &amp;lt;- data.frame( a = c(1, 2, 3, 4), 2+ b = c(5, 6, 7, NA), 3+ c = c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, NA), 4+ d = c(&amp;#39;e&amp;#39;, NA, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;)) 5&amp;gt; dat 6 a b c d 71 1 5 a e 82 2 6 b &amp;lt;NA&amp;gt; 93 3 7 c f 104 4 NA &amp;lt;NA&amp;gt; g 11&amp;gt; dat &amp;lt;- na.</description>
+    </item>
+    
+  </channel>
+</rss>

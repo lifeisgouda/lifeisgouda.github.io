@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [MySQL] Stored Procedure 알아보기 (in MySQL) | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[MySQL] Stored Procedure 알아보기 (in MySQL)" />
+<meta property="og:description" content="1. 사전에 알아야할 용어 1.1 PL/SQL 정의
+ Procedural Language extension to SQL PL/SQL은 상용 관계형 데이터베이스 시스템인 오라클 DBMS에서 SQL 언어를 확장하기 위해 사용하는 컴퓨터 프로그래밍 언어 중 하나이다. SQL의 확장된 개념으로 PL/SQL Block 내에서 SQLdml DML(데이터 조작어)문과 Query(검색어)문, 절차형 언어(IF, LOOP) 등을 하용하여 절차적 프로그래밍을 가능하게 한 트랜잭션 언어  1.2 PL/SQL BLOCK  정의
+PL/SQL 소스 프로그램의 기본 단위를 블록(Block)이라고 하는데, 블록은 선언부, 실행부, 예외 처리부로 구성된다. 이 블록은 다시 이름이 없는 블록과 이름이 있는 블록으로 구분할 수 있는데 전자에 속하는 것이 익명 블록이며, 함수, 프로시저, 패키지 등이 후자에 속한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[MySQL] Stored Procedure 알아보기 (in MySQL)"/>
+<meta name="twitter:description" content="1. 사전에 알아야할 용어 1.1 PL/SQL 정의
+ Procedural Language extension to SQL PL/SQL은 상용 관계형 데이터베이스 시스템인 오라클 DBMS에서 SQL 언어를 확장하기 위해 사용하는 컴퓨터 프로그래밍 언어 중 하나이다. SQL의 확장된 개념으로 PL/SQL Block 내에서 SQLdml DML(데이터 조작어)문과 Query(검색어)문, 절차형 언어(IF, LOOP) 등을 하용하여 절차적 프로그래밍을 가능하게 한 트랜잭션 언어  1.2 PL/SQL BLOCK  정의
+PL/SQL 소스 프로그램의 기본 단위를 블록(Block)이라고 하는데, 블록은 선언부, 실행부, 예외 처리부로 구성된다. 이 블록은 다시 이름이 없는 블록과 이름이 있는 블록으로 구분할 수 있는데 전자에 속하는 것이 익명 블록이며, 함수, 프로시저, 패키지 등이 후자에 속한다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/sql/2019-07-10-mysql-basic1/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&text=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&title=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&is_video=false&description=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&title=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&title=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&name=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29&description=1.%20%ec%82%ac%ec%a0%84%ec%97%90%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%ec%9a%a9%ec%96%b4%201.1%20PL%2fSQL%20%ec%a0%95%ec%9d%98%0a%20Procedural%20Language%20extension%20to%20SQL%20PL%2fSQL%ec%9d%80%20%ec%83%81%ec%9a%a9%20%ea%b4%80%ea%b3%84%ed%98%95%20%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%20%ec%8b%9c%ec%8a%a4%ed%85%9c%ec%9d%b8%20%ec%98%a4%eb%9d%bc%ed%81%b4%20DBMS%ec%97%90%ec%84%9c%20SQL%20%ec%96%b8%ec%96%b4%eb%a5%bc%20%ed%99%95%ec%9e%a5%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%b4%20%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94%20%ec%bb%b4%ed%93%a8%ed%84%b0%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%20%ec%96%b8%ec%96%b4%20%ec%a4%91%20%ed%95%98%eb%82%98%ec%9d%b4%eb%8b%a4.%20SQL%ec%9d%98%20%ed%99%95%ec%9e%a5%eb%90%9c%20%ea%b0%9c%eb%85%90%ec%9c%bc%eb%a1%9c%20PL%2fSQL%20Block%20%eb%82%b4%ec%97%90%ec%84%9c%20SQLdml%20DML%28%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a1%b0%ec%9e%91%ec%96%b4%29%eb%ac%b8%ea%b3%bc%20Query%28%ea%b2%80%ec%83%89%ec%96%b4%29%eb%ac%b8%2c%20%ec%a0%88%ec%b0%a8%ed%98%95%20%ec%96%b8%ec%96%b4%28IF%2c%20LOOP%29%20%eb%93%b1%ec%9d%84%20%ed%95%98%ec%9a%a9%ed%95%98%ec%97%ac%20%ec%a0%88%ec%b0%a8%ec%a0%81%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%ec%9d%84%20%ea%b0%80%eb%8a%a5%ed%95%98%ea%b2%8c%20%ed%95%9c%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%20%ec%96%b8%ec%96%b4%20%201.2%20PL%2fSQL%20BLOCK%20%20%ec%a0%95%ec%9d%98%0aPL%2fSQL%20%ec%86%8c%ec%8a%a4%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%98%20%ea%b8%b0%eb%b3%b8%20%eb%8b%a8%ec%9c%84%eb%a5%bc%20%eb%b8%94%eb%a1%9d%28Block%29%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%ed%95%98%eb%8a%94%eb%8d%b0%2c%20%eb%b8%94%eb%a1%9d%ec%9d%80%20%ec%84%a0%ec%96%b8%eb%b6%80%2c%20%ec%8b%a4%ed%96%89%eb%b6%80%2c%20%ec%98%88%ec%99%b8%20%ec%b2%98%eb%a6%ac%eb%b6%80%eb%a1%9c%20%ea%b5%ac%ec%84%b1%eb%90%9c%eb%8b%a4.%20%ec%9d%b4%20%eb%b8%94%eb%a1%9d%ec%9d%80%20%eb%8b%a4%ec%8b%9c%20%ec%9d%b4%eb%a6%84%ec%9d%b4%20%ec%97%86%eb%8a%94%20%eb%b8%94%eb%a1%9d%ea%b3%bc%20%ec%9d%b4%eb%a6%84%ec%9d%b4%20%ec%9e%88%eb%8a%94%20%eb%b8%94%eb%a1%9d%ec%9c%bc%eb%a1%9c%20%ea%b5%ac%eb%b6%84%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8a%94%eb%8d%b0%20%ec%a0%84%ec%9e%90%ec%97%90%20%ec%86%8d%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%b4%20%ec%9d%b5%eb%aa%85%20%eb%b8%94%eb%a1%9d%ec%9d%b4%eb%a9%b0%2c%20%ed%95%a8%ec%88%98%2c%20%ed%94%84%eb%a1%9c%ec%8b%9c%ec%a0%80%2c%20%ed%8c%a8%ed%82%a4%ec%a7%80%20%eb%93%b1%ec%9d%b4%20%ed%9b%84%ec%9e%90%ec%97%90%20%ec%86%8d%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&t=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-사전에-알아야할-용어">1. 사전에 알아야할 용어</a>
+      <ul>
+        <li><a href="#11-plsql">1.1 PL/SQL</a></li>
+        <li><a href="#12-plsql-block">1.2 PL/SQL BLOCK</a></li>
+        <li><a href="#13-procedure">1.3 Procedure</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-stored-procedure">2. Stored Procedure</a>
+      <ul>
+        <li><a href="#21-create-procedure">2.1 CREATE PROCEDURE</a></li>
+        <li><a href="#22-call">2.2 CALL</a></li>
+        <li><a href="#23-mysql-stored-procedures-advantages">2.3 MySQL stored procedures advantages</a>
+          <ul>
+            <li><a href="#reduce-network-traffic">Reduce network traffic</a></li>
+            <li><a href="#centralize-business-logic-in-the-database">Centralize business logic in the database</a></li>
+            <li><a href="#make-database-more-secure">Make database more secure</a></li>
+          </ul>
+        </li>
+        <li><a href="#24-mysql-stored-procedures-disadvantages">2.4 MySQL stored procedures disadvantages</a></li>
+        <li><a href="#resource-usages">Resource usages</a>
+          <ul>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#maintenances">Maintenances</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [MySQL] Stored Procedure 알아보기 (in MySQL)
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          6 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/mysql" rel="tag">MySQL</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="1-사전에-알아야할-용어">1. 사전에 알아야할 용어</h2>
+<h3 id="11-plsql">1.1 PL/SQL</h3>
+<p><strong>정의</strong></p>
+<ul>
+<li>Procedural Language extension to SQL</li>
+<li>PL/SQL은 상용 관계형 데이터베이스 시스템인 오라클 DBMS에서 SQL 언어를 확장하기 위해 사용하는 컴퓨터 프로그래밍 언어 중 하나이다.</li>
+<li>SQL의 확장된 개념으로 PL/SQL Block 내에서 SQLdml DML(데이터 조작어)문과 Query(검색어)문, 절차형 언어(IF, LOOP) 등을 하용하여 절차적 프로그래밍을 가능하게 한 트랜잭션 언어</li>
+</ul>
+<h3 id="12-plsql-block">1.2 PL/SQL BLOCK</h3>
+<blockquote>
+<p><strong>정의</strong></p>
+<p>PL/SQL 소스 프로그램의 기본 단위를 <strong>블록</strong>(Block)이라고 하는데, 블록은 선언부, 실행부, 예외 처리부로 구성된다. 이 블록은 다시 이름이 없는 블록과 이름이 있는 블록으로 구분할 수 있는데 전자에 속하는 것이 익명 블록이며, 함수, 프로시저, 패키지 등이 후자에 속한다. PL/SQL의 블록 구조는 다음과 같다.</p>
+<pre tabindex="0"><code>이름부
+IS(AS)
+선언부
+BEGIN
+실행부
+EXCEPTION
+예외 처리부
+END;
+</code></pre></blockquote>
+<h3 id="13-procedure">1.3 Procedure</h3>
+<ul>
+<li>정의: 특정 작업을 수행 하는, 이름이 있는 PL/SQL BLOCK 이다.</li>
+</ul>
+<h2 id="2-stored-procedure">2. Stored Procedure</h2>
+<p>앞의 용어에 기반하여 설명하면,</p>
+<ul>
+<li>DB 내부에 저장된 일련의 SQL 명령문들을 하나의 함수처럼 실행하기 위한 쿼리의 집합이 Stored Procedure이다.</li>
+<li>나중에 Query를 실행하기 위하여 DB Server에 Query를 저장할 때 stored procedure를 사용할 수 있다.</li>
+</ul>
+<h3 id="21-create-procedure">2.1 CREATE PROCEDURE</h3>
+<ul>
+<li><code>CREATE PROCEDURE</code> statement는 Query를 감싸는 새로운 stored procedure를 만든다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>DELIMITER $$
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">PROCEDURE</span> <span style="color:#50fa7b">GetCustomers</span>()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>BEGIN
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#ff79c6">SELECT</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        customerName, 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        city, 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        state, 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        postalCode, 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        country
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#ff79c6">FROM</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        customers
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#ff79c6">ORDER</span> <span style="color:#ff79c6">BY</span> customerName;    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>END$$
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>DELIMITER ;
+</span></span></code></pre></div><p>위 예시에서 <code>GetCustomers()</code> 라는 stored procedure를 MySQL 서버에 만들었다</p>
+<h3 id="22-call">2.2 CALL</h3>
+<ul>
+<li><code>CALL</code> 을 사용하여 저장된 stored procedure를 호출할 수 있다.</li>
+<li>아래와 같이 호출하게 되면 작성해둔 query와 동일한 결과가 반환된다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">CALL</span> <span style="color:#50fa7b">GetCustomers</span>();
+</span></span></code></pre></div><ul>
+<li>Stored procedure를 처음 호출하면 MySQL은 DB의 catalog에서 이름을 찾아서 stored procedure의 코드를 compile하여 메모리 영역에 캐시로 저장한 후 stored procedure를 실행한다.</li>
+<li>동일한 session에서 같은 stored procedure를 재호출 하면 MySQL은 기존에 있는 캐시로 실행한다. (컴파일을 다시 거치지 않음)</li>
+<li>Stored procedure에서 매개 변수가 있을 경우 값을 전달하고 결과를 다시 반환 받을 수 있다.
+<ul>
+<li>e.g., 국가, 도시별 고객을 반환하는 stored procedure가 있다고 가정. 이 경우 국가, 도시는 stored procedure의 매개 변수이다.</li>
+</ul>
+</li>
+<li>Stored procedure에는 IF, CASE, LOOP 등 control flow statements가 포함될 수 있다.</li>
+<li>Stored procedure는  다른 stored procedure 또는 stored function을 호출하여 코드를 만들(modulize) 수 있다.</li>
+</ul>
+<h3 id="23-mysql-stored-procedures-advantages">2.3 MySQL stored procedures advantages</h3>
+<h4 id="reduce-network-traffic">Reduce network traffic</h4>
+<ul>
+<li>Application과 MySQL Server 사이에 Network traffic을 줄이는데 도움이 된다.</li>
+<li>긴 SQL문을 여러 개 전송하지 않아도,  application이 stored procedure의 이름과 매개 변수만 보내면 된다.</li>
+</ul>
+<h4 id="centralize-business-logic-in-the-database">Centralize business logic in the database</h4>
+<ul>
+<li>여러 application에서 재사용 가능한 비즈니스 로직을 만들 수 있기 때문에 동일한 로직을 복제하져는 노력을 줄일 수 있고 DB의 일관성을 향상시킬 수 있다.</li>
+</ul>
+<h4 id="make-database-more-secure">Make database more secure</h4>
+<ul>
+<li>특정 stored procedure에 접근할 수 있는 권한만을 부여하여 기본 table을 더욱 안전하게 관리할 수 있다.</li>
+</ul>
+<h3 id="24-mysql-stored-procedures-disadvantages">2.4 MySQL stored procedures disadvantages</h3>
+<h3 id="resource-usages">Resource usages</h3>
+<ul>
+<li>Stored procedure를 많이 사용할 경우 메모리 사용량이 증가할 수 있다.</li>
+<li>또한, MySQL이 logical operations을 잘 할 수 있게 설계되지 않았기 때문에, stored procedure에서 과도하게 많은 연산을 할 경우 CPU 사용량이 증가할 수 있다.</li>
+</ul>
+<h4 id="troubleshooting">Troubleshooting</h4>
+<ul>
+<li>Stored procedure를 디버깅 하기 어렵다.</li>
+<li>MySQL은 stored procedure 디버깅 기능을 제공하지 않는다. (Oracle 같은 Enterprise DB는 제공)</li>
+</ul>
+<h4 id="maintenances">Maintenances</h4>
+<ul>
+<li>Stored procedure를 개발하고 유지, 관리하는데 개발 resource가 많이 필요하다. 그렇기 때문에 유지보수의 문제가 발생할 수 있다.</li>
+</ul>
+<hr>
+<ul>
+<li>출처: <a href="https://www.mysqltutorial.org/introduction-to-sql-stored-procedures.aspx">https://www.mysqltutorial.org/introduction-to-sql-stored-procedures.aspx</a></li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-사전에-알아야할-용어">1. 사전에 알아야할 용어</a>
+      <ul>
+        <li><a href="#11-plsql">1.1 PL/SQL</a></li>
+        <li><a href="#12-plsql-block">1.2 PL/SQL BLOCK</a></li>
+        <li><a href="#13-procedure">1.3 Procedure</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-stored-procedure">2. Stored Procedure</a>
+      <ul>
+        <li><a href="#21-create-procedure">2.1 CREATE PROCEDURE</a></li>
+        <li><a href="#22-call">2.2 CALL</a></li>
+        <li><a href="#23-mysql-stored-procedures-advantages">2.3 MySQL stored procedures advantages</a>
+          <ul>
+            <li><a href="#reduce-network-traffic">Reduce network traffic</a></li>
+            <li><a href="#centralize-business-logic-in-the-database">Centralize business logic in the database</a></li>
+            <li><a href="#make-database-more-secure">Make database more secure</a></li>
+          </ul>
+        </li>
+        <li><a href="#24-mysql-stored-procedures-disadvantages">2.4 MySQL stored procedures disadvantages</a></li>
+        <li><a href="#resource-usages">Resource usages</a>
+          <ul>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#maintenances">Maintenances</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&text=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&title=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&is_video=false&description=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&title=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&title=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&name=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29&description=1.%20%ec%82%ac%ec%a0%84%ec%97%90%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%ec%9a%a9%ec%96%b4%201.1%20PL%2fSQL%20%ec%a0%95%ec%9d%98%0a%20Procedural%20Language%20extension%20to%20SQL%20PL%2fSQL%ec%9d%80%20%ec%83%81%ec%9a%a9%20%ea%b4%80%ea%b3%84%ed%98%95%20%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%20%ec%8b%9c%ec%8a%a4%ed%85%9c%ec%9d%b8%20%ec%98%a4%eb%9d%bc%ed%81%b4%20DBMS%ec%97%90%ec%84%9c%20SQL%20%ec%96%b8%ec%96%b4%eb%a5%bc%20%ed%99%95%ec%9e%a5%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%b4%20%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94%20%ec%bb%b4%ed%93%a8%ed%84%b0%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%20%ec%96%b8%ec%96%b4%20%ec%a4%91%20%ed%95%98%eb%82%98%ec%9d%b4%eb%8b%a4.%20SQL%ec%9d%98%20%ed%99%95%ec%9e%a5%eb%90%9c%20%ea%b0%9c%eb%85%90%ec%9c%bc%eb%a1%9c%20PL%2fSQL%20Block%20%eb%82%b4%ec%97%90%ec%84%9c%20SQLdml%20DML%28%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a1%b0%ec%9e%91%ec%96%b4%29%eb%ac%b8%ea%b3%bc%20Query%28%ea%b2%80%ec%83%89%ec%96%b4%29%eb%ac%b8%2c%20%ec%a0%88%ec%b0%a8%ed%98%95%20%ec%96%b8%ec%96%b4%28IF%2c%20LOOP%29%20%eb%93%b1%ec%9d%84%20%ed%95%98%ec%9a%a9%ed%95%98%ec%97%ac%20%ec%a0%88%ec%b0%a8%ec%a0%81%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%ec%9d%84%20%ea%b0%80%eb%8a%a5%ed%95%98%ea%b2%8c%20%ed%95%9c%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%20%ec%96%b8%ec%96%b4%20%201.2%20PL%2fSQL%20BLOCK%20%20%ec%a0%95%ec%9d%98%0aPL%2fSQL%20%ec%86%8c%ec%8a%a4%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%98%20%ea%b8%b0%eb%b3%b8%20%eb%8b%a8%ec%9c%84%eb%a5%bc%20%eb%b8%94%eb%a1%9d%28Block%29%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%ed%95%98%eb%8a%94%eb%8d%b0%2c%20%eb%b8%94%eb%a1%9d%ec%9d%80%20%ec%84%a0%ec%96%b8%eb%b6%80%2c%20%ec%8b%a4%ed%96%89%eb%b6%80%2c%20%ec%98%88%ec%99%b8%20%ec%b2%98%eb%a6%ac%eb%b6%80%eb%a1%9c%20%ea%b5%ac%ec%84%b1%eb%90%9c%eb%8b%a4.%20%ec%9d%b4%20%eb%b8%94%eb%a1%9d%ec%9d%80%20%eb%8b%a4%ec%8b%9c%20%ec%9d%b4%eb%a6%84%ec%9d%b4%20%ec%97%86%eb%8a%94%20%eb%b8%94%eb%a1%9d%ea%b3%bc%20%ec%9d%b4%eb%a6%84%ec%9d%b4%20%ec%9e%88%eb%8a%94%20%eb%b8%94%eb%a1%9d%ec%9c%bc%eb%a1%9c%20%ea%b5%ac%eb%b6%84%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8a%94%eb%8d%b0%20%ec%a0%84%ec%9e%90%ec%97%90%20%ec%86%8d%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%b4%20%ec%9d%b5%eb%aa%85%20%eb%b8%94%eb%a1%9d%ec%9d%b4%eb%a9%b0%2c%20%ed%95%a8%ec%88%98%2c%20%ed%94%84%eb%a1%9c%ec%8b%9c%ec%a0%80%2c%20%ed%8c%a8%ed%82%a4%ec%a7%80%20%eb%93%b1%ec%9d%b4%20%ed%9b%84%ec%9e%90%ec%97%90%20%ec%86%8d%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fsql%2f2020-03-31-stored-procedure%2f&t=%5bMySQL%5d%20Stored%20Procedure%20%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0%20%28in%20MySQL%29" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

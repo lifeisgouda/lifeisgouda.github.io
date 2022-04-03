@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Algorithms] 807.Max Increase to Keep City Skyline | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/algorithms/2018-04-09-leetcode_807/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Algorithms] 807.Max Increase to Keep City Skyline" />
+<meta property="og:description" content="807.Max Increase to Keep City Skyline 문제  In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there.
+2차원 배열 그리드(grid)에서, 각각의 grid[i][j] 값은 그곳에 위치한 건물의 높이를 나타낸다.
+We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.
+우리는 임의의 수의 건물 높이를 어느정도 증가시킬 수 있다(정도는 건물마다 다를 수 있다)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/algorithms/2018-04-09-leetcode_807/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithms] 807.Max Increase to Keep City Skyline"/>
+<meta name="twitter:description" content="807.Max Increase to Keep City Skyline 문제  In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there.
+2차원 배열 그리드(grid)에서, 각각의 grid[i][j] 값은 그곳에 위치한 건물의 높이를 나타낸다.
+We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.
+우리는 임의의 수의 건물 높이를 어느정도 증가시킬 수 있다(정도는 건물마다 다를 수 있다)."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/algorithms/2018-02-28-leetcode_9/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/algorithms/2018-02-21-leetcode_7_reverse_integer/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&text=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&title=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&is_video=false&description=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&title=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&title=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&name=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline&description=807.Max%20Increase%20to%20Keep%20City%20Skyline%20%eb%ac%b8%ec%a0%9c%20%20In%20a%202%20dimensional%20array%20grid%2c%20each%20value%20grid%5bi%5d%5bj%5d%20represents%20the%20height%20of%20a%20building%20located%20there.%0a2%ec%b0%a8%ec%9b%90%20%eb%b0%b0%ec%97%b4%20%ea%b7%b8%eb%a6%ac%eb%93%9c%28grid%29%ec%97%90%ec%84%9c%2c%20%ea%b0%81%ea%b0%81%ec%9d%98%20grid%5bi%5d%5bj%5d%20%ea%b0%92%ec%9d%80%20%ea%b7%b8%ea%b3%b3%ec%97%90%20%ec%9c%84%ec%b9%98%ed%95%9c%20%ea%b1%b4%eb%ac%bc%ec%9d%98%20%eb%86%92%ec%9d%b4%eb%a5%bc%20%eb%82%98%ed%83%80%eb%82%b8%eb%8b%a4.%0aWe%20are%20allowed%20to%20increase%20the%20height%20of%20any%20number%20of%20buildings%2c%20by%20any%20amount%20%28the%20amounts%20can%20be%20different%20for%20different%20buildings%29.%20Height%200%20is%20considered%20to%20be%20a%20building%20as%20well.%0a%ec%9a%b0%eb%a6%ac%eb%8a%94%20%ec%9e%84%ec%9d%98%ec%9d%98%20%ec%88%98%ec%9d%98%20%ea%b1%b4%eb%ac%bc%20%eb%86%92%ec%9d%b4%eb%a5%bc%20%ec%96%b4%eb%8a%90%ec%a0%95%eb%8f%84%20%ec%a6%9d%ea%b0%80%ec%8b%9c%ed%82%ac%20%ec%88%98%20%ec%9e%88%eb%8b%a4%28%ec%a0%95%eb%8f%84%eb%8a%94%20%ea%b1%b4%eb%ac%bc%eb%a7%88%eb%8b%a4%20%eb%8b%a4%eb%a5%bc%20%ec%88%98%20%ec%9e%88%eb%8b%a4%29." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&t=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#807max-increase-to-keep-city-skyline">807.Max Increase to Keep City Skyline</a>
+          <ul>
+            <li><a href="#문제">문제</a></li>
+            <li><a href="#접근">접근</a></li>
+          </ul>
+        </li>
+        <li><a href="#알고리즘-짜기">알고리즘 짜기</a></li>
+        <li><a href="#코드-작성-작성-중">코드 작성 (작성 중&hellip;.)</a></li>
+        <li><a href="#시간복잡도">시간복잡도</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Algorithms] 807.Max Increase to Keep City Skyline
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          6 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h3 id="807max-increase-to-keep-city-skyline">807.Max Increase to Keep City Skyline</h3>
+<h4 id="문제">문제</h4>
+<blockquote>
+<p>In a 2 dimensional array <code>grid</code>, each value <code>grid[i][j]</code> represents the height of a building located there.</p>
+<p>2차원 배열 그리드(grid)에서, 각각의 <code>grid[i][j]</code> 값은 그곳에 위치한 건물의 높이를 나타낸다.</p>
+<p>We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.</p>
+<p>우리는 임의의 수의 건물 높이를 어느정도 증가시킬 수 있다(정도는 건물마다 다를 수 있다). 일반적으로 높이가 0인 건물도 건물이다.</p>
+<p>At the end, the &ldquo;skyline&rdquo; when viewed from all four directions of the grid, i.e. top, bottom, left, and right, must be the same as the skyline of the original grid. A city&rsquo;s skyline is the outer contour of the rectangles formed by all the buildings when viewed from a distance. See the following example.</p>
+<p>마지막으로, 그리드의 4 가지 방향 (위, 아래, 왼쪽, 오른쪽)에서 보았을 때의 &ldquo;스카이 라인&quot;은 원래 그리드의 스카이 라인과 동일해야한다. 도시의 스카이 라인은 거리를 두고 볼 때 모든 건물에 의해 형성되는 사각형의 외곽선이다. 다음 예를 참조하라.</p>
+<p>What is the maximum total sum that the height of the buildings can be increased?</p>
+<p>건물의 높이를 올릴 수있는 최대 합계는 얼마인가?</p>
+<pre tabindex="0"><code>Example:
+Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
+Output: 35
+Explanation: 
+The grid is:
+[ [3, 0, 8, 4], 
+  [2, 4, 5, 7],
+  [9, 2, 6, 3],
+  [0, 3, 1, 0] ]
+
+The skyline viewed from top or bottom is: [9, 4, 8, 7]
+The skyline viewed from left or right is: [8, 7, 9, 3]
+
+The grid after increasing the height of buildings without affecting skylines is:
+
+gridNew = [ [8, 4, 8, 7],
+            [7, 4, 7, 7],
+            [9, 4, 8, 7],
+            [3, 3, 3, 3] ]
+</code></pre><p><strong>Notes:</strong></p>
+<ul>
+<li><code>1 &lt; grid.length = grid[0].length &lt;= 50</code>.</li>
+<li>All heights <code>grid[i][j]</code> are in the range <code>[0, 100]</code>.</li>
+<li>All buildings in <code>grid[i][j]</code> occupy the entire grid cell: that is, they are a <code>1 x 1 x grid[i][j]</code> rectangular prism.</li>
+</ul>
+</blockquote>
+<h4 id="접근">접근</h4>
+<p>주어진 Example을 그림으로 그려서 문제를 파악해보았다.</p>
+<p>2차원 배열이 Example과 같이 주어져 있을 때, 위, 아래, 왼쪽, 오른쪽에서 살펴 본 후 가장 큰 값이 스카이라인이다. 즉, 노란화살표는 열(column) 기준으로 바라봤을 때 최댓값이고, 파란 화살표는 행(row) 기준으로 봤을 때 최댓값인 것이다.</p>
+<p>아래 그림을 참고하여 열 기준으로 최댓값을 찾아보면 1열은 9, 2열은 4, 3열은 8, 4열은 7이 된다. 행을 기준으로 최댓값을 찾아보면 1행은 8, 2행은 7, 3행은 9, 4행은 3이다.</p>
+<p><img src="https://raw.githubusercontent.com/lovesignal/lovesignal.github.io/master/img/post/Algorithms/Leetcode807_algorithm1.png" alt=""></p>
+<p>다음은 스카이 라인에 영향을 미치지 않고 건물 높이를 증가시킨 후의 그리드를 찾는다. 찾는 방법을 생각해보면 먼저 기준되는 값에서 행과 열을 살펴봤을 때 앞서 구한 행과 열의 max값 중 자기 자신보다는 크고 max값 중 작은 값까지 스카이라인을 올릴 수 있다.</p>
+<p>아래 그림을 살펴보면, 3을 기준으로 했을 때 행에는 8, 열에는 9가 스카이라인이다. 8과 9 중 작은 값까지는 스카이라인을 올릴 수 있다. 그렇게 해야 열에서 봤을 때, 행에서 봤을 때 모두 기존의 스카이라인을 넘어서지 않기 때문이다.</p>
+<p><img src="https://raw.githubusercontent.com/lovesignal/lovesignal.github.io/master/img/post/Algorithms/Leetcode807_algorithm2.png" alt=""></p>
+<h3 id="알고리즘-짜기">알고리즘 짜기</h3>
+<p>알고리즘을 세분화 시켜보면 주어진 2차원 array를 2차원 matrix 처럼 생각했을 때,</p>
+<ol>
+<li>
+<p>각 행의 최댓값을 구한다. <strong>row_max(각각의 행)</strong></p>
+</li>
+<li>
+<p>각 열의 최댓값을 구한다. <strong>col_max(각각의 열)</strong></p>
+</li>
+<li>
+<p>각 원소를 돌면서 해당 원소의 값, 행의 최댓값, 열의 최댓값 중 중앙값까지 값을 올린다. <strong>median(해당원소, 행의 최댓값, 열의 최댓값)</strong></p>
+</li>
+<li>
+<p>증가시킬 수 있는 최대 합계를 구하기 위해 새로 구한 그리드의 합에서 처음 주어진 그리드의 합을 뺀다.</p>
+<p><strong>sum(새로 증가시킨 그리드) - sum(처음 그리드 값)</strong></p>
+</li>
+</ol>
+<h3 id="코드-작성-작성-중">코드 작성 (작성 중&hellip;.)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">Skyline</span>(self, grid):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#6272a4"># row_max</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        row_max <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> grid:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            row_max<span style="color:#ff79c6">.</span>append(<span style="color:#8be9fd;font-style:italic">max</span>(i))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#6272a4"># transpose 2d array</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        tr <span style="color:#ff79c6">=</span> [<span style="color:#8be9fd;font-style:italic">list</span>(i) <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(<span style="color:#ff79c6">*</span>grid)]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        <span style="color:#6272a4"># col_max</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        col_max <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        <span style="color:#ff79c6">for</span> j <span style="color:#ff79c6">in</span> tr:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>            col_max<span style="color:#ff79c6">.</span>append(<span style="color:#8be9fd;font-style:italic">max</span>(j))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;row max : &#34;</span>, row_max, <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>, <span style="color:#f1fa8c">&#34;col max : &#34;</span>, col_max)
+</span></span></code></pre></div><h3 id="시간복잡도">시간복잡도</h3>
+<p>(작성 중&hellip;)</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#807max-increase-to-keep-city-skyline">807.Max Increase to Keep City Skyline</a>
+          <ul>
+            <li><a href="#문제">문제</a></li>
+            <li><a href="#접근">접근</a></li>
+          </ul>
+        </li>
+        <li><a href="#알고리즘-짜기">알고리즘 짜기</a></li>
+        <li><a href="#코드-작성-작성-중">코드 작성 (작성 중&hellip;.)</a></li>
+        <li><a href="#시간복잡도">시간복잡도</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&text=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&title=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&is_video=false&description=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&title=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&title=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&name=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline&description=807.Max%20Increase%20to%20Keep%20City%20Skyline%20%eb%ac%b8%ec%a0%9c%20%20In%20a%202%20dimensional%20array%20grid%2c%20each%20value%20grid%5bi%5d%5bj%5d%20represents%20the%20height%20of%20a%20building%20located%20there.%0a2%ec%b0%a8%ec%9b%90%20%eb%b0%b0%ec%97%b4%20%ea%b7%b8%eb%a6%ac%eb%93%9c%28grid%29%ec%97%90%ec%84%9c%2c%20%ea%b0%81%ea%b0%81%ec%9d%98%20grid%5bi%5d%5bj%5d%20%ea%b0%92%ec%9d%80%20%ea%b7%b8%ea%b3%b3%ec%97%90%20%ec%9c%84%ec%b9%98%ed%95%9c%20%ea%b1%b4%eb%ac%bc%ec%9d%98%20%eb%86%92%ec%9d%b4%eb%a5%bc%20%eb%82%98%ed%83%80%eb%82%b8%eb%8b%a4.%0aWe%20are%20allowed%20to%20increase%20the%20height%20of%20any%20number%20of%20buildings%2c%20by%20any%20amount%20%28the%20amounts%20can%20be%20different%20for%20different%20buildings%29.%20Height%200%20is%20considered%20to%20be%20a%20building%20as%20well.%0a%ec%9a%b0%eb%a6%ac%eb%8a%94%20%ec%9e%84%ec%9d%98%ec%9d%98%20%ec%88%98%ec%9d%98%20%ea%b1%b4%eb%ac%bc%20%eb%86%92%ec%9d%b4%eb%a5%bc%20%ec%96%b4%eb%8a%90%ec%a0%95%eb%8f%84%20%ec%a6%9d%ea%b0%80%ec%8b%9c%ed%82%ac%20%ec%88%98%20%ec%9e%88%eb%8b%a4%28%ec%a0%95%eb%8f%84%eb%8a%94%20%ea%b1%b4%eb%ac%bc%eb%a7%88%eb%8b%a4%20%eb%8b%a4%eb%a5%bc%20%ec%88%98%20%ec%9e%88%eb%8b%a4%29." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-04-09-leetcode_807%2f&t=%5bAlgorithms%5d%20807.Max%20Increase%20to%20Keep%20City%20Skyline" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

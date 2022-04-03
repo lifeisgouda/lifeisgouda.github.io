@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MongoDB on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/mongodb/</link>
+    <description>Recent content in MongoDB on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[MongoDB] MongoDB 에러 해결 메모 (업데이트 중...)</title>
+      <link>https://lifeisgouda.github.io/posts/programming/db/2019-08-20-mongodb-error/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/db/2019-08-20-mongodb-error/</guid>
+      <description>mongod.lock 관련 에러 1# 기존 데이터 보호 2$ sudo -u mongodb mongod --dbpath /var/lib/mongodb --repair --repairpath /var/lib/mongodb0 3# 새롭게 띄우기 4$ sudo -u mongodb mongod --dbpath /var/lib/mongodb --repair 5 6# permission 문제 7$ sudo chown -R mongodb:mongodb &amp;#34;/var/lib/mongodb&amp;#34; https://stackoverflow.com/questions/13700261/mongodb-wont-start-after-server-crash
+에러
+1● mongodb.service - High-performance, schema-free document-oriented 2 3database 4 Loaded: loaded (/etc/systemd/system/mongodb.service; enabled; vendor preset: 5 Active: failed (Result: exit-code) 6 Process: 2331 ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf (cod 7 Main PID: 2331 (code=exited, status=2) 해결</description>
+    </item>
+    
+  </channel>
+</rss>

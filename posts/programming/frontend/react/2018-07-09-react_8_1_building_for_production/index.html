@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [React] Movie app clone coding : Building for production | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_8_1_building_for_production/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[React] Movie app clone coding : Building for production" />
+<meta property="og:description" content="8-1. Building for production Github pages static file을 올릴 수 있는 서비스.
+static file은 자바스크립트, css, html과 같은 frontend 파일을 의미한다 (backend는 안됨).
+Github page는 이러한 static file을 무료로 호스팅할 수 있게 해준다.
+필요한 것 세가지  Github 계정 Github Project Github Project의 branch : 이름은 gh-pages로 해야 한다.  Build  yarn build : CSS를 가져다가 압축한다. 로컬호스트에 있을 때 사용하는 코드는 압축되어 있지 않고, 느리고 최적화되어 있지 않다. build 작업을 하면 좀더 최적화 되고, 압축, 향상되는 것이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_8_1_building_for_production/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[React] Movie app clone coding : Building for production"/>
+<meta name="twitter:description" content="8-1. Building for production Github pages static file을 올릴 수 있는 서비스.
+static file은 자바스크립트, css, html과 같은 frontend 파일을 의미한다 (backend는 안됨).
+Github page는 이러한 static file을 무료로 호스팅할 수 있게 해준다.
+필요한 것 세가지  Github 계정 Github Project Github Project의 branch : 이름은 gh-pages로 해야 한다.  Build  yarn build : CSS를 가져다가 압축한다. 로컬호스트에 있을 때 사용하는 코드는 압축되어 있지 않고, 느리고 최적화되어 있지 않다. build 작업을 하면 좀더 최적화 되고, 압축, 향상되는 것이다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_4_1_thinking_in_react_component_state/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_3_async_await_in_react/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production&description=8-1.%20Building%20for%20production%20Github%20pages%20static%20file%ec%9d%84%20%ec%98%ac%eb%a6%b4%20%ec%88%98%20%ec%9e%88%eb%8a%94%20%ec%84%9c%eb%b9%84%ec%8a%a4.%0astatic%20file%ec%9d%80%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%2c%20css%2c%20html%ea%b3%bc%20%ea%b0%99%ec%9d%80%20frontend%20%ed%8c%8c%ec%9d%bc%ec%9d%84%20%ec%9d%98%eb%af%b8%ed%95%9c%eb%8b%a4%20%28backend%eb%8a%94%20%ec%95%88%eb%90%a8%29.%0aGithub%20page%eb%8a%94%20%ec%9d%b4%eb%9f%ac%ed%95%9c%20static%20file%ec%9d%84%20%eb%ac%b4%eb%a3%8c%eb%a1%9c%20%ed%98%b8%ec%8a%a4%ed%8c%85%ed%95%a0%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%ed%95%b4%ec%a4%80%eb%8b%a4.%0a%ed%95%84%ec%9a%94%ed%95%9c%20%ea%b2%83%20%ec%84%b8%ea%b0%80%ec%a7%80%20%20Github%20%ea%b3%84%ec%a0%95%20Github%20Project%20Github%20Project%ec%9d%98%20branch%20%3a%20%ec%9d%b4%eb%a6%84%ec%9d%80%20gh-pages%eb%a1%9c%20%ed%95%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4.%20%20Build%20%20yarn%20build%20%3a%20CSS%eb%a5%bc%20%ea%b0%80%ec%a0%b8%eb%8b%a4%ea%b0%80%20%ec%95%95%ec%b6%95%ed%95%9c%eb%8b%a4.%20%eb%a1%9c%ec%bb%ac%ed%98%b8%ec%8a%a4%ed%8a%b8%ec%97%90%20%ec%9e%88%ec%9d%84%20%eb%95%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94%20%ec%bd%94%eb%93%9c%eb%8a%94%20%ec%95%95%ec%b6%95%eb%90%98%ec%96%b4%20%ec%9e%88%ec%a7%80%20%ec%95%8a%ea%b3%a0%2c%20%eb%8a%90%eb%a6%ac%ea%b3%a0%20%ec%b5%9c%ec%a0%81%ed%99%94%eb%90%98%ec%96%b4%20%ec%9e%88%ec%a7%80%20%ec%95%8a%eb%8b%a4.%20build%20%ec%9e%91%ec%97%85%ec%9d%84%20%ed%95%98%eb%a9%b4%20%ec%a2%80%eb%8d%94%20%ec%b5%9c%ec%a0%81%ed%99%94%20%eb%90%98%ea%b3%a0%2c%20%ec%95%95%ec%b6%95%2c%20%ed%96%a5%ec%83%81%eb%90%98%eb%8a%94%20%ea%b2%83%ec%9d%b4%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#github-pages">Github pages</a>
+      <ul>
+        <li><a href="#필요한-것-세가지">필요한 것 세가지</a></li>
+      </ul>
+    </li>
+    <li><a href="#build">Build</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [React] Movie app clone coding : Building for production
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          3 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/clonecoding" rel="tag">clonecoding</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react" rel="tag">react</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/jsx" rel="tag">jsx</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="8-1-building-for-production">8-1. Building for production</h1>
+<h2 id="github-pages">Github pages</h2>
+<p>static file을 올릴 수 있는 서비스.</p>
+<p>static file은 자바스크립트, css, html과 같은 frontend 파일을 의미한다 (backend는 안됨).</p>
+<p>Github page는 이러한 static file을 무료로 호스팅할 수 있게 해준다.</p>
+<!-- raw HTML omitted -->
+<h3 id="필요한-것-세가지">필요한 것 세가지</h3>
+<ol>
+<li>Github 계정</li>
+<li>Github Project</li>
+<li>Github Project의 branch : 이름은 gh-pages로 해야 한다.</li>
+</ol>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="build">Build</h2>
+<ol>
+<li><code>yarn build</code>  : CSS를 가져다가 압축한다. 로컬호스트에 있을 때 사용하는 코드는 압축되어 있지 않고, 느리고 최적화되어 있지 않다. <code>build</code> 작업을 하면 좀더 최적화 되고, 압축, 향상되는 것이다.</li>
+</ol>
+<!-- raw HTML omitted -->
+<ol start="2">
+<li><code>package.json</code> 으로 가서 <code>key</code> 를 추가한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  <span style="color:#f1fa8c">&#34;homepage&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http://lovesignal.github.io/movie_list&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<ol start="3">
+<li>다시 <code>yarn build</code> 를 실행하면 아래와 같은 메시지가 출력된다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>yarn run v1.7.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>$ react-scripts build
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>Creating an optimized production build...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>Compiled successfully.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>File sizes after gzip:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  41.38 KB  build/static/js/main.5302de1f.js
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  <span style="color:#bd93f9">771</span> B     build/static/css/main.6c472154.css
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>The project was built assuming it is hosted at /movie_list/.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>You can control this with the homepage field in your package.json.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>The build folder is ready to be deployed.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>To publish it at http://lovesignal.github.io/movie_list, run:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  yarn add --dev gh-pages
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>Add the following script in your package.json.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    // ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    <span style="color:#f1fa8c">&#34;scripts&#34;</span>: <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>      // ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>      <span style="color:#f1fa8c">&#34;predeploy&#34;</span>: <span style="color:#f1fa8c">&#34;npm run build&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>      <span style="color:#f1fa8c">&#34;deploy&#34;</span>: <span style="color:#f1fa8c">&#34;gh-pages -d build&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>Then run:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>  yarn run deploy
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>Find out more about deployment here:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>  http://bit.ly/2vY88Kr
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>✨  Done in 5.02s.
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<ol start="4">
+<li><code>yarn add --dev gh-pages</code> 를 실행한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>yarn add v1.7.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">[</span>1/4<span style="color:#ff79c6">]</span> 🔍  Resolving packages...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>⠂ gh-pages<span style="color:#ff79c6">(</span>node:1659<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>DEP0005<span style="color:#ff79c6">]</span> DeprecationWarning: Buffer<span style="color:#ff79c6">()</span> is deprecated due to security and usability issues. Please use the Buffer.alloc<span style="color:#ff79c6">()</span>, Buffer.allocUnsafe<span style="color:#ff79c6">()</span>, or Buffer.from<span style="color:#ff79c6">()</span> methods instead.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">[</span>2/4<span style="color:#ff79c6">]</span> 🚚  Fetching packages...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">[</span>3/4<span style="color:#ff79c6">]</span> 🔗  Linking dependencies...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">[</span>4/4<span style="color:#ff79c6">]</span> 📃  Building fresh packages...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>success Saved lockfile.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>success Saved <span style="color:#bd93f9">8</span> new dependencies.
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>info Direct dependencies
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>└─ gh-pages@1.2.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>info All dependencies
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>├─ filename-reserved-regex@1.0.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>├─ filenamify-url@1.0.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>├─ filenamify@1.2.1
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>├─ gh-pages@1.2.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>├─ humanize-url@1.0.1
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>├─ strip-outer@1.0.1
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>├─ strip-url-auth@1.0.1
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>└─ trim-repeated@1.0.0
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>✨  Done in 4.24s.
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<ol start="5">
+<li>그리고 아래 코드를  <code>packages.json</code> 의 <code>scripts</code> 에 추가한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#f1fa8c">&#34;scripts&#34;</span><span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>      <span style="color:#6272a4">// ...
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>      <span style="color:#f1fa8c">&#34;predeploy&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;npm run build&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>      <span style="color:#f1fa8c">&#34;deploy&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;gh-pages -d build&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    }
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<ol start="6">
+<li>아래 명령어 실행</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>npm run build
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>yarn run deploy
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>적용되는데 5분 정도 걸린다.</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#github-pages">Github pages</a>
+      <ul>
+        <li><a href="#필요한-것-세가지">필요한 것 세가지</a></li>
+      </ul>
+    </li>
+    <li><a href="#build">Build</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production&description=8-1.%20Building%20for%20production%20Github%20pages%20static%20file%ec%9d%84%20%ec%98%ac%eb%a6%b4%20%ec%88%98%20%ec%9e%88%eb%8a%94%20%ec%84%9c%eb%b9%84%ec%8a%a4.%0astatic%20file%ec%9d%80%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%2c%20css%2c%20html%ea%b3%bc%20%ea%b0%99%ec%9d%80%20frontend%20%ed%8c%8c%ec%9d%bc%ec%9d%84%20%ec%9d%98%eb%af%b8%ed%95%9c%eb%8b%a4%20%28backend%eb%8a%94%20%ec%95%88%eb%90%a8%29.%0aGithub%20page%eb%8a%94%20%ec%9d%b4%eb%9f%ac%ed%95%9c%20static%20file%ec%9d%84%20%eb%ac%b4%eb%a3%8c%eb%a1%9c%20%ed%98%b8%ec%8a%a4%ed%8c%85%ed%95%a0%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%ed%95%b4%ec%a4%80%eb%8b%a4.%0a%ed%95%84%ec%9a%94%ed%95%9c%20%ea%b2%83%20%ec%84%b8%ea%b0%80%ec%a7%80%20%20Github%20%ea%b3%84%ec%a0%95%20Github%20Project%20Github%20Project%ec%9d%98%20branch%20%3a%20%ec%9d%b4%eb%a6%84%ec%9d%80%20gh-pages%eb%a1%9c%20%ed%95%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4.%20%20Build%20%20yarn%20build%20%3a%20CSS%eb%a5%bc%20%ea%b0%80%ec%a0%b8%eb%8b%a4%ea%b0%80%20%ec%95%95%ec%b6%95%ed%95%9c%eb%8b%a4.%20%eb%a1%9c%ec%bb%ac%ed%98%b8%ec%8a%a4%ed%8a%b8%ec%97%90%20%ec%9e%88%ec%9d%84%20%eb%95%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94%20%ec%bd%94%eb%93%9c%eb%8a%94%20%ec%95%95%ec%b6%95%eb%90%98%ec%96%b4%20%ec%9e%88%ec%a7%80%20%ec%95%8a%ea%b3%a0%2c%20%eb%8a%90%eb%a6%ac%ea%b3%a0%20%ec%b5%9c%ec%a0%81%ed%99%94%eb%90%98%ec%96%b4%20%ec%9e%88%ec%a7%80%20%ec%95%8a%eb%8b%a4.%20build%20%ec%9e%91%ec%97%85%ec%9d%84%20%ed%95%98%eb%a9%b4%20%ec%a2%80%eb%8d%94%20%ec%b5%9c%ec%a0%81%ed%99%94%20%eb%90%98%ea%b3%a0%2c%20%ec%95%95%ec%b6%95%2c%20%ed%96%a5%ec%83%81%eb%90%98%eb%8a%94%20%ea%b2%83%ec%9d%b4%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-09-react_8_1_building_for_production%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Building%20for%20production" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>daily on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/daily/</link>
+    <description>Recent content in daily on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/daily/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[idle] 대시보드 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/</guid>
+      <description>한동안 데이터 분석, 시뮬레이션, 레포트 쓰는 일을 하다가 최근에 대시보드 만드는 프로젝트가 시작되었는데 웹개발 경험이 있어서 해당 일을 맡게 되었다.
+매일 회사 노트에 개발일지를 작성하고 있는데 기록하는 일은 여러모로 중요하다가 재차 느끼고 있다. 업무 중 문뜩 드는 생각이나 아이디어를 놓치지 않고 공유할 수 있다. 또한 나와 동료의 시간을 아낄 수 있다. 어떤 분 말씀대로 &amp;lsquo;생각을 유통가능한 형태로 만드는 것&amp;rsquo;의 가치를 생각하며 기록하고 있다. 그래프로 일 진행 상태를 공유하고 있는 것도 부수적인 시간을 아낄 수 있어서 도움이 되고 있다.</description>
+    </item>
+    
+    <item>
+      <title>[idle] 알고리즘을 공부하면서 느낀 몇가지</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2018-10-13-learning_algorithms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2018-10-13-learning_algorithms/</guid>
+      <description> 매일 꾸준히 해야 한다. 하루라도 거르면 다음날 풀 때 하루 쉰게 체감될 정도이다. 인위적인 내장 메서드 암기가 매우 도움이 된다. 문제를 최대한 잘게 쪼갠다. 이해는 기본이고, 반복적으로 풀어야 알고리즘 테스트에서 기계적으로 풀어나갈 수 있다. Brute force는 생각 이상으로 좋은 방법이다. 꾸준히 1년정도 하면 카카오 알고리즘 문제를 수월하게 풀 수 있을 것으로 예상한다 알고리즘 연습에 LeetCode만큼 좋은 사이트가 없다고 생각.  📒 내 알고리즘 학습 노트 </description>
+    </item>
+    
+    <item>
+      <title>Godaddy와 Github page 도메인 연동하기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-03-16-domain-setting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-03-16-domain-setting/</guid>
+      <description>Github 블로그 설정  블로그 repository 밑에 CNAME 파일을 만들고 사용할 도메인을 입력하여 저장한다.  Github setting에 들어가서 GitHub Pages 항목 아래 Custom domain 란에 사용할 도메인을 입력한다. Enforce HTTPS 가 체크 되어 있는지 확인하고, 체크 되어 있지 않다면 체크 해둔다.  Godaddy Setting   Godaddy에 접속하여 DNS Management 메뉴로 들어간다.
+( https://dcc.godaddy.com/manage/{자기도메인}/dns )
+  Add 버튼을 눌러서 아래 이미지의 빨간 박스 내용을 똑같이 입력한다.
+  적용 되는데 약간 시간이 걸리므로 기다린다.</description>
+    </item>
+    
+    <item>
+      <title>Macbook Pro 케이스와 USB C Hub</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2018-04-19-macbook-usbc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2018-04-19-macbook-usbc/</guid>
+      <description>&amp;lsquo;버바팀 USB C Hub (https://search.shopping.naver.com/detail/detail.nhn?nv_mid=12640832590&amp;amp;cat_id=50002776&amp;amp;frm=NVSCPRO&amp;amp;query=usb+c+%ED%97%88%EB%B8%8C)&amp;rsquo; 를 샀는데 Macbook Pro에 씌운 플라스틱 케이스 때문에 밀착형 USB C 허브가 장착이 되지 않는다.
+어떻게 할까 고민하다가 톱질을 시작! (아래 사진은 톱질이 완성된 상태)
+길이를 재서 실톱으로 잘라낸 후 사포질로 마무리.
+60방 짜리 거친 사포로 해야 잘 갈려나간다.
+정확하게 잘 맞아들어간다.
+케이스와 허브 둘다 장착 완료.
+줄로 길게 연결되는 허브도 사용해봤는데 안정감도 있고, 휘지도 않아서 밀착형이 훨씬 좋다.
+USB C Hub 고른다면 아래 제품 강추.</description>
+    </item>
+    
+    <item>
+      <title>개인위키 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-02-24-personal_wiki/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-02-24-personal_wiki/</guid>
+      <description>회사 일때문이라는 핑계로 너무 장시간 블로그가 방치 되어서 개인 위키를 만들어서 공부 기록을 정리하기로 한다.
+기계인간님의 글을 따라하려고 하다가 내용도 없는데 거창해지는 것 같아서 아래 링크를 참고하여 빠르게 만들었다.
+쉬운 내용이어도 꾸준히 추가해서 나만의 위키를 만들 예정.
+mac mojave에서 gollum 설치 에러가 나는 바람에 아래 링크를 통해서 해결하였다.
+  mojave에서 gollum 설치 에러 해결 :
+1$ gem install charlock_holmes -- --with-cxxflags=-std=c++11 https://www.bountysource.com/issues/48897255-unable-to-install-0-7-5-on-macos-sierra-10-12-6
+  gollum 설치 참고 글
+https://github.com/gollum/gollum/wiki</description>
+    </item>
+    
+  </channel>
+</rss>

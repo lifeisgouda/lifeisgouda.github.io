@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Module] json 데이터에서 특정 키와 값을 삭제하는 모듈 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/python/2019-07-02-module_python/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Module] json 데이터에서 특정 키와 값을 삭제하는 모듈" />
+<meta property="og:description" content="Module 코드: https://github.com/lifeisgouda/my_python_modules/tree/master/json_key_remover
+JSON 데이터에서 특정 key ( 여기서는 coordinates ) 에서 값이 [0, 0] 일 경우 해당 키를 삭제하는 모듈이다.
+json의 뎁스가 워낙 깊고, 검사해야할 부분이 많아서 부득이하게 3중 for문이 사용되었다.
+1class JSON_KEY_REMOVER: 2 def __init__(self): 3 self.data = [] 4 5 def import_json(self, filename): 6 import json 7 8 with open(filename) as json_file: 9 self.data = json.load(json_file) 10 11 print(&#39;import json done&#39;) 12 13 def del_daily_zero_coordinates(self): 14 import json 15 16 for k in range(len(self." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/python/2019-07-02-module_python/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Module] json 데이터에서 특정 키와 값을 삭제하는 모듈"/>
+<meta name="twitter:description" content="Module 코드: https://github.com/lifeisgouda/my_python_modules/tree/master/json_key_remover
+JSON 데이터에서 특정 key ( 여기서는 coordinates ) 에서 값이 [0, 0] 일 경우 해당 키를 삭제하는 모듈이다.
+json의 뎁스가 워낙 깊고, 검사해야할 부분이 많아서 부득이하게 3중 for문이 사용되었다.
+1class JSON_KEY_REMOVER: 2 def __init__(self): 3 self.data = [] 4 5 def import_json(self, filename): 6 import json 7 8 with open(filename) as json_file: 9 self.data = json.load(json_file) 10 11 print(&#39;import json done&#39;) 12 13 def del_daily_zero_coordinates(self): 14 import json 15 16 for k in range(len(self."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/db/2019-08-20-mongodb-error/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-18-javascript_null_undefined/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&text=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&title=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&is_video=false&description=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&title=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&title=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&name=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88&description=Module%20%ec%bd%94%eb%93%9c%3a%20https%3a%2f%2fgithub.com%2flifeisgouda%2fmy_python_modules%2ftree%2fmaster%2fjson_key_remover%0aJSON%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20key%20%28%20%ec%97%ac%ea%b8%b0%ec%84%9c%eb%8a%94%20coordinates%20%29%20%ec%97%90%ec%84%9c%20%ea%b0%92%ec%9d%b4%20%5b0%2c%200%5d%20%ec%9d%bc%20%ea%b2%bd%ec%9a%b0%20%ed%95%b4%eb%8b%b9%20%ed%82%a4%eb%a5%bc%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88%ec%9d%b4%eb%8b%a4.%0ajson%ec%9d%98%20%eb%8e%81%ec%8a%a4%ea%b0%80%20%ec%9b%8c%eb%82%99%20%ea%b9%8a%ea%b3%a0%2c%20%ea%b2%80%ec%82%ac%ed%95%b4%ec%95%bc%ed%95%a0%20%eb%b6%80%eb%b6%84%ec%9d%b4%20%eb%a7%8e%ec%95%84%ec%84%9c%20%eb%b6%80%eb%93%9d%ec%9d%b4%ed%95%98%ea%b2%8c%203%ec%a4%91%20for%eb%ac%b8%ec%9d%b4%20%ec%82%ac%ec%9a%a9%eb%90%98%ec%97%88%eb%8b%a4.%0a1class%20JSON_KEY_REMOVER%3a%202%20def%20__init__%28self%29%3a%203%20self.data%20%3d%20%5b%5d%204%205%20def%20import_json%28self%2c%20filename%29%3a%206%20import%20json%207%208%20with%20open%28filename%29%20as%20json_file%3a%209%20self.data%20%3d%20json.load%28json_file%29%2010%2011%20print%28%26%2339%3bimport%20json%20done%26%2339%3b%29%2012%2013%20def%20del_daily_zero_coordinates%28self%29%3a%2014%20import%20json%2015%2016%20for%20k%20in%20range%28len%28self." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&t=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#module">Module</a></li>
+    <li><a href="#사용">사용</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Module] json 데이터에서 특정 키와 값을 삭제하는 모듈
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          1 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="module">Module</h2>
+<p>코드: <a href="https://github.com/lifeisgouda/my_python_modules/tree/master/json_key_remover">https://github.com/lifeisgouda/my_python_modules/tree/master/json_key_remover</a></p>
+<p>JSON 데이터에서 특정 key ( 여기서는 <code>coordinates</code> ) 에서 값이  <code>[0, 0]</code> 일 경우 해당 키를 삭제하는 모듈이다.</p>
+<p>json의 뎁스가 워낙 깊고, 검사해야할 부분이 많아서 부득이하게 3중 for문이 사용되었다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">JSON_KEY_REMOVER</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">def</span> __init__(self):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        self<span style="color:#ff79c6">.</span>data <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">import_json</span>(self, filename):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#ff79c6">import</span> json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(filename) <span style="color:#ff79c6">as</span> json_file:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            self<span style="color:#ff79c6">.</span>data <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>load(json_file)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;import json done&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">del_daily_zero_coordinates</span>(self):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        <span style="color:#ff79c6">import</span> json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        <span style="color:#ff79c6">for</span> k <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#8be9fd;font-style:italic">len</span>(self<span style="color:#ff79c6">.</span>data)):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>            <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#8be9fd;font-style:italic">len</span>(self<span style="color:#ff79c6">.</span>data[k][<span style="color:#f1fa8c">&#34;history&#34;</span>][<span style="color:#f1fa8c">&#34;dateInformation&#34;</span>][<span style="color:#bd93f9">2</span>][<span style="color:#f1fa8c">&#34;daily&#34;</span>])):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>                <span style="color:#ff79c6">for</span> j <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">24</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>                    <span style="color:#ff79c6">if</span> [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>data[k][<span style="color:#f1fa8c">&#34;history&#34;</span>][<span style="color:#f1fa8c">&#34;dateInformation&#34;</span>][<span style="color:#bd93f9">2</span>][<span style="color:#f1fa8c">&#34;daily&#34;</span>][i][<span style="color:#f1fa8c">&#34;dailyTimeline&#34;</span>][<span style="color:#f1fa8c">&#39;dateT&#39;</span><span style="color:#ff79c6">+</span><span style="color:#8be9fd;font-style:italic">str</span>(j)][<span style="color:#f1fa8c">&#34;coordinates&#34;</span>]:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>                        <span style="color:#ff79c6">del</span> self<span style="color:#ff79c6">.</span>data[k][<span style="color:#f1fa8c">&#34;history&#34;</span>][<span style="color:#f1fa8c">&#34;dateInformation&#34;</span>][<span style="color:#bd93f9">2</span>][<span style="color:#f1fa8c">&#34;daily&#34;</span>][i][<span style="color:#f1fa8c">&#34;dailyTimeline&#34;</span>][<span style="color:#f1fa8c">&#39;dateT&#39;</span><span style="color:#ff79c6">+</span><span style="color:#8be9fd;font-style:italic">str</span>(j)][<span style="color:#f1fa8c">&#34;coordinates&#34;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(<span style="color:#f1fa8c">&#39;data.json&#39;</span>, <span style="color:#f1fa8c">&#39;w&#39;</span>, encoding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;UTF-8-sig&#39;</span>) <span style="color:#ff79c6">as</span> data_file:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>            self<span style="color:#ff79c6">.</span>data <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>dump(self<span style="color:#ff79c6">.</span>data, data_file, ensure_ascii<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Done!&#34;</span>)
+</span></span></code></pre></div><h2 id="사용">사용</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4"># main.py</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ff79c6">import</span> json_key_remover
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>remove <span style="color:#ff79c6">=</span> json_key_remover<span style="color:#ff79c6">.</span>JSON_KEY_REMOVER
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>remove<span style="color:#ff79c6">.</span>import_json(<span style="color:#f1fa8c">&#34;./user.json&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>remove<span style="color:#ff79c6">.</span>del_daily_zero_coordinates()
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#module">Module</a></li>
+    <li><a href="#사용">사용</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&text=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&title=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&is_video=false&description=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&title=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&title=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&name=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88&description=Module%20%ec%bd%94%eb%93%9c%3a%20https%3a%2f%2fgithub.com%2flifeisgouda%2fmy_python_modules%2ftree%2fmaster%2fjson_key_remover%0aJSON%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20key%20%28%20%ec%97%ac%ea%b8%b0%ec%84%9c%eb%8a%94%20coordinates%20%29%20%ec%97%90%ec%84%9c%20%ea%b0%92%ec%9d%b4%20%5b0%2c%200%5d%20%ec%9d%bc%20%ea%b2%bd%ec%9a%b0%20%ed%95%b4%eb%8b%b9%20%ed%82%a4%eb%a5%bc%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88%ec%9d%b4%eb%8b%a4.%0ajson%ec%9d%98%20%eb%8e%81%ec%8a%a4%ea%b0%80%20%ec%9b%8c%eb%82%99%20%ea%b9%8a%ea%b3%a0%2c%20%ea%b2%80%ec%82%ac%ed%95%b4%ec%95%bc%ed%95%a0%20%eb%b6%80%eb%b6%84%ec%9d%b4%20%eb%a7%8e%ec%95%84%ec%84%9c%20%eb%b6%80%eb%93%9d%ec%9d%b4%ed%95%98%ea%b2%8c%203%ec%a4%91%20for%eb%ac%b8%ec%9d%b4%20%ec%82%ac%ec%9a%a9%eb%90%98%ec%97%88%eb%8b%a4.%0a1class%20JSON_KEY_REMOVER%3a%202%20def%20__init__%28self%29%3a%203%20self.data%20%3d%20%5b%5d%204%205%20def%20import_json%28self%2c%20filename%29%3a%206%20import%20json%207%208%20with%20open%28filename%29%20as%20json_file%3a%209%20self.data%20%3d%20json.load%28json_file%29%2010%2011%20print%28%26%2339%3bimport%20json%20done%26%2339%3b%29%2012%2013%20def%20del_daily_zero_coordinates%28self%29%3a%2014%20import%20json%2015%2016%20for%20k%20in%20range%28len%28self." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-07-02-module_python%2f&t=%5bModule%5d%20json%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%97%90%ec%84%9c%20%ed%8a%b9%ec%a0%95%20%ed%82%a4%ec%99%80%20%ea%b0%92%ec%9d%84%20%ec%82%ad%ec%a0%9c%ed%95%98%eb%8a%94%20%eb%aa%a8%eb%93%88" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

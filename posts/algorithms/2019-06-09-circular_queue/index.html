@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Data Structure] Circular Queue | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/algorithms/2019-06-09-circular_queue/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Data Structure] Circular Queue" />
+<meta property="og:description" content="python3로 Circular Queue 구현하기 __ init __() 먼저 데이터 구조의 초깃값을 정한다. Queue의 크기를 k로 두고, 값을 담을 수 있게 길이가 k인 리스트 queue_list 를 만든다.
+Queue에는 두개의 포인터가 필요하다. 한개는 Front를 가리켜야 하고, 다른 하나는 Back을 가리켜야 한다.
+1def __init__(self, k: int): 2 self.size = 0 # 처음 리스트의 길이 3 self.max_size = k # 리스트의 길이 4 self.queue_list = [0] * k # Queue를 담을 리스트 5 self.front = self." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/algorithms/2019-06-09-circular_queue/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Data Structure] Circular Queue"/>
+<meta name="twitter:description" content="python3로 Circular Queue 구현하기 __ init __() 먼저 데이터 구조의 초깃값을 정한다. Queue의 크기를 k로 두고, 값을 담을 수 있게 길이가 k인 리스트 queue_list 를 만든다.
+Queue에는 두개의 포인터가 필요하다. 한개는 Front를 가리켜야 하고, 다른 하나는 Back을 가리켜야 한다.
+1def __init__(self, k: int): 2 self.size = 0 # 처음 리스트의 길이 3 self.max_size = k # 리스트의 길이 4 self.queue_list = [0] * k # Queue를 담을 리스트 5 self.front = self."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/2018-05-25-kakao_clone_coding/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&text=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&title=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&is_video=false&description=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bData%20Structure%5d%20Circular%20Queue&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&title=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&title=%5bData%20Structure%5d%20Circular%20Queue" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&name=%5bData%20Structure%5d%20Circular%20Queue&description=python3%eb%a1%9c%20Circular%20Queue%20%ea%b5%ac%ed%98%84%ed%95%98%ea%b8%b0%20__%20init%20__%28%29%20%eb%a8%bc%ec%a0%80%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ea%b5%ac%ec%a1%b0%ec%9d%98%20%ec%b4%88%ea%b9%83%ea%b0%92%ec%9d%84%20%ec%a0%95%ed%95%9c%eb%8b%a4.%20Queue%ec%9d%98%20%ed%81%ac%ea%b8%b0%eb%a5%bc%20k%eb%a1%9c%20%eb%91%90%ea%b3%a0%2c%20%ea%b0%92%ec%9d%84%20%eb%8b%b4%ec%9d%84%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%ea%b8%b8%ec%9d%b4%ea%b0%80%20k%ec%9d%b8%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%20queue_list%20%eb%a5%bc%20%eb%a7%8c%eb%93%a0%eb%8b%a4.%0aQueue%ec%97%90%eb%8a%94%20%eb%91%90%ea%b0%9c%ec%9d%98%20%ed%8f%ac%ec%9d%b8%ed%84%b0%ea%b0%80%20%ed%95%84%ec%9a%94%ed%95%98%eb%8b%a4.%20%ed%95%9c%ea%b0%9c%eb%8a%94%20Front%eb%a5%bc%20%ea%b0%80%eb%a6%ac%ec%bc%9c%ec%95%bc%20%ed%95%98%ea%b3%a0%2c%20%eb%8b%a4%eb%a5%b8%20%ed%95%98%eb%82%98%eb%8a%94%20Back%ec%9d%84%20%ea%b0%80%eb%a6%ac%ec%bc%9c%ec%95%bc%20%ed%95%9c%eb%8b%a4.%0a1def%20__init__%28self%2c%20k%3a%20int%29%3a%202%20self.size%20%3d%200%20%23%20%ec%b2%98%ec%9d%8c%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%ec%9d%98%20%ea%b8%b8%ec%9d%b4%203%20self.max_size%20%3d%20k%20%23%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%ec%9d%98%20%ea%b8%b8%ec%9d%b4%204%20self.queue_list%20%3d%20%5b0%5d%20%2a%20k%20%23%20Queue%eb%a5%bc%20%eb%8b%b4%ec%9d%84%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%205%20self.front%20%3d%20self." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&t=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#__-__init__-__">__ <strong>init</strong> __()</a></li>
+    <li><a href="#enqueue">enQueue()</a></li>
+    <li><a href="#dequeue">deQueue()</a></li>
+    <li><a href="#front">Front()</a></li>
+    <li><a href="#rear">Rear()</a></li>
+    <li><a href="#isempty">isEmpty()</a></li>
+    <li><a href="#isfull">isFull()</a></li>
+    <li><a href="#전체-코드">전체 코드</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Data Structure] Circular Queue
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          4 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/algorithms" rel="tag">algorithms</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="python3로-circular-queue-구현하기">python3로 Circular Queue 구현하기</h1>
+<h2 id="__-__init__-__">__ <strong>init</strong> __()</h2>
+<p>먼저 데이터 구조의 초깃값을 정한다. Queue의 크기를 k로 두고, 값을 담을 수 있게 길이가 k인 리스트 <code>queue_list</code> 를 만든다.</p>
+<p>Queue에는 두개의 포인터가 필요하다. 한개는 Front를 가리켜야 하고, 다른 하나는 Back을 가리켜야 한다.</p>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> __init__(self, k: <span style="color:#8be9fd;font-style:italic">int</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>    <span style="color:#6272a4"># 처음 리스트의 길이</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    self<span style="color:#ff79c6">.</span>max_size <span style="color:#ff79c6">=</span> k    <span style="color:#6272a4"># 리스트의 길이</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    self<span style="color:#ff79c6">.</span>queue_list <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">*</span> k   <span style="color:#6272a4"># Queue를 담을 리스트</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>    <span style="color:#6272a4"># pointer</span>
+</span></span></code></pre></div><h2 id="enqueue">enQueue()</h2>
+<p><code>enQueue()</code> 는 Circular Queue에 값을 삽입하는 함수이다.</p>
+<p><code>enQueue()</code> 는 boolean을 반환한다. 값을 삽입하는 것이 성공하면 <code>True</code> 를 반환하고, 실패하면 <code>False</code> 를 반환한다.</p>
+<ol>
+<li>리스트의 초기 크기와 최대 크기가 같으면 값을 삽입할 수 없으므로 False를 반환한다.</li>
+<li>리스트의 뒷 부분(back)이 초기에 설정해둔 -1이면 <code>rear</code> 와 <code>front</code> 에 0을 넣는다. 왜냐하면 두 포인터 모두 리스트의 0번째 인덱스를 가리키고 있기 때문이다.</li>
+<li><code>rear</code> 값이 -1이 아니라면, <code>rear</code> 에 1을 증가 시키 것을 <code>max_size</code> 로 나머지 연산한 값이 <code>rear</code> 가 된다.</li>
+<li>그리고 <code>queue_list</code> 에서 <code>rear</code> 번째에 값이 들어간다.</li>
+<li>새 값이 들어가면서 길이가 증가하였으므로 <code>size</code> 를 1만큼 증가시킨다. 그리고 <code>True</code> 를 반환한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">enQueue</span>(self, value: <span style="color:#8be9fd;font-style:italic">int</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>max_size:    <span style="color:#6272a4"># 1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>:    <span style="color:#6272a4"># 2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#ff79c6">else</span>:    <span style="color:#6272a4"># 3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>            self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> (self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">%</span> self<span style="color:#ff79c6">.</span>max_size
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        self<span style="color:#ff79c6">.</span>queue_list[self<span style="color:#ff79c6">.</span>rear] <span style="color:#ff79c6">=</span> value    <span style="color:#6272a4"># 4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">True</span>
+</span></span></code></pre></div><h2 id="dequeue">deQueue()</h2>
+<p><code>deQueue()</code> 는 Circular Queue에 값을 삭제하는 함수이다.</p>
+<p><code>deQueue()</code> 는 boolean을 반환한다. 값을 제거하는게 성공하면 <code>True</code> 를 반환하고, 실패하면 <code>False</code> 를 반환한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">deQueue</span>(self):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>: <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>rear:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>            self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>            self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> (self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">%</span> self<span style="color:#ff79c6">.</span>max_size
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>        self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">-=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">True</span>
+</span></span></code></pre></div><h2 id="front">Front()</h2>
+<p><code>Front()</code> 는 현재 start pointer가 가리키고 있는 값을 반환한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">Front</span>(self):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>queue_list[self<span style="color:#ff79c6">.</span>front] <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span></code></pre></div><h2 id="rear">Rear()</h2>
+<p><code>Rear()</code> 는 현재 end pointer가 가리키고 있는 값을 반환한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">Rear</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">int</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>queue_list[self<span style="color:#ff79c6">.</span>rear] <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span></code></pre></div><h2 id="isempty">isEmpty()</h2>
+<p><code>isEmpty()</code> 는 현재 값이 비어 있는지 아닌지 확인한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">isEmpty</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">bool</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>
+</span></span></code></pre></div><h2 id="isfull">isFull()</h2>
+<p><code>isFull()</code> 은 리스트에 값이 가득 차 있는지 아닌지 확인한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">isFull</span>(self):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>max_size
+</span></span></code></pre></div><h2 id="전체-코드">전체 코드</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MyCircularQueue</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#ff79c6">def</span> __init__(self, k: <span style="color:#8be9fd;font-style:italic">int</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        self<span style="color:#ff79c6">.</span>max_size <span style="color:#ff79c6">=</span> k
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        self<span style="color:#ff79c6">.</span>queue_list <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">*</span> k
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">enQueue</span>(self, value: <span style="color:#8be9fd;font-style:italic">int</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">bool</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>max_size:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>                self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>                self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> (self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">%</span> self<span style="color:#ff79c6">.</span>max_size
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>            self<span style="color:#ff79c6">.</span>queue_list[self<span style="color:#ff79c6">.</span>rear] <span style="color:#ff79c6">=</span> value
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>            self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">deQueue</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">bool</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>: <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>rear:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>            self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>rear <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>        <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>            self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">=</span> (self<span style="color:#ff79c6">.</span>front <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">%</span> self<span style="color:#ff79c6">.</span>max_size
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>        self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">-=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">Front</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">int</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>queue_list[self<span style="color:#ff79c6">.</span>front] <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">Rear</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">int</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>queue_list[self<span style="color:#ff79c6">.</span>rear] <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">isEmpty</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">bool</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">isFull</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">bool</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>max_size
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#__-__init__-__">__ <strong>init</strong> __()</a></li>
+    <li><a href="#enqueue">enQueue()</a></li>
+    <li><a href="#dequeue">deQueue()</a></li>
+    <li><a href="#front">Front()</a></li>
+    <li><a href="#rear">Rear()</a></li>
+    <li><a href="#isempty">isEmpty()</a></li>
+    <li><a href="#isfull">isFull()</a></li>
+    <li><a href="#전체-코드">전체 코드</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&text=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&title=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&is_video=false&description=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bData%20Structure%5d%20Circular%20Queue&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&title=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&title=%5bData%20Structure%5d%20Circular%20Queue" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&name=%5bData%20Structure%5d%20Circular%20Queue&description=python3%eb%a1%9c%20Circular%20Queue%20%ea%b5%ac%ed%98%84%ed%95%98%ea%b8%b0%20__%20init%20__%28%29%20%eb%a8%bc%ec%a0%80%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ea%b5%ac%ec%a1%b0%ec%9d%98%20%ec%b4%88%ea%b9%83%ea%b0%92%ec%9d%84%20%ec%a0%95%ed%95%9c%eb%8b%a4.%20Queue%ec%9d%98%20%ed%81%ac%ea%b8%b0%eb%a5%bc%20k%eb%a1%9c%20%eb%91%90%ea%b3%a0%2c%20%ea%b0%92%ec%9d%84%20%eb%8b%b4%ec%9d%84%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%ea%b8%b8%ec%9d%b4%ea%b0%80%20k%ec%9d%b8%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%20queue_list%20%eb%a5%bc%20%eb%a7%8c%eb%93%a0%eb%8b%a4.%0aQueue%ec%97%90%eb%8a%94%20%eb%91%90%ea%b0%9c%ec%9d%98%20%ed%8f%ac%ec%9d%b8%ed%84%b0%ea%b0%80%20%ed%95%84%ec%9a%94%ed%95%98%eb%8b%a4.%20%ed%95%9c%ea%b0%9c%eb%8a%94%20Front%eb%a5%bc%20%ea%b0%80%eb%a6%ac%ec%bc%9c%ec%95%bc%20%ed%95%98%ea%b3%a0%2c%20%eb%8b%a4%eb%a5%b8%20%ed%95%98%eb%82%98%eb%8a%94%20Back%ec%9d%84%20%ea%b0%80%eb%a6%ac%ec%bc%9c%ec%95%bc%20%ed%95%9c%eb%8b%a4.%0a1def%20__init__%28self%2c%20k%3a%20int%29%3a%202%20self.size%20%3d%200%20%23%20%ec%b2%98%ec%9d%8c%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%ec%9d%98%20%ea%b8%b8%ec%9d%b4%203%20self.max_size%20%3d%20k%20%23%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%ec%9d%98%20%ea%b8%b8%ec%9d%b4%204%20self.queue_list%20%3d%20%5b0%5d%20%2a%20k%20%23%20Queue%eb%a5%bc%20%eb%8b%b4%ec%9d%84%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%205%20self.front%20%3d%20self." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2019-06-09-circular_queue%2f&t=%5bData%20Structure%5d%20Circular%20Queue" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [번역] 2018년에 당신이 알아야할 리액트 네이티브 컴포넌트 라이브러리 11가지 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/translation/2018-08-17-translation-react-native-component-libraries/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[번역] 2018년에 당신이 알아야할 리액트 네이티브 컴포넌트 라이브러리 11가지" />
+<meta property="og:description" content="원글 React Native Component Libraries You Should Know in 2018를 번역했습니다. 오역이 많습니다. 영문과 함께 편집 했으니 번역문은 참고만 하시기 바랍니다. 잘못 번역된 부분에 대해서 언제든 의견주세요. 환영합니다.
+당신의 다음 앱에서 사용할 수있는 유용한 React Native UI toolkits 리스트
+A list of useful React Native UI toolkits to use in your next app.
+With the growing popularity of React and the rise of native mobile app development (and PWA), it’s not surprising that React-Native is getting more adoption in the community every day." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/translation/2018-08-17-translation-react-native-component-libraries/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[번역] 2018년에 당신이 알아야할 리액트 네이티브 컴포넌트 라이브러리 11가지"/>
+<meta name="twitter:description" content="원글 React Native Component Libraries You Should Know in 2018를 번역했습니다. 오역이 많습니다. 영문과 함께 편집 했으니 번역문은 참고만 하시기 바랍니다. 잘못 번역된 부분에 대해서 언제든 의견주세요. 환영합니다.
+당신의 다음 앱에서 사용할 수있는 유용한 React Native UI toolkits 리스트
+A list of useful React Native UI toolkits to use in your next app.
+With the growing popularity of React and the rise of native mobile app development (and PWA), it’s not surprising that React-Native is getting more adoption in the community every day."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/idle/2019-03-16-domain-setting/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-08-14-react-inflearn-classnote/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&text=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&title=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&is_video=false&description=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&title=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&title=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&name=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80&description=%ec%9b%90%ea%b8%80%20React%20Native%20Component%20Libraries%20You%20Should%20Know%20in%202018%eb%a5%bc%20%eb%b2%88%ec%97%ad%ed%96%88%ec%8a%b5%eb%8b%88%eb%8b%a4.%20%ec%98%a4%ec%97%ad%ec%9d%b4%20%eb%a7%8e%ec%8a%b5%eb%8b%88%eb%8b%a4.%20%ec%98%81%eb%ac%b8%ea%b3%bc%20%ed%95%a8%ea%bb%98%20%ed%8e%b8%ec%a7%91%20%ed%96%88%ec%9c%bc%eb%8b%88%20%eb%b2%88%ec%97%ad%eb%ac%b8%ec%9d%80%20%ec%b0%b8%ea%b3%a0%eb%a7%8c%20%ed%95%98%ec%8b%9c%ea%b8%b0%20%eb%b0%94%eb%9e%8d%eb%8b%88%eb%8b%a4.%20%ec%9e%98%eb%aa%bb%20%eb%b2%88%ec%97%ad%eb%90%9c%20%eb%b6%80%eb%b6%84%ec%97%90%20%eb%8c%80%ed%95%b4%ec%84%9c%20%ec%96%b8%ec%a0%9c%eb%93%a0%20%ec%9d%98%ea%b2%ac%ec%a3%bc%ec%84%b8%ec%9a%94.%20%ed%99%98%ec%98%81%ed%95%a9%eb%8b%88%eb%8b%a4.%0a%eb%8b%b9%ec%8b%a0%ec%9d%98%20%eb%8b%a4%ec%9d%8c%20%ec%95%b1%ec%97%90%ec%84%9c%20%ec%82%ac%ec%9a%a9%ed%95%a0%20%ec%88%98%ec%9e%88%eb%8a%94%20%ec%9c%a0%ec%9a%a9%ed%95%9c%20React%20Native%20UI%20toolkits%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%0aA%20list%20of%20useful%20React%20Native%20UI%20toolkits%20to%20use%20in%20your%20next%20app.%0aWith%20the%20growing%20popularity%20of%20React%20and%20the%20rise%20of%20native%20mobile%20app%20development%20%28and%20PWA%29%2c%20it%e2%80%99s%20not%20surprising%20that%20React-Native%20is%20getting%20more%20adoption%20in%20the%20community%20every%20day." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&t=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-nativebase">1. NativeBase</a></li>
+        <li><a href="#2-react-native-elements">2. React Native Elements</a></li>
+        <li><a href="#3-shoutem">3. Shoutem</a></li>
+        <li><a href="#4-ui-kitten">4. UI Kitten</a></li>
+        <li><a href="#5-react-native-material-ui">5. React Native Material UI</a></li>
+        <li><a href="#6-react-native-material-kit">6. React Native Material Kit</a></li>
+        <li><a href="#7-nachos-ui">7. Nachos UI</a></li>
+        <li><a href="#8-react-native-ui-library">8. React Native UI Library</a></li>
+        <li><a href="#9-react-native-paper">9. React Native Paper</a></li>
+        <li><a href="#10-react-native-vector-icons">10. React Native Vector Icons</a></li>
+        <li><a href="#11-teaset">11. Teaset</a></li>
+        <li><a href="#honorable-mentions">Honorable mentions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [번역] 2018년에 당신이 알아야할 리액트 네이티브 컴포넌트 라이브러리 11가지
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          16 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/translation" rel="tag">translation</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react-navtive" rel="tag">react navtive</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/library" rel="tag">library</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p><strong>원글 <a href="https://blog.bitsrc.io/11-react-native-component-libraries-you-should-know-in-2018-71d2a8e33312">React Native Component Libraries You Should Know in 2018</a>를 번역했습니다. 오역이 많습니다. 영문과 함께 편집 했으니 번역문은 참고만 하시기 바랍니다. 잘못 번역된 부분에 대해서 언제든 의견주세요. 환영합니다.</strong></p>
+<!-- raw HTML omitted -->
+<p><strong>당신의 다음 앱에서 사용할 수있는 유용한 React Native UI toolkits 리스트</strong></p>
+<p>A list of useful React Native UI toolkits to use in your next app.</p>
+<!-- raw HTML omitted -->
+<p>With the growing popularity of React and the rise of native mobile app development (and PWA), it’s not surprising that React-Native is getting more adoption in the community every day.</p>
+<p>React의 인기가 상승하고, 네이티브 모바일 앱 개발(그리고 PWA)이 증가함에 따라, React-Native가 매일같이 커뮤니티에서 점점 더 채택되고 있는 것을 놀랍지 않습니다.</p>
+<!-- raw HTML omitted -->
+<p>Much like React itself, React Native encourages you to build your UI using isolated components. Component libraries and UI toolkits help you save time and build your applications faster, using a pre-made set of components.</p>
+<p>React와 마찬가지로 React Native는 단독의 컴포넌트(isolated components)를 사용하여 UI를 구현하도록 권장합니다. 컴포넌트 라이브러리 및 UI 툴킷을 사용하면 시간을 절약할 수 있고, 미리 만들어둔 컴포넌트 세트를 사용하여 응용 프로그램을보다 빠르게 작성할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>After reviewing useful <a href="https://blog.bitsrc.io/11-react-component-libraries-you-should-know-178eb1dd6aa4">React</a> and <a href="https://blog.bitsrc.io/11-vue-js-component-libraries-you-should-know-in-2018-3d35ad0ae37f">Vue</a> components libraries, and on popular demand, here is a list of useful (maintained!) React-Native UI libraries to get you started. Feel free to comment and add your own suggestions!</p>
+<p>유용한 React 및 Vue 컴포넌트 라이브러리를 (대중성에 따라) 검토 한 후, 유용한 (관리 된) React-Native UI 라이브러리 목록을 작성했습니다. 자유롭게 코멘트를 달고 자신의 의견 및 제안을 추가해주세요.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="1-nativebase">1. NativeBase</h3>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*dMxFx8ZbGCS6OnxrxcqsMw.gif" alt="img"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*OOjngkrwyH_x8C9N68gtuA.gif" alt="img"></p>
+<!-- raw HTML omitted -->
+<p>At 10k stars and over 1k forks NativeBase is a widely popular UI component library providing dozens of cross-platform components for React native.</p>
+<p>1만개의 별과 포크를 받은 NativeBase는 수십 개의 크로스 플랫폼 컴포넌트를 제공하는 널리 사용되고 있는 React Native용 UI 컴포넌트 라이브러리입니다.</p>
+<!-- raw HTML omitted -->
+<p>When using NativeBase, you can use any native third-party libraries out of the box and the project itself comes with a rich ecosystem around it, from useful <a href="https://reactnativeseed.com/?utm_source=nativebase&amp;utm_medium=website+fold&amp;utm_campaign=nativebase">starter-kits</a> to <a href="https://nativebase.io/nativebase-customizer">customizable theme templates</a>.</p>
+<p>NativeBase를 사용하면, 네이티브 서드파티 라이브러리를 기본적으로 사용할 수 있습니다. 그리고 프로젝트 자체에 유용한  <a href="https://reactnativeseed.com/?utm_source=nativebase&amp;utm_medium=website+fold&amp;utm_campaign=nativebase">starter-kits</a> 부터  <a href="https://nativebase.io/nativebase-customizer">customizable theme templates</a> 까지 풍부한 생태계가 구성되어 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://startreact.com/themes/native-starter/?utm_source=nativebase&amp;utm_medium=showcase+section&amp;utm_campaign=nativebase">Here’s</a> a nice starter kit.</p>
+<p><a href="https://startreact.com/themes/native-starter/?utm_source=nativebase&amp;utm_medium=showcase+section&amp;utm_campaign=nativebase">여기</a>  멋진 초보자용 키트가 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/GeekyAnts/NativeBase"><strong>GeekyAnts/NativeBase</strong>
+<em>NativeBase — Essential cross-platform UI components for React Native</em>github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="2-react-native-elements">2. React Native Elements</h3>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*hJ3ocV65gfmjcNEN_bd01A.gif" alt="img"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*xEUKT95BCNbzCgwpkFbF0A.gif" alt="img"></p>
+<!-- raw HTML omitted -->
+<p>At over 12k stars react-native-elements is a highly customizable cross-platform UI toolkit built entirely in Javascript.</p>
+<p>1만2천개의 별을 받은 react-native-elements는 자바 스크립트로 제작 된 사용자 정의가 가능한 cross-platform UI toolkit입니다.</p>
+<!-- raw HTML omitted -->
+<p>The library’s authors <a href="https://medium.com/react-native-training/introducing-react-native-elements-e3d78389b7ea">state that</a> “ The idea with React Native Elements is more about component structure than actual design, meaning less boilerplate in setting up certain elements but full control over their design”, which should make it appealing for both new developers and seasoned veterans.</p>
+<p>이 라이브러리 제작자는 &ldquo;React Native Elements의 아이디어는 실제 디자인보다 컴포넌트 구조에 대한 것입니다. 즉, 특정 요소를 설정하는 데 필요한 상용구가 적지만 디자인을 완벽하게 제어 할 수 있습니다.&rdquo; 라고 말했습니다. 이는 초급 개발자와 베테랑 개발자 모두에게 매력적일 것입니다.</p>
+<!-- raw HTML omitted -->
+<p>Here’s <a href="https://react-native-training.github.io/react-native-elements/">an example Expo app</a> that shows all the components in action. Feel free to jump in.</p>
+<p>다음은 작동중인 모든 컴포넌트를 보여주는 예제 <a href="https://react-native-training.github.io/react-native-elements/">Expo app</a> 앱입니다. 부담없이 뛰어 들어보세요.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/react-native-training/react-native-elements"><strong>react-native-training/react-native-elements</strong>
+<em>react-native-elements — Cross Platform React Native UI Toolkit</em>github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="3-shoutem">3. Shoutem</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*69xNYZ9Nuaa_5r8K2P31QQ.png" alt="img"></p>
+<p>At 3.5k stars Shoutem is a React Native UI Kit which consists of 3 parts: <a href="https://github.com/shoutem/ui">UI components</a>, <a href="https://github.com/shoutem/theme">Themes</a> and component <a href="https://github.com/shoutem/animation">Animation</a>.</p>
+<p>3천5백개의 별을 받은 Shoutem은 <a href="https://github.com/shoutem/ui">UI 컴포넌트</a>,  <a href="https://github.com/shoutem/theme">테마</a>, 컴포넌트 <a href="https://github.com/shoutem/animation">애니메이션</a> 세 부분으로 구성된 React Native UI Kit입니다.</p>
+<!-- raw HTML omitted -->
+<p>The library provides a set of cross-platform components for iOS and Android, and all components are built to be both composable and <a href="http://github.com/shoutem/theme">customizable</a>.</p>
+<p>이 라이브러리는 iOS 및 Android용 크로스 플랫폼 컴포넌트 세트를 제공하며, 모든 컴포넌트는 구성 가능하고 사용자 정의 할 수 있도록 제작되었습니다.</p>
+<!-- raw HTML omitted -->
+<p>Each component also has a predefined style that is consistent with the rest, which makes it possible to build complex components without manually defining complex styles.</p>
+<p>각 컴포넌트에는 rest와 일관되게 미리 정의 된 스타일이 있으므로, 복잡한 스타일을 수동으로 정의하지 않고도 복합적인 컴포넌트를 작성할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://shoutem.github.io/ui/"><strong>Shoutem UI toolkit</strong>
+*An exhaustive UI component set that makes writing cross-platform React Native components as easy as it should be.*shoutem.github.io</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="4-ui-kitten">4. UI Kitten</h3>
+<p>At 3k stars this library provides a customizable and reusable react-native component kit based on the concept of moving style definitions into a specific place making components reusable and styled in a single way.</p>
+<p>3천개의 별을 받은 이 라이브러리는 스타일 정의를 특정 위치로 이동시켜 컴포넌트를 재사용 및 단일방식(single way(?))으로 스타일화하는 컨셉에 기반하여 사용자 정의 및 재사용이 가능한 react-native component kit를 제공합니다.</p>
+<!-- raw HTML omitted -->
+<p>Themes can be rather easily changed ”on the fly” by passing a different set of variables.</p>
+<p>테마는 다른 변수 집합(a different set of variables)를 전달하여 &ldquo;그때그때&rdquo; 상당히 쉽게 변경할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>Here’s a nice <a href="https://expo.io/@akveo/ui-kitten-explorer-app">Expo application</a> to look around.</p>
+<p>여기 살펴보기 좋은 <a href="https://expo.io/@akveo/ui-kitten-explorer-app">Expo application</a>이 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/akveo/react-native-ui-kitten"><strong>akveo/react-native-ui-kitten</strong>
+<em>react-native-ui-kitten — 🐱 Customizable and reusable react-native component kit</em>github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="5-react-native-material-ui">5. React Native Material UI</h3>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*Fx_NouOtA2VtWHHKZCyzxQ.png" alt="img"></p>
+<p>A 2k stars library with a set of highly customizable UI components implementing Google’s material design.</p>
+<p>2천개의 별을 받은 React Native Material UI는 라이브러리를 사용하여 Google’s material design을 구현하는 맞춤 설정할 수있는 UI 컴포넌트 세트를 제공합니다.</p>
+<!-- raw HTML omitted -->
+<p>Note that the library is using a single JS object called uiTheme that is passed in via context for max customizability.</p>
+<p>이 라이브러리는 최대한 맞춤형 설정을 하기 위해 컨텍스트를 통해 전달되는 uiTheme이라는 단일 JS 객체를 사용한다는 것에 주의하세요.</p>
+<!-- raw HTML omitted -->
+<p>By default, this uiTheme object is based on the lightTheme that you can find <a href="https://github.com/xotahal/react-native-material-ui/blob/master/src/styles/themes/light.js">here</a>.</p>
+<p>기본적으로, 이 uiTheme 객체는 lightTheme을 기반으로합니다. (lightTheme는 <a href="https://github.com/xotahal/react-native-material-ui/blob/master/src/styles/themes/light.js">여기</a>에서 볼 수 있습니다.)</p>
+<p>Here’s <a href="https://github.com/xotahal/react-native-material-ui/blob/master/docs/Components.md">a list</a> of the library’s components with visual examples.</p>
+<p>여기 시각적인 예제가 있는 라이브러리의 컴포넌트 <a href="https://github.com/xotahal/react-native-material-ui/blob/master/docs/Components.md">리스트</a>가 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/xotahal/react-native-material-ui"><strong>xotahal/react-native-material-ui</strong>
+<em>react-native-material-ui — Highly customizable material design components for React Native</em>github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="6-react-native-material-kit">6. React Native Material Kit</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*b7dqYzbQeFiqOFjdKYbhHA.png" alt="img"></p>
+<p>Although last NPM publish was on Dec 2017, this 4k-stars library is still worth a mention with a basic yet useful set of UI components and themes implementing Google’s MD. Why? because it’s simple, useful and low on surrounding “noise”.</p>
+<p>마지막 NPM이 2017년 12월에 발행되었지만, 4천개의 별을 받은 이 라이브러리는 Google의 MD를 구현하는 기본적이지만 유용한 UI 컴포넌트 및 테마로 여전히 가치가 있습니다. 왜냐, 간단하고 유용하며 주변의 &ldquo;노이즈&quot;가 적습니다.</p>
+<!-- raw HTML omitted -->
+<p>Due to relatively low maintenance, use with caution.</p>
+<p>유지보수가 상대적으로 저조하므로 주의해서 사용하시기 바랍니다.</p>
+<!-- raw HTML omitted -->
+<p>[<strong>xinthink/react-native-material-kit</strong></p>
+<p>react-native-material-kit - Bringing Material Design to React Native*github.com](<a href="https://github.com/xinthink/react-native-material-kit">https://github.com/xinthink/react-native-material-kit</a>)</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="7-nachos-ui">7. Nachos UI</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*TpOO6lp9bVPP_D5uVW8LIQ.png" alt="img"></p>
+<!-- raw HTML omitted -->
+<p>At 1.5k stars Nachos UI is a React Native component library with over 30 customizable components which also work on the web thanks to <a href="https://github.com/necolas/react-native-web%5C">react-native-web</a>.</p>
+<p>1천5백개의 별을 받은 Nachos UI는 30개 이상의 사용자 정의 가능한 컴포넌트가 있는 React Native 컴포넌트 라이브러리로서 <a href="https://github.com/necolas/react-native-web%5C">react-native-web</a> 덕분에 웹에서 작동합니다.</p>
+<!-- raw HTML omitted -->
+<p>With jest snapshot testing, prettier and yarn support this carefully crafted library offers a spicy design and a global theme manager. Nice!</p>
+<p>Jest snapshot testing을 통해, prettier와 yarn을 지원하고 면밀한 기능 라이브러리로 짜릿한 디자인과 글로벌 테마 매니저를 제공합니다. 좋습니다!</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/nachos-ui/nachos-ui"><strong>nachos-ui/nachos-ui</strong>
+*nachos-ui - Nachos UI is a React Native component library.*github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="8-react-native-ui-library">8. React Native UI Library</h3>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*NwGOEameqRhp96qVingC0A.gif" alt="img"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*qywBNyzzPH-YvUWlHrJNXw.gif" alt="img"></p>
+<p><a href="https://twitter.com/WixEng?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Wix engineering</a> are working on this state-of-the-art UI toolset and component library for React native (<a href="https://github.com/wix/react-native-ui-lib/tree/master/demo">demo</a>) which also supports <a href="https://github.com/oblador/react-native-animatable">react-native-animatable</a> and <a href="https://github.com/react-native-community/react-native-blur">react-native-blur</a> out of the box.'</p>
+<p><a href="https://twitter.com/WixEng?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Wix engineering</a>은 <a href="https://github.com/oblador/react-native-animatable">react-native-animatable</a>과 <a href="https://github.com/react-native-community/react-native-blur">react-native-blur</a>을 지원하는 React native용 최신 UI toolset 및 컴포넌트 라이브러리를 개발하고 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>The library comes with a pre-defined set of style presets (which are translated to modifiers) including Colors, Typography, Shadows, Border Radius and more.</p>
+<p>이 라이브러리에는 색상, 타이포그래피, 그림자, 테두리 반경 등 미리 정의 된 스타일 설정 (modifiers로 변환 됨)이 제공됩니다.</p>
+<!-- raw HTML omitted -->
+<p>Take a look.</p>
+<p>한번 살펴보세요.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/wix/react-native-ui-lib"><strong>wix/react-native-ui-lib</strong>
+<em>react-native-ui-lib - UI Components Library for React Native</em>github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="9-react-native-paper">9. React Native Paper</h3>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*E9GVJ2yXhjLYxfL2zv0mkw.png" alt="img"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*NYLVp9sl2xtCFsvmxkBMcA.png" alt="img"></p>
+<!-- raw HTML omitted -->
+<p>At nearly 1.5K stars React Native Paper is a cross-platform UI component library which follows the material design guide lines, with <a href="https://callstack.github.io/react-native-paper/theming.html">global theming support</a> and an optional babel-plugin to reduce bundle-size.</p>
+<p>1천5백개의 별을 받은 React Native Paper는 bundle-size를 줄이기위한 선택적인 babel-plugin과 <a href="https://callstack.github.io/react-native-paper/theming.html">글로벌 테마 지원</a> material design 가이드 라인을 따르는 크로스 플랫폼 UI 컴포넌트 라이브러리입니다.</p>
+<!-- raw HTML omitted -->
+<p>Here’s an <a href="https://expo.io/@satya164/react-native-paper-example">Expo example app</a> to help you quickly get the idea.</p>
+<p>여기 빠르게 아이디어를 얻을 수있는  <a href="https://expo.io/@satya164/react-native-paper-example">Expo example app</a>이 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/callstack/react-native-paper"><strong>callstack/react-native-paper</strong>
+*react-native-paper - Material Design for React Native (Android &amp; iOS)*github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="10-react-native-vector-icons">10. React Native Vector Icons</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*Hm2KC9-5fbqbRMozN573Jw.png" alt="img"></p>
+<!-- raw HTML omitted -->
+<p>At nearly 10k stars this library is, well, a set of customizable icons for React native with support for NavBar/TabBar/ToolbarAndroid, image source and full styling.</p>
+<p>1만개에 가까운 별을 받은 이 라이브러리는 NavBar / TabBar / ToolbarAndroid, 이미지 소스 및 전체 스타일링을 지원하는 React Native용 맞춤형 아이콘 세트입니다.</p>
+<!-- raw HTML omitted -->
+<p>Unsurprisingly, it’s extremely useful and used by thousands of applications as well as other UI component libraries (like react-native-paper).</p>
+<p>놀랄 것도 없이, 이 라이브러리는 매우 유용하며, 다른 UI 컴포넌트 라이브러리 (react-native-paper와 같은) 처럼 수천 가지 응용 프로그램을 사용한다.</p>
+<!-- raw HTML omitted -->
+<p>The library provides pre-made bundled icon sets out of the box, and here are <a href="https://oblador.github.io/react-native-vector-icons/">full examples</a> of all the icons in the library.</p>
+<p>라이브러리에는 기본적으로 사전 제작 된 번들 아이콘 세트가 제공되며, 여기 라이브러리의 모든 아이콘에 대한 <a href="https://oblador.github.io/react-native-vector-icons/">전체 예제</a>가 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/oblador/react-native-vector-icons"><strong>oblador/react-native-vector-icons</strong>
+*react-native-vector-icons - Customizable Icons for React Native with support for NavBar/TabBar/ToolbarAndroid, image…*github.com</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="11-teaset">11. Teaset</h3>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*DFz_Suu-bs8XlqRWMiwUQA.png" alt="img"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*4BCP961S46lkbG2v63qCBg.png" alt="img"></p>
+<p>At 1.3k stars Teaset is a UI library for react native with 20+ pure JS(ES6) components, focusing on content display and action control.</p>
+<p>1천3백개의 별을 받은 Teaset은 20개 이상의 순수JS(ES6) 컴포넌트와 반응하는 UI 라이브러리입니다. 콘텐츠 표시 및 동작 제어에 중점을 둡니다.</p>
+<!-- raw HTML omitted -->
+<p>Documentation is scarce (at best), but its simplicity and design captured my eye. Take a look.</p>
+<p>문서는 드물게 있지만, 그 단순함과 디자인은 내 눈을 사로 잡았습니다. 한번 보세요.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/rilyu/teaset"><strong>rilyu/teaset</strong>
+*teaset - A UI library for react native, provides 20+ pure JS(ES6) components, focusing on content display and action…*github.com</a></p>
+<!-- raw HTML omitted -->
+<hr>
+<h3 id="honorable-mentions">Honorable mentions</h3>
+<p>You might also find these useful, but some are unmaintained so use with care.</p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/Trixieapp/react-virgin"><strong>Trixieapp/react-virgin</strong>
+*react-virgin - The react-native UI Kit you&rsquo;ve been looking for.*github.com</a></p>
+<p><a href="https://github.com/infinitered/ignite"><strong>infinitered/ignite</strong>
+*ignite — The hottest CLI for React Native, boilerplates, plugins, generators, and more!*github.com</a></p>
+<p><a href="https://github.com/bartonhammond/snowflake"><strong>bartonhammond/snowflake</strong>
+*snowflake: A React-Native Android iOS Starter App/ BoilerPlate / Example with Redux, RN Router, &amp; Jest with the…*github.com</a></p>
+<p><a href="https://github.com/panza-org/panza"><strong>panza-org/panza</strong>
+<em>panza - react-native stateless functional UI components to get you up and running quickly</em>github.com</a></p>
+<p><a href="https://github.com/binggg/mrn"><strong>binggg/mrn</strong>
+*mrn - Material React Native (MRN) - A Material Design style React Native component library.*github.com</a></p>
+<p><a href="https://facebook.design/ios10"><strong>Facebook Design - iOS 10 iPhone GUI</strong>
+*Sketch, Photoshop, Figma, XD and Craft templates of GUI elements found in the public release of iOS 10.*facebook.design</a></p>
+<p><a href="https://github.com/Trixieapp/react-virgin"><strong>Trixieapp/react-virgin</strong>
+*react-virgin - The react-native UI Kit you&rsquo;ve been looking for.*github.com</a></p>
+<p><a href="https://github.com/wix/react-native-calendars"><strong>wix/react-native-calendars</strong>
+<em>react-native-calendars - React Native Calendar Components 📆</em>github.com</a></p>
+<p><a href="https://github.com/oblador/react-native-progress"><strong>oblador/react-native-progress</strong>
+<em>react-native-progress - Progress indicators and spinners for React Native using ReactART</em>github.com</a></p>
+<p><a href="https://github.com/maxs15/react-native-spinkit"><strong>maxs15/react-native-spinkit</strong>
+<em>react-native-spinkit - A collection of animated loading indicators for React Native</em>github.com</a></p>
+<p><a href="https://github.com/react-community/lottie-react-native"><strong>react-community/lottie-react-native</strong>
+*lottie-react-native - Lottie wrapper for React Native.*github.com</a></p>
+<p><a href="https://github.com/react-native-material-design/react-native-material-design"><strong>react-native-material-design/react-native-material-design</strong>
+<em>react-native-material-design - React Native UI Components for Material Design</em>github.com</a></p>
+<hr>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-nativebase">1. NativeBase</a></li>
+        <li><a href="#2-react-native-elements">2. React Native Elements</a></li>
+        <li><a href="#3-shoutem">3. Shoutem</a></li>
+        <li><a href="#4-ui-kitten">4. UI Kitten</a></li>
+        <li><a href="#5-react-native-material-ui">5. React Native Material UI</a></li>
+        <li><a href="#6-react-native-material-kit">6. React Native Material Kit</a></li>
+        <li><a href="#7-nachos-ui">7. Nachos UI</a></li>
+        <li><a href="#8-react-native-ui-library">8. React Native UI Library</a></li>
+        <li><a href="#9-react-native-paper">9. React Native Paper</a></li>
+        <li><a href="#10-react-native-vector-icons">10. React Native Vector Icons</a></li>
+        <li><a href="#11-teaset">11. Teaset</a></li>
+        <li><a href="#honorable-mentions">Honorable mentions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&text=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&title=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&is_video=false&description=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&title=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&title=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&name=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80&description=%ec%9b%90%ea%b8%80%20React%20Native%20Component%20Libraries%20You%20Should%20Know%20in%202018%eb%a5%bc%20%eb%b2%88%ec%97%ad%ed%96%88%ec%8a%b5%eb%8b%88%eb%8b%a4.%20%ec%98%a4%ec%97%ad%ec%9d%b4%20%eb%a7%8e%ec%8a%b5%eb%8b%88%eb%8b%a4.%20%ec%98%81%eb%ac%b8%ea%b3%bc%20%ed%95%a8%ea%bb%98%20%ed%8e%b8%ec%a7%91%20%ed%96%88%ec%9c%bc%eb%8b%88%20%eb%b2%88%ec%97%ad%eb%ac%b8%ec%9d%80%20%ec%b0%b8%ea%b3%a0%eb%a7%8c%20%ed%95%98%ec%8b%9c%ea%b8%b0%20%eb%b0%94%eb%9e%8d%eb%8b%88%eb%8b%a4.%20%ec%9e%98%eb%aa%bb%20%eb%b2%88%ec%97%ad%eb%90%9c%20%eb%b6%80%eb%b6%84%ec%97%90%20%eb%8c%80%ed%95%b4%ec%84%9c%20%ec%96%b8%ec%a0%9c%eb%93%a0%20%ec%9d%98%ea%b2%ac%ec%a3%bc%ec%84%b8%ec%9a%94.%20%ed%99%98%ec%98%81%ed%95%a9%eb%8b%88%eb%8b%a4.%0a%eb%8b%b9%ec%8b%a0%ec%9d%98%20%eb%8b%a4%ec%9d%8c%20%ec%95%b1%ec%97%90%ec%84%9c%20%ec%82%ac%ec%9a%a9%ed%95%a0%20%ec%88%98%ec%9e%88%eb%8a%94%20%ec%9c%a0%ec%9a%a9%ed%95%9c%20React%20Native%20UI%20toolkits%20%eb%a6%ac%ec%8a%a4%ed%8a%b8%0aA%20list%20of%20useful%20React%20Native%20UI%20toolkits%20to%20use%20in%20your%20next%20app.%0aWith%20the%20growing%20popularity%20of%20React%20and%20the%20rise%20of%20native%20mobile%20app%20development%20%28and%20PWA%29%2c%20it%e2%80%99s%20not%20surprising%20that%20React-Native%20is%20getting%20more%20adoption%20in%20the%20community%20every%20day." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2ftranslation%2f2018-08-17-translation-react-native-component-libraries%2f&t=%5b%eb%b2%88%ec%97%ad%5d%202018%eb%85%84%ec%97%90%20%eb%8b%b9%ec%8b%a0%ec%9d%b4%20%ec%95%8c%ec%95%84%ec%95%bc%ed%95%a0%20%eb%a6%ac%ec%95%a1%ed%8a%b8%20%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%20%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac%2011%ea%b0%80%ec%a7%80" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

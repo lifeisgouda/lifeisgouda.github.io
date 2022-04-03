@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/vim/</link>
+    <description>Recent content in vim on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vim을 유용하게 사용하기 위한 설정</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2018-06-25-vim/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2018-06-25-vim/</guid>
+      <description>vim 설정에 도움받은 사이트  https://bluesh55.github.io/2016/10/09/vim-ide/ https://agvim.wordpress.com/2017/09/05/vim-plugins-50/  내가 사용중인 .vimrc 처음 vim 설정을 해본 결과 하나씩 익숙해치면서 각자 상황에 맞게 추가해 나가는 것이 답이라고 본다.
+1set nocompatible &amp;#34; be iMproved, required 2filetype off &amp;#34; required 3 4&amp;#34; set the runtime path to include Vundle and initialize 5set rtp+=~/.vim/bundle/Vundle.vim 6call vundle#begin() 78&amp;#34; let Vundle manage Vundle, required 9Plugin &amp;#39;VundleVim/Vundle.vim&amp;#39; 10Plugin &amp;#39;vim-airline/vim-airline&amp;#39; 11Plugin &amp;#39;scrooloose/nerdtree&amp;#39; 12Plugin &amp;#39;vim-airline/vim-airline&amp;#39; 13Plugin &amp;#34;airblade/vim-gitgutter&amp;#34; 14Plugin &amp;#39;tpope/vim-fugitive&amp;#39; 15Plugin &amp;#34;scrooloose/syntastic&amp;#34; 16Plugin &amp;#34;ctrpvim/ctrlp.</description>
+    </item>
+    
+  </channel>
+</rss>

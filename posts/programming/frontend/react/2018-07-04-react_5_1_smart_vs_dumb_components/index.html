@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [React] Movie app clone coding : Smart vs Dumb Components | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[React] Movie app clone coding : Smart vs Dumb Components" />
+<meta property="og:description" content="5-1. Smart vs Dumb Components State 존재 여부에 따른 Component 분류 모든 컴포넌트가 state가 있는 것은 아니다. 어떤 component는 state가 없는 stateless functional component 이다.
+두 가지 component를 아래와 같이 분류할 수 있다.
+ smart component : state가 있는 component dump component : state가 없고, 필요하지도 않은 component. props 만 갖고 있다.  state는 없고 props 밖에 없을 때는 class component (ex : class App extends Component{...} ) 를 쓰는 대신에 stateless functional component 로 바꾸면 된다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[React] Movie app clone coding : Smart vs Dumb Components"/>
+<meta name="twitter:description" content="5-1. Smart vs Dumb Components State 존재 여부에 따른 Component 분류 모든 컴포넌트가 state가 있는 것은 아니다. 어떤 component는 state가 없는 stateless functional component 이다.
+두 가지 component를 아래와 같이 분류할 수 있다.
+ smart component : state가 있는 component dump component : state가 없고, 필요하지도 않은 component. props 만 갖고 있다.  state는 없고 props 밖에 없을 때는 class component (ex : class App extends Component{...} ) 를 쓰는 대신에 stateless functional component 로 바꾸면 된다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_1_updating_component/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components&description=5-1.%20Smart%20vs%20Dumb%20Components%20State%20%ec%a1%b4%ec%9e%ac%20%ec%97%ac%eb%b6%80%ec%97%90%20%eb%94%b0%eb%a5%b8%20Component%20%eb%b6%84%eb%a5%98%20%eb%aa%a8%eb%93%a0%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%ea%b0%80%20state%ea%b0%80%20%ec%9e%88%eb%8a%94%20%ea%b2%83%ec%9d%80%20%ec%95%84%eb%8b%88%eb%8b%a4.%20%ec%96%b4%eb%96%a4%20component%eb%8a%94%20state%ea%b0%80%20%ec%97%86%eb%8a%94%20stateless%20functional%20component%20%ec%9d%b4%eb%8b%a4.%0a%eb%91%90%20%ea%b0%80%ec%a7%80%20component%eb%a5%bc%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%b4%20%eb%b6%84%eb%a5%98%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%0a%20smart%20component%20%3a%20state%ea%b0%80%20%ec%9e%88%eb%8a%94%20component%20dump%20component%20%3a%20state%ea%b0%80%20%ec%97%86%ea%b3%a0%2c%20%ed%95%84%ec%9a%94%ed%95%98%ec%a7%80%eb%8f%84%20%ec%95%8a%ec%9d%80%20component.%20props%20%eb%a7%8c%20%ea%b0%96%ea%b3%a0%20%ec%9e%88%eb%8b%a4.%20%20state%eb%8a%94%20%ec%97%86%ea%b3%a0%20props%20%eb%b0%96%ec%97%90%20%ec%97%86%ec%9d%84%20%eb%95%8c%eb%8a%94%20class%20component%20%28ex%20%3a%20class%20App%20extends%20Component%7b...%7d%20%29%20%eb%a5%bc%20%ec%93%b0%eb%8a%94%20%eb%8c%80%ec%8b%a0%ec%97%90%20stateless%20functional%20component%20%eb%a1%9c%20%eb%b0%94%ea%be%b8%eb%a9%b4%20%eb%90%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#state-존재-여부에-따른-component-분류">State 존재 여부에 따른 Component 분류</a></li>
+    <li><a href="#props-type-확인하기">Props type 확인하기</a></li>
+    <li><a href="#전체-코드">전체 코드</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [React] Movie app clone coding : Smart vs Dumb Components
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          2 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/clonecoding" rel="tag">clonecoding</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react" rel="tag">react</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/jsx" rel="tag">jsx</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="5-1-smart-vs-dumb-components">5-1. Smart vs Dumb Components</h1>
+<!-- raw HTML omitted -->
+<h2 id="state-존재-여부에-따른-component-분류">State 존재 여부에 따른 Component 분류</h2>
+<p>모든 컴포넌트가 state가 있는 것은 아니다. 어떤 component는 state가 없는 <code>stateless functional component</code> 이다.</p>
+<p>두 가지 component를 아래와 같이 분류할 수 있다.</p>
+<ul>
+<li><code>smart component</code>  : state가 있는 component</li>
+<li><code>dump component</code> : state가 없고, 필요하지도 않은 component. <code>props</code> 만 갖고 있다.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>state는 없고 props 밖에 없을 때는 <code>class component</code> (ex : <code>class App extends Component{...}</code> ) 를 쓰는 대신에   <code>stateless functional component</code> 로 바꾸면 된다.</p>
+<!-- raw HTML omitted -->
+<p>예를들어, <code>class MoviePoster extends Component{...}</code> 를 쓰는 대신 아래와 같이 작성한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// Movie.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> MoviePoster({poster}) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#ff79c6">return</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    	<span style="color:#ff79c6">&lt;</span>img src<span style="color:#ff79c6">=</span>{<span style="color:#ff79c6">this</span>.props.poster} alt<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Movie Poster&#34;</span> <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4">위에 작성한 component와 아래 작생한 component는 같은 것이다.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#6272a4">둘다 image와 props를 return 한다.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4">class MoviePoster extends Component{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#6272a4">  static propTypes = {
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4">    poster: PropTypes.string.isRequired    
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#6272a4">  }
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#6272a4">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#6272a4">  render(){
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#6272a4">    return(
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#6272a4">      &lt;img src={this.props.poster} /&gt;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#6272a4">    )
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#6272a4">  }
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#6272a4">}
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#6272a4">*/</span>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>어떤 component는 단순히 return을 하기 위해 존재한다. 위에서 작성한 <code>function component</code> 는 <code>componentDidMount</code>, <code>function</code>, <code>update state</code> 등이 필요 없다.  <code>poster</code> 과 같은 한 개의  <code>props</code> 만 있으면 된다.</p>
+<p>이렇게 하면 이전보다 적은 양의 코드를 사용할 수 있다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>movie component</code> 도 functional로 변경하면 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// Movie.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> Movie({title, poster}){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  <span style="color:#ff79c6">return</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#ff79c6">&lt;</span>div<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>      <span style="color:#ff79c6">&lt;</span>MoviePoster poster<span style="color:#ff79c6">=</span>{poster} <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>      <span style="color:#ff79c6">&lt;</span>h1<span style="color:#ff79c6">&gt;</span>{title}<span style="color:#ff79c6">&lt;</span>/h1&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#ff79c6">&lt;</span>/div&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>  )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="props-type-확인하기">Props type 확인하기</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Movie.PropTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  title<span style="color:#ff79c6">:</span> PropTypes.string.isRequired,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  poster<span style="color:#ff79c6">:</span> PropTypes.string.isRequired
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>MoviePoster.PropTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>  poster<span style="color:#ff79c6">:</span> PropTypes.string.isRequired
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>}
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h2 id="전체-코드">전체 코드</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// Movie.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> React from <span style="color:#f1fa8c">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> PropTypes from <span style="color:#f1fa8c">&#39;prop-types&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#39;./Movie.css&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#8be9fd;font-style:italic">function</span> Movie({title, poster}){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  <span style="color:#ff79c6">return</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#ff79c6">&lt;</span>div<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>      <span style="color:#ff79c6">&lt;</span>MoviePoster poster<span style="color:#ff79c6">=</span>{poster} <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>      <span style="color:#ff79c6">&lt;</span>h1<span style="color:#ff79c6">&gt;</span>{title}<span style="color:#ff79c6">&lt;</span>/h1&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#ff79c6">&lt;</span>/div&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#8be9fd;font-style:italic">function</span> MoviePoster({poster}) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  <span style="color:#ff79c6">return</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#ff79c6">&lt;</span>img src<span style="color:#ff79c6">=</span>{poster} alt<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Movie Poster&#34;</span> <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>Movie.PropTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>  title<span style="color:#ff79c6">:</span> PropTypes.string.isRequired,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>  poster<span style="color:#ff79c6">:</span> PropTypes.string.isRequired
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>MoviePoster.PropTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>  poster<span style="color:#ff79c6">:</span> PropTypes.string.isRequired
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> Movie;
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#state-존재-여부에-따른-component-분류">State 존재 여부에 따른 Component 분류</a></li>
+    <li><a href="#props-type-확인하기">Props type 확인하기</a></li>
+    <li><a href="#전체-코드">전체 코드</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components&description=5-1.%20Smart%20vs%20Dumb%20Components%20State%20%ec%a1%b4%ec%9e%ac%20%ec%97%ac%eb%b6%80%ec%97%90%20%eb%94%b0%eb%a5%b8%20Component%20%eb%b6%84%eb%a5%98%20%eb%aa%a8%eb%93%a0%20%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8%ea%b0%80%20state%ea%b0%80%20%ec%9e%88%eb%8a%94%20%ea%b2%83%ec%9d%80%20%ec%95%84%eb%8b%88%eb%8b%a4.%20%ec%96%b4%eb%96%a4%20component%eb%8a%94%20state%ea%b0%80%20%ec%97%86%eb%8a%94%20stateless%20functional%20component%20%ec%9d%b4%eb%8b%a4.%0a%eb%91%90%20%ea%b0%80%ec%a7%80%20component%eb%a5%bc%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%b4%20%eb%b6%84%eb%a5%98%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%0a%20smart%20component%20%3a%20state%ea%b0%80%20%ec%9e%88%eb%8a%94%20component%20dump%20component%20%3a%20state%ea%b0%80%20%ec%97%86%ea%b3%a0%2c%20%ed%95%84%ec%9a%94%ed%95%98%ec%a7%80%eb%8f%84%20%ec%95%8a%ec%9d%80%20component.%20props%20%eb%a7%8c%20%ea%b0%96%ea%b3%a0%20%ec%9e%88%eb%8b%a4.%20%20state%eb%8a%94%20%ec%97%86%ea%b3%a0%20props%20%eb%b0%96%ec%97%90%20%ec%97%86%ec%9d%84%20%eb%95%8c%eb%8a%94%20class%20component%20%28ex%20%3a%20class%20App%20extends%20Component%7b...%7d%20%29%20%eb%a5%bc%20%ec%93%b0%eb%8a%94%20%eb%8c%80%ec%8b%a0%ec%97%90%20stateless%20functional%20component%20%eb%a1%9c%20%eb%b0%94%ea%be%b8%eb%a9%b4%20%eb%90%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-04-react_5_1_smart_vs_dumb_components%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Smart%20vs%20Dumb%20Components" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

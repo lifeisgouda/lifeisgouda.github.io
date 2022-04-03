@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>work on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/work/</link>
+    <description>Recent content in work on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/work/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[idle] 대시보드 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/</guid>
+      <description>한동안 데이터 분석, 시뮬레이션, 레포트 쓰는 일을 하다가 최근에 대시보드 만드는 프로젝트가 시작되었는데 웹개발 경험이 있어서 해당 일을 맡게 되었다.
+매일 회사 노트에 개발일지를 작성하고 있는데 기록하는 일은 여러모로 중요하다가 재차 느끼고 있다. 업무 중 문뜩 드는 생각이나 아이디어를 놓치지 않고 공유할 수 있다. 또한 나와 동료의 시간을 아낄 수 있다. 어떤 분 말씀대로 &amp;lsquo;생각을 유통가능한 형태로 만드는 것&amp;rsquo;의 가치를 생각하며 기록하고 있다. 그래프로 일 진행 상태를 공유하고 있는 것도 부수적인 시간을 아낄 수 있어서 도움이 되고 있다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/categories/statistics/</link>
+    <description>Recent content in Statistics on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[R] R의 Data Structure</title>
+      <link>https://lifeisgouda.github.io/posts/statistics/2018-02-19-rprogramming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/statistics/2018-02-19-rprogramming/</guid>
+      <description>[R] R의 Data structure 데이터 구조 종류   Scalar : element가 1개인 vector이다.
+1# scalar 만들기 2a &amp;lt;- &amp;#39;a&amp;#39; 3alphabet &amp;lt;- &amp;#39;abcdefg&amp;#39; 4num &amp;lt;- 1 ​
+  Vector : 같은 종류의 element가 여러개 들어 있는 1차원 matrix이다.
+1# vector 만들기 2table &amp;lt;- c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;) 3table &amp;lt;- c(1, 2, 3, 5) 4bool &amp;lt;- c(TRUE, FALSE) ​
+  Matrix : 2차원으로 된 배열. 일반적이 표 데이터를 생각하면 된다.
+1# matrix 만들기 2# 2 by 3 행렬 생성 3&amp;gt; mat &amp;lt;- matrix(c(&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;, &amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;, &amp;#34;f&amp;#34;), nrow = 2, ncol = 3) 4&amp;gt; mat 5 [,1] [,2] [,3] 6[1,] &amp;#34;a&amp;#34; &amp;#34;c&amp;#34; &amp;#34;e&amp;#34; 7[2,] &amp;#34;b&amp;#34; &amp;#34;d&amp;#34; &amp;#34;f&amp;#34; ​</description>
+    </item>
+    
+    <item>
+      <title>[R] 결측값 데이터 다루기</title>
+      <link>https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/</guid>
+      <description>1. 결측값 단순 삭제 na.omit() 결측값이 있는 행을 삭제하는 함수
+example
+1&amp;gt; dat &amp;lt;- data.frame( a = c(1, 2, 3, 4), 2+ b = c(5, 6, 7, NA), 3+ c = c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, NA), 4+ d = c(&amp;#39;e&amp;#39;, NA, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;)) 5&amp;gt; dat 6 a b c d 71 1 5 a e 82 2 6 b &amp;lt;NA&amp;gt; 93 3 7 c f 104 4 NA &amp;lt;NA&amp;gt; g 11&amp;gt; dat &amp;lt;- na.</description>
+    </item>
+    
+  </channel>
+</rss>

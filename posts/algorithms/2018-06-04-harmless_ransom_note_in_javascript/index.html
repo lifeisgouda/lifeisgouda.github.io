@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Algorithms] Harmless Ransom Note in Javascript | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Algorithms] Harmless Ransom Note in Javascript" />
+<meta property="og:description" content="문제 Harmless ransom note algorithm은 두개의 parameter를 갖는다.
+첫번째 parameter인 noteText는 string과 같은 텍스트를 받을 수 있다. 두번째 parameter인 magazineText에도 string 같은 텍스트가 들어간다.
+예를들어, 아래와 같이 note와 meagazine이 쓰여있다
+ Note : &rsquo;this si a secret note for you from a secret admirer.&#39;
+  Magazine : &lsquo;puerto rico is a great place you must hike far from town to find a secret waterfall that i am an admirer of but note that it is not as hard it seems this my advice for you&rsquo;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithms] Harmless Ransom Note in Javascript"/>
+<meta name="twitter:description" content="문제 Harmless ransom note algorithm은 두개의 parameter를 갖는다.
+첫번째 parameter인 noteText는 string과 같은 텍스트를 받을 수 있다. 두번째 parameter인 magazineText에도 string 같은 텍스트가 들어간다.
+예를들어, 아래와 같이 note와 meagazine이 쓰여있다
+ Note : &rsquo;this si a secret note for you from a secret admirer.&#39;
+  Magazine : &lsquo;puerto rico is a great place you must hike far from town to find a secret waterfall that i am an admirer of but note that it is not as hard it seems this my advice for you&rsquo;"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/algorithms/2018-08-21-leetcode_189_rotate-array/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&text=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&title=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&is_video=false&description=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&title=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&title=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&name=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript&description=%eb%ac%b8%ec%a0%9c%20Harmless%20ransom%20note%20algorithm%ec%9d%80%20%eb%91%90%ea%b0%9c%ec%9d%98%20parameter%eb%a5%bc%20%ea%b0%96%eb%8a%94%eb%8b%a4.%0a%ec%b2%ab%eb%b2%88%ec%a7%b8%20parameter%ec%9d%b8%20noteText%eb%8a%94%20string%ea%b3%bc%20%ea%b0%99%ec%9d%80%20%ed%85%8d%ec%8a%a4%ed%8a%b8%eb%a5%bc%20%eb%b0%9b%ec%9d%84%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%20%eb%91%90%eb%b2%88%ec%a7%b8%20parameter%ec%9d%b8%20magazineText%ec%97%90%eb%8f%84%20string%20%ea%b0%99%ec%9d%80%20%ed%85%8d%ec%8a%a4%ed%8a%b8%ea%b0%80%20%eb%93%a4%ec%96%b4%ea%b0%84%eb%8b%a4.%0a%ec%98%88%eb%a5%bc%eb%93%a4%ec%96%b4%2c%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%b4%20note%ec%99%80%20meagazine%ec%9d%b4%20%ec%93%b0%ec%97%ac%ec%9e%88%eb%8b%a4%0a%20Note%20%3a%20%26rsquo%3bthis%20si%20a%20secret%20note%20for%20you%20from%20a%20secret%20admirer.%27%0a%20%20Magazine%20%3a%20%26lsquo%3bpuerto%20rico%20is%20a%20great%20place%20you%20must%20hike%20far%20from%20town%20to%20find%20a%20secret%20waterfall%20that%20i%20am%20an%20admirer%20of%20but%20note%20that%20it%20is%20not%20as%20hard%20it%20seems%20this%20my%20advice%20for%20you%26rsquo%3b" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&t=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#문제">문제</a></li>
+    <li><a href="#big-o">Big O</a>
+      <ul>
+        <li><a href="#constant-runtime">Constant runtime</a></li>
+        <li><a href="#linear-runtime">Linear runtime</a></li>
+        <li><a href="#exponenetial-runtime">Exponenetial runtime</a></li>
+        <li><a href="#logarithmic-runtime">Logarithmic runtime</a></li>
+      </ul>
+    </li>
+    <li><a href="#harmless-ransom-note-code">Harmless Ransom Note Code</a>
+      <ul>
+        <li><a href="#code-1">Code 1.</a></li>
+        <li><a href="#foreach">forEach()</a></li>
+        <li><a href="#code-2">Code 2.</a></li>
+        <li><a href="#결과-코드">결과 코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#time-complex">Time complex</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Algorithms] Harmless Ransom Note in Javascript
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          12 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/algorithms" rel="tag">algorithms</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="문제">문제</h2>
+<p>Harmless ransom note algorithm은 두개의 parameter를 갖는다.</p>
+<p>첫번째 parameter인 noteText는 string과 같은 텍스트를 받을 수 있다. 두번째 parameter인 magazineText에도 string 같은 텍스트가 들어간다.</p>
+<p>예를들어, 아래와 같이 note와 meagazine이 쓰여있다</p>
+<blockquote>
+<p>Note : &rsquo;this si a <strong>secret</strong> note for you from a <strong>secret</strong> admirer.'</p>
+</blockquote>
+<blockquote>
+<p>Magazine : &lsquo;puerto rico is a great place you must hike far from town to find a <strong>secret</strong> waterfall that i am an admirer of but note that it is not as hard it seems this my advice for you&rsquo;</p>
+</blockquote>
+<p>입력받은 두개의 파라미터 텍스트를 비교해서 중복되는 text(문자열)이 있으면 true를 반환하고, 없으면 false를 반환한다. 예시를 보면, Note의 secret과 Magazine의 secret이 중복되므로 true를 반환하게 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> harmlessRansomeNote(noteText, magazineText) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="big-o">Big O</h2>
+<p>Big O(빅오)는 알고리즘이나 함수를 측정 및 분류하기 위해 사용된다. bigO는 worst case의 알고리즘 실행시간이나 입력 크기에 기반하여 알고리즘 수행시간이 얼마나 긴지 추정한다.</p>
+<!-- raw HTML omitted -->
+<h3 id="constant-runtime">Constant runtime</h3>
+<p>아래 log function이 정의되어 있다. 이 함수는 array를 입력 값으로 받고, 첫번째와 두번째 element를 프린트한다. 이 함수의 bigO는 상수일 것이다. 이 함수는 입력 크기가 증가하더라도 첫번째와 두번째 값을 출력하는 수행하는 것은 바뀌지 않는다. 그러므로 실행시간이 상수이고 bigO 역시 상수이다.</p>
+<p>실행시간이 상수인 경우 bigO는 0 또는 1로 쓴다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> log(array) {        <span style="color:#6272a4">// BigO Notation : &#34;O(1)&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>    console.log(array[<span style="color:#bd93f9">0</span>]);   
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    console.log(array[<span style="color:#bd93f9">1</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>log([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>log([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>, <span style="color:#bd93f9">10</span>]);
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="linear-runtime">Linear runtime</h3>
+<p>logAll 함수는 array를 인자로 받아서 모든 값을 출력한다. 이 함수의 경우 입력 크기가 증가하면 실행시간도 증가한다. 즉, 입력크기와 실행시간이 선형관계이다. 이 경우 bigO는 O(n)으로 표기한다. 입력크기 n에 비례하여 실행시간이 증가하는 것이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">function</span> logAll(array) {   <span style="color:#6272a4">// Linear runtime
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>                           <span style="color:#6272a4">// Big O Notation: &#34;O(n)&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span>array.length; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        console.log(array[i]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>logAll([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>logAll([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>logAll([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>]);
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="exponenetial-runtime">Exponenetial runtime</h3>
+<p>addAndLog 함수는 두개의 반복구간이 있다. 이 경수 요소가 3개인 array를 입력값으로 받으면 $$3^2$$ 번 계산하게 되고, 요소가 4개인 array를 입력값으로 받으면 $$4^2$$번 연산하게 된다. 5개 요소의 경우 $$5^2$$번 연산한다. 즉, 실행시간이 지수적으로 증가(exponenetial jump) 하게 된다. 실행시간이 지수인 경우 bigO는 $$O(n^2)$$ 이 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">function</span> addAndLog(array) { <span style="color:#6272a4">// Exponential runtime
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>                            <span style="color:#6272a4">// Big O Notation: &#34;O(n^2)&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> array.length; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> array.length; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>            console.log(array[i] <span style="color:#ff79c6">+</span> array[j]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>addAndLog([<span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>, <span style="color:#f1fa8c">&#39;C&#39;</span>]);     <span style="color:#6272a4">// 9 pairs logged out
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#6272a4"></span>addAndLog([<span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>, <span style="color:#f1fa8c">&#39;C&#39;</span>, <span style="color:#f1fa8c">&#39;D&#39;</span>]);    <span style="color:#6272a4">// 16 pairs logged out
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>addAndLog([<span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>, <span style="color:#f1fa8c">&#39;C&#39;</span>, <span style="color:#f1fa8c">&#39;D&#39;</span>, <span style="color:#f1fa8c">&#39;E&#39;</span>])    <span style="color:#6272a4">// 25 pairs logged out
+</span></span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="logarithmic-runtime">Logarithmic runtime</h3>
+<p>실행시간이 로그함수인 코드는 성능이 매우 좋다. 아래 코드의 이진 탐색 알고리즘(binary search algorithm)은 두개의 값을 받는다. array는 오름차순 정렬된 리스트이고, 다른 하나 key는 한개의 값이다. array에서 key와 일치하는 값을 찾는 탐색이다. 이진 탐색 알고리즘의 실행시간은 로그함수를 따른다. 큰 사이즈의 문제를 일정 크기의 작은 문제로 쪼개서 연산하므로 효율성이 높은 탐색이 가능하다. 4000개의 요소를 탐색하는데 최대 12번의 연산이면 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">function</span> binarySearch(array, key) {    <span style="color:#6272a4">// Logarithmic runtime
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> low <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;                       <span style="color:#6272a4">// Big O Notation: &#34;O(logn)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> high <span style="color:#ff79c6">=</span> array.length <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> mid;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> element;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#ff79c6">while</span> (low <span style="color:#ff79c6">&lt;=</span> high) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        mid <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.floor((low <span style="color:#ff79c6">+</span> high) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">10</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        element <span style="color:#ff79c6">=</span> array[mid];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        <span style="color:#ff79c6">if</span> (element <span style="color:#ff79c6">&lt;</span> key) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            low <span style="color:#ff79c6">=</span> mid <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (element <span style="color:#ff79c6">&gt;</span> key) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            high <span style="color:#ff79c6">=</span> mid <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#ff79c6">return</span> mid;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="harmless-ransom-note-code">Harmless Ransom Note Code</h2>
+<h3 id="code-1">Code 1.</h3>
+<ul>
+<li>Assume : NoteText and magazineText do not contain any type of puctuation and all the letters are lowercase.</li>
+</ul>
+<p>먼저, noteText와 magazineText에 입력받은 문자열을 각각 단어 array로 바꿔야 한다. 공백을 기준으로 나눠서 array에 저장한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> harmlessRansomNote (noteText, magazineText) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> noteArr <span style="color:#ff79c6">=</span> noteText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineArr <span style="color:#ff79c6">=</span> magazineText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>one array로 저장되어 있으므로 hash table로 저장할 수 있게 빈 객체를 생성한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> harmlessRansomNote (noteText, magazineText) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> noteArr <span style="color:#ff79c6">=</span> noteText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineArr <span style="color:#ff79c6">=</span> magazineText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineObj <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="foreach">forEach()</h3>
+<p><code>forEach()</code> 메소드는 배열 요소마다 한 번씩, 제공한 함수를 실행한다. (*참고 : <!-- raw HTML omitted -->forEach 메서드(Array)<!-- raw HTML omitted -->)</p>
+<p>forEach 메서드는 아래와 같은 syntax를 갖는다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>arr.forEach(<span style="color:#8be9fd;font-style:italic">function</span> callback(currentValue[, index[, array]]) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#6272a4">//your iterator
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>}[, thisArg]);
+</span></span></code></pre></div><p>callback은 각 요소마다 실행될 함수이다.</p>
+<p>currentValue는 배열에서 현재 처리 중인 요소이다.</p>
+<p>index는 배열에서 현재 처리 중인 요소의 인덱스이다.</p>
+<p>array는 <code>forEach()</code>가 적용되고 있는 배열이다.</p>
+<p><code>thisArg</code> 는선택 사항.  <code>callback</code>을 실행할 때 <code>this</code>로서 사용하는 값이다.</p>
+<!-- raw HTML omitted -->
+<p>간단하게 배열 각 요소에 10을 곱해주는 forEach()를 구현한 것이다.</p>
+<p>arr이 적용될 array이다. 함수에 3가지 인자를 받고 있는데 위 sytax와 비교해보면 x는 currentValue, index는 index, array는 array이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> arr <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>arr.forEach(<span style="color:#8be9fd;font-style:italic">function</span> (x, index, array){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>   array[index] <span style="color:#ff79c6">=</span> x <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">10</span>; 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>console.log(arr)    <span style="color:#6272a4">// [ 10, 20, 30, 40, 50 ]
+</span></span></span></code></pre></div><!-- raw HTML omitted -->
+<p>화살표 함수로 간단하게 구현하면 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> arr <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#8be9fd;font-style:italic">let</span> result <span style="color:#ff79c6">=</span> [];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>arr.forEach(x =&gt; { result.push(x <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">10</span>) });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>console.log(result);
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>forEach 메소드를 Harless Ransom Note 알고리즘에 적용한다. 단어가 저장되어 있는 배열을 각각 분리해서 빈 객체에 넣은 후 갯수를 카운팅 해주는 함수에 적용할 것이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">function</span> harmlessRansomNote (noteText, magazineText) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> noteArr <span style="color:#ff79c6">=</span> noteText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineArr <span style="color:#ff79c6">=</span> magazineText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineObj <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    magazineArr.forEach(word =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>magazineObj[word]) magazineObj[word] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        magzineObj[word]<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    console.log(magazienObj);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>harmlessRansomNote(<span style="color:#f1fa8c">&#39;&#39;</span>, <span style="color:#f1fa8c">&#39;this is all the magazine text in the magazine&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#6272a4">// { this: 1, is: 1, all: 1, the: 2, magazine: 2, text: 1, in: 1 }
+</span></span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="code-2">Code 2.</h3>
+<p><code>magazine</code>에 <code>note</code> 의 단어를 가지고 있는지 <code>noteArr</code>의 모든 단어를 반복해서 살펴 본다.</p>
+<p><code>noteArr</code> 배열을 반복하면서, 각 단어에 대해  <code>magazine</code>에 단어가 있는지 확인한다.</p>
+<p>적절한 단어가 없기 때문에 ransom note를 기록 할 수 없다는 것을 알고 있다.</p>
+<!-- raw HTML omitted -->
+<p>첫 번째로 <code>magazine</code> 에 있는 단어로  <code>note</code> 가 작성될 수 있는지 boolean 값을 얻는 것이다. 그러므로 초깃값이 true인 변수를 만든다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>그런 다음 <code>noteArr</code> 를 반복하면서 변수를 표시한다.</p>
+<p><code>note</code> 는 <code>note</code> 를 작성하는 데 필요한 단어가 전혀 없는 경우 <code>false</code> 가 된다.</p>
+<p>그러므로 <code>note</code> 가 어딘가에 없다면이 변수를 <code>false</code> 를 반환한다.</p>
+<p>코드 블록 내부에 <code>magazineObj</code> 에 단어가있는 경우 현재 단어를 넘긴 후 빼준다.(?)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>noteArr.forEach(word =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>	<span style="color:#ff79c6">if</span> (magazineObj[word]) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>		magazineObj[word]<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>	}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p><code>noteArr</code> 의 현재 단어가 <code>magazineObj</code> 에 없다면 <code>NoteIsPossible</code> 을 <code>false</code> 로 설정한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>	<span style="color:#ff79c6">else</span> noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span></code></pre></div><p>단어가 <code>magazineObj</code> 에 존재하면 단어 수를 감소시킨 후에 다른 IF 문을 넣는다.  <code>magazine의 단어수</code> 가 0보다 작으면 <code>noteIsPossible</code> 에  <code>false</code> 를 반환한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">if</span> (magazineObj[word] <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>) noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="결과-코드">결과 코드</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">function</span> harmlessRansomNote (noteText, magazineText) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> noteArr <span style="color:#ff79c6">=</span> noteText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineArr <span style="color:#ff79c6">=</span> magazineText.split(<span style="color:#f1fa8c">&#39; &#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> magazineObj <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    magazineArr.forEach(word =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>magazineObj[word]) magazineObj[word] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        magazineObj[word]<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    noteArr.forEach(word =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        <span style="color:#ff79c6">if</span> (magazineObj[word]) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>            magazineObj[word]<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#ff79c6">if</span> (magazineObj[word] <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>) noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        <span style="color:#ff79c6">else</span> noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#ff79c6">return</span> noteIsPossible;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="time-complex">Time complex</h2>
+<p>Harmless Ransom Note 알고리즘은 시간복잡도가 O(n)이다.</p>
+<p>함수 안에 두 개의 반복문(loop)이 있고 중첩되지 않는다. 그러므로 시간복잡도는 exponential이 아니다.</p>
+<p>위 함수에서 시간 복잡도를 결정하는 가장 중요한 부분은 두 개의 루프이다.</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>첫 번째 루프</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>magazineArr.forEach(word =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>	<span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>magazineObj[word]) magazineObj[word] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>		magazineObj[word]<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>});
+</span></span></code></pre></div></li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>두번째 루프</p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>noteArr.forEach(word =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">if</span> (magazineObj[word]) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        magazineObj[word]<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>		<span style="color:#ff79c6">if</span> (magazineObj[word] <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>) noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>	<span style="color:#ff79c6">else</span> noteIsPossible <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>});
+</span></span></code></pre></div></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>이 두 루프는 서로의 내부에 중첩되어 있지 않기 때문에 선형 시간 복잡도 O(n)으로 실행된다. 이 경우 n은 몇개의 요소가 noteArray에 있는지 나타낸다.</p>
+<p>첫번째, 두번째 루프 둘다 선형시간복잡도로 실행된다. 그러나 각각의 루프는 다른 array와 variable을 갖는다. 그러므로 **Linear Time Complexity는 O(n) + O(m) = O(n + m)**이다. 이런 경우 시간복잡도 O(n) 또는 O(n+m)으로 나타낼 수 있다.</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#문제">문제</a></li>
+    <li><a href="#big-o">Big O</a>
+      <ul>
+        <li><a href="#constant-runtime">Constant runtime</a></li>
+        <li><a href="#linear-runtime">Linear runtime</a></li>
+        <li><a href="#exponenetial-runtime">Exponenetial runtime</a></li>
+        <li><a href="#logarithmic-runtime">Logarithmic runtime</a></li>
+      </ul>
+    </li>
+    <li><a href="#harmless-ransom-note-code">Harmless Ransom Note Code</a>
+      <ul>
+        <li><a href="#code-1">Code 1.</a></li>
+        <li><a href="#foreach">forEach()</a></li>
+        <li><a href="#code-2">Code 2.</a></li>
+        <li><a href="#결과-코드">결과 코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#time-complex">Time complex</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&text=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&title=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&is_video=false&description=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&title=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&title=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&name=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript&description=%eb%ac%b8%ec%a0%9c%20Harmless%20ransom%20note%20algorithm%ec%9d%80%20%eb%91%90%ea%b0%9c%ec%9d%98%20parameter%eb%a5%bc%20%ea%b0%96%eb%8a%94%eb%8b%a4.%0a%ec%b2%ab%eb%b2%88%ec%a7%b8%20parameter%ec%9d%b8%20noteText%eb%8a%94%20string%ea%b3%bc%20%ea%b0%99%ec%9d%80%20%ed%85%8d%ec%8a%a4%ed%8a%b8%eb%a5%bc%20%eb%b0%9b%ec%9d%84%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%20%eb%91%90%eb%b2%88%ec%a7%b8%20parameter%ec%9d%b8%20magazineText%ec%97%90%eb%8f%84%20string%20%ea%b0%99%ec%9d%80%20%ed%85%8d%ec%8a%a4%ed%8a%b8%ea%b0%80%20%eb%93%a4%ec%96%b4%ea%b0%84%eb%8b%a4.%0a%ec%98%88%eb%a5%bc%eb%93%a4%ec%96%b4%2c%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%b4%20note%ec%99%80%20meagazine%ec%9d%b4%20%ec%93%b0%ec%97%ac%ec%9e%88%eb%8b%a4%0a%20Note%20%3a%20%26rsquo%3bthis%20si%20a%20secret%20note%20for%20you%20from%20a%20secret%20admirer.%27%0a%20%20Magazine%20%3a%20%26lsquo%3bpuerto%20rico%20is%20a%20great%20place%20you%20must%20hike%20far%20from%20town%20to%20find%20a%20secret%20waterfall%20that%20i%20am%20an%20admirer%20of%20but%20note%20that%20it%20is%20not%20as%20hard%20it%20seems%20this%20my%20advice%20for%20you%26rsquo%3b" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-06-04-harmless_ransom_note_in_javascript%2f&t=%5bAlgorithms%5d%20Harmless%20Ransom%20Note%20in%20Javascript" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

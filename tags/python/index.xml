@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/python/</link>
+    <description>Recent content in python on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python &amp; Django Day18 Python 가상환경 세팅 &amp; Django 설치</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-01-python_django_day18/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-01-python_django_day18/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Python Virtual Environment  가상환경의 필요성  버전의 분리 : 버전별로 또는 필요에 따라 패키지 등을 다르게 설치할 수 있다. 서버와의 통일    가상환경 만들기 $ python3 -m venv first-env # python3 -m venv 가상환경이름 $ ls	# 설치된 것 확인 first env $ cd first-env	# 폴더로 들어가기 $ source first-env/bin/activate	# 적용 # pip list를 입력해보면 여태까지 설치된 패키지가 나오지 않고, 기본 패키지만 나오는 것을 볼 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day19 프레임워크</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-03-python_django_day19/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-03-python_django_day19/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+프레임워크, 라이브러리 차이점 라이브러리 필요한 기능들이 구현되어 있는 라이브러리에서 기능을 불러와서 사용하는 것이다.
+직접 작성했기 때문에 프로그램 흐름의 전체를 이해하기 쉽다.
+(예시)
+1import requests 2response = requests.get(&amp;#34;https://www.fastcampus.co.kr&amp;#34;) 3response.text 프레임워크 이미 구성되어진 틀.
+프레임워크 자체가 하나의 프로그램이다. 그러므로 실행 흐름이 결정되어 있고 필요한 기능들이 채워져 있다. 그러므로 라이브러리처럼 가져다 쓰는 것이 아니라 내가 필요한 기능으로 대체해서 사용하는 것이다.
+실행 흐름이 이미 정해져 있기 때문에 어떤 방식과 흐름으로 코드가 실행되는지 파악하기 어렵다.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day2</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-01-python_django_day2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-01-python_django_day2/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Type과 연산(Numbers, String, boolean) Built-In Function   type() Numbers - int, float Strings Boolean
+  var = input(‘입력’)
+  int(), float(), str()
+  String format 💡
+  &amp;#34;안녕하세요 %s씨, %d년 새해 복 많이 받으세요.&amp;#34;%(&amp;#34;현솔&amp;#34;, 2018) &amp;#34;안녕하세요 {name}씨, 오늘은 {day}입니다.&amp;#34;.format(name=&amp;#34;현솔&amp;#34;, day=&amp;#34;월요일&amp;#34;)  len()  String string = &amp;#34;Python&amp;#34; string[0] string = input(&amp;#34;좋아하는 프로그래밍 언어를 입력하세요. :&amp;#34;) string[len(string)-1] string[-1] Slice [start : end : step(optional)]</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day20 Django 프로젝트 파일 구조, MTV</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-05-python_django_day20/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-05-python_django_day20/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Django 프로젝트 만들기 $ python3 -m venv django-venv $ source django-venv/bin/activate $ pip install django $ django-admin startproject firstproject 아래 구조의 프로젝트가 생성된다.
+Django 프로젝트 디렉토리 형태 manage.py 다양한 명령어를 수행시켜주는 매개체 역할을 한다.
+init.py 파이썬 모듈로써 동작을 할 수 있다.
+settings.py 여러 설정들을 기억해 두는 파일.
+wigs.py 웹서버에 배포를 할때 설정파일들을 연결시켜주는 파이썬 파일.
+Django 앱 추가해보기 source ../django-env/bin/activate # 가상환경 실행 python3 manage.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day21 Django view</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-09-python_django_day21/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-09-python_django_day21/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+url www.mydomain.com/ part / ? name=sol&amp;amp;like=python#tag
+view 화면 구성을 통제
+urls.py 모든 서버 url로 접속하는 요청들은 항상 urlpatterns을 먼저 인식한 후 일치하는 경로로 이동하게 된다.
+(ex) 127.0.0.1:9000**/admin**
+Url 추가하기 1# urls.py 파일 수정 2from django.contrib import admin 3from django.urls import path, include 4 5urlpatterns = [ 6 path(&amp;#39;admin/&amp;#39;, admin.site.urls), 7 path(&amp;#39;app/&amp;#39;, include(&amp;#34;myapp.urls&amp;#34;)) 8] 1# myapp 폴더 아래 urls.py 파일 생성 2from django.urls import path 3 4urlpatterns =[ 5 path(&amp;#34;&amp;#34;) 6] 1# 터미널에서 서버 실행 2python manage.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day3</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-05-python_django_day3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-05-python_django_day3/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+흐름제어 if, for while Algorithms : 1~100 사이 숫자 맞추기 1import random 2n = random.randint(1, 100) 3while True : 4 guess = int(input(&amp;#34;정답을 맞춰보세요. :&amp;#34;)) 5 if n == guess : 6 print(&amp;#34;정답입니다.&amp;#34;) 7 break 8 elif abs(n - guess) &amp;lt; 10 : 9 print(&amp;#34;아 아깝습니다.&amp;#34;) 10 else : 11 print(&amp;#34;틀렸습니다.&amp;#34;) For문 1for el in [1, 2, 3, 4]: 2 print(el) 3 4# 1 5# 2 6# 3 7# 4 8 9for i in range(100): 10 print(i) list() 1list(&amp;#34;python&amp;#34;) 2# [&amp;#39;p&amp;#39;,&amp;#39;y&amp;#39;,&amp;#39;t&amp;#39;,&amp;#39;h&amp;#39;,&amp;#39;o&amp;#39;,&amp;#39;n&amp;#39;] 3 4var = [] 5for i in range(100): 6 var.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day4</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-10-python_django_day4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-10-python_django_day4/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+데이터 구조(Dictionary, set), tuple(list comprehension) Tuple immutable + 순서가 있는 자료형
+(1, 2, 3, 4)
+1tuple1 =(1, 2, 3, 4) 튜플을 리스트로 바꾸기 :   1 ~ 100까지 숫자를 포함하는 Tuple을 만드세요.
+  그 Tuple을 list로 바꾸세요.
+  1tuple_1_to_100 = tuple(range(1, 101)) 2list_1_to_100 = list(tuple_1_to_100) Dictionary key, value형태의 자료형 / 순서가 보장되지 않음
+{‘key1’: ‘value1’, ‘key2’: ‘value2’}
+1 d = {} 2 d[&amp;#39;name&amp;#39;] = &amp;#39;sol&amp;#39; 3# {&amp;#39;name&amp;#39;: &amp;#39;sol&amp;#39;} Dictionary 만들기   내 정보를(이름, 나이, 연락처) dictionary로 만들어보세요.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day5</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-13-python_django_day5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-13-python_django_day5/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+함수(packing, unpacking), 재귀함수(예외처리) 함수(Function) 추상화 별도 공간에 존재하여, 변수간 간섭이 방해를 일으키지 않는 방법
+분리 코드는 다른 곳에 작성되어, 우리가 필요한 경우 호출만 하여 사용할 수 있는 방법
+1def func_name(arg): 2 # code 3 print(&amp;#34;Hello, Func&amp;#34;) 4 return arg 5 6func_name() 1def add(a, b): 2 c = a + b 3 return c 4 5x = add(5, 5) 6print(x) parameter(매개변수), argument(인자) 란? parameter 함수 정의할때 어떤 값을 받겠다 라고 선언하고, 실행부에서 사용하는 변수를 의미</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day7 Class</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day7/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Class 1def print_hello(name): 2	print(&amp;#34;Hello &amp;#34;, name) 3 4# 함수는 다른 변수명에도 저장할 수 있음 5print_hello_name = print_hello 6print_hello_name(&amp;#34;Jane&amp;#34;) 7 8# 함수는 list에도 넣을 수 있음 9func_list = [print_hello, 1, 2] 10func_list[0](&amp;#39;Jane&amp;#39;) 11 12# 함수는 dictionary에도 넣을 수 있음 13func_dict = { 14	&amp;#39;func&amp;#39;: print_hello 15} 16 17func_dict[&amp;#39;func&amp;#39;](&amp;#39;Jane&amp;#39;) 1MY_MONEY = [0] 2 3def spend(m): 4	if MY_MONEY[0] &amp;gt; m: 5	MY_MONEY[0] -= m 6	print(&amp;#34;{}를 사용했습니다.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day8 lambda, map, filter, 데코레이터</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day8/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+lambda 함수만 만들고 함수가 들어갈 변수를 지정하지 않는 식.
+(깔끔하다는 장점은 있으나 가독성이 떨어질 수 있어서 python3 부터는 권장하지 않는 추세이다.)
+1students = [] 2student1_info = { 3 &amp;#34;first_name&amp;#34;: &amp;#34;sol&amp;#34;, 4 &amp;#34;las_name&amp;#34; : &amp;#34;hyun&amp;#34;, 5 &amp;#34;student_no&amp;#34;: 3498 6 7} 8 9student2_info = { 10 &amp;#34;first_name&amp;#34;: &amp;#34;suzy&amp;#34;, 11 &amp;#34;las_name&amp;#34; : &amp;#34;bae&amp;#34;, 12 &amp;#34;student_no&amp;#34;: 1345 13 14} 15 16student3_info = { 17 &amp;#34;first_name&amp;#34;: &amp;#34;coca&amp;#34;, 18 &amp;#34;las_name&amp;#34; : &amp;#34;hyun&amp;#34;, 19 &amp;#34;student_no&amp;#34;: 4728 20 21} 22 23for i in range(1, 4): 24 students.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day9 기초알고리즘(정렬)</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-22-python_django_day9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-22-python_django_day9/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+알고리즘 어떤 문제를 풀기 위한 절차 혹은 방법
+계산복잡도 알고리즘의 계산복잡도를 나타내는 방법 중 하나로 Big O 표기법이 있다.
+  O(n) : n이 커질 수록 시간복잡도가 올라간다.
+​
+  정렬문제  선택정렬 삽입정렬 병합정렬 퀵정렬  선택정렬 : O(n) 1from random import choice 2 3raw_list = list(range(0, 100+1)) 4# raw_list = [0, 1, 2, 3, ..., 100] 5 6target = [] 7for _ in range(100): 8 target.</description>
+    </item>
+    
+  </channel>
+</rss>

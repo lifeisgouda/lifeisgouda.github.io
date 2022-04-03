@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/programming/</link>
+    <description>Recent content in programming on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Javascript] null과 undefined</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-18-javascript_null_undefined/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-18-javascript_null_undefined/</guid>
+      <description>null, undefined ECMAScript 내용에 따르면 아래와 같다.
+ECMAScript : https://www.ecma-international.org/ecma-262/7.0/#sec-undefined-value
+ 4.3.10 undefined value
+primitive value used when a variable has not been assigned a value
+4.3.11 Undefined type
+type whose sole value is the undefined value
+4.3.12 null value
+primitive value that represents the intentional absence of any object value
+4.3.13 Null type
+type whose sole value is the null value
+ null null은 객체 값의 의도적인 부재를 나타내는 프리미티브 값이다.</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] Node.js 학습 및 정리</title>
+      <link>https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/</guid>
+      <description>1.1 Node.js 정의   Node.js 정의
+Chrome V8 Javascript 엔진으로 빌드된 Javascript runtime이다.
+  Runtime 정의
+컴퓨터 프로그램이 실행되고 있는 동안의 동작.
+  Runtime Environment 정의
+컴퓨터가 실행되는 동안 프로세스나 프로그램을 위한 소프트웨어 서비스를 제공하는 가상 머신의 상태
+  즉, 노드는 가상머신이라고 봐도 된다. 실제로 Node 안에 가상머신이 들어 있다. 런타임은 자바스크립트를 웹브라우저 바깥에서 동작할 수 있게 해주는 프로그램이라고 생각해도 무방하다. 원래 자바스크립트는 웹브라우저 안에서 돌아가는 언어였고 노드의 등장으로 자바스크립트가 웹브라우저 바깥에서도 동작할 수 있게 되었다.</description>
+    </item>
+    
+    <item>
+      <title>[programming] 정규표현식 학습에 도움되는 사이트 및 자료</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-29-regular_expressions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-29-regular_expressions/</guid>
+      <description>Mozilla 정규표현식 자료 Mozilla : https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D 김민태님 슬라이드 자료 김민태님이 만든 슬라이드인데 책 보는 것보다 훨씬 유용하고, 실제 사용할만한 예시들이 있다.
+반복해서 보는 것을 추천한다.
+Slide : https://www.slideshare.net/ibare/ss-39274621 정규표현식 연습 사이트 regular_expressions site : https://regexr.</description>
+    </item>
+    
+  </channel>
+</rss>

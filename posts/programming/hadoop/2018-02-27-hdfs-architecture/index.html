@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Hadoop] HDFS Architecture | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/hadoop/2018-02-27-hdfs-architecture/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Hadoop] HDFS Architecture" />
+<meta property="og:description" content="[Programming] HDFS Architecture  파일 저장, 읽기 : 어플리케이션에서 클라이언트로 파일 저장 또는 읽기 요청 Client : application 요청에 의해 client가 NameNode에 데이터 블록의 위치를 조회 NameNode에게 받은 Data block 위치를 통해 Client가 데이터를 직접 조회 Heart beat : DataNode가 상태를 주기적으로 보고(일종의 출석체크).    Secondary NameNode
+NameNode가 망가지면 데이터가 어디에 저장되어 있는지 알 수 없기때문에 읽어들일 수 없으므로, NameNode를 백업해 두었다가 NameNode가 망가지면 다시 복구해 주는 역할" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/hadoop/2018-02-27-hdfs-architecture/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Hadoop] HDFS Architecture"/>
+<meta name="twitter:description" content="[Programming] HDFS Architecture  파일 저장, 읽기 : 어플리케이션에서 클라이언트로 파일 저장 또는 읽기 요청 Client : application 요청에 의해 client가 NameNode에 데이터 블록의 위치를 조회 NameNode에게 받은 Data block 위치를 통해 Client가 데이터를 직접 조회 Heart beat : DataNode가 상태를 주기적으로 보고(일종의 출석체크).    Secondary NameNode
+NameNode가 망가지면 데이터가 어디에 저장되어 있는지 알 수 없기때문에 읽어들일 수 없으므로, NameNode를 백업해 두었다가 NameNode가 망가지면 다시 복구해 주는 역할"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/hadoop/2018-03-01-hadoop_setting/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&text=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&title=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&is_video=false&description=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bHadoop%5d%20HDFS%20Architecture&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&title=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&title=%5bHadoop%5d%20HDFS%20Architecture" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&name=%5bHadoop%5d%20HDFS%20Architecture&description=%5bProgramming%5d%20HDFS%20Architecture%20%20%ed%8c%8c%ec%9d%bc%20%ec%a0%80%ec%9e%a5%2c%20%ec%9d%bd%ea%b8%b0%20%3a%20%ec%96%b4%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%98%ec%97%90%ec%84%9c%20%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8%eb%a1%9c%20%ed%8c%8c%ec%9d%bc%20%ec%a0%80%ec%9e%a5%20%eb%98%90%eb%8a%94%20%ec%9d%bd%ea%b8%b0%20%ec%9a%94%ec%b2%ad%20Client%20%3a%20application%20%ec%9a%94%ec%b2%ad%ec%97%90%20%ec%9d%98%ed%95%b4%20client%ea%b0%80%20NameNode%ec%97%90%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%eb%b8%94%eb%a1%9d%ec%9d%98%20%ec%9c%84%ec%b9%98%eb%a5%bc%20%ec%a1%b0%ed%9a%8c%20NameNode%ec%97%90%ea%b2%8c%20%eb%b0%9b%ec%9d%80%20Data%20block%20%ec%9c%84%ec%b9%98%eb%a5%bc%20%ed%86%b5%ed%95%b4%20Client%ea%b0%80%20%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc%20%ec%a7%81%ec%a0%91%20%ec%a1%b0%ed%9a%8c%20Heart%20beat%20%3a%20DataNode%ea%b0%80%20%ec%83%81%ed%83%9c%eb%a5%bc%20%ec%a3%bc%ea%b8%b0%ec%a0%81%ec%9c%bc%eb%a1%9c%20%eb%b3%b4%ea%b3%a0%28%ec%9d%bc%ec%a2%85%ec%9d%98%20%ec%b6%9c%ec%84%9d%ec%b2%b4%ed%81%ac%29.%20%20%20%20Secondary%20NameNode%0aNameNode%ea%b0%80%20%eb%a7%9d%ea%b0%80%ec%a7%80%eb%a9%b4%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ea%b0%80%20%ec%96%b4%eb%94%94%ec%97%90%20%ec%a0%80%ec%9e%a5%eb%90%98%ec%96%b4%20%ec%9e%88%eb%8a%94%ec%a7%80%20%ec%95%8c%20%ec%88%98%20%ec%97%86%ea%b8%b0%eb%95%8c%eb%ac%b8%ec%97%90%20%ec%9d%bd%ec%96%b4%eb%93%a4%ec%9d%bc%20%ec%88%98%20%ec%97%86%ec%9c%bc%eb%af%80%eb%a1%9c%2c%20NameNode%eb%a5%bc%20%eb%b0%b1%ec%97%85%ed%95%b4%20%eb%91%90%ec%97%88%eb%8b%a4%ea%b0%80%20NameNode%ea%b0%80%20%eb%a7%9d%ea%b0%80%ec%a7%80%eb%a9%b4%20%eb%8b%a4%ec%8b%9c%20%eb%b3%b5%ea%b5%ac%ed%95%b4%20%ec%a3%bc%eb%8a%94%20%ec%97%ad%ed%95%a0" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&t=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#programming-hdfs-architecture">[Programming] HDFS Architecture</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Hadoop] HDFS Architecture
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          2 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="programming-hdfs-architecture">[Programming] HDFS Architecture</h2>
+<p><img src="https://github.com/lovesignal/lovesignal.github.io/blob/master/img/post/Programming/HDFS%20Architecture.png?raw=true" alt=""></p>
+<ol>
+<li>파일 저장, 읽기 : 어플리케이션에서 클라이언트로 파일 저장 또는 읽기 요청</li>
+<li>Client : application 요청에 의해 client가 NameNode에 데이터 블록의 위치를 조회</li>
+<li>NameNode에게 받은 Data block 위치를 통해 Client가 데이터를 직접 조회</li>
+<li>Heart beat : DataNode가 상태를 주기적으로 보고(일종의 출석체크).</li>
+</ol>
+<ul>
+<li>
+<p>Secondary NameNode</p>
+<p>NameNode가 망가지면 데이터가 어디에 저장되어 있는지 알 수 없기때문에 읽어들일 수 없으므로, NameNode를 백업해 두었다가 NameNode가 망가지면 다시 복구해 주는 역할</p>
+<p>​</p>
+</li>
+<li>
+<p>HDFS와 MapReduce는 둘다 Master/Slave 구조</p>
+<p><strong>HDFS</strong></p>
+<ul>
+<li>Master : Name node(메타정보관리)</li>
+<li>Slave : Data node(실제 데이터)</li>
+</ul>
+<p><strong>MapReduce</strong></p>
+<ul>
+<li>
+<p>Master : JobTracker(TaskTracker의 상태 및 전체 작업의 진행 상황등을 지속적으로 감시하며 일 시적인 장애에 대해 자동 복구 기능 제공)</p>
+</li>
+<li>
+<p>Slave : TaskTracker</p>
+</li>
+<li>
+<p>Map Task</p>
+<p>레코드 단위로 처리해야 하는 작업을 담당</p>
+</li>
+<li>
+<p>Reduce Task</p>
+<p>관련된 데이터 끼리 묶어서 처리해야 하는 작업 담당</p>
+</li>
+</ul>
+<p>MapReduce만 코딩. 나머지는 자동.</p>
+</li>
+</ul>
+<ul>
+<li>Node : 컴퓨터 한 대라고 생각하면 됨.</li>
+<li>Name Node, Data Node : HDFS 컨트롤</li>
+<li>Job tracker, task tracker : MapReduce 컨트롤</li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#programming-hdfs-architecture">[Programming] HDFS Architecture</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&text=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&title=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&is_video=false&description=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bHadoop%5d%20HDFS%20Architecture&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&title=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&title=%5bHadoop%5d%20HDFS%20Architecture" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&name=%5bHadoop%5d%20HDFS%20Architecture&description=%5bProgramming%5d%20HDFS%20Architecture%20%20%ed%8c%8c%ec%9d%bc%20%ec%a0%80%ec%9e%a5%2c%20%ec%9d%bd%ea%b8%b0%20%3a%20%ec%96%b4%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%98%ec%97%90%ec%84%9c%20%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8%eb%a1%9c%20%ed%8c%8c%ec%9d%bc%20%ec%a0%80%ec%9e%a5%20%eb%98%90%eb%8a%94%20%ec%9d%bd%ea%b8%b0%20%ec%9a%94%ec%b2%ad%20Client%20%3a%20application%20%ec%9a%94%ec%b2%ad%ec%97%90%20%ec%9d%98%ed%95%b4%20client%ea%b0%80%20NameNode%ec%97%90%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%eb%b8%94%eb%a1%9d%ec%9d%98%20%ec%9c%84%ec%b9%98%eb%a5%bc%20%ec%a1%b0%ed%9a%8c%20NameNode%ec%97%90%ea%b2%8c%20%eb%b0%9b%ec%9d%80%20Data%20block%20%ec%9c%84%ec%b9%98%eb%a5%bc%20%ed%86%b5%ed%95%b4%20Client%ea%b0%80%20%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc%20%ec%a7%81%ec%a0%91%20%ec%a1%b0%ed%9a%8c%20Heart%20beat%20%3a%20DataNode%ea%b0%80%20%ec%83%81%ed%83%9c%eb%a5%bc%20%ec%a3%bc%ea%b8%b0%ec%a0%81%ec%9c%bc%eb%a1%9c%20%eb%b3%b4%ea%b3%a0%28%ec%9d%bc%ec%a2%85%ec%9d%98%20%ec%b6%9c%ec%84%9d%ec%b2%b4%ed%81%ac%29.%20%20%20%20Secondary%20NameNode%0aNameNode%ea%b0%80%20%eb%a7%9d%ea%b0%80%ec%a7%80%eb%a9%b4%20%eb%8d%b0%ec%9d%b4%ed%84%b0%ea%b0%80%20%ec%96%b4%eb%94%94%ec%97%90%20%ec%a0%80%ec%9e%a5%eb%90%98%ec%96%b4%20%ec%9e%88%eb%8a%94%ec%a7%80%20%ec%95%8c%20%ec%88%98%20%ec%97%86%ea%b8%b0%eb%95%8c%eb%ac%b8%ec%97%90%20%ec%9d%bd%ec%96%b4%eb%93%a4%ec%9d%bc%20%ec%88%98%20%ec%97%86%ec%9c%bc%eb%af%80%eb%a1%9c%2c%20NameNode%eb%a5%bc%20%eb%b0%b1%ec%97%85%ed%95%b4%20%eb%91%90%ec%97%88%eb%8b%a4%ea%b0%80%20NameNode%ea%b0%80%20%eb%a7%9d%ea%b0%80%ec%a7%80%eb%a9%b4%20%eb%8b%a4%ec%8b%9c%20%eb%b3%b5%ea%b5%ac%ed%95%b4%20%ec%a3%bc%eb%8a%94%20%ec%97%ad%ed%95%a0" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fhadoop%2f2018-02-27-hdfs-architecture%2f&t=%5bHadoop%5d%20HDFS%20Architecture" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

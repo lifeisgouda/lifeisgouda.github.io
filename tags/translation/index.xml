@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>translation on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/translation/</link>
+    <description>Recent content in translation on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/translation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[번역] 2018년에 당신이 알아야할 리액트 네이티브 컴포넌트 라이브러리 11가지</title>
+      <link>https://lifeisgouda.github.io/posts/translation/2018-08-17-translation-react-native-component-libraries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/translation/2018-08-17-translation-react-native-component-libraries/</guid>
+      <description>원글 React Native Component Libraries You Should Know in 2018를 번역했습니다. 오역이 많습니다. 영문과 함께 편집 했으니 번역문은 참고만 하시기 바랍니다. 잘못 번역된 부분에 대해서 언제든 의견주세요. 환영합니다.
+당신의 다음 앱에서 사용할 수있는 유용한 React Native UI toolkits 리스트
+A list of useful React Native UI toolkits to use in your next app.
+With the growing popularity of React and the rise of native mobile app development (and PWA), it’s not surprising that React-Native is getting more adoption in the community every day.</description>
+    </item>
+    
+  </channel>
+</rss>

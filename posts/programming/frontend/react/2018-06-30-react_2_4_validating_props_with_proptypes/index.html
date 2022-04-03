@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [React] Movie app clone coding : Validating Props with PropTypes | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_4_validating_props_with_proptypes/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[React] Movie app clone coding : Validating Props with PropTypes" />
+<meta property="og:description" content="2-4. Validating Props with PropTypes Install Props Install Prop-Types with npm:
+ npm install --save prop-types Install Prop-Types with Yarn:
+ yarn add prop-types key prop Console log를 살펴보면 아래와 같은 에러 메시지를 확인할 수 있다.
+ Warning: Each child in an array or iterator should have a unique &ldquo;key&rdquo; prop.
+경고 : array 또는 interator 안의 각각의 child는 반드시 고유한 key prop을 가져야 한다.
+ 앞서 작업한 mapping 은 새로운 array를 만든다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_4_validating_props_with_proptypes/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[React] Movie app clone coding : Validating Props with PropTypes"/>
+<meta name="twitter:description" content="2-4. Validating Props with PropTypes Install Props Install Prop-Types with npm:
+ npm install --save prop-types Install Prop-Types with Yarn:
+ yarn add prop-types key prop Console log를 살펴보면 아래와 같은 에러 메시지를 확인할 수 있다.
+ Warning: Each child in an array or iterator should have a unique &ldquo;key&rdquo; prop.
+경고 : array 또는 interator 안의 각각의 child는 반드시 고유한 key prop을 가져야 한다.
+ 앞서 작업한 mapping 은 새로운 array를 만든다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/frontend/react/2018-10-10-react-newpage-rendering/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_1_updating_component/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes&description=2-4.%20Validating%20Props%20with%20PropTypes%20Install%20Props%20Install%20Prop-Types%20with%20npm%3a%0a%20npm%20install%20--save%20prop-types%20Install%20Prop-Types%20with%20Yarn%3a%0a%20yarn%20add%20prop-types%20key%20prop%20Console%20log%eb%a5%bc%20%ec%82%b4%ed%8e%b4%eb%b3%b4%eb%a9%b4%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%80%20%ec%97%90%eb%9f%ac%20%eb%a9%94%ec%8b%9c%ec%a7%80%eb%a5%bc%20%ed%99%95%ec%9d%b8%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%0a%20Warning%3a%20Each%20child%20in%20an%20array%20or%20iterator%20should%20have%20a%20unique%20%26ldquo%3bkey%26rdquo%3b%20prop.%0a%ea%b2%bd%ea%b3%a0%20%3a%20array%20%eb%98%90%eb%8a%94%20interator%20%ec%95%88%ec%9d%98%20%ea%b0%81%ea%b0%81%ec%9d%98%20child%eb%8a%94%20%eb%b0%98%eb%93%9c%ec%8b%9c%20%ea%b3%a0%ec%9c%a0%ed%95%9c%20key%20prop%ec%9d%84%20%ea%b0%80%ec%a0%b8%ec%95%bc%20%ed%95%9c%eb%8b%a4.%0a%20%ec%95%9e%ec%84%9c%20%ec%9e%91%ec%97%85%ed%95%9c%20mapping%20%ec%9d%80%20%ec%83%88%eb%a1%9c%ec%9a%b4%20array%eb%a5%bc%20%eb%a7%8c%eb%93%a0%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-props">Install Props</a></li>
+    <li><a href="#key-prop">key prop</a></li>
+    <li><a href="#proptypes">PropTypes</a></li>
+    <li><a href="#전체코드">전체코드</a>
+      <ul>
+        <li><a href="#moviejs">Movie.js</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [React] Movie app clone coding : Validating Props with PropTypes
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          4 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/clonecoding" rel="tag">clonecoding</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react" rel="tag">react</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/jsx" rel="tag">jsx</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="2-4-validating-props-with-proptypes">2-4. Validating Props with PropTypes</h1>
+<!-- raw HTML omitted -->
+<h2 id="install-props">Install Props</h2>
+<p><strong>Install Prop-Types with npm:</strong></p>
+<pre tabindex="0"><code> npm install --save prop-types 
+</code></pre><p><strong>Install Prop-Types with Yarn:</strong></p>
+<pre tabindex="0"><code> yarn add prop-types 
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="key-prop">key prop</h2>
+<p>Console log를 살펴보면 아래와 같은 에러 메시지를 확인할 수 있다.</p>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>Warning: Each child in an array or iterator should have a unique &ldquo;key&rdquo; prop.</p>
+<p>경고 : array 또는 interator 안의 각각의 child는 반드시 고유한 key prop을 가져야 한다.</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>앞서 작업한 <code>mapping</code> 은 새로운 array를 만든다. 이 의미는 array 안에 많은 영화정보를 담게 된다는 것이다. 그런데 <!-- raw HTML omitted -->react는 <code>element</code> 가 많을 경우 **고유한 <code>key</code> **를 부여해야 한다.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>map 기능을 실행해서 1개의 argument &ldquo;movie&quot;를 얻게 되어 있다. <code>movies.map(movie =&gt; …</code> 에서 movie는 현 사이클의 현재 element를 의미한다. 그 외에 다른 것은 <code>index</code> 라고 정한다. <code>index</code> 는 현재 제공하는 리스트의 숫자를 의미한다. 그러므로 <code>key prop</code> 으로 <code>index</code> 를 넣는다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// App.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>    ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    {movies.map((movie, index) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>      <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">&lt;</span>Movie title<span style="color:#ff79c6">=</span>{movie.title} poster<span style="color:#ff79c6">=</span>{movie.poster} key<span style="color:#ff79c6">=</span>{index} <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    })}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    ...
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="proptypes">PropTypes</h2>
+<p>props에 원하는 값을 출력하고 싶을 때는 어떻게 해야 할까?</p>
+<p>예를들어, 영화 제목에 숫자만 출력되는 것을 원하지 않는다면 또는 포스터에 출력되는 값이 숫자나 boolean 같은 값이 되는 걸 원하지 않을 경우.</p>
+<p>이것을 확인하는 방법은 상단에  <code>static propTypes</code> 라고 작성하고, 2가지 type (title, poster)를 원한다고 쓴다.</p>
+<p>먼저 <code>import PropTypes from 'prop-types';</code> 으로 <code>PropTypes</code> 를 import 한다.</p>
+<p><code>title</code> 과 <code>poster</code>  모두  <code>react.propTypes.number</code> 으로 작성한다. 에러메시지를 발생시키기 위해 일부러 <code>string</code> 이 아닌 <code>number</code> 로 적는다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// Movie.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> PropTypes from <span style="color:#f1fa8c">&#39;prop-types&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">class</span> Movie <span style="color:#ff79c6">extends</span> Component {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#ff79c6">static</span> propTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        title<span style="color:#ff79c6">:</span> PropTypes.number,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        poster<span style="color:#ff79c6">:</span> PropTypes.number
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    render() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>}
+</span></span></code></pre></div><p>이렇게 작성하면 title, poster는 number 라는 의미가 된다.</p>
+<p>콘솔창에서 아래와 같은 메시지를 확인할 수 있다.</p>
+<blockquote>
+<p>index.js:2178 Warning: Failed prop type: Invalid prop <code>title</code> of type <code>string</code> supplied to <code>Movie</code>, expected <code>number</code>.
+in Movie (at App.js:30)
+in App (at index.js:7)</p>
+</blockquote>
+<p>얻게 되는 정보가 숫자가 아니라는 것을 확인할 수 있다. 만약 부모 컴포넌트가 string을 보내면, PropTypes로 string이라는 것을 체크할 수 있다.</p>
+<!-- raw HTML omitted -->
+<p>또한 이것이 필수 required 인지 아닌지 알 수 있다. 예를들어, <code>title: PropTypes.string.isRequired</code> 라고 작성하면 movie component 는 title이라는 prop 을 제공하는 것이 필수로 설정되는 것이다.</p>
+<!-- raw HTML omitted -->
+<p>📌 <strong>정리하면, 이 기능으로 부모 컴포넌트에서 얻은 정보의 종류가 무엇인지 또는 있는지 없는지 알 수 있다. 즉, 부모 컴포넌트에게 받는 정보를 체크할 수 있다.</strong> API를 통해 정보를 불러온다면, user 이름은 string이 필수요건이 되는 것이다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="전체코드">전체코드</h2>
+<h3 id="moviejs">Movie.js</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> React, { Component } from <span style="color:#f1fa8c">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> PropTypes from <span style="color:#f1fa8c">&#39;prop-types&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#39;./Movie.css&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">class</span> Movie <span style="color:#ff79c6">extends</span> Component {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  <span style="color:#ff79c6">static</span> propTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    title<span style="color:#ff79c6">:</span> PropTypes.string.isRequired,    <span style="color:#6272a4">// isRequired 체크
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"></span>    poster<span style="color:#ff79c6">:</span> PropTypes.string.isRequired
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  render() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    console.log(<span style="color:#ff79c6">this</span>.props);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#ff79c6">return</span> (
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>      <span style="color:#ff79c6">&lt;</span>div<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>          <span style="color:#ff79c6">&lt;</span>MoviePoster poster<span style="color:#ff79c6">=</span>{<span style="color:#ff79c6">this</span>.props.poster} <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>          <span style="color:#ff79c6">&lt;</span>h1<span style="color:#ff79c6">&gt;</span>{<span style="color:#ff79c6">this</span>.props.title}<span style="color:#ff79c6">&lt;</span>/h1&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>      <span style="color:#ff79c6">&lt;</span>/div&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#ff79c6">class</span> MoviePoster <span style="color:#ff79c6">extends</span> Component{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  <span style="color:#ff79c6">static</span> propTypes <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    poster<span style="color:#ff79c6">:</span> PropTypes.string.isRequired    <span style="color:#6272a4">// MoviePoster라는 부모 컴포넌트에게 받는 정보를 체크. 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#6272a4"></span>                                           <span style="color:#6272a4">// 이미지를 반드시 보여줘야 하므로
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#6272a4"></span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>  render(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>    <span style="color:#ff79c6">return</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>      <span style="color:#ff79c6">&lt;</span>img src<span style="color:#ff79c6">=</span>{<span style="color:#ff79c6">this</span>.props.poster} <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> Movie;
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-props">Install Props</a></li>
+    <li><a href="#key-prop">key prop</a></li>
+    <li><a href="#proptypes">PropTypes</a></li>
+    <li><a href="#전체코드">전체코드</a>
+      <ul>
+        <li><a href="#moviejs">Movie.js</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes&description=2-4.%20Validating%20Props%20with%20PropTypes%20Install%20Props%20Install%20Prop-Types%20with%20npm%3a%0a%20npm%20install%20--save%20prop-types%20Install%20Prop-Types%20with%20Yarn%3a%0a%20yarn%20add%20prop-types%20key%20prop%20Console%20log%eb%a5%bc%20%ec%82%b4%ed%8e%b4%eb%b3%b4%eb%a9%b4%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%ec%9d%80%20%ec%97%90%eb%9f%ac%20%eb%a9%94%ec%8b%9c%ec%a7%80%eb%a5%bc%20%ed%99%95%ec%9d%b8%ed%95%a0%20%ec%88%98%20%ec%9e%88%eb%8b%a4.%0a%20Warning%3a%20Each%20child%20in%20an%20array%20or%20iterator%20should%20have%20a%20unique%20%26ldquo%3bkey%26rdquo%3b%20prop.%0a%ea%b2%bd%ea%b3%a0%20%3a%20array%20%eb%98%90%eb%8a%94%20interator%20%ec%95%88%ec%9d%98%20%ea%b0%81%ea%b0%81%ec%9d%98%20child%eb%8a%94%20%eb%b0%98%eb%93%9c%ec%8b%9c%20%ea%b3%a0%ec%9c%a0%ed%95%9c%20key%20prop%ec%9d%84%20%ea%b0%80%ec%a0%b8%ec%95%bc%20%ed%95%9c%eb%8b%a4.%0a%20%ec%95%9e%ec%84%9c%20%ec%9e%91%ec%97%85%ed%95%9c%20mapping%20%ec%9d%80%20%ec%83%88%eb%a1%9c%ec%9a%b4%20array%eb%a5%bc%20%eb%a7%8c%eb%93%a0%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-06-30-react_2_4_validating_props_with_proptypes%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Validating%20Props%20with%20PropTypes" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

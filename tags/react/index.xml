@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>react on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/react/</link>
+    <description>Recent content in react on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[React] Movie app clone coding : Ajax in React</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_6_1_ajax_in_react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_6_1_ajax_in_react/</guid>
+      <description>6-1. Ajax in React Ajax Ajax는 Asynchronous Javascript and XML의 약자이다.
+JSON은 Javascript Object Notation의 약자이다. Object를 Javascript로 작성하는 기법이다.
+Fetch FETCH를 이용해서 URL에서 정보를 GET 하는 방법을 배운다. movie app에 사용할 URL은 API-YTS torrent movie database에서 가져 온다. ( https://yts.am/api#list_movies )
+https://yts.am/api#list_movies 에서 Examples에 있는 URL을 복사한다.
+복사한 https://yts.am/api/v2/list_movies.json 를 열면 javascript object를 볼 수 있다. 이것을 react에서 불러올 수 있어야 한다.
+사이트에서 보면 아래와 같은 정보가 나오는데 이것을 활용하여 리스트를 필터, 정렬을 할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Async Await in React</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_3_async_await_in_react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_3_async_await_in_react/</guid>
+      <description>6-3. Async Await in React Async, Await 1componentDidMount(){ 2 fetch(&amp;#39;https://yts.am/api/v2/list_movies.json?sort_by=rating&amp;#39;) 3 .then(response =&amp;gt; response.json()) 4 .then(json =&amp;gt; console.log) 5 .catch(err =&amp;gt; console.log(&amp;#39;error&amp;#39;)) 6} Async 와 Await 는 위 코드들을 좀더 분명하게 작성해주는 도구이다.
+영화들을 state에 올리려면 아래와 같은 작업을 해야 한다. 하지만 세련되지 않고, 어플리케니션으 크면 then 안에 then으로 이어지면서 callback hell 에 빠지게 된다. 그래서 Async , Await 를 쓸 것이다.
+1.then(json =&amp;gt;{ 2 this.setState({ 3 movies: json.data.movies 4 }) 5 .</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Building for production</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_8_1_building_for_production/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_8_1_building_for_production/</guid>
+      <description>8-1. Building for production Github pages static file을 올릴 수 있는 서비스.
+static file은 자바스크립트, css, html과 같은 frontend 파일을 의미한다 (backend는 안됨).
+Github page는 이러한 static file을 무료로 호스팅할 수 있게 해준다.
+필요한 것 세가지  Github 계정 Github Project Github Project의 branch : 이름은 gh-pages로 해야 한다.  Build  yarn build : CSS를 가져다가 압축한다. 로컬호스트에 있을 때 사용하는 코드는 압축되어 있지 않고, 느리고 최적화되어 있지 않다. build 작업을 하면 좀더 최적화 되고, 압축, 향상되는 것이다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Component State</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_4_1_thinking_in_react_component_state/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_4_1_thinking_in_react_component_state/</guid>
+      <description>4-1. Thinking in React: Component State  setTimeout documentation : https://www.w3schools.com/jsref/met_win_settimeout.asp  State State 는 react component 안에 있는 object 이다.
+state 가 바뀔 때마다, component 는 다시 render 한다. 즉, component 안에 state 가 바뀔 때마다 render 가 발생한다.
+1class App extends Component { // (1) component 안에 state가 바뀔 때마다 2 render() { // (2) render() 가 발생 3 ... 4 } 5} state를 만드는 방법 1class App extends Component { 2 state = { // State 작성 3 greeting : &amp;#39;Hello!</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Component 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react/</guid>
+      <description>React 우리가 사용하는 코드는 리액트이브로 자바스크립트 코드로 바꿔주는 툴이 필요. 이것을 트랜스파일러라고 한다. 트랜스파일러 중 하나가 웹팩.
+웹팩은 리액트 코드를 브라우저가 이해할 수 있는 코드로 변경해주는 역할을 한다.
+모든 브라우저가 ES6를 이해하지 못하므로 웹팩을 이용해서 최근 자바스크립트를 브라우저가 이해할 수 있게 변경해준다. (웹팩 = 모듈 번들러)
+ creat-react-app  웹팩과 같은 툴을 사용할 필요 없이 손쉽게 리액트 앱을 만들어주는 툴
+ React UI Components는 매우 독립적이며 특정 관심사에 집중된 기능 블록이다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Dataflow with Props</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react_2_2_dataflow_with_props/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react_2_2_dataflow_with_props/</guid>
+      <description>2-2. Dataflow with Props React에는 state 와 props 라는 2개의 주요 컨셉이 있다. 먼저 Props를 다룬다.
+데이터가 어디에선가 오고, 소스가 있어야 한다.
+메인 컴포넌트인 app은 모든 영화를 가져온다. 그리고 영화가 카드 형태로 보여지게 된다.
+그러므로 메인컴포넌트는 무비 리스트를 가지고 있다. main component &amp;gt; movie list
+리스트 안의 무비 카드에는 해당 영화의 정보가 각각 담긴다. movie card &amp;gt; movie info 
+즉, 부모 컴포넌트는 칠드런 컴포넌트에게 각각 정보를 준다. 이때 props를 통해서 정보를 전달하게 된다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Giving some CSS to</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_2_giving_some_css_to/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_2_giving_some_css_to/</guid>
+      <description>7-2. Giving some CSS to   To install it run:
+1yarn add react-lines-ellipsis   CSS 꾸미기 App.css 1.App { 2 padding: 50px; 3 display: flex; 4 justify-content: space-around; 5 flex-wrap: wrap; 6 font-size: 14px; 7} 8 9.App--loading{ 10 display: flex; 11 justify-content: center; 12 align-items: center; 13 height: 100%; 14} App.js 1 render() { 2 const {movie} = this.state; 3 return ( 4 &amp;lt;div className={movie ? &amp;#34;App&amp;#34; : &amp;#34;App--loading&amp;#34;}&amp;gt; 5 {movies ?</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Lifecycle Events on React</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_3_1_lifecycle_events_on_react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_3_1_lifecycle_events_on_react/</guid>
+      <description>3-1. Lifecycle Events on React React Component Lifecycle   Compenent Lifecycle
+https://reactjs.org/docs/react-component.html#the-component-lifecycle
+  Render Component가 여러 기능들을 정해진 순서대로 실행하는 것을 학습한다. Render를 할 때(Componenet를 띄울 때) 아래 순서대로 하게 된다.
+ Render : componentWillMount() → render() → componentDidMount()  Component가 존재하기 시작하면, react 안에서는 willMount → render → DidMount() 를 수행한다.
+예를들어 영화앱을 만든다면, wiiMount 를 진행할 때 api에 작업을 요청한다. 해당 작업 수행이 완료되면 그 다음에 데이터 관련 작업을 한다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : List with .map</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_3_list_with_map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_3_list_with_map/</guid>
+      <description>2-3. List with .map 앞서 리스트를 만든 방법은 효율성이 떨어지므로 갖고 있는 영화 정보의 양에 관계없이 이를 토대로 리스트를 만든다.
+API에서 가져온 영화 정보를 불러올 때 Array 를 만든다.
+리스트에는 여러 object가 있다. (ex) title, poster
+아래와 같이 영화정보를 array로 만들 수 있다.
+1// App.js 2	... 3const movies = [ 4 { 5 title: &amp;#34;Matrix&amp;#34;, 6 poster: &amp;#34;https://displate.com/displates/2016-09-30/60a3501bd3167cf9330acef43ab51ab3.jpg?w=280&amp;amp;h=392&amp;#34; 7 }, 8 { 9 title: &amp;#34;Full Metal Jacket&amp;#34;, 10 poster: &amp;#34;https://cf5.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Loading States</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_3_-loading_states/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_3_-loading_states/</guid>
+      <description>4-3. Loading States 우리에게 필요한 데이터가 항상 즉시 존재하는 것은 아니다. 데이터 없이 component가 로딩하고, 데이터를 위해 API를 읽어오고, API가 데이터를 주면 component state를 업데이트 한다.
+API call을 timeout 기능으로 유사하게 구현해본다.
+이를 위해, movie list 를 function 으로 이동한다.
+1 state = { 2 // 비워짐 3 } 4 5 componentDidMount(){ 6 setTimeout(() =&amp;gt; { 7 this.setState({ 8 movies: [ // movie list를 여기로 이동 9 { 10 title: &amp;#34;Matrix&amp;#34;, 11 poster: &amp;#34;https://displate.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Practicing this.setState</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_2_practicing_this_setstate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_2_practicing_this_setstate/</guid>
+      <description>4-2. Practicing this.setState()   this.setState() documentation :
+https://reactjs.org/docs/react-component.html#setstate
+  App.js 의 Component 외부에 있는 movie list const movies = [...] 를 아래와 같이 수정하여 state( class App extends Component {...} ) 안으로 옮긴다. 그런데 아래와 같이 넣으면 component movies를 찾을 수 없으므로 에러가 발생한다.
+1// App.js 2class App extends Component { 3 4 state = { 5 movies: [ 6 7 { 8 title: &amp;#34;Matrix&amp;#34;, 9 poster: &amp;#34;https://displate.com/displates/2016-09-30/60a3501bd3167cf9330acef43ab51ab3.jpg?w=280&amp;amp;h=392&amp;#34; 10 }, 11 { 12 title: &amp;#34;Full Metal Jacket&amp;#34;, 13 poster: &amp;#34;https://cf5.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Promises</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/</guid>
+      <description>6-2. Promises Promise 기능 Promise는 새로운 javascript 컨셉이다. 두가지 기능이 있는데 하나는 asynchronous programming이라는 것이고, 또다른 기능은 시나리오 잡는 방법을 알려준다는 것이다.
+asynchronous 순서대로 완료시키고 다음 넘어가는 것은 동기적인 것이라 하고, 하나가 완료됨과 상관없이 동시에 일을 처리하는 것을 비동기적(asynchronous)인 것이라고 한다.
+scenario Promise 는 두가지 시나리오가 있고, 이를 관리하는 것이 가능하다.
+ 좋은 시나리오 : promise대로 작동한다. 나쁜 시나리오 : promise대로 작동하지 않는다.  Promise 적용   .then() : fetch() 작업이 성공적 수행이 아니라 단순히 작업이 완료되면 .</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Smart vs Dumb Components</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/</guid>
+      <description>5-1. Smart vs Dumb Components State 존재 여부에 따른 Component 분류 모든 컴포넌트가 state가 있는 것은 아니다. 어떤 component는 state가 없는 stateless functional component 이다.
+두 가지 component를 아래와 같이 분류할 수 있다.
+ smart component : state가 있는 component dump component : state가 없고, 필요하지도 않은 component. props 만 갖고 있다.  state는 없고 props 밖에 없을 때는 class component (ex : class App extends Component{...} ) 를 쓰는 대신에 stateless functional component 로 바꾸면 된다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Updating Component</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_1_updating_component/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_1_updating_component/</guid>
+      <description>7-1. Updating Component 정보확인 및 업데이트 요소 검사를 통해서 movie DB에서 어떤 종류의 정보를 받고 있는지 파악한다.
+1// App.js 2_renderMovies = () =&amp;gt; { 3 const movies = this.state.movies.map((movie, index) =&amp;gt; { 4 console.log(movie) // 정보를 프린트 5 ... 6} Console에 받아오는 정보가 출력된 것을 확인할 수 있다. 받아오는 정보 중에 포스터, 제목, 장르, 평점, 설명 등이 필요하다.
+ 제목 : title-english 포스터 : small_cover_image 장르 : genres 평점 : rating 설명 : synopsis  받아오는 정보를 아래와 같이 수정한다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Validating Props with PropTypes</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_4_validating_props_with_proptypes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_4_validating_props_with_proptypes/</guid>
+      <description>2-4. Validating Props with PropTypes Install Props Install Prop-Types with npm:
+ npm install --save prop-types Install Prop-Types with Yarn:
+ yarn add prop-types key prop Console log를 살펴보면 아래와 같은 에러 메시지를 확인할 수 있다.
+ Warning: Each child in an array or iterator should have a unique &amp;ldquo;key&amp;rdquo; prop.
+경고 : array 또는 interator 안의 각각의 child는 반드시 고유한 key prop을 가져야 한다.
+ 앞서 작업한 mapping 은 새로운 array를 만든다.</description>
+    </item>
+    
+    <item>
+      <title>[React] 중요 내용 정리</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-08-14-react-inflearn-classnote/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-08-14-react-inflearn-classnote/</guid>
+      <description>자식 컴포넌트가 부모한테 값 전달하기 배열 데이터 삽입하기 자식 컴포넌트가 부모한테 값 전달하기 위해서는 App 컴포넌트 내부에서 handleCreate라는 메소드를 만든다. 만든 메소드를 자식컴포넌트에게 &amp;lt;PhoneForm onCreate={this.handleCreate} /&amp;gt; props로 전달해주고, props로 전달한 함수 onCreate={...} 를 호출시켜서 data 값이 App.js 로 들어간다.
+1// App.js 2import React, { Component } from &amp;#34;react&amp;#34;; 3import &amp;#34;./App.css&amp;#34;; 4import PhoneForm from &amp;#34;./components/PhoneForm&amp;#34;; 5 6class App extends Component { 7 id = 0; // id는 렌더링 되는 값이 아니기 때문에 state 값 안에 넣어줄 필요 없음 8 9 state = { 10 information: [] 11 }; 12 handleCreate = data =&amp;gt; { 13 const { information } = this.</description>
+    </item>
+    
+  </channel>
+</rss>

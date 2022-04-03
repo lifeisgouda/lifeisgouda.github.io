@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Python &amp; Django Day2 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/python/django/2018-04-01-python_django_day2/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Python &amp; Django Day2" />
+<meta property="og:description" content="Fastcampus Python&amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Type과 연산(Numbers, String, boolean) Built-In Function   type() Numbers - int, float Strings Boolean
+  var = input(‘입력’)
+  int(), float(), str()
+  String format 💡
+  &#34;안녕하세요 %s씨, %d년 새해 복 많이 받으세요.&#34;%(&#34;현솔&#34;, 2018) &#34;안녕하세요 {name}씨, 오늘은 {day}입니다.&#34;.format(name=&#34;현솔&#34;, day=&#34;월요일&#34;)  len()  String string = &#34;Python&#34; string[0] string = input(&#34;좋아하는 프로그래밍 언어를 입력하세요. :&#34;) string[len(string)-1] string[-1] Slice [start : end : step(optional)]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/python/django/2018-04-01-python_django_day2/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python &amp; Django Day2"/>
+<meta name="twitter:description" content="Fastcampus Python&amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Type과 연산(Numbers, String, boolean) Built-In Function   type() Numbers - int, float Strings Boolean
+  var = input(‘입력’)
+  int(), float(), str()
+  String format 💡
+  &#34;안녕하세요 %s씨, %d년 새해 복 많이 받으세요.&#34;%(&#34;현솔&#34;, 2018) &#34;안녕하세요 {name}씨, 오늘은 {day}입니다.&#34;.format(name=&#34;현솔&#34;, day=&#34;월요일&#34;)  len()  String string = &#34;Python&#34; string[0] string = input(&#34;좋아하는 프로그래밍 언어를 입력하세요. :&#34;) string[len(string)-1] string[-1] Slice [start : end : step(optional)]"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/python/django/2018-05-05-python_django_day20/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/python/django/2018-05-03-python_django_day19/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&text=Python%20%26%20Django%20Day2" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&title=Python%20%26%20Django%20Day2" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&is_video=false&description=Python%20%26%20Django%20Day2" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Python%20%26%20Django%20Day2&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&title=Python%20%26%20Django%20Day2" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&title=Python%20%26%20Django%20Day2" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&name=Python%20%26%20Django%20Day2&description=Fastcampus%20Python%26amp%3bDjango%20%ec%98%a8%eb%9d%bc%ec%9d%b8%20%ea%b0%95%ec%9d%98%eb%a5%bc%20%eb%93%a3%ea%b3%a0%20%ec%9e%91%ec%84%b1%ed%95%9c%20Class%20note%ec%9e%85%eb%8b%88%eb%8b%a4.%0aType%ea%b3%bc%20%ec%97%b0%ec%82%b0%28Numbers%2c%20String%2c%20boolean%29%20Built-In%20Function%20%20%20type%28%29%20Numbers%20-%20int%2c%20float%20Strings%20Boolean%0a%20%20var%20%3d%20input%28%e2%80%98%ec%9e%85%eb%a0%a5%e2%80%99%29%0a%20%20int%28%29%2c%20float%28%29%2c%20str%28%29%0a%20%20String%20format%20%f0%9f%92%a1%0a%20%20%26%2334%3b%ec%95%88%eb%85%95%ed%95%98%ec%84%b8%ec%9a%94%20%25s%ec%94%a8%2c%20%25d%eb%85%84%20%ec%83%88%ed%95%b4%20%eb%b3%b5%20%eb%a7%8e%ec%9d%b4%20%eb%b0%9b%ec%9c%bc%ec%84%b8%ec%9a%94.%26%2334%3b%25%28%26%2334%3b%ed%98%84%ec%86%94%26%2334%3b%2c%202018%29%20%26%2334%3b%ec%95%88%eb%85%95%ed%95%98%ec%84%b8%ec%9a%94%20%7bname%7d%ec%94%a8%2c%20%ec%98%a4%eb%8a%98%ec%9d%80%20%7bday%7d%ec%9e%85%eb%8b%88%eb%8b%a4.%26%2334%3b.format%28name%3d%26%2334%3b%ed%98%84%ec%86%94%26%2334%3b%2c%20day%3d%26%2334%3b%ec%9b%94%ec%9a%94%ec%9d%bc%26%2334%3b%29%20%20len%28%29%20%20String%20string%20%3d%20%26%2334%3bPython%26%2334%3b%20string%5b0%5d%20string%20%3d%20input%28%26%2334%3b%ec%a2%8b%ec%95%84%ed%95%98%eb%8a%94%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%20%ec%96%b8%ec%96%b4%eb%a5%bc%20%ec%9e%85%eb%a0%a5%ed%95%98%ec%84%b8%ec%9a%94.%20%3a%26%2334%3b%29%20string%5blen%28string%29-1%5d%20string%5b-1%5d%20Slice%20%5bstart%20%3a%20end%20%3a%20step%28optional%29%5d" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&t=Python%20%26%20Django%20Day2" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#type과-연산numbers-string-boolean">Type과 연산(Numbers, String, boolean)</a>
+      <ul>
+        <li><a href="#built-in-function">Built-In Function</a></li>
+        <li><a href="#string">String</a></li>
+        <li><a href="#slice">Slice</a></li>
+        <li><a href="#immutable">Immutable</a></li>
+      </ul>
+    </li>
+    <li><a href="#data-structure">Data Structure</a>
+      <ul>
+        <li><a href="#list">List</a></li>
+        <li><a href="#del">del</a></li>
+        <li><a href="#reverse">reverse()</a></li>
+        <li><a href="#sort">sort()</a></li>
+        <li><a href="#pop">pop()</a></li>
+        <li><a href="#insert">insert()</a></li>
+        <li><a href="#extend">extend()</a></li>
+        <li><a href="#count">count()</a></li>
+        <li><a href="#remove">remove()</a></li>
+      </ul>
+    </li>
+    <li><a href="#list-복사">List 복사</a>
+      <ul>
+        <li><a href="#copy">copy()</a></li>
+        <li><a href="#type--boolean">Type : Boolean</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Python &amp; Django Day2
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          3 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/django" rel="tag">django</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/python" rel="tag">python</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>Fastcampus Python&amp;Django 온라인 강의를 듣고 작성한 Class note입니다.</p>
+<!-- raw HTML omitted -->
+<h2 id="type과-연산numbers-string-boolean">Type과 연산(Numbers, String, boolean)</h2>
+<h3 id="built-in-function">Built-In Function</h3>
+<ul>
+<li>
+<p>type()
+Numbers - int, float
+Strings
+Boolean</p>
+</li>
+<li>
+<p>var = input(‘입력’)</p>
+</li>
+<li>
+<p>int(), float(), str()</p>
+</li>
+<li>
+<p>String format 💡</p>
+</li>
+</ul>
+<pre tabindex="0"><code>&#34;안녕하세요 %s씨, %d년 새해 복 많이 받으세요.&#34;%(&#34;현솔&#34;, 2018)
+
+&#34;안녕하세요 {name}씨, 오늘은 {day}입니다.&#34;.format(name=&#34;현솔&#34;, day=&#34;월요일&#34;)
+</code></pre><ul>
+<li>len()</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="string">String</h3>
+<pre tabindex="0"><code>string = &#34;Python&#34;
+string[0]
+
+string = input(&#34;좋아하는 프로그래밍 언어를 입력하세요. :&#34;)
+string[len(string)-1]
+string[-1]
+</code></pre><!-- raw HTML omitted -->
+<h3 id="slice">Slice</h3>
+<p>[start : end : step(optional)]</p>
+<pre tabindex="0"><code>string = &#34;I love python&#34;
+string[::2]
+string[:]
+string[:len(&#34;python&#34;)]
+string[:-1]
+</code></pre><!-- raw HTML omitted -->
+<h3 id="immutable">Immutable</h3>
+<ul>
+<li>mutable vs immutable</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/lovesignal/img/master/programming/django/django_immutable.png" alt=""></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="data-structure">Data Structure</h2>
+<h3 id="list">List</h3>
+<pre tabindex="0"><code>likes = []
+likes.append(&#34;치킨&#34;)
+likes.append(&#34;고양이&#34;)
+likes.append(&#34;씨리얼&#34;)
+
+print(likes)
+</code></pre><!-- raw HTML omitted -->
+<h3 id="del">del</h3>
+<pre tabindex="0"><code>del var[0]
+</code></pre><!-- raw HTML omitted -->
+<h3 id="reverse">reverse()</h3>
+<pre tabindex="0"><code>var = [1,2,3,4,5,6,7]
+var.reverse()
+print(var)
+# [7, 6, 5, 4, 3, 2, 1]
+</code></pre><!-- raw HTML omitted -->
+<h3 id="sort">sort()</h3>
+<pre tabindex="0"><code>numbers = [1,9,2,3,5,6,7,8,4]
+numbers.sort()
+print(numbers)
+</code></pre><!-- raw HTML omitted -->
+<h3 id="pop">pop()</h3>
+<pre tabindex="0"><code>numbers = [1,2,3,4,5]
+a = numbers.pop(0)
+print(a)
+# 1
+</code></pre><p>✏️ del 과 pop 차이점 생각하기</p>
+<!-- raw HTML omitted -->
+<h3 id="insert">insert()</h3>
+<ul>
+<li>값을 삽입</li>
+<li>기존 값 있을 경우 덮어쓰기</li>
+</ul>
+<pre tabindex="0"><code>numbers = [1, 2, 3, 4, 5]
+numbers.insert(0, 0)    # 0번째에 0 넣음
+print(numbers)
+# [0, 1, 2, 3, 4, 5]
+</code></pre><!-- raw HTML omitted -->
+<h3 id="extend">extend()</h3>
+<ul>
+<li>더하기 연산자와의 차이 생각</li>
+<li>기존 변수에 확장됨. 값 변함.</li>
+</ul>
+<pre tabindex="0"><code>numbers = [1, 2, 3, 4, 5]
+numbers2 = [6, 7, 8]
+numbers.extend(numbers2)
+pirnt(numbers)
+# [1, 2, 3, 4, 5, 6, 7, 8]
+</code></pre><!-- raw HTML omitted -->
+<h3 id="count">count()</h3>
+<pre tabindex="0"><code>numbers = [1, 2, 3, 3, 3, 4, 5, 6, 7, 7]
+numbers.count(3)
+# 3
+</code></pre><!-- raw HTML omitted -->
+<h3 id="remove">remove()</h3>
+<pre tabindex="0"><code>numbers = [1, 2, 3, 3, 3, 4, 5, 6, 7, 7]
+numbers.remove(1)
+# 1번째 값 삭제 됨
+
+del numbers[1]
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="list-복사">List 복사</h2>
+<ul>
+<li>파이썬은 모든 값들이 객체</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/lovesignal/img/master/programming/django/django_list1.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/lovesignal/img/master/programming/django/django_list2.png" alt=""></p>
+<!-- raw HTML omitted -->
+<h3 id="copy">copy()</h3>
+<pre tabindex="0"><code>&gt;&gt;&gt; a = [1, 2, 3, 4, 5]
+&gt;&gt;&gt; b = a.copy()
+&gt;&gt;&gt; a.append(6)
+&gt;&gt;&gt; print(a)
+[1, 2, 3, 4, 5, 6]
+&gt;&gt;&gt; print(b)
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt;
+</code></pre><!-- raw HTML omitted -->
+<h3 id="type--boolean">Type : Boolean</h3>
+<p>True, False 값</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#type과-연산numbers-string-boolean">Type과 연산(Numbers, String, boolean)</a>
+      <ul>
+        <li><a href="#built-in-function">Built-In Function</a></li>
+        <li><a href="#string">String</a></li>
+        <li><a href="#slice">Slice</a></li>
+        <li><a href="#immutable">Immutable</a></li>
+      </ul>
+    </li>
+    <li><a href="#data-structure">Data Structure</a>
+      <ul>
+        <li><a href="#list">List</a></li>
+        <li><a href="#del">del</a></li>
+        <li><a href="#reverse">reverse()</a></li>
+        <li><a href="#sort">sort()</a></li>
+        <li><a href="#pop">pop()</a></li>
+        <li><a href="#insert">insert()</a></li>
+        <li><a href="#extend">extend()</a></li>
+        <li><a href="#count">count()</a></li>
+        <li><a href="#remove">remove()</a></li>
+      </ul>
+    </li>
+    <li><a href="#list-복사">List 복사</a>
+      <ul>
+        <li><a href="#copy">copy()</a></li>
+        <li><a href="#type--boolean">Type : Boolean</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&text=Python%20%26%20Django%20Day2" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&title=Python%20%26%20Django%20Day2" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&is_video=false&description=Python%20%26%20Django%20Day2" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Python%20%26%20Django%20Day2&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&title=Python%20%26%20Django%20Day2" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&title=Python%20%26%20Django%20Day2" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&name=Python%20%26%20Django%20Day2&description=Fastcampus%20Python%26amp%3bDjango%20%ec%98%a8%eb%9d%bc%ec%9d%b8%20%ea%b0%95%ec%9d%98%eb%a5%bc%20%eb%93%a3%ea%b3%a0%20%ec%9e%91%ec%84%b1%ed%95%9c%20Class%20note%ec%9e%85%eb%8b%88%eb%8b%a4.%0aType%ea%b3%bc%20%ec%97%b0%ec%82%b0%28Numbers%2c%20String%2c%20boolean%29%20Built-In%20Function%20%20%20type%28%29%20Numbers%20-%20int%2c%20float%20Strings%20Boolean%0a%20%20var%20%3d%20input%28%e2%80%98%ec%9e%85%eb%a0%a5%e2%80%99%29%0a%20%20int%28%29%2c%20float%28%29%2c%20str%28%29%0a%20%20String%20format%20%f0%9f%92%a1%0a%20%20%26%2334%3b%ec%95%88%eb%85%95%ed%95%98%ec%84%b8%ec%9a%94%20%25s%ec%94%a8%2c%20%25d%eb%85%84%20%ec%83%88%ed%95%b4%20%eb%b3%b5%20%eb%a7%8e%ec%9d%b4%20%eb%b0%9b%ec%9c%bc%ec%84%b8%ec%9a%94.%26%2334%3b%25%28%26%2334%3b%ed%98%84%ec%86%94%26%2334%3b%2c%202018%29%20%26%2334%3b%ec%95%88%eb%85%95%ed%95%98%ec%84%b8%ec%9a%94%20%7bname%7d%ec%94%a8%2c%20%ec%98%a4%eb%8a%98%ec%9d%80%20%7bday%7d%ec%9e%85%eb%8b%88%eb%8b%a4.%26%2334%3b.format%28name%3d%26%2334%3b%ed%98%84%ec%86%94%26%2334%3b%2c%20day%3d%26%2334%3b%ec%9b%94%ec%9a%94%ec%9d%bc%26%2334%3b%29%20%20len%28%29%20%20String%20string%20%3d%20%26%2334%3bPython%26%2334%3b%20string%5b0%5d%20string%20%3d%20input%28%26%2334%3b%ec%a2%8b%ec%95%84%ed%95%98%eb%8a%94%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%20%ec%96%b8%ec%96%b4%eb%a5%bc%20%ec%9e%85%eb%a0%a5%ed%95%98%ec%84%b8%ec%9a%94.%20%3a%26%2334%3b%29%20string%5blen%28string%29-1%5d%20string%5b-1%5d%20Slice%20%5bstart%20%3a%20end%20%3a%20step%28optional%29%5d" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2fdjango%2f2018-04-01-python_django_day2%2f&t=Python%20%26%20Django%20Day2" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

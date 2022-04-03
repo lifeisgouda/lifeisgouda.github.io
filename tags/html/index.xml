@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>html on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/html/</link>
+    <description>Recent content in html on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Clone Coding] KAKAO Talk on HTML</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/2018-05-25-kakao_clone_coding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/2018-05-25-kakao_clone_coding/</guid>
+      <description>1. 파일과 폴더 생성 구성할 화면 6가지
+ Friend Chats Find More Chat profile  구성할 화면이 6가지라는 의미는 6개의 html 파일을 만들어야 한다는 것이다.
+6개의 html 파일과 2개의 폴더를 아래와 같이 만든다.
+2. 헤더 만들기 헤더는 바로 맨 위에 프로필명 있는 구획을 의미한다.
+index.html Header 1// head 2&amp;lt;!DOCTYPE html&amp;gt; 3&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; 4&amp;lt;head&amp;gt; 5 &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; 6 &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1.0&amp;#34;&amp;gt; 7 &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; 8 &amp;lt;title&amp;gt;Friends&amp;lt;/title&amp;gt; 9&amp;lt;/head&amp;gt; 헤더 안에 2개의 div 만든다.</description>
+    </item>
+    
+  </channel>
+</rss>

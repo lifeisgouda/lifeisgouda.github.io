@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [React] Movie app clone coding : Promises | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[React] Movie app clone coding : Promises" />
+<meta property="og:description" content="6-2. Promises Promise 기능 Promise는 새로운 javascript 컨셉이다. 두가지 기능이 있는데 하나는 asynchronous programming이라는 것이고, 또다른 기능은 시나리오 잡는 방법을 알려준다는 것이다.
+asynchronous 순서대로 완료시키고 다음 넘어가는 것은 동기적인 것이라 하고, 하나가 완료됨과 상관없이 동시에 일을 처리하는 것을 비동기적(asynchronous)인 것이라고 한다.
+scenario Promise 는 두가지 시나리오가 있고, 이를 관리하는 것이 가능하다.
+ 좋은 시나리오 : promise대로 작동한다. 나쁜 시나리오 : promise대로 작동하지 않는다.  Promise 적용   .then() : fetch() 작업이 성공적 수행이 아니라 단순히 작업이 완료되면 ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[React] Movie app clone coding : Promises"/>
+<meta name="twitter:description" content="6-2. Promises Promise 기능 Promise는 새로운 javascript 컨셉이다. 두가지 기능이 있는데 하나는 asynchronous programming이라는 것이고, 또다른 기능은 시나리오 잡는 방법을 알려준다는 것이다.
+asynchronous 순서대로 완료시키고 다음 넘어가는 것은 동기적인 것이라 하고, 하나가 완료됨과 상관없이 동시에 일을 처리하는 것을 비동기적(asynchronous)인 것이라고 한다.
+scenario Promise 는 두가지 시나리오가 있고, 이를 관리하는 것이 가능하다.
+ 좋은 시나리오 : promise대로 작동한다. 나쁜 시나리오 : promise대로 작동하지 않는다.  Promise 적용   .then() : fetch() 작업이 성공적 수행이 아니라 단순히 작업이 완료되면 ."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_2_practicing_this_setstate/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises&description=6-2.%20Promises%20Promise%20%ea%b8%b0%eb%8a%a5%20Promise%eb%8a%94%20%ec%83%88%eb%a1%9c%ec%9a%b4%20javascript%20%ec%bb%a8%ec%85%89%ec%9d%b4%eb%8b%a4.%20%eb%91%90%ea%b0%80%ec%a7%80%20%ea%b8%b0%eb%8a%a5%ec%9d%b4%20%ec%9e%88%eb%8a%94%eb%8d%b0%20%ed%95%98%eb%82%98%eb%8a%94%20asynchronous%20programming%ec%9d%b4%eb%9d%bc%eb%8a%94%20%ea%b2%83%ec%9d%b4%ea%b3%a0%2c%20%eb%98%90%eb%8b%a4%eb%a5%b8%20%ea%b8%b0%eb%8a%a5%ec%9d%80%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%20%ec%9e%a1%eb%8a%94%20%eb%b0%a9%eb%b2%95%ec%9d%84%20%ec%95%8c%eb%a0%a4%ec%a4%80%eb%8b%a4%eb%8a%94%20%ea%b2%83%ec%9d%b4%eb%8b%a4.%0aasynchronous%20%ec%88%9c%ec%84%9c%eb%8c%80%eb%a1%9c%20%ec%99%84%eb%a3%8c%ec%8b%9c%ed%82%a4%ea%b3%a0%20%eb%8b%a4%ec%9d%8c%20%eb%84%98%ec%96%b4%ea%b0%80%eb%8a%94%20%ea%b2%83%ec%9d%80%20%eb%8f%99%ea%b8%b0%ec%a0%81%ec%9d%b8%20%ea%b2%83%ec%9d%b4%eb%9d%bc%20%ed%95%98%ea%b3%a0%2c%20%ed%95%98%eb%82%98%ea%b0%80%20%ec%99%84%eb%a3%8c%eb%90%a8%ea%b3%bc%20%ec%83%81%ea%b4%80%ec%97%86%ec%9d%b4%20%eb%8f%99%ec%8b%9c%ec%97%90%20%ec%9d%bc%ec%9d%84%20%ec%b2%98%eb%a6%ac%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%84%20%eb%b9%84%eb%8f%99%ea%b8%b0%ec%a0%81%28asynchronous%29%ec%9d%b8%20%ea%b2%83%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%ed%95%9c%eb%8b%a4.%0ascenario%20Promise%20%eb%8a%94%20%eb%91%90%ea%b0%80%ec%a7%80%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%ea%b0%80%20%ec%9e%88%ea%b3%a0%2c%20%ec%9d%b4%eb%a5%bc%20%ea%b4%80%eb%a6%ac%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%b4%20%ea%b0%80%eb%8a%a5%ed%95%98%eb%8b%a4.%0a%20%ec%a2%8b%ec%9d%80%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%20%3a%20promise%eb%8c%80%eb%a1%9c%20%ec%9e%91%eb%8f%99%ed%95%9c%eb%8b%a4.%20%eb%82%98%ec%81%9c%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%20%3a%20promise%eb%8c%80%eb%a1%9c%20%ec%9e%91%eb%8f%99%ed%95%98%ec%a7%80%20%ec%95%8a%eb%8a%94%eb%8b%a4.%20%20Promise%20%ec%a0%81%ec%9a%a9%20%20%20.then%28%29%20%3a%20fetch%28%29%20%ec%9e%91%ec%97%85%ec%9d%b4%20%ec%84%b1%ea%b3%b5%ec%a0%81%20%ec%88%98%ed%96%89%ec%9d%b4%20%ec%95%84%eb%8b%88%eb%9d%bc%20%eb%8b%a8%ec%88%9c%ed%9e%88%20%ec%9e%91%ec%97%85%ec%9d%b4%20%ec%99%84%eb%a3%8c%eb%90%98%eb%a9%b4%20." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#promise-기능">Promise 기능</a>
+      <ul>
+        <li><a href="#asynchronous">asynchronous</a></li>
+        <li><a href="#scenario">scenario</a></li>
+      </ul>
+    </li>
+    <li><a href="#promise-적용">Promise 적용</a>
+      <ul>
+        <li><a href="#response-object--json">response object → JSON</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+    <li><a href="#전체코드">전체코드</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [React] Movie app clone coding : Promises
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          4 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/clonecoding" rel="tag">clonecoding</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/react" rel="tag">react</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/jsx" rel="tag">jsx</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="6-2-promises">6-2. Promises</h1>
+<!-- raw HTML omitted -->
+<h2 id="promise-기능">Promise 기능</h2>
+<p>Promise는 새로운 javascript 컨셉이다. 두가지 기능이 있는데 하나는 asynchronous programming이라는 것이고, 또다른 기능은 시나리오 잡는 방법을 알려준다는 것이다.</p>
+<!-- raw HTML omitted -->
+<h3 id="asynchronous">asynchronous</h3>
+<p>순서대로 완료시키고 다음 넘어가는 것은 동기적인 것이라 하고, <!-- raw HTML omitted -->하나가 완료됨과 상관없이 동시에 일을 처리하는 것을 비동기적(asynchronous)인 것<!-- raw HTML omitted -->이라고 한다.</p>
+<!-- raw HTML omitted -->
+<h3 id="scenario">scenario</h3>
+<p><code>Promise</code> 는 두가지 시나리오가 있고, 이를 관리하는 것이 가능하다.</p>
+<ul>
+<li>좋은 시나리오 : promise대로 작동한다.</li>
+<li>나쁜 시나리오 : promise대로 작동하지 않는다.</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="promise-적용">Promise 적용</h2>
+<ul>
+<li>
+<p><code>.then()</code> :  <code>fetch()</code> 작업이 성공적 수행이 아니라 단순히 작업이 완료되면 <code>.then()</code> 을 불러온다.</p>
+<p><code>then()</code> 은 1개의 <code>object attribute</code> 만 준다(<code>fetch()</code> 의 결과물)</p>
+</li>
+<li>
+<p><code>catch()</code> :  <code>fetch()</code> 가 에러가 나면 <code>catch</code> 해서 설명하라는 의미</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// App.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    ...
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">class</span> App <span style="color:#ff79c6">extends</span> Component {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>  state <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  componentDidMount(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    fetch(<span style="color:#f1fa8c">&#39;https://yts.am/api/v2/list_movies.json?sort_by=rating&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    .then(response =&gt; console.log(response))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    .<span style="color:#ff79c6">catch</span>(err =&gt; console.log(<span style="color:#f1fa8c">&#39;error&#39;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    ...
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>Console에서 response를 살펴보면 아래 그림과 같다.</p>
+<!-- raw HTML omitted -->
+<p><code>headers</code> 의 ok가 <code>true</code> 이므로 request가 성공이라는 의미이다.</p>
+<p><code>redirected</code> 는 <code>false</code> 이므로 redirected 되지 않았고, <code>status</code> 는 200이므로 OK라는 의미이다.</p>
+<p><code>statusText</code> 는 <code>&quot;&quot;</code> 이므로 없고, <code>url</code> 은 <code>fetch</code> 에 있는 것을 잘 받아왔다.</p>
+<p><code>body</code> 의 <code>readable stream</code> 은 <code>byte</code> 로 이루어졌다는 의미이다. 이것을 <code>JSON</code> 으로 바꾸어야 한다.</p>
+<p>위 내용은 <code>fetch</code> 에 어떤 결과가 나타났느냐에 대한 것이다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="response-object--json">response object → JSON</h3>
+<p>아래와 같이 입력하여 byte를 JSON으로 바꾼다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// App.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>.then(response =&gt; response.json())
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>.then(json =&gt; console.log(json)) <span style="color:#6272a4">// JSON을 출력
+</span></span></span></code></pre></div><p>Cosole 에서 아래 내용 확인 가능하다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="정리">정리</h2>
+<p><code>promise</code> 는 작업을 성공적으로 수행하고, 그렇지 않은 경우 결과물을 <code>catch</code>, <code>then</code> 으로 받아볼 수 있다. 그리고 <code>then</code> 은 원하는 만큼 변경 가능하다.</p>
+<p><code>fetch</code> 가 좋은 이유는 URL을 Ajax로 간단하게 불러올 수 있기 때문이다. 이전에는 <code>xml http request</code> 라는 것으로 했는데 아주 못생기고 어려웠다.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="전체코드">전체코드</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// App.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> React, { Component } from <span style="color:#f1fa8c">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#39;./App.css&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">import</span> Movie from <span style="color:#f1fa8c">&#39;./Movie&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">class</span> App <span style="color:#ff79c6">extends</span> Component {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  state <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  componentDidMount(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    fetch(<span style="color:#f1fa8c">&#39;https://yts.am/api/v2/list_movies.json?sort_by=rating&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    .then(response =&gt; response.json())
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    .then(json =&gt; console.log(json))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    .<span style="color:#ff79c6">catch</span>(err =&gt; console.log(<span style="color:#f1fa8c">&#39;error&#39;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  _renderMovies <span style="color:#ff79c6">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#ff79c6">const</span> movies <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>.state.movies.map((movie, index) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>      <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">&lt;</span>Movie title<span style="color:#ff79c6">=</span>{movie.title} poster<span style="color:#ff79c6">=</span>{movie.poster} key<span style="color:#ff79c6">=</span>{index} <span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    <span style="color:#ff79c6">return</span> movies
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>  render() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>    <span style="color:#ff79c6">return</span> (
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>      <span style="color:#ff79c6">&lt;</span>div className<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;App&#34;</span><span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>        {<span style="color:#ff79c6">this</span>.state.movies <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">this</span>._renderMovies() <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Loading&#39;</span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>      <span style="color:#ff79c6">&lt;</span>/div&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>    );
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> App;
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#promise-기능">Promise 기능</a>
+      <ul>
+        <li><a href="#asynchronous">asynchronous</a></li>
+        <li><a href="#scenario">scenario</a></li>
+      </ul>
+    </li>
+    <li><a href="#promise-적용">Promise 적용</a>
+      <ul>
+        <li><a href="#response-object--json">response object → JSON</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+    <li><a href="#전체코드">전체코드</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&text=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&is_video=false&description=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&title=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&name=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises&description=6-2.%20Promises%20Promise%20%ea%b8%b0%eb%8a%a5%20Promise%eb%8a%94%20%ec%83%88%eb%a1%9c%ec%9a%b4%20javascript%20%ec%bb%a8%ec%85%89%ec%9d%b4%eb%8b%a4.%20%eb%91%90%ea%b0%80%ec%a7%80%20%ea%b8%b0%eb%8a%a5%ec%9d%b4%20%ec%9e%88%eb%8a%94%eb%8d%b0%20%ed%95%98%eb%82%98%eb%8a%94%20asynchronous%20programming%ec%9d%b4%eb%9d%bc%eb%8a%94%20%ea%b2%83%ec%9d%b4%ea%b3%a0%2c%20%eb%98%90%eb%8b%a4%eb%a5%b8%20%ea%b8%b0%eb%8a%a5%ec%9d%80%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%20%ec%9e%a1%eb%8a%94%20%eb%b0%a9%eb%b2%95%ec%9d%84%20%ec%95%8c%eb%a0%a4%ec%a4%80%eb%8b%a4%eb%8a%94%20%ea%b2%83%ec%9d%b4%eb%8b%a4.%0aasynchronous%20%ec%88%9c%ec%84%9c%eb%8c%80%eb%a1%9c%20%ec%99%84%eb%a3%8c%ec%8b%9c%ed%82%a4%ea%b3%a0%20%eb%8b%a4%ec%9d%8c%20%eb%84%98%ec%96%b4%ea%b0%80%eb%8a%94%20%ea%b2%83%ec%9d%80%20%eb%8f%99%ea%b8%b0%ec%a0%81%ec%9d%b8%20%ea%b2%83%ec%9d%b4%eb%9d%bc%20%ed%95%98%ea%b3%a0%2c%20%ed%95%98%eb%82%98%ea%b0%80%20%ec%99%84%eb%a3%8c%eb%90%a8%ea%b3%bc%20%ec%83%81%ea%b4%80%ec%97%86%ec%9d%b4%20%eb%8f%99%ec%8b%9c%ec%97%90%20%ec%9d%bc%ec%9d%84%20%ec%b2%98%eb%a6%ac%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%84%20%eb%b9%84%eb%8f%99%ea%b8%b0%ec%a0%81%28asynchronous%29%ec%9d%b8%20%ea%b2%83%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%ed%95%9c%eb%8b%a4.%0ascenario%20Promise%20%eb%8a%94%20%eb%91%90%ea%b0%80%ec%a7%80%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%ea%b0%80%20%ec%9e%88%ea%b3%a0%2c%20%ec%9d%b4%eb%a5%bc%20%ea%b4%80%eb%a6%ac%ed%95%98%eb%8a%94%20%ea%b2%83%ec%9d%b4%20%ea%b0%80%eb%8a%a5%ed%95%98%eb%8b%a4.%0a%20%ec%a2%8b%ec%9d%80%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%20%3a%20promise%eb%8c%80%eb%a1%9c%20%ec%9e%91%eb%8f%99%ed%95%9c%eb%8b%a4.%20%eb%82%98%ec%81%9c%20%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4%20%3a%20promise%eb%8c%80%eb%a1%9c%20%ec%9e%91%eb%8f%99%ed%95%98%ec%a7%80%20%ec%95%8a%eb%8a%94%eb%8b%a4.%20%20Promise%20%ec%a0%81%ec%9a%a9%20%20%20.then%28%29%20%3a%20fetch%28%29%20%ec%9e%91%ec%97%85%ec%9d%b4%20%ec%84%b1%ea%b3%b5%ec%a0%81%20%ec%88%98%ed%96%89%ec%9d%b4%20%ec%95%84%eb%8b%88%eb%9d%bc%20%eb%8b%a8%ec%88%9c%ed%9e%88%20%ec%9e%91%ec%97%85%ec%9d%b4%20%ec%99%84%eb%a3%8c%eb%90%98%eb%a9%b4%20." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2ffrontend%2freact%2f2018-07-06-react_6_2_promises%2f&t=%5bReact%5d%20Movie%20app%20clone%20coding%20%3a%20Promises" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

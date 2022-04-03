@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/posts/</link>
+    <description>Recent content in Posts on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright>
+    <lastBuildDate>Sat, 02 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://lifeisgouda.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TEST</title>
+      <link>https://lifeisgouda.github.io/posts/test/</link>
+      <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/test/</guid>
+      <description>TEST</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] BFS(Breadth-First Search 너비우선탐색)</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-03-01-bfs/</link>
+      <pubDate>Sat, 31 Mar 2018 23:49:58 +0900</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-03-01-bfs/</guid>
+      <description>Graph Algorithms shortest-path problem(최단경로 문제)을 해결할 때 사용한다.
+순서  문제를 그래프로 모형화 너비 우선탐색으로 문제 해결  그래프 연결 집합을 모형화한 것을 그래프라고 한다.
+node와 edge로 이루어져 있다.
+출처 : http://mathworld.wolfram.com/GraphEdge.html
+너비우선탐색 개념 그래프 전체를 탐색하는 방법 중 하나이다. 너비우선탐색, 깊이우선탐색이 있다.
+Facebook에서 연결되는 사람(촌) 중에 과자 회사에 다니고 있는 사람이 있는지 찾으려고 한다고 가정해보자.
+A는 시작점인 &amp;lsquo;나&amp;rsquo;자신이고, B, C, D는 1촌, E, F, G, H는 2촌, I, J, K는 3촌이 된다.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] JavaScript Stack 구현</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-19-stack-javascript/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-19-stack-javascript/</guid>
+      <description>Stack 구현 1function Stack(){ 2 let items = []; 3 4 this.push = function(element) { 5 items.push(element); 6 }; 7 8 this.pop = function() { 9 return items.pop(); 10 }; 11 12 this.peek = function() { 13 return items[items.length-1]; 14 }; 15 16 this.isEmpty = function(){ 17 return items.length === 0; 18 }; 19 20 this.size = function(){ 21 return items.length; 22 }; 23 24 this.clear = function(){ 25 items = []; 26 }; 27 28 this.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] 1. Two Sum</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-02-14-leetcode_1_two_sum/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-02-14-leetcode_1_two_sum/</guid>
+      <description>https://leetcode.com/problems/two-sum/description/
+ Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+주어진 정수 배열을 이용하여, 임의의 두 수 합계가 타겟(target) 값이 되는 두 숫자의 인덱스를 반환해라.
+각 입력에는 정확히 하나의 솔루션이 있다고 가정 할 수 있으며, 동일한 원소를 두 번 사용할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] 7. Reverse Integer</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-02-21-leetcode_7_reverse_integer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-02-21-leetcode_7_reverse_integer/</guid>
+      <description>[LeetCode] 7. Reverse Integer https://leetcode.com/problems/two-sum/description/
+ Given a 32-bit signed integer, reverse digits of an integer.
+주어진 32비트의 부호있는 정수의 자릿 수를 뒤집는 문제.
+Example 1:
+Input: 123 Output: 321 Example 2:
+Input: -123 Output: -321 Example 3:
+Input: 120 Output: 21 Note: Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] 807.Max Increase to Keep City Skyline</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-04-09-leetcode_807/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-04-09-leetcode_807/</guid>
+      <description>807.Max Increase to Keep City Skyline 문제  In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there.
+2차원 배열 그리드(grid)에서, 각각의 grid[i][j] 값은 그곳에 위치한 건물의 높이를 나타낸다.
+We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.
+우리는 임의의 수의 건물 높이를 어느정도 증가시킬 수 있다(정도는 건물마다 다를 수 있다).</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] 9. Palindrome Number</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-02-28-leetcode_9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-02-28-leetcode_9/</guid>
+      <description>[LeetCode] 9. Palindrome Number  Determine whether an integer is a palindrome. Do this without extra space.
+주어진 정수가 회문인지 판단하라. 공백은 고려하지 않는다.
+ Approch 1. Palindrome 회문이란 앞에서 부터 읽을 때와 뒤에서 부터 읽을 때가 같은 문장을 말한다
+(ex) LEVEL, 12321, 다시합창합시다,
+여기서는 공백은 고려하지 않는다.
+2. Idea 숫자가 주어질 때 맨 앞과 맨 뒤부터 순차적으로 비교하면 회문인지 알 수 있다.
+3. Solution 음수인지 아닌지 판단하고, 음수가 아니면 x를 뒤에서 부터 읽은 값과 x가 동일한지 판단한다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] FizzBuzz in Javascript</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/</guid>
+      <description>문제 3으로 나누어떨어지는 수일 때는 fizz, 5로 나누어떨어지는 수일 때는 buzz, 3과 5 둘 다 나누어떨어질 때는 fizzbuzz로 숫자를 대체한다.
+Modulus Operator 나누어서 나머지를 출력해주는 연산자로 &amp;lsquo;%&amp;lsquo;를 사용할 수 있다.
+1console.log(100%30); // 10 2console.log(7%3) // 1 Algorithm 먼저 문제를 해결할 function을 만든다.
+1function fizzbuzz(num){} 예를들어, 20이 주어지면 결과가 1부터 20까지 출력되고, 위 조건의 숫자만 fizz, buzz, fizzbuzz로 대체 된다. 그러므로 1부터 20까지 출력될 수 있는 for문을 작성한다.
+1function fizzbuzz(num){ 2 for(let i=1; i &amp;lt;= num; i++){ 3 /* each number which is represented by the variable i */ 4 } 5} num이나 i가 3으로 나누어 떨어지면 숫자 대신에 fizz, 5로 나누어 떨어지면 buzz, 3과 5 둘다 나누어 떨어지는 수이면 fizzbuzz가 출력되어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] Harmless Ransom Note in Javascript</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/</guid>
+      <description>문제 Harmless ransom note algorithm은 두개의 parameter를 갖는다.
+첫번째 parameter인 noteText는 string과 같은 텍스트를 받을 수 있다. 두번째 parameter인 magazineText에도 string 같은 텍스트가 들어간다.
+예를들어, 아래와 같이 note와 meagazine이 쓰여있다
+ Note : &amp;rsquo;this si a secret note for you from a secret admirer.&#39;
+  Magazine : &amp;lsquo;puerto rico is a great place you must hike far from town to find a secret waterfall that i am an admirer of but note that it is not as hard it seems this my advice for you&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] LeetCode 189. Rotate Array</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-08-21-leetcode_189_rotate-array/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-08-21-leetcode_189_rotate-array/</guid>
+      <description>Given an array, rotate the array to the right by k steps, where k is non-negative.
+Example 1: Input: [1,2,3,4,5,6,7] and k = 3 Output: [5,6,7,1,2,3,4] Explanation: rotate 1 steps to the right: [7,1,2,3,4,5,6] rotate 2 steps to the right: [6,7,1,2,3,4,5] rotate 3 steps to the right: [5,6,7,1,2,3,4] Example 2: Input: [-1,-100,3,99] and k = 2 Output: [3,99,-1,-100] Explanation: rotate 1 steps to the right: [99,-1,-100,3] rotate 2 steps to the right: [3,99,-1,-100] Note:   Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] LeetCode 812. Largest Triangle Area</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-08-07-leetcode_812_largest_triangle_area/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-08-07-leetcode_812_largest_triangle_area/</guid>
+      <description>You have a list of points in the plane. Return the area of the largest triangle that can be formed by any 3 of the points.
+ 비행기 좌표가 찍힌 목록이 있다. 임의의 3개의 점으로 그려질 수 있는 가장 큰 삼각형 면적을 반환해라.
+ Example: Input: points = [[0,0],[0,1],[1,0],[0,2],[2,0]] Output: 2 Explanation: The five points are show in the figure below. The red triangle is the largest. 다섯개 점의 그림은 아래와 같다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] programmers: 2016년</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-09-10-programmers_2016/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-09-10-programmers_2016/</guid>
+      <description>문제 설명 2016년 1월 1일은 금요일입니다. 2016년 a월 b일은 무슨 요일일까요? 두 수 a ,b를 입력받아 2016년 a월 b일이 무슨 요일인지 리턴하는 함수, solution을 완성하세요. 요일의 이름은 일요일부터 토요일까지 각각 SUN,MON,TUE,WED,THU,FRI,SAT
+입니다. 예를 들어 a=5, b=24라면 5월 24일은 화요일이므로 문자열 TUE를 반환하세요.
+제한 조건   2016년은 윤년입니다.
+  2016년 a월 b일은 실제로 있는 날입니다. (13월 26일이나 2월 45일같은 날짜는 주어지지 않습니다)
+  입출력 예    a b result     5 24 TUE    풀이 Brute force Javscript 1// a는 월, b는 일 2// Date(2016, a - 1, b) 2016년, a-1월, b일 (0이 1월이므로 a에 -1) 3// getDay()는 요일 반환.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] Two Fer</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-08-14-algorithms_two_fer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-08-14-algorithms_two_fer/</guid>
+      <description>[Algorithms] Two Fer Introduction Two-fer or 2-fer is short for two for one. One for you and one for me.
+&amp;#34;One for X, one for me.&amp;#34; When X is a name or &amp;ldquo;you&amp;rdquo;.
+If the given name is &amp;ldquo;Alice&amp;rdquo;, the result should be &amp;ldquo;One for Alice, one for me.&amp;rdquo;
+If no name is given, the result should be &amp;ldquo;One for you, one for me.&amp;rdquo;
+Solutions 1var TwoFer = function () {}; 2 3TwoFer.</description>
+    </item>
+    
+    <item>
+      <title>[Clone Coding] KAKAO Talk on HTML</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/2018-05-25-kakao_clone_coding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/2018-05-25-kakao_clone_coding/</guid>
+      <description>1. 파일과 폴더 생성 구성할 화면 6가지
+ Friend Chats Find More Chat profile  구성할 화면이 6가지라는 의미는 6개의 html 파일을 만들어야 한다는 것이다.
+6개의 html 파일과 2개의 폴더를 아래와 같이 만든다.
+2. 헤더 만들기 헤더는 바로 맨 위에 프로필명 있는 구획을 의미한다.
+index.html Header 1// head 2&amp;lt;!DOCTYPE html&amp;gt; 3&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; 4&amp;lt;head&amp;gt; 5 &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; 6 &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1.0&amp;#34;&amp;gt; 7 &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; 8 &amp;lt;title&amp;gt;Friends&amp;lt;/title&amp;gt; 9&amp;lt;/head&amp;gt; 헤더 안에 2개의 div 만든다.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] Circular Queue</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2019-06-09-circular_queue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2019-06-09-circular_queue/</guid>
+      <description>python3로 Circular Queue 구현하기 __ init __() 먼저 데이터 구조의 초깃값을 정한다. Queue의 크기를 k로 두고, 값을 담을 수 있게 길이가 k인 리스트 queue_list 를 만든다.
+Queue에는 두개의 포인터가 필요하다. 한개는 Front를 가리켜야 하고, 다른 하나는 Back을 가리켜야 한다.
+1def __init__(self, k: int): 2 self.size = 0 # 처음 리스트의 길이 3 self.max_size = k # 리스트의 길이 4 self.queue_list = [0] * k # Queue를 담을 리스트 5 self.front = self.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] Graph</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/</guid>
+      <description>정의 네트워크 구조를 추상화한 모델. 간선(edge)으로 연결된 노드(node)의 집합이다.
+그래프에 대한 설명과 구현은 이 곳에 잘 나와있다.
+http://blog.benoitvallon.com/data-structures-in-javascript/the-graph-data-structure/
+그래프의 용어를 그림 하나로 정리해보면 아래와 같다.
+동적 그래프 자료구조는 인접리스트(adjacency list)로 표현 가능하다.
+위 그래프를 인접리스트로 나타낸 것이다.
+ A : B C D
+B : A E F
+C : A D G
+D : A C G H
+E : B I
+G : C D
+H : D</description>
+    </item>
+    
+    <item>
+      <title>[Hadoop] Hadoop 설치 및 WordCount 예제 실습</title>
+      <link>https://lifeisgouda.github.io/posts/programming/hadoop/2018-02-24-hadoop_wordcount_example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/hadoop/2018-02-24-hadoop_wordcount_example/</guid>
+      <description>Hadoop Hadoop = HDFS + MapReduce
+Mode 3가지 HDFS 설치방식  Stand alone (독립실행모드) : 기본 실행모드. 분산저장 안함. 코딩은 가능. Pseudo-distributed (가상분산모드) : 하나의 컴퓨터에 설치 Fully distributed (완전분산모드) : 여러 대의 컴퓨터에 설치  순서  VirtualBox 설치 Ubuntu 14.04.2 설치 // 이후에는 VirtualBox 내의 Ubuntu 에서 진행 JDK 설치 하둡 다운로드 하둡 Stand-alone 모드 구성 하둡 가상 분산 모드 구성 이클립스 다운로드, 설정 WordCount 예제 코딩 테스트  Ubuntu에 JDK 8 설치  $ sudo add-apt-repository ppa:webupd8team/java $ sudo apt-get update $ sudo apt-get install oracle-java8-installer 하둡 다운로드 후 압축 해제 URL : https://archive.</description>
+    </item>
+    
+    <item>
+      <title>[Hadoop] Hadoop 완전분산모드 설치</title>
+      <link>https://lifeisgouda.github.io/posts/programming/hadoop/2018-03-01-hadoop_setting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/hadoop/2018-03-01-hadoop_setting/</guid>
+      <description>[Progamming] Hadoop 완전분산모드 설치 VirtualBox 에 4개의 Ubuntu 를 만든다.
+설치 시 사용자명은 hadoop 으로 한다.
+4개를 따로 설치하거나 1개를 만들어서 3개를 복제한다.
+각각 아래처럼 이름과 IP 주소를 사용할 예정. IP 주소는 각 VirtualBox에서 자동으로 생성되고 뒤에 2자리만 순서대로 변경해서 넣어주면된다.
+192.168.30.101 hadoop01
+192.168.30.102 hadoop02
+192.168.30.103 hadoop03
+192.168.30.104 hadoop04
+복제 전에 할 일 hadoop01에 아래와 같이 먼저 설치한 후 복제해서 hadoop02 ~ hadoop04를 만든다.
+// vim 설치 $ sudo apt-get install vim // 각각 Ubuntu 에 JDK 8 설치 $ sudo add-apt-repository ppa:webupd8team/java $ sudo apt-get update $ sudo apt-get install oracle-java8-installer // 자바 환경설정.</description>
+    </item>
+    
+    <item>
+      <title>[Hadoop] HDFS Architecture</title>
+      <link>https://lifeisgouda.github.io/posts/programming/hadoop/2018-02-27-hdfs-architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/hadoop/2018-02-27-hdfs-architecture/</guid>
+      <description>[Programming] HDFS Architecture  파일 저장, 읽기 : 어플리케이션에서 클라이언트로 파일 저장 또는 읽기 요청 Client : application 요청에 의해 client가 NameNode에 데이터 블록의 위치를 조회 NameNode에게 받은 Data block 위치를 통해 Client가 데이터를 직접 조회 Heart beat : DataNode가 상태를 주기적으로 보고(일종의 출석체크).    Secondary NameNode
+NameNode가 망가지면 데이터가 어디에 저장되어 있는지 알 수 없기때문에 읽어들일 수 없으므로, NameNode를 백업해 두었다가 NameNode가 망가지면 다시 복구해 주는 역할</description>
+    </item>
+    
+    <item>
+      <title>[idle] 대시보드 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-04-14-work-webdev/</guid>
+      <description>한동안 데이터 분석, 시뮬레이션, 레포트 쓰는 일을 하다가 최근에 대시보드 만드는 프로젝트가 시작되었는데 웹개발 경험이 있어서 해당 일을 맡게 되었다.
+매일 회사 노트에 개발일지를 작성하고 있는데 기록하는 일은 여러모로 중요하다가 재차 느끼고 있다. 업무 중 문뜩 드는 생각이나 아이디어를 놓치지 않고 공유할 수 있다. 또한 나와 동료의 시간을 아낄 수 있다. 어떤 분 말씀대로 &amp;lsquo;생각을 유통가능한 형태로 만드는 것&amp;rsquo;의 가치를 생각하며 기록하고 있다. 그래프로 일 진행 상태를 공유하고 있는 것도 부수적인 시간을 아낄 수 있어서 도움이 되고 있다.</description>
+    </item>
+    
+    <item>
+      <title>[idle] 알고리즘을 공부하면서 느낀 몇가지</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2018-10-13-learning_algorithms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2018-10-13-learning_algorithms/</guid>
+      <description> 매일 꾸준히 해야 한다. 하루라도 거르면 다음날 풀 때 하루 쉰게 체감될 정도이다. 인위적인 내장 메서드 암기가 매우 도움이 된다. 문제를 최대한 잘게 쪼갠다. 이해는 기본이고, 반복적으로 풀어야 알고리즘 테스트에서 기계적으로 풀어나갈 수 있다. Brute force는 생각 이상으로 좋은 방법이다. 꾸준히 1년정도 하면 카카오 알고리즘 문제를 수월하게 풀 수 있을 것으로 예상한다 알고리즘 연습에 LeetCode만큼 좋은 사이트가 없다고 생각.  📒 내 알고리즘 학습 노트 </description>
+    </item>
+    
+    <item>
+      <title>[Javascript] null과 undefined</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-18-javascript_null_undefined/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-18-javascript_null_undefined/</guid>
+      <description>null, undefined ECMAScript 내용에 따르면 아래와 같다.
+ECMAScript : https://www.ecma-international.org/ecma-262/7.0/#sec-undefined-value
+ 4.3.10 undefined value
+primitive value used when a variable has not been assigned a value
+4.3.11 Undefined type
+type whose sole value is the undefined value
+4.3.12 null value
+primitive value that represents the intentional absence of any object value
+4.3.13 Null type
+type whose sole value is the null value
+ null null은 객체 값의 의도적인 부재를 나타내는 프리미티브 값이다.</description>
+    </item>
+    
+    <item>
+      <title>[Module] json 데이터에서 특정 키와 값을 삭제하는 모듈</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2019-07-02-module_python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2019-07-02-module_python/</guid>
+      <description>Module 코드: https://github.com/lifeisgouda/my_python_modules/tree/master/json_key_remover
+JSON 데이터에서 특정 key ( 여기서는 coordinates ) 에서 값이 [0, 0] 일 경우 해당 키를 삭제하는 모듈이다.
+json의 뎁스가 워낙 깊고, 검사해야할 부분이 많아서 부득이하게 3중 for문이 사용되었다.
+1class JSON_KEY_REMOVER: 2 def __init__(self): 3 self.data = [] 4 5 def import_json(self, filename): 6 import json 7 8 with open(filename) as json_file: 9 self.data = json.load(json_file) 10 11 print(&amp;#39;import json done&amp;#39;) 12 13 def del_daily_zero_coordinates(self): 14 import json 15 16 for k in range(len(self.</description>
+    </item>
+    
+    <item>
+      <title>[MongoDB] MongoDB 에러 해결 메모 (업데이트 중...)</title>
+      <link>https://lifeisgouda.github.io/posts/programming/db/2019-08-20-mongodb-error/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/db/2019-08-20-mongodb-error/</guid>
+      <description>mongod.lock 관련 에러 1# 기존 데이터 보호 2$ sudo -u mongodb mongod --dbpath /var/lib/mongodb --repair --repairpath /var/lib/mongodb0 3# 새롭게 띄우기 4$ sudo -u mongodb mongod --dbpath /var/lib/mongodb --repair 5 6# permission 문제 7$ sudo chown -R mongodb:mongodb &amp;#34;/var/lib/mongodb&amp;#34; https://stackoverflow.com/questions/13700261/mongodb-wont-start-after-server-crash
+에러
+1● mongodb.service - High-performance, schema-free document-oriented 2 3database 4 Loaded: loaded (/etc/systemd/system/mongodb.service; enabled; vendor preset: 5 Active: failed (Result: exit-code) 6 Process: 2331 ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf (cod 7 Main PID: 2331 (code=exited, status=2) 해결</description>
+    </item>
+    
+    <item>
+      <title>[MySQL: BASIC] 맨앞/맨끝 특정 문자가 있는/없는 값만 추출하기</title>
+      <link>https://lifeisgouda.github.io/posts/programming/sql/2019-07-10-mysql-basic1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/sql/2019-07-10-mysql-basic1/</guid>
+      <description>SQL 쿼리 예시 1-- 맨 끝에 특정 문자 오는 값만 추출 2SELECT DISTINCT CITY FROM STATION 3WHERE RIGHT(CITY,1) IN (&amp;#39;a&amp;#39;,&amp;#39;i&amp;#39;,&amp;#39;e&amp;#39;,&amp;#39;o&amp;#39;,&amp;#39;u&amp;#39;); 4 5SELECT DISTINCT CITY FROM STATION 6WHERE CITY REGEXP &amp;#39;[aeiou]$&amp;#39; 7 8-- 양쪽 끝에 특정 문자 오는 값만 추출 9SELECT DISTINCT CITY FROM STATION 10WHERE LEFT(CITY, 1) IN (&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;) 11 AND RIGHT(CITY, 1) IN (&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;); 12 13SELECT DISTINCT CITY FROM STATION 14WHERE CITY RLIKE &amp;#39;^[aeiou].</description>
+    </item>
+    
+    <item>
+      <title>[MySQL] Stored Procedure 알아보기 (in MySQL)</title>
+      <link>https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/</guid>
+      <description>1. 사전에 알아야할 용어 1.1 PL/SQL 정의
+ Procedural Language extension to SQL PL/SQL은 상용 관계형 데이터베이스 시스템인 오라클 DBMS에서 SQL 언어를 확장하기 위해 사용하는 컴퓨터 프로그래밍 언어 중 하나이다. SQL의 확장된 개념으로 PL/SQL Block 내에서 SQLdml DML(데이터 조작어)문과 Query(검색어)문, 절차형 언어(IF, LOOP) 등을 하용하여 절차적 프로그래밍을 가능하게 한 트랜잭션 언어  1.2 PL/SQL BLOCK  정의
+PL/SQL 소스 프로그램의 기본 단위를 블록(Block)이라고 하는데, 블록은 선언부, 실행부, 예외 처리부로 구성된다. 이 블록은 다시 이름이 없는 블록과 이름이 있는 블록으로 구분할 수 있는데 전자에 속하는 것이 익명 블록이며, 함수, 프로시저, 패키지 등이 후자에 속한다.</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] Node.js 학습 및 정리</title>
+      <link>https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/</guid>
+      <description>1.1 Node.js 정의   Node.js 정의
+Chrome V8 Javascript 엔진으로 빌드된 Javascript runtime이다.
+  Runtime 정의
+컴퓨터 프로그램이 실행되고 있는 동안의 동작.
+  Runtime Environment 정의
+컴퓨터가 실행되는 동안 프로세스나 프로그램을 위한 소프트웨어 서비스를 제공하는 가상 머신의 상태
+  즉, 노드는 가상머신이라고 봐도 된다. 실제로 Node 안에 가상머신이 들어 있다. 런타임은 자바스크립트를 웹브라우저 바깥에서 동작할 수 있게 해주는 프로그램이라고 생각해도 무방하다. 원래 자바스크립트는 웹브라우저 안에서 돌아가는 언어였고 노드의 등장으로 자바스크립트가 웹브라우저 바깥에서도 동작할 수 있게 되었다.</description>
+    </item>
+    
+    <item>
+      <title>[Programming] Python에서 CSV 파일을 읽어들이는 여러가지 방법</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2018-04-02-python_csv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2018-04-02-python_csv/</guid>
+      <description>방법1. 기본 내장함수 사용 1. csv.reader 1import csv 2dat = open(&amp;#39;file.csv&amp;#39;) 3reader = csv.reader(dat) 4lines = list(reader) 2. 한 줄씩 읽어들여서 리스트로 만들기 1import csv 2dat1_list = [] 3dat2_list = [] 4 5with open(&amp;#39;file.csv&amp;#39;, &amp;#39;r&amp;#39;) as raw: 6 reader = csv.reader(raw) 7 for lines in reader: 8 print(lines) 9 dat1_list.append(lines) 10 start = len(dat2_list) 11 dat2_list[start:start] = lines 3. from_csv 1dat.from_csv(&amp;#39;file.csv&amp;#39;, 2 sep = &amp;#39;,&amp;#39;, 3 encoding = &amp;#39;utf-8&amp;#39;) 4dat.head() 4.</description>
+    </item>
+    
+    <item>
+      <title>[programming] 정규표현식 학습에 도움되는 사이트 및 자료</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-29-regular_expressions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/javascript/2018-05-29-regular_expressions/</guid>
+      <description>Mozilla 정규표현식 자료 Mozilla : https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D 김민태님 슬라이드 자료 김민태님이 만든 슬라이드인데 책 보는 것보다 훨씬 유용하고, 실제 사용할만한 예시들이 있다.
+반복해서 보는 것을 추천한다.
+Slide : https://www.slideshare.net/ibare/ss-39274621 정규표현식 연습 사이트 regular_expressions site : https://regexr.</description>
+    </item>
+    
+    <item>
+      <title>[python] Django 설치 에러</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-19-django/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-19-django/</guid>
+      <description>Django 설치 중에 아래와 같은 에러가 발생했다.
+pip에서 특정 기능을 지원 중단하고 업그레이드를했는데, 컴퓨터에서 그 pip업그레이드를 못따라가서 발생한 문제라고 한다.
+Collecting django Could not fetch URL https://pypi.python.org/simple/django/: There was a problem confirming the ssl certificate: [SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:719) - skipping Could not find a version that satisfies the requirement django (from versions: ) No matching distribution found for django 아래 명령어로 해결 가능하다.
+$ curl https://bootstrap.pypa.io/get-pip.py | python </description>
+    </item>
+    
+    <item>
+      <title>[python] Pandas를 이용한 데이터 전처리 1</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling/</guid>
+      <description>특정 단어가 포함 되었는지 확인하기 1. contains를 이용한 매칭 1import pandas as pd 2word = pd.Series([&amp;#39;과일&amp;#39;, &amp;#39;사과2개&amp;#39;, &amp;#39;사과2개, 배1개&amp;#39;, &amp;#39;배1개, 오렌지3개&amp;#39;, &amp;#39;배한개, 딸기두개&amp;#39;]) 3word.str.contains(&amp;#39;사과&amp;#39;, regex=False) 4--------------------------- 50 False 61 True 72 True 83 False 94 False 10dtype: bool 두가지 단어 비교 1import pandas as pd 2word = pd.Series([&amp;#39;과일&amp;#39;, &amp;#39;사과2개&amp;#39;, &amp;#39;사과2개, 배1개&amp;#39;, &amp;#39;배1개, 오렌지3개&amp;#39;, &amp;#39;배한개, 딸기두개&amp;#39;]) 3word.str.contains(&amp;#39;사과|배&amp;#39;, regex = True) 4---------------------------- 50 False 61 True 72 True 83 True 94 True 10dtype: bool regex = True 로 설정해주어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[python] Pandas를 이용한 데이터 전처리 2</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling_2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling_2/</guid>
+      <description>The efficient way to loop through data frames with Pandas 먼저 데이터 프레임을 만든다.
+1import pandas as pd 2 3member = [&amp;#39;라이언&amp;#39;, &amp;#39;무지&amp;#39;, &amp;#39;콘&amp;#39;, &amp;#39;프로도&amp;#39;, &amp;#39;제이지&amp;#39;, &amp;#39;네오&amp;#39;, &amp;#39;어피치&amp;#39;] 4weight = [&amp;#39;30&amp;#39;, &amp;#39;25&amp;#39;, &amp;#39;5&amp;#39;, &amp;#39;20&amp;#39;, &amp;#39;25&amp;#39;, &amp;#39;15&amp;#39;, &amp;#39;20&amp;#39;] 5age = [&amp;#39;5&amp;#39;, &amp;#39;4&amp;#39;, &amp;#39;10&amp;#39;, &amp;#39;3&amp;#39;, &amp;#39;7&amp;#39;, &amp;#39;6&amp;#39;, &amp;#39;11&amp;#39;] 6 7kakao_friends = pd.DataFrame() 8kakao_friends[&amp;#39;member&amp;#39;] = member 9kakao_friends[&amp;#39;weight&amp;#39;] = weight 10kakao_friends[&amp;#39;age&amp;#39;] = age     member weight age     0 라이언 30 5   1 무지 25 4   2 콘 5 10   3 프로도 20 3   4 제이지 25 7   5 네오 15 6   6 어피치 20 11    1.</description>
+    </item>
+    
+    <item>
+      <title>[Python] Python Class note</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2018-03-26-python_classnote/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2018-03-26-python_classnote/</guid>
+      <description>Inflearn의 &amp;lt;프로그래밍, 데이터 과학을 위한 파이썬 입문&amp;gt; 강의를 정리한 강의노트 일부.
+강의는 https://www.inflearn.com/course/python-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%9E%85%EB%AC%B8-%EA%B0%95%EC%A2%8C/ 에서 수강 가능.
+ Chapter 5. Function Function Concept 1 Function 함수 어떤 일을 수행하는 코드 덩어리
+  반복적인 수행을 회만 작성 후 호출
+  코드를 논리적인 단위로 분리
+  캡슐화 : 인터페이스만 알면 타인의 코드 사용
+  함수 선언 문법 함수 이름, parameter, return value(optional) 1def calculate_rectangle_area(x, y): 2 return x * y 3 4rectangle_x = 10 5rectangle_y = 20 6print(&amp;#34;사각형 x의 길이: &amp;#34;, rectangle_x) 7print(&amp;#34;사각형 y의 길이: &amp;#34;, rectangle_y) 8 9# 넓이를 구하는 함수 호출 10print(&amp;#34;사각형의 넓이: &amp;#34;, calculate_rectangle_area(rectangle_x, rectangle_y)) Parameter vs.</description>
+    </item>
+    
+    <item>
+      <title>[Python] Underscore &#39;_&#39; 의 목적</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2017-02-26-python_underscore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2017-02-26-python_underscore/</guid>
+      <description>[Python] Underscore &amp;lsquo;_&amp;rsquo; 의 목적 There are 5 cases for using the underscore in Python.
+ For storing the value of last expression in interpreter. For ignoring the specific values. (so-called “I don’t care”) To give special meanings and functions to name of vartiables or functions. To use as ‘Internationalization(i18n)’ or ‘Localization(l10n)’ functions. To separate the digits of number literal value.   인터프리터(Interpreter)에서 마지막 값을 저장할 때 값을 무시하고 싶을 때 (흔히 “I don’t care”라고 부른다.</description>
+    </item>
+    
+    <item>
+      <title>[python] 리스트 변수를 반복문 돌리기 예시</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/2018-04-10-python_for_loop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/2018-04-10-python_for_loop/</guid>
+      <description>1students = [] 2student1_info = { 3 &amp;#34;first_name&amp;#34;: &amp;#34;Martin&amp;#34;, 4 &amp;#34;las_name&amp;#34; : &amp;#34;Lawrence&amp;#34;, 5 &amp;#34;student_no&amp;#34;: 9854 6 7} 8 9student2_info = { 10 &amp;#34;first_name&amp;#34;: &amp;#34;Robert&amp;#34;, 11 &amp;#34;las_name&amp;#34; : &amp;#34;Gant&amp;#34;, 12 &amp;#34;student_no&amp;#34;: 6790 13 14} 15 16student3_info = { 17 &amp;#34;first_name&amp;#34;: &amp;#34;George&amp;#34;, 18 &amp;#34;las_name&amp;#34; : &amp;#34;Murphy&amp;#34;, 19 &amp;#34;student_no&amp;#34;: 4728 20 21} 22 23for i in range(1, 4): 24 students.append(eval(&amp;#39;student%d_info&amp;#39;% (i))) 25 26print(students)   eval() : 실행 가능한 문자열을 입력 받아 실행한 결과값을 리턴하는 함수이다.</description>
+    </item>
+    
+    <item>
+      <title>[R] R의 Data Structure</title>
+      <link>https://lifeisgouda.github.io/posts/statistics/2018-02-19-rprogramming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/statistics/2018-02-19-rprogramming/</guid>
+      <description>[R] R의 Data structure 데이터 구조 종류   Scalar : element가 1개인 vector이다.
+1# scalar 만들기 2a &amp;lt;- &amp;#39;a&amp;#39; 3alphabet &amp;lt;- &amp;#39;abcdefg&amp;#39; 4num &amp;lt;- 1 ​
+  Vector : 같은 종류의 element가 여러개 들어 있는 1차원 matrix이다.
+1# vector 만들기 2table &amp;lt;- c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;) 3table &amp;lt;- c(1, 2, 3, 5) 4bool &amp;lt;- c(TRUE, FALSE) ​
+  Matrix : 2차원으로 된 배열. 일반적이 표 데이터를 생각하면 된다.
+1# matrix 만들기 2# 2 by 3 행렬 생성 3&amp;gt; mat &amp;lt;- matrix(c(&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;, &amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;, &amp;#34;f&amp;#34;), nrow = 2, ncol = 3) 4&amp;gt; mat 5 [,1] [,2] [,3] 6[1,] &amp;#34;a&amp;#34; &amp;#34;c&amp;#34; &amp;#34;e&amp;#34; 7[2,] &amp;#34;b&amp;#34; &amp;#34;d&amp;#34; &amp;#34;f&amp;#34; ​</description>
+    </item>
+    
+    <item>
+      <title>[R] 결측값 데이터 다루기</title>
+      <link>https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/statistics/2018-06-03-r-missing-data-handling/</guid>
+      <description>1. 결측값 단순 삭제 na.omit() 결측값이 있는 행을 삭제하는 함수
+example
+1&amp;gt; dat &amp;lt;- data.frame( a = c(1, 2, 3, 4), 2+ b = c(5, 6, 7, NA), 3+ c = c(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, NA), 4+ d = c(&amp;#39;e&amp;#39;, NA, &amp;#39;f&amp;#39;, &amp;#39;g&amp;#39;)) 5&amp;gt; dat 6 a b c d 71 1 5 a e 82 2 6 b &amp;lt;NA&amp;gt; 93 3 7 c f 104 4 NA &amp;lt;NA&amp;gt; g 11&amp;gt; dat &amp;lt;- na.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Ajax in React</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_6_1_ajax_in_react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_6_1_ajax_in_react/</guid>
+      <description>6-1. Ajax in React Ajax Ajax는 Asynchronous Javascript and XML의 약자이다.
+JSON은 Javascript Object Notation의 약자이다. Object를 Javascript로 작성하는 기법이다.
+Fetch FETCH를 이용해서 URL에서 정보를 GET 하는 방법을 배운다. movie app에 사용할 URL은 API-YTS torrent movie database에서 가져 온다. ( https://yts.am/api#list_movies )
+https://yts.am/api#list_movies 에서 Examples에 있는 URL을 복사한다.
+복사한 https://yts.am/api/v2/list_movies.json 를 열면 javascript object를 볼 수 있다. 이것을 react에서 불러올 수 있어야 한다.
+사이트에서 보면 아래와 같은 정보가 나오는데 이것을 활용하여 리스트를 필터, 정렬을 할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Async Await in React</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_3_async_await_in_react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_3_async_await_in_react/</guid>
+      <description>6-3. Async Await in React Async, Await 1componentDidMount(){ 2 fetch(&amp;#39;https://yts.am/api/v2/list_movies.json?sort_by=rating&amp;#39;) 3 .then(response =&amp;gt; response.json()) 4 .then(json =&amp;gt; console.log) 5 .catch(err =&amp;gt; console.log(&amp;#39;error&amp;#39;)) 6} Async 와 Await 는 위 코드들을 좀더 분명하게 작성해주는 도구이다.
+영화들을 state에 올리려면 아래와 같은 작업을 해야 한다. 하지만 세련되지 않고, 어플리케니션으 크면 then 안에 then으로 이어지면서 callback hell 에 빠지게 된다. 그래서 Async , Await 를 쓸 것이다.
+1.then(json =&amp;gt;{ 2 this.setState({ 3 movies: json.data.movies 4 }) 5 .</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Building for production</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_8_1_building_for_production/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_8_1_building_for_production/</guid>
+      <description>8-1. Building for production Github pages static file을 올릴 수 있는 서비스.
+static file은 자바스크립트, css, html과 같은 frontend 파일을 의미한다 (backend는 안됨).
+Github page는 이러한 static file을 무료로 호스팅할 수 있게 해준다.
+필요한 것 세가지  Github 계정 Github Project Github Project의 branch : 이름은 gh-pages로 해야 한다.  Build  yarn build : CSS를 가져다가 압축한다. 로컬호스트에 있을 때 사용하는 코드는 압축되어 있지 않고, 느리고 최적화되어 있지 않다. build 작업을 하면 좀더 최적화 되고, 압축, 향상되는 것이다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Component State</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_4_1_thinking_in_react_component_state/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_4_1_thinking_in_react_component_state/</guid>
+      <description>4-1. Thinking in React: Component State  setTimeout documentation : https://www.w3schools.com/jsref/met_win_settimeout.asp  State State 는 react component 안에 있는 object 이다.
+state 가 바뀔 때마다, component 는 다시 render 한다. 즉, component 안에 state 가 바뀔 때마다 render 가 발생한다.
+1class App extends Component { // (1) component 안에 state가 바뀔 때마다 2 render() { // (2) render() 가 발생 3 ... 4 } 5} state를 만드는 방법 1class App extends Component { 2 state = { // State 작성 3 greeting : &amp;#39;Hello!</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Component 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react/</guid>
+      <description>React 우리가 사용하는 코드는 리액트이브로 자바스크립트 코드로 바꿔주는 툴이 필요. 이것을 트랜스파일러라고 한다. 트랜스파일러 중 하나가 웹팩.
+웹팩은 리액트 코드를 브라우저가 이해할 수 있는 코드로 변경해주는 역할을 한다.
+모든 브라우저가 ES6를 이해하지 못하므로 웹팩을 이용해서 최근 자바스크립트를 브라우저가 이해할 수 있게 변경해준다. (웹팩 = 모듈 번들러)
+ creat-react-app  웹팩과 같은 툴을 사용할 필요 없이 손쉽게 리액트 앱을 만들어주는 툴
+ React UI Components는 매우 독립적이며 특정 관심사에 집중된 기능 블록이다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Dataflow with Props</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react_2_2_dataflow_with_props/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-29-react_2_2_dataflow_with_props/</guid>
+      <description>2-2. Dataflow with Props React에는 state 와 props 라는 2개의 주요 컨셉이 있다. 먼저 Props를 다룬다.
+데이터가 어디에선가 오고, 소스가 있어야 한다.
+메인 컴포넌트인 app은 모든 영화를 가져온다. 그리고 영화가 카드 형태로 보여지게 된다.
+그러므로 메인컴포넌트는 무비 리스트를 가지고 있다. main component &amp;gt; movie list
+리스트 안의 무비 카드에는 해당 영화의 정보가 각각 담긴다. movie card &amp;gt; movie info 
+즉, 부모 컴포넌트는 칠드런 컴포넌트에게 각각 정보를 준다. 이때 props를 통해서 정보를 전달하게 된다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Giving some CSS to</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_2_giving_some_css_to/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_2_giving_some_css_to/</guid>
+      <description>7-2. Giving some CSS to   To install it run:
+1yarn add react-lines-ellipsis   CSS 꾸미기 App.css 1.App { 2 padding: 50px; 3 display: flex; 4 justify-content: space-around; 5 flex-wrap: wrap; 6 font-size: 14px; 7} 8 9.App--loading{ 10 display: flex; 11 justify-content: center; 12 align-items: center; 13 height: 100%; 14} App.js 1 render() { 2 const {movie} = this.state; 3 return ( 4 &amp;lt;div className={movie ? &amp;#34;App&amp;#34; : &amp;#34;App--loading&amp;#34;}&amp;gt; 5 {movies ?</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Lifecycle Events on React</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_3_1_lifecycle_events_on_react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-02-react_3_1_lifecycle_events_on_react/</guid>
+      <description>3-1. Lifecycle Events on React React Component Lifecycle   Compenent Lifecycle
+https://reactjs.org/docs/react-component.html#the-component-lifecycle
+  Render Component가 여러 기능들을 정해진 순서대로 실행하는 것을 학습한다. Render를 할 때(Componenet를 띄울 때) 아래 순서대로 하게 된다.
+ Render : componentWillMount() → render() → componentDidMount()  Component가 존재하기 시작하면, react 안에서는 willMount → render → DidMount() 를 수행한다.
+예를들어 영화앱을 만든다면, wiiMount 를 진행할 때 api에 작업을 요청한다. 해당 작업 수행이 완료되면 그 다음에 데이터 관련 작업을 한다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : List with .map</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_3_list_with_map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_3_list_with_map/</guid>
+      <description>2-3. List with .map 앞서 리스트를 만든 방법은 효율성이 떨어지므로 갖고 있는 영화 정보의 양에 관계없이 이를 토대로 리스트를 만든다.
+API에서 가져온 영화 정보를 불러올 때 Array 를 만든다.
+리스트에는 여러 object가 있다. (ex) title, poster
+아래와 같이 영화정보를 array로 만들 수 있다.
+1// App.js 2	... 3const movies = [ 4 { 5 title: &amp;#34;Matrix&amp;#34;, 6 poster: &amp;#34;https://displate.com/displates/2016-09-30/60a3501bd3167cf9330acef43ab51ab3.jpg?w=280&amp;amp;h=392&amp;#34; 7 }, 8 { 9 title: &amp;#34;Full Metal Jacket&amp;#34;, 10 poster: &amp;#34;https://cf5.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Loading States</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_3_-loading_states/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_3_-loading_states/</guid>
+      <description>4-3. Loading States 우리에게 필요한 데이터가 항상 즉시 존재하는 것은 아니다. 데이터 없이 component가 로딩하고, 데이터를 위해 API를 읽어오고, API가 데이터를 주면 component state를 업데이트 한다.
+API call을 timeout 기능으로 유사하게 구현해본다.
+이를 위해, movie list 를 function 으로 이동한다.
+1 state = { 2 // 비워짐 3 } 4 5 componentDidMount(){ 6 setTimeout(() =&amp;gt; { 7 this.setState({ 8 movies: [ // movie list를 여기로 이동 9 { 10 title: &amp;#34;Matrix&amp;#34;, 11 poster: &amp;#34;https://displate.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Practicing this.setState</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_2_practicing_this_setstate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-03-react_4_2_practicing_this_setstate/</guid>
+      <description>4-2. Practicing this.setState()   this.setState() documentation :
+https://reactjs.org/docs/react-component.html#setstate
+  App.js 의 Component 외부에 있는 movie list const movies = [...] 를 아래와 같이 수정하여 state( class App extends Component {...} ) 안으로 옮긴다. 그런데 아래와 같이 넣으면 component movies를 찾을 수 없으므로 에러가 발생한다.
+1// App.js 2class App extends Component { 3 4 state = { 5 movies: [ 6 7 { 8 title: &amp;#34;Matrix&amp;#34;, 9 poster: &amp;#34;https://displate.com/displates/2016-09-30/60a3501bd3167cf9330acef43ab51ab3.jpg?w=280&amp;amp;h=392&amp;#34; 10 }, 11 { 12 title: &amp;#34;Full Metal Jacket&amp;#34;, 13 poster: &amp;#34;https://cf5.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Promises</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-06-react_6_2_promises/</guid>
+      <description>6-2. Promises Promise 기능 Promise는 새로운 javascript 컨셉이다. 두가지 기능이 있는데 하나는 asynchronous programming이라는 것이고, 또다른 기능은 시나리오 잡는 방법을 알려준다는 것이다.
+asynchronous 순서대로 완료시키고 다음 넘어가는 것은 동기적인 것이라 하고, 하나가 완료됨과 상관없이 동시에 일을 처리하는 것을 비동기적(asynchronous)인 것이라고 한다.
+scenario Promise 는 두가지 시나리오가 있고, 이를 관리하는 것이 가능하다.
+ 좋은 시나리오 : promise대로 작동한다. 나쁜 시나리오 : promise대로 작동하지 않는다.  Promise 적용   .then() : fetch() 작업이 성공적 수행이 아니라 단순히 작업이 완료되면 .</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Smart vs Dumb Components</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-04-react_5_1_smart_vs_dumb_components/</guid>
+      <description>5-1. Smart vs Dumb Components State 존재 여부에 따른 Component 분류 모든 컴포넌트가 state가 있는 것은 아니다. 어떤 component는 state가 없는 stateless functional component 이다.
+두 가지 component를 아래와 같이 분류할 수 있다.
+ smart component : state가 있는 component dump component : state가 없고, 필요하지도 않은 component. props 만 갖고 있다.  state는 없고 props 밖에 없을 때는 class component (ex : class App extends Component{...} ) 를 쓰는 대신에 stateless functional component 로 바꾸면 된다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Updating Component</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_1_updating_component/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-07-09-react_7_1_updating_component/</guid>
+      <description>7-1. Updating Component 정보확인 및 업데이트 요소 검사를 통해서 movie DB에서 어떤 종류의 정보를 받고 있는지 파악한다.
+1// App.js 2_renderMovies = () =&amp;gt; { 3 const movies = this.state.movies.map((movie, index) =&amp;gt; { 4 console.log(movie) // 정보를 프린트 5 ... 6} Console에 받아오는 정보가 출력된 것을 확인할 수 있다. 받아오는 정보 중에 포스터, 제목, 장르, 평점, 설명 등이 필요하다.
+ 제목 : title-english 포스터 : small_cover_image 장르 : genres 평점 : rating 설명 : synopsis  받아오는 정보를 아래와 같이 수정한다.</description>
+    </item>
+    
+    <item>
+      <title>[React] Movie app clone coding : Validating Props with PropTypes</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_4_validating_props_with_proptypes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-06-30-react_2_4_validating_props_with_proptypes/</guid>
+      <description>2-4. Validating Props with PropTypes Install Props Install Prop-Types with npm:
+ npm install --save prop-types Install Prop-Types with Yarn:
+ yarn add prop-types key prop Console log를 살펴보면 아래와 같은 에러 메시지를 확인할 수 있다.
+ Warning: Each child in an array or iterator should have a unique &amp;ldquo;key&amp;rdquo; prop.
+경고 : array 또는 interator 안의 각각의 child는 반드시 고유한 key prop을 가져야 한다.
+ 앞서 작업한 mapping 은 새로운 array를 만든다.</description>
+    </item>
+    
+    <item>
+      <title>[React] 새 페이지 렌더링 시 상단에서 시작하기</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-10-10-react-newpage-rendering/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-10-10-react-newpage-rendering/</guid>
+      <description>리액트는 새 페이지를 렌더링한 후 스크롤을 맨 위로 올려주지 않는다. 그래서 별도로 컴포넌트를 만들어서 설정해주어야 한다.
+먼저 ScrollToTop.js 컴포넌트를 만든다.
+1import React, { Component } from &amp;#39;react&amp;#39;; 2import { withRouter } from &amp;#39;react-router&amp;#39;; 3 4class ScrollToTop extends Component { 5 componentDidUpdate(prevProps) { 6 if (this.props.location !== prevProps.location) { 7 window.scrollTo(0, 0) 8 } 9 } 10 11 render() { 12 return this.props.children 13 } 14} 15 16export default withRouter(ScrollToTop) App.js 파일에 ScrollToTop 컴포넌트를 끼워 넣는다.</description>
+    </item>
+    
+    <item>
+      <title>[React] 중요 내용 정리</title>
+      <link>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-08-14-react-inflearn-classnote/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/frontend/react/2018-08-14-react-inflearn-classnote/</guid>
+      <description>자식 컴포넌트가 부모한테 값 전달하기 배열 데이터 삽입하기 자식 컴포넌트가 부모한테 값 전달하기 위해서는 App 컴포넌트 내부에서 handleCreate라는 메소드를 만든다. 만든 메소드를 자식컴포넌트에게 &amp;lt;PhoneForm onCreate={this.handleCreate} /&amp;gt; props로 전달해주고, props로 전달한 함수 onCreate={...} 를 호출시켜서 data 값이 App.js 로 들어간다.
+1// App.js 2import React, { Component } from &amp;#34;react&amp;#34;; 3import &amp;#34;./App.css&amp;#34;; 4import PhoneForm from &amp;#34;./components/PhoneForm&amp;#34;; 5 6class App extends Component { 7 id = 0; // id는 렌더링 되는 값이 아니기 때문에 state 값 안에 넣어줄 필요 없음 8 9 state = { 10 information: [] 11 }; 12 handleCreate = data =&amp;gt; { 13 const { information } = this.</description>
+    </item>
+    
+    <item>
+      <title>[번역] 2018년에 당신이 알아야할 리액트 네이티브 컴포넌트 라이브러리 11가지</title>
+      <link>https://lifeisgouda.github.io/posts/translation/2018-08-17-translation-react-native-component-libraries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/translation/2018-08-17-translation-react-native-component-libraries/</guid>
+      <description>원글 React Native Component Libraries You Should Know in 2018를 번역했습니다. 오역이 많습니다. 영문과 함께 편집 했으니 번역문은 참고만 하시기 바랍니다. 잘못 번역된 부분에 대해서 언제든 의견주세요. 환영합니다.
+당신의 다음 앱에서 사용할 수있는 유용한 React Native UI toolkits 리스트
+A list of useful React Native UI toolkits to use in your next app.
+With the growing popularity of React and the rise of native mobile app development (and PWA), it’s not surprising that React-Native is getting more adoption in the community every day.</description>
+    </item>
+    
+    <item>
+      <title>Godaddy와 Github page 도메인 연동하기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-03-16-domain-setting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-03-16-domain-setting/</guid>
+      <description>Github 블로그 설정  블로그 repository 밑에 CNAME 파일을 만들고 사용할 도메인을 입력하여 저장한다.  Github setting에 들어가서 GitHub Pages 항목 아래 Custom domain 란에 사용할 도메인을 입력한다. Enforce HTTPS 가 체크 되어 있는지 확인하고, 체크 되어 있지 않다면 체크 해둔다.  Godaddy Setting   Godaddy에 접속하여 DNS Management 메뉴로 들어간다.
+( https://dcc.godaddy.com/manage/{자기도메인}/dns )
+  Add 버튼을 눌러서 아래 이미지의 빨간 박스 내용을 똑같이 입력한다.
+  적용 되는데 약간 시간이 걸리므로 기다린다.</description>
+    </item>
+    
+    <item>
+      <title>Macbook Pro 케이스와 USB C Hub</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2018-04-19-macbook-usbc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2018-04-19-macbook-usbc/</guid>
+      <description>&amp;lsquo;버바팀 USB C Hub (https://search.shopping.naver.com/detail/detail.nhn?nv_mid=12640832590&amp;amp;cat_id=50002776&amp;amp;frm=NVSCPRO&amp;amp;query=usb+c+%ED%97%88%EB%B8%8C)&amp;rsquo; 를 샀는데 Macbook Pro에 씌운 플라스틱 케이스 때문에 밀착형 USB C 허브가 장착이 되지 않는다.
+어떻게 할까 고민하다가 톱질을 시작! (아래 사진은 톱질이 완성된 상태)
+길이를 재서 실톱으로 잘라낸 후 사포질로 마무리.
+60방 짜리 거친 사포로 해야 잘 갈려나간다.
+정확하게 잘 맞아들어간다.
+케이스와 허브 둘다 장착 완료.
+줄로 길게 연결되는 허브도 사용해봤는데 안정감도 있고, 휘지도 않아서 밀착형이 훨씬 좋다.
+USB C Hub 고른다면 아래 제품 강추.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day18 Python 가상환경 세팅 &amp; Django 설치</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-01-python_django_day18/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-01-python_django_day18/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Python Virtual Environment  가상환경의 필요성  버전의 분리 : 버전별로 또는 필요에 따라 패키지 등을 다르게 설치할 수 있다. 서버와의 통일    가상환경 만들기 $ python3 -m venv first-env # python3 -m venv 가상환경이름 $ ls	# 설치된 것 확인 first env $ cd first-env	# 폴더로 들어가기 $ source first-env/bin/activate	# 적용 # pip list를 입력해보면 여태까지 설치된 패키지가 나오지 않고, 기본 패키지만 나오는 것을 볼 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day19 프레임워크</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-03-python_django_day19/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-03-python_django_day19/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+프레임워크, 라이브러리 차이점 라이브러리 필요한 기능들이 구현되어 있는 라이브러리에서 기능을 불러와서 사용하는 것이다.
+직접 작성했기 때문에 프로그램 흐름의 전체를 이해하기 쉽다.
+(예시)
+1import requests 2response = requests.get(&amp;#34;https://www.fastcampus.co.kr&amp;#34;) 3response.text 프레임워크 이미 구성되어진 틀.
+프레임워크 자체가 하나의 프로그램이다. 그러므로 실행 흐름이 결정되어 있고 필요한 기능들이 채워져 있다. 그러므로 라이브러리처럼 가져다 쓰는 것이 아니라 내가 필요한 기능으로 대체해서 사용하는 것이다.
+실행 흐름이 이미 정해져 있기 때문에 어떤 방식과 흐름으로 코드가 실행되는지 파악하기 어렵다.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day2</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-01-python_django_day2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-01-python_django_day2/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Type과 연산(Numbers, String, boolean) Built-In Function   type() Numbers - int, float Strings Boolean
+  var = input(‘입력’)
+  int(), float(), str()
+  String format 💡
+  &amp;#34;안녕하세요 %s씨, %d년 새해 복 많이 받으세요.&amp;#34;%(&amp;#34;현솔&amp;#34;, 2018) &amp;#34;안녕하세요 {name}씨, 오늘은 {day}입니다.&amp;#34;.format(name=&amp;#34;현솔&amp;#34;, day=&amp;#34;월요일&amp;#34;)  len()  String string = &amp;#34;Python&amp;#34; string[0] string = input(&amp;#34;좋아하는 프로그래밍 언어를 입력하세요. :&amp;#34;) string[len(string)-1] string[-1] Slice [start : end : step(optional)]</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day20 Django 프로젝트 파일 구조, MTV</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-05-python_django_day20/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-05-python_django_day20/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Django 프로젝트 만들기 $ python3 -m venv django-venv $ source django-venv/bin/activate $ pip install django $ django-admin startproject firstproject 아래 구조의 프로젝트가 생성된다.
+Django 프로젝트 디렉토리 형태 manage.py 다양한 명령어를 수행시켜주는 매개체 역할을 한다.
+init.py 파이썬 모듈로써 동작을 할 수 있다.
+settings.py 여러 설정들을 기억해 두는 파일.
+wigs.py 웹서버에 배포를 할때 설정파일들을 연결시켜주는 파이썬 파일.
+Django 앱 추가해보기 source ../django-env/bin/activate # 가상환경 실행 python3 manage.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day21 Django view</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-09-python_django_day21/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-05-09-python_django_day21/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+url www.mydomain.com/ part / ? name=sol&amp;amp;like=python#tag
+view 화면 구성을 통제
+urls.py 모든 서버 url로 접속하는 요청들은 항상 urlpatterns을 먼저 인식한 후 일치하는 경로로 이동하게 된다.
+(ex) 127.0.0.1:9000**/admin**
+Url 추가하기 1# urls.py 파일 수정 2from django.contrib import admin 3from django.urls import path, include 4 5urlpatterns = [ 6 path(&amp;#39;admin/&amp;#39;, admin.site.urls), 7 path(&amp;#39;app/&amp;#39;, include(&amp;#34;myapp.urls&amp;#34;)) 8] 1# myapp 폴더 아래 urls.py 파일 생성 2from django.urls import path 3 4urlpatterns =[ 5 path(&amp;#34;&amp;#34;) 6] 1# 터미널에서 서버 실행 2python manage.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day3</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-05-python_django_day3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-05-python_django_day3/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+흐름제어 if, for while Algorithms : 1~100 사이 숫자 맞추기 1import random 2n = random.randint(1, 100) 3while True : 4 guess = int(input(&amp;#34;정답을 맞춰보세요. :&amp;#34;)) 5 if n == guess : 6 print(&amp;#34;정답입니다.&amp;#34;) 7 break 8 elif abs(n - guess) &amp;lt; 10 : 9 print(&amp;#34;아 아깝습니다.&amp;#34;) 10 else : 11 print(&amp;#34;틀렸습니다.&amp;#34;) For문 1for el in [1, 2, 3, 4]: 2 print(el) 3 4# 1 5# 2 6# 3 7# 4 8 9for i in range(100): 10 print(i) list() 1list(&amp;#34;python&amp;#34;) 2# [&amp;#39;p&amp;#39;,&amp;#39;y&amp;#39;,&amp;#39;t&amp;#39;,&amp;#39;h&amp;#39;,&amp;#39;o&amp;#39;,&amp;#39;n&amp;#39;] 3 4var = [] 5for i in range(100): 6 var.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day4</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-10-python_django_day4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-10-python_django_day4/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+데이터 구조(Dictionary, set), tuple(list comprehension) Tuple immutable + 순서가 있는 자료형
+(1, 2, 3, 4)
+1tuple1 =(1, 2, 3, 4) 튜플을 리스트로 바꾸기 :   1 ~ 100까지 숫자를 포함하는 Tuple을 만드세요.
+  그 Tuple을 list로 바꾸세요.
+  1tuple_1_to_100 = tuple(range(1, 101)) 2list_1_to_100 = list(tuple_1_to_100) Dictionary key, value형태의 자료형 / 순서가 보장되지 않음
+{‘key1’: ‘value1’, ‘key2’: ‘value2’}
+1 d = {} 2 d[&amp;#39;name&amp;#39;] = &amp;#39;sol&amp;#39; 3# {&amp;#39;name&amp;#39;: &amp;#39;sol&amp;#39;} Dictionary 만들기   내 정보를(이름, 나이, 연락처) dictionary로 만들어보세요.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day5</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-13-python_django_day5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-13-python_django_day5/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+함수(packing, unpacking), 재귀함수(예외처리) 함수(Function) 추상화 별도 공간에 존재하여, 변수간 간섭이 방해를 일으키지 않는 방법
+분리 코드는 다른 곳에 작성되어, 우리가 필요한 경우 호출만 하여 사용할 수 있는 방법
+1def func_name(arg): 2 # code 3 print(&amp;#34;Hello, Func&amp;#34;) 4 return arg 5 6func_name() 1def add(a, b): 2 c = a + b 3 return c 4 5x = add(5, 5) 6print(x) parameter(매개변수), argument(인자) 란? parameter 함수 정의할때 어떤 값을 받겠다 라고 선언하고, 실행부에서 사용하는 변수를 의미</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day7 Class</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day7/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+Class 1def print_hello(name): 2	print(&amp;#34;Hello &amp;#34;, name) 3 4# 함수는 다른 변수명에도 저장할 수 있음 5print_hello_name = print_hello 6print_hello_name(&amp;#34;Jane&amp;#34;) 7 8# 함수는 list에도 넣을 수 있음 9func_list = [print_hello, 1, 2] 10func_list[0](&amp;#39;Jane&amp;#39;) 11 12# 함수는 dictionary에도 넣을 수 있음 13func_dict = { 14	&amp;#39;func&amp;#39;: print_hello 15} 16 17func_dict[&amp;#39;func&amp;#39;](&amp;#39;Jane&amp;#39;) 1MY_MONEY = [0] 2 3def spend(m): 4	if MY_MONEY[0] &amp;gt; m: 5	MY_MONEY[0] -= m 6	print(&amp;#34;{}를 사용했습니다.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day8 lambda, map, filter, 데코레이터</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-20-python_django_day8/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+lambda 함수만 만들고 함수가 들어갈 변수를 지정하지 않는 식.
+(깔끔하다는 장점은 있으나 가독성이 떨어질 수 있어서 python3 부터는 권장하지 않는 추세이다.)
+1students = [] 2student1_info = { 3 &amp;#34;first_name&amp;#34;: &amp;#34;sol&amp;#34;, 4 &amp;#34;las_name&amp;#34; : &amp;#34;hyun&amp;#34;, 5 &amp;#34;student_no&amp;#34;: 3498 6 7} 8 9student2_info = { 10 &amp;#34;first_name&amp;#34;: &amp;#34;suzy&amp;#34;, 11 &amp;#34;las_name&amp;#34; : &amp;#34;bae&amp;#34;, 12 &amp;#34;student_no&amp;#34;: 1345 13 14} 15 16student3_info = { 17 &amp;#34;first_name&amp;#34;: &amp;#34;coca&amp;#34;, 18 &amp;#34;las_name&amp;#34; : &amp;#34;hyun&amp;#34;, 19 &amp;#34;student_no&amp;#34;: 4728 20 21} 22 23for i in range(1, 4): 24 students.</description>
+    </item>
+    
+    <item>
+      <title>Python &amp; Django Day9 기초알고리즘(정렬)</title>
+      <link>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-22-python_django_day9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/python/django/2018-04-22-python_django_day9/</guid>
+      <description>Fastcampus Python&amp;amp;Django 온라인 강의를 듣고 작성한 Class note입니다.
+알고리즘 어떤 문제를 풀기 위한 절차 혹은 방법
+계산복잡도 알고리즘의 계산복잡도를 나타내는 방법 중 하나로 Big O 표기법이 있다.
+  O(n) : n이 커질 수록 시간복잡도가 올라간다.
+​
+  정렬문제  선택정렬 삽입정렬 병합정렬 퀵정렬  선택정렬 : O(n) 1from random import choice 2 3raw_list = list(range(0, 100+1)) 4# raw_list = [0, 1, 2, 3, ..., 100] 5 6target = [] 7for _ in range(100): 8 target.</description>
+    </item>
+    
+    <item>
+      <title>vim을 유용하게 사용하기 위한 설정</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2018-06-25-vim/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2018-06-25-vim/</guid>
+      <description>vim 설정에 도움받은 사이트  https://bluesh55.github.io/2016/10/09/vim-ide/ https://agvim.wordpress.com/2017/09/05/vim-plugins-50/  내가 사용중인 .vimrc 처음 vim 설정을 해본 결과 하나씩 익숙해치면서 각자 상황에 맞게 추가해 나가는 것이 답이라고 본다.
+1set nocompatible &amp;#34; be iMproved, required 2filetype off &amp;#34; required 3 4&amp;#34; set the runtime path to include Vundle and initialize 5set rtp+=~/.vim/bundle/Vundle.vim 6call vundle#begin() 78&amp;#34; let Vundle manage Vundle, required 9Plugin &amp;#39;VundleVim/Vundle.vim&amp;#39; 10Plugin &amp;#39;vim-airline/vim-airline&amp;#39; 11Plugin &amp;#39;scrooloose/nerdtree&amp;#39; 12Plugin &amp;#39;vim-airline/vim-airline&amp;#39; 13Plugin &amp;#34;airblade/vim-gitgutter&amp;#34; 14Plugin &amp;#39;tpope/vim-fugitive&amp;#39; 15Plugin &amp;#34;scrooloose/syntastic&amp;#34; 16Plugin &amp;#34;ctrpvim/ctrlp.</description>
+    </item>
+    
+    <item>
+      <title>개인위키 만들기</title>
+      <link>https://lifeisgouda.github.io/posts/idle/2019-02-24-personal_wiki/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/idle/2019-02-24-personal_wiki/</guid>
+      <description>회사 일때문이라는 핑계로 너무 장시간 블로그가 방치 되어서 개인 위키를 만들어서 공부 기록을 정리하기로 한다.
+기계인간님의 글을 따라하려고 하다가 내용도 없는데 거창해지는 것 같아서 아래 링크를 참고하여 빠르게 만들었다.
+쉬운 내용이어도 꾸준히 추가해서 나만의 위키를 만들 예정.
+mac mojave에서 gollum 설치 에러가 나는 바람에 아래 링크를 통해서 해결하였다.
+  mojave에서 gollum 설치 에러 해결 :
+1$ gem install charlock_holmes -- --with-cxxflags=-std=c++11 https://www.bountysource.com/issues/48897255-unable-to-install-0-7-5-on-macos-sierra-10-12-6
+  gollum 설치 참고 글
+https://github.com/gollum/gollum/wiki</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Node.js] Node.js 학습 및 정리 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Node.js] Node.js 학습 및 정리" />
+<meta property="og:description" content="1.1 Node.js 정의   Node.js 정의
+Chrome V8 Javascript 엔진으로 빌드된 Javascript runtime이다.
+  Runtime 정의
+컴퓨터 프로그램이 실행되고 있는 동안의 동작.
+  Runtime Environment 정의
+컴퓨터가 실행되는 동안 프로세스나 프로그램을 위한 소프트웨어 서비스를 제공하는 가상 머신의 상태
+  즉, 노드는 가상머신이라고 봐도 된다. 실제로 Node 안에 가상머신이 들어 있다. 런타임은 자바스크립트를 웹브라우저 바깥에서 동작할 수 있게 해주는 프로그램이라고 생각해도 무방하다. 원래 자바스크립트는 웹브라우저 안에서 돌아가는 언어였고 노드의 등장으로 자바스크립트가 웹브라우저 바깥에서도 동작할 수 있게 되었다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Node.js] Node.js 학습 및 정리"/>
+<meta name="twitter:description" content="1.1 Node.js 정의   Node.js 정의
+Chrome V8 Javascript 엔진으로 빌드된 Javascript runtime이다.
+  Runtime 정의
+컴퓨터 프로그램이 실행되고 있는 동안의 동작.
+  Runtime Environment 정의
+컴퓨터가 실행되는 동안 프로세스나 프로그램을 위한 소프트웨어 서비스를 제공하는 가상 머신의 상태
+  즉, 노드는 가상머신이라고 봐도 된다. 실제로 Node 안에 가상머신이 들어 있다. 런타임은 자바스크립트를 웹브라우저 바깥에서 동작할 수 있게 해주는 프로그램이라고 생각해도 무방하다. 원래 자바스크립트는 웹브라우저 안에서 돌아가는 언어였고 노드의 등장으로 자바스크립트가 웹브라우저 바깥에서도 동작할 수 있게 되었다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/python/2018-04-02-python_csv/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/sql/2020-03-31-stored-procedure/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&text=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&title=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&is_video=false&description=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&title=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&title=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&name=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac&description=1.1%20Node.js%20%ec%a0%95%ec%9d%98%20%20%20Node.js%20%ec%a0%95%ec%9d%98%0aChrome%20V8%20Javascript%20%ec%97%94%ec%a7%84%ec%9c%bc%eb%a1%9c%20%eb%b9%8c%eb%93%9c%eb%90%9c%20Javascript%20runtime%ec%9d%b4%eb%8b%a4.%0a%20%20Runtime%20%ec%a0%95%ec%9d%98%0a%ec%bb%b4%ed%93%a8%ed%84%b0%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%b4%20%ec%8b%a4%ed%96%89%eb%90%98%ea%b3%a0%20%ec%9e%88%eb%8a%94%20%eb%8f%99%ec%95%88%ec%9d%98%20%eb%8f%99%ec%9e%91.%0a%20%20Runtime%20Environment%20%ec%a0%95%ec%9d%98%0a%ec%bb%b4%ed%93%a8%ed%84%b0%ea%b0%80%20%ec%8b%a4%ed%96%89%eb%90%98%eb%8a%94%20%eb%8f%99%ec%95%88%20%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%eb%82%98%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%84%20%ec%9c%84%ed%95%9c%20%ec%86%8c%ed%94%84%ed%8a%b8%ec%9b%a8%ec%96%b4%20%ec%84%9c%eb%b9%84%ec%8a%a4%eb%a5%bc%20%ec%a0%9c%ea%b3%b5%ed%95%98%eb%8a%94%20%ea%b0%80%ec%83%81%20%eb%a8%b8%ec%8b%a0%ec%9d%98%20%ec%83%81%ed%83%9c%0a%20%20%ec%a6%89%2c%20%eb%85%b8%eb%93%9c%eb%8a%94%20%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%eb%b4%90%eb%8f%84%20%eb%90%9c%eb%8b%a4.%20%ec%8b%a4%ec%a0%9c%eb%a1%9c%20Node%20%ec%95%88%ec%97%90%20%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0%ec%9d%b4%20%eb%93%a4%ec%96%b4%20%ec%9e%88%eb%8b%a4.%20%eb%9f%b0%ed%83%80%ec%9e%84%ec%9d%80%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%eb%a5%bc%20%ec%9b%b9%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%20%eb%b0%94%ea%b9%a5%ec%97%90%ec%84%9c%20%eb%8f%99%ec%9e%91%ed%95%a0%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%ed%95%b4%ec%a3%bc%eb%8a%94%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%ec%83%9d%ea%b0%81%ed%95%b4%eb%8f%84%20%eb%ac%b4%eb%b0%a9%ed%95%98%eb%8b%a4.%20%ec%9b%90%eb%9e%98%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%eb%8a%94%20%ec%9b%b9%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%20%ec%95%88%ec%97%90%ec%84%9c%20%eb%8f%8c%ec%95%84%ea%b0%80%eb%8a%94%20%ec%96%b8%ec%96%b4%ec%98%80%ea%b3%a0%20%eb%85%b8%eb%93%9c%ec%9d%98%20%eb%93%b1%ec%9e%a5%ec%9c%bc%eb%a1%9c%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%ea%b0%80%20%ec%9b%b9%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%20%eb%b0%94%ea%b9%a5%ec%97%90%ec%84%9c%eb%8f%84%20%eb%8f%99%ec%9e%91%ed%95%a0%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%eb%90%98%ec%97%88%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&t=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#node의-핵심-개념-3가지">Node의 핵심 개념 3가지</a></li>
+    <li><a href="#이벤트-루프">이벤트 루프</a>
+      <ul>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#task-queue">Task Queue</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#생각해보기">생각해보기</a></li>
+      </ul>
+    </li>
+    <li><a href="#event-driven">Event Driven</a></li>
+    <li><a href="#non-blocking-io">Non Blocking I/O</a>
+      <ul>
+        <li><a href="#non-blocking">Non Blocking</a></li>
+        <li><a href="#io-input-output">I/O (Input Output)</a></li>
+      </ul>
+    </li>
+    <li><a href="#single-thread">Single Thread</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#함수-선언문">함수 선언문</a></li>
+        <li><a href="#함수표현식">함수표현식</a></li>
+      </ul>
+    </li>
+    <li><a href="#function-이-살아남은-이유">function() 이 살아남은 이유</a>
+      <ul>
+        <li><a href="#function과-화살표-함수의-가장-큰-차이--this">function()과 화살표 함수의 가장 큰 차이 : this</a>
+          <ul>
+            <li><a href="#function-사용한-경우-this-동작">function() 사용한 경우 this 동작</a></li>
+            <li><a href="#화살표-함수-사용한-경우-this-동작">화살표 함수 사용한 경우 this 동작</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#객체에서-비구조화-할당">객체에서 비구조화 할당</a></li>
+    <li><a href="#배열에서-비구조화-할당">배열에서 비구조화 할당</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#rest-문법">rest 문법</a></li>
+        <li><a href="#참조">참조</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#전형적인-콜백-코드">전형적인 콜백 코드</a></li>
+    <li><a href="#promise">Promise</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#promise를-만드는-방법">Promise를 만드는 방법</a>
+      <ul>
+        <li><a href="#promise-생성-구조">Promise 생성 구조</a>
+          <ul>
+            <li><a href="#example">Example</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#then이-여러개인-구조">then이 여러개인 구조</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#promise의-장점">Promise의 장점</a></li>
+    <li><a href="#정리-및-활용">정리 및 활용</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#module-system">Module System</a></li>
+    <li><a href="#모듈-만들기">모듈 만들기</a>
+      <ul>
+        <li><a href="#html">HTML</a></li>
+        <li><a href="#javascript">Javascript</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#브라우저의-내장-객체">브라우저의 내장 객체</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#example-1">Example</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#settimeout-setinterval">setTimeout, setInterval</a></li>
+        <li><a href="#setimmediate">setImmediate()</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#______filename-__dirname">______filename, __dirname</a></li>
+    <li><a href="#process">process</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#url-구조">URL 구조</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Node.js] Node.js 학습 및 정리
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          36 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/nodejs" rel="tag">nodejs</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/programming" rel="tag">programming</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/javascript" rel="tag">javascript</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/backend" rel="tag">backend</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h1 id="11-nodejs-정의">1.1 Node.js 정의</h1>
+<ul>
+<li>
+<p>Node.js 정의</p>
+<p>Chrome V8 Javascript 엔진으로 빌드된 Javascript runtime이다.</p>
+</li>
+<li>
+<p>Runtime 정의</p>
+<p>컴퓨터 프로그램이 실행되고 있는 동안의 동작.</p>
+</li>
+<li>
+<p>Runtime Environment 정의</p>
+<p>컴퓨터가 실행되는 동안 프로세스나 프로그램을 위한 소프트웨어 서비스를 제공하는 가상 머신의 상태</p>
+</li>
+</ul>
+<p>즉, 노드는 가상머신이라고 봐도 된다. 실제로 Node 안에 가상머신이 들어 있다. 런타임은 자바스크립트를 웹브라우저 바깥에서 동작할 수 있게 해주는 프로그램이라고 생각해도 무방하다. 원래 자바스크립트는 웹브라우저 안에서 돌아가는 언어였고 노드의 등장으로 자바스크립트가 웹브라우저 바깥에서도 동작할 수 있게 되었다.</p>
+<h1 id="12-repl과-헬로-노드">1.2 REPL과 헬로 노드</h1>
+<ul>
+<li>REPL (Read Evaluate Print Loop)</li>
+</ul>
+<h1 id="13-호출-스택과-이벤트-루프">1.3 호출 스택과 이벤트 루프</h1>
+<h2 id="node의-핵심-개념-3가지">Node의 핵심 개념 3가지</h2>
+<p>🔘 Event 기반</p>
+<p>🔘 Non blocking I/O Model</p>
+<p>🔘 Single Thread</p>
+<h2 id="이벤트-루프">이벤트 루프</h2>
+<p>*참고 :</p>
+<p><a href="https://www.zerocho.com/category/JavaScript/post/597f34bbb428530018e8e6e2">https://www.zerocho.com/category/JavaScript/post/597f34bbb428530018e8e6e2</a></p>
+<p><a href="https://goo.gl/JrGkZs">https://goo.gl/JrGkZs</a></p>
+<p><a href="http://asfirstalways.tistory.com/362">http://asfirstalways.tistory.com/362</a></p>
+<h3 id="stack">Stack</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">function</span> first(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    second();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    console.log(<span style="color:#f1fa8c">&#39;첫 번째&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#8be9fd;font-style:italic">function</span> second(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    third();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    console.log(<span style="color:#f1fa8c">&#39;두 번째&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#8be9fd;font-style:italic">function</span> third(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    console.log(<span style="color:#f1fa8c">&#39;세 번째&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>first(); <span style="color:#6272a4">// 첫 번째, 두 번째, 세 번째
+</span></span></span></code></pre></div><h3 id="task-queue">Task Queue</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> run(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    console.log(<span style="color:#f1fa8c">&#39;3초 후 실행&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>console.log(<span style="color:#f1fa8c">&#39;시작&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>setTimeout(run, <span style="color:#bd93f9">3000</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>console.log(<span style="color:#f1fa8c">&#39;끝&#39;</span>);     <span style="color:#6272a4">// 시작, 끝, 3초 후 실행
+</span></span></span></code></pre></div><p>Task Queue는 Stack의 반대되는 개념.</p>
+<p>Stack은 차곡차곡 쌓이면 위에서 부터 사라지게 된다(LIFO). 반대로 Queue는 먼저 들어온 순서대로 나간다(FIFO).</p>
+<p><code>setTimeout(run, 3000)</code> 부터 실행을 도식화 해보면 아래와 같다.</p>
+<!-- raw HTML omitted -->
+<p>최종적으로 stack과 Queue가 모두 비워지면 프로그램이 종료된다.</p>
+<p>🔘 언제 Task Queue에 들어가는가</p>
+<ol>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>setImmediate</li>
+<li>Promise resolve, reject</li>
+<li>async, await</li>
+<li>EventLister의 callback</li>
+</ol>
+<p>💡 프로그램이 실행되다 보면 Queue가 여러개 있고 계속 쌓이게 되는데, 이때  <strong>Task Queue에서 정해진 순서대로 꺼내오는 것이 Event Loop의 역할이다.</strong> (Event Loop는 순서를 알고 있다.) 이것을 잘 사용하면 실행순서를 바꿔서 실행시킬 수 있다.</p>
+<!-- raw HTML omitted -->
+<h1 id="14-event-driven-non-blocking-io-model-single-thread">1.4 Event driven, Non blocking I/O Model, Single Thread</h1>
+<h3 id="생각해보기">생각해보기</h3>
+<p>Node가 서버의 역할을 하려면 어떻게 해야 할까?</p>
+<p>🔘서버</p>
+<p><!-- raw HTML omitted -->클라이언트가 요청을 보낸 것을 받아서 응답을 하는 것.<!-- raw HTML omitted --> 서버가 서버한테 요청을 보낼 수도 있다. 이 경우 서버가 클라이언트가 된다. 예를들어 웹 주소를 입력하는 것도 요청이다. 웹주소를 입력하면 서버를 찾아가서 서버에게서 html을 받아온다(즉, 응답으로 html을 받는 것). 인터넷 브라우저는 받아온 것을 파싱해서 화면으로 만들어 주는 것이다.</p>
+<ul>
+<li>요청의 특징 : 언제 올지 모른다. 이때 대기할 때 사용하는 것이 <code>EventListener</code> 이다.</li>
+</ul>
+<h2 id="event-driven">Event Driven</h2>
+<p>호출 stack과 task queue가 비어 있지만 EventListener에 등록해둔 것 덕분에 프로그램이 계속 동작한다. 이 동작 방식을 Event Driven이라고 한다.</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>참고 : <a href="http://jasonim.me/dev/146">http://jasonim.me/dev/146</a></li>
+</ul>
+<h2 id="non-blocking-io">Non Blocking I/O</h2>
+<h3 id="non-blocking">Non Blocking</h3>
+<p>위에서 봤던 <code>setTimeout(run, 3000)</code> 에서 <code>run </code> 을 Task Queue로 보낸다. 이렇게 <strong>Task Queue로 보내고 실행 순서가 바뀌게 되는 동작을 Non blocking</strong>이라고 한다. (실행 순서의 문제)</p>
+<h3 id="io-input-output">I/O (Input Output)</h3>
+<ul>
+<li>파일시스템 I/O</li>
+<li>네트워크 I/O</li>
+</ul>
+<p>위 두가지는 자체적으로 Non Blocking으로 동작한다.</p>
+<p>파일시스템의 경우는 더 나아가서 알아서 Multi thread를 돌린다. 즉, Non blocking에 팔까지 여러개 달아서 Multi thread로 작업하는 것이다.</p>
+<h2 id="single-thread">Single Thread</h2>
+<p>사람으로 치면 팔의 갯수라고 보면 된다. Single Thread는 팔이 한개라서 한번에 한가지 일만 할 수 있다. Multi Thread는 팔이 여러개이기 때문에 동시에 작업이 가능하다.</p>
+<p><!-- raw HTML omitted -->자바스크립트는 Single Thread이다. 그래서 blocking이 일어나는데, 그것을 극복하기 위해 Non blocking으로 순서를 바꾸어서 효율적으로 처리할 수 있게 만드는 것이다.<!-- raw HTML omitted --></p>
+<p>Multi thread로 프로그래밍 하는 것이 어려운 측면이 있다. Node가 쓰는 Multi thread를 흉내내는 방식은 왼팔만 여러개를 달아놓은 것과 비슷해서 흉내는 냈지만 부족한 면이 있다.</p>
+<p>정확하게 말하면 thread 보다 상위 개념으로 proccess가 있는데 Node가 Multi thread를 흉내내는 방식은 이 proccess를 여러개 만들어서 Multi proccessing을 하는 것이 Node가 single thread의 단점을 극복하는 방법중 하나이다.</p>
+<h1 id="21-const와-let">2.1 const와 let</h1>
+<p>const에 객체가 할당된 경우 객체 내부 속성은 바꿀 수 있다. 즉, 참조에 대한 상수는 변경 가능.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> val <span style="color:#ff79c6">=</span> {a<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>, b<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">2</span>, c<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">3</span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>val.a <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>val.b <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;     <span style="color:#6272a4">// 객체 내부속성 변경 가능
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ff79c6">const</span> h <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>h[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>h[<span style="color:#bd93f9">3</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>;     <span style="color:#6272a4">// 객체 내부속성 변경 가능
+</span></span></span></code></pre></div><h1 id="22-템플릿-문자열백틱-">2.2 템플릿 문자열(백틱, `)</h1>
+<p>백틱을 양 끝에 사용하면 하나의 문자열로 인식한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> a <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;hello&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ff79c6">const</span> b <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ff79c6">const</span> c <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ff79c6">const</span> d <span style="color:#ff79c6">=</span> a <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39; &#39;</span> <span style="color:#ff79c6">+</span> b <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39; &#39;</span> <span style="color:#ff79c6">+</span> c;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ff79c6">const</span> e <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>a<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> </span><span style="color:#f1fa8c">${</span>b<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> </span><span style="color:#f1fa8c">${</span>c<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>     <span style="color:#6272a4">// 위에 코드와 같은 의미
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#ff79c6">const</span> f <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>a<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">는 </span><span style="color:#f1fa8c">${</span>b<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">이고 </span><span style="color:#f1fa8c">${</span>c<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">은 몰라요.`</span> 
+</span></span></code></pre></div><h1 id="23-객체-리터럴의-변화">2.3. 객체 리터럴의 변화</h1>
+<p>객체 리터럴 : <code>let val = {}</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">var</span> sayNode <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    console.log(<span style="color:#f1fa8c">&#39;Node&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#8be9fd;font-style:italic">var</span> es <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;ES&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4">// ES6 이전 문법
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">var</span> oldObject <span style="color:#ff79c6">=</span> {       
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    sayJS<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        console.log(<span style="color:#f1fa8c">&#39;JS&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    sayNode<span style="color:#ff79c6">:</span> sayNode,     <span style="color:#6272a4">// key와 value 같음
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>oldObject[es <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">6</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Fantastic&#39;</span>;   <span style="color:#6272a4">// Fantastic
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#6272a4"></span>oldObject.sayNode();    <span style="color:#6272a4">// Node
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#6272a4">// ES6 이후 문법
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> newObject <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    sayJS(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        console.log(<span style="color:#f1fa8c">&#39;JS&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    sayNode,   <span style="color:#6272a4">// key와 value가 같은 경우 한 번만 작성할 수 있게 바뀜
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#6272a4"></span>    [es <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">6</span>]<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Fantastic&#39;</span>,  <span style="color:#6272a4">// 동적 속성 할당을 리터럴 안에 표현 가능. {[변수]: 값} ***
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#6272a4"></span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>newObject.sayJS();    <span style="color:#6272a4">// JS
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span><span style="color:#6272a4"></span>newObject.sayNode();  <span style="color:#6272a4">// Node
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span><span style="color:#6272a4"></span>console.log(newObject.ES6);  <span style="color:#6272a4">// Fantastic
+</span></span></span></code></pre></div><h1 id="24-화살표-함수">2.4 화살표 함수</h1>
+<h3 id="함수-선언문">함수 선언문</h3>
+<p>변수를 선언하고 함수를 대입.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> add <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(x, y){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">return</span> x <span style="color:#ff79c6">+</span> y;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#8be9fd;font-style:italic">let</span> add <span style="color:#ff79c6">=</span> (x, y) =&gt; x <span style="color:#ff79c6">+</span> y ;
+</span></span></code></pre></div><h3 id="함수표현식">함수표현식</h3>
+<p>함수에 이름 붙여서 선언하는 것.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> add(x, y){ <span style="color:#ff79c6">return</span> x <span style="color:#ff79c6">+</span> y };
+</span></span></code></pre></div><h2 id="function-이-살아남은-이유">function() 이 살아남은 이유</h2>
+<h3 id="function과-화살표-함수의-가장-큰-차이--this">function()과 화살표 함수의 가장 큰 차이 : this</h3>
+<p>function()과 화살표 함수의 this는 동작하는 방식이 다르다.</p>
+<h4 id="function-사용한-경우-this-동작">function() 사용한 경우 this 동작</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">let</span> relationship1 <span style="color:#ff79c6">=</span> {      <span style="color:#6272a4">// let relationship = {} : 객체 리터럴 생성
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;zero&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    friends<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;nero&#39;</span>, <span style="color:#f1fa8c">&#39;hero&#39;</span>, <span style="color:#f1fa8c">&#39;xero&#39;</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    logFriends<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#8be9fd;font-style:italic">let</span> that <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;   <span style="color:#6272a4">// relationship1을 가리키는 this를 that에 저장
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">this</span>.friends.forEach(<span style="color:#8be9fd;font-style:italic">function</span>(friend){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>            console.log(that.name, friend);  <span style="color:#6272a4">// 바깥의 this를 가져오기 위해 that에 대입해서 가져옴
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>        });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>relationship1.logFriends();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4">/* zero nero
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"> * zero hero
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#6272a4"> * zero xero
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4"> */</span>
+</span></span></code></pre></div><h4 id="화살표-함수-사용한-경우-this-동작">화살표 함수 사용한 경우 this 동작</h4>
+<ul>
+<li>
+<p>** 부분 : 여기서 화살표함수 <code>friend =&gt;</code> 를 쓰면 <strong>화살표 함수 내부의 this</strong> <code>this.name</code>  를 <strong>화살표 함수 밖의 this</strong> <code>this.friends.forEach</code> 와 <!-- raw HTML omitted -->같은 것으로 만들어준다.<!-- raw HTML omitted --></p>
+<p>즉, <code>this.friends.forEach( ... =&gt; ... this)</code> 화살표 함수 통해서 바깥의 <code>this</code> 가 안의 <code>this</code> 에 적용된다.</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">let</span> relationship2 <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;zero&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    friends<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;nero&#39;</span>, <span style="color:#f1fa8c">&#39;hero&#39;</span>, <span style="color:#f1fa8c">&#39;xero&#39;</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    logFriends() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#ff79c6">this</span>.friends.forEach(friend =&gt; {     <span style="color:#6272a4">// **
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>            console.log(<span style="color:#ff79c6">this</span>.name, friend);   <span style="color:#6272a4">// this : 원래 window
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span>        });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>relationship2.logFriends();
+</span></span></code></pre></div><h1 id="25-비구조화-할당-destructuring">2.5 비구조화 할당 (destructuring)</h1>
+<h2 id="객체에서-비구조화-할당">객체에서 비구조화 할당</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">let</span> candyMachine <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    status<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;node&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        count<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">5</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    getCandy(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#ff79c6">this</span>.status.count<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.status.count;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#8be9fd;font-style:italic">var</span> status <span style="color:#ff79c6">=</span> candyMachine.status;     <span style="color:#6272a4">// 변수와 속성의 이름이 같다
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> getCandy <span style="color:#ff79c6">=</span> candyMachine.getCandy;
+</span></span></code></pre></div><p><code>var status = candyMachine.status;</code> 처럼 변수와 속성의 이름이 같을 때 ES6에서는 간단하게 표현할 수 있게 새로운 문법을 제공한다.  (🔑 활용도가 매우 높은 문법)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> {status, getCandy} <span style="color:#ff79c6">=</span> candyMachine;
+</span></span></code></pre></div><ul>
+<li>Example</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> { Router } <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>);    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4">// require express라는 객체에서 Router라는 속성값을 Router 변수에 대입
+</span></span></span></code></pre></div><p>📌 비구조화 할당 시 <code>this</code> 가 의도와 다르게 동작하는 현상이 있을 수 있다. ⛔️⛔️⛔️</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>candyMachine.getCandy();  <span style="color:#6272a4">// 4
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ff79c6">const</span> { getCandy } <span style="color:#ff79c6">=</span> candyMachine;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>getCandy();              <span style="color:#6272a4">// undefined
+</span></span></span></code></pre></div><p><code>candyMachine.getCandy();</code> 에서 <code>getCandy()</code> 를 갖고 있는 객체 <code>candyMachine.</code> 이 앞에 붙어 있으면 <code>getCandy()</code> 가 호출이 될 때 <code>this</code> 를 앞에 붙어 있던 객체  <code>candyMachine.</code> 로 만든다.</p>
+<p>마지막줄의 비구조화 할당 후 <code>getCandy()</code> 를 보면 앞에 객체가 안붙어 있다. 그래서 <code>getCandy()</code> 가 <code>this</code> 인 <code>candyMachine</code> 을 못찾는다.  <code>getCandy</code> 를 호출해도 <code>candyMachine</code> 이 바뀌지 않고 undefined가 출력되는 것이다.</p>
+<p>그러므로 <strong>반드시 앞에 객체를 붙여줘야 한다</strong>. 구조분해 할당으로 <code>candyMachine</code> 과 분리되면서 나타나는 현상이다.</p>
+<h2 id="배열에서-비구조화-할당">배열에서 비구조화 할당</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> a <span style="color:#ff79c6">=</span> array[<span style="color:#bd93f9">0</span>];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ff79c6">const</span> b <span style="color:#ff79c6">=</span> array[<span style="color:#bd93f9">1</span>];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ff79c6">const</span> [a, b] <span style="color:#ff79c6">=</span> array;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#6272a4">// 참고 : array[array.length - 1]  배열의 마지막 요소 가져오는 코드
+</span></span></span></code></pre></div><ul>
+<li>Example</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> array <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;node&#39;</span>, {}, <span style="color:#bd93f9">10</span>, <span style="color:#ff79c6">true</span>];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">const</span> [node, obj, ...bool] <span style="color:#ff79c6">=</span> array;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>console.log(bool); <span style="color:#6272a4">// (2) [10, true]
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">const</span> m <span style="color:#ff79c6">=</span> (x, y) =&gt; console.log(x, y);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>m(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>);   <span style="color:#6272a4">// 5 6
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>m(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>)  <span style="color:#6272a4">// 5 6
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#ff79c6">const</span> n <span style="color:#ff79c6">=</span> (x, ...y) =&gt; console.log(x, y);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>n(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>);  <span style="color:#6272a4">// 5 [6, 7, 8, 9]
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4"></span>                   <span style="color:#6272a4">// ** argumnet는 배열처럼 보이지만 배열이 아님. 유사배열.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#ff79c6">const</span> p <span style="color:#ff79c6">=</span> (...rest) =&gt; console.log(rest);    <span style="color:#6272a4">// rest는 배열. 이 방식이 더 좋음.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4"></span>p(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>);   <span style="color:#6272a4">// [5, 6, 7, 8, 9]
+</span></span></span></code></pre></div><h1 id="26-rest-문법">2.6 rest 문법</h1>
+<h3 id="rest-문법">rest 문법</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> n <span style="color:#ff79c6">=</span> (x, ...y) =&gt; console.log(x, y);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>n(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>);  <span style="color:#6272a4">// 5 [6, 7, 8, 9]
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>                   <span style="color:#6272a4">// ** argumnet는 배열처럼 보이지만 배열이 아님. 유사배열.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ff79c6">const</span> p <span style="color:#ff79c6">=</span> (...rest) =&gt; console.log(rest);    <span style="color:#6272a4">// rest는 배열. 이 방식이 더 좋음.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#6272a4"></span>p(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>);   <span style="color:#6272a4">// [5, 6, 7, 8, 9]
+</span></span></span></code></pre></div><h3 id="참조">참조</h3>
+<p>변수는 메모리에 위치하는데 이 경우 y는 x를 참조하고 있다. 즉, x가 저장된 메모리 값을 가리키고 있는 것이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> x <span style="color:#ff79c6">=</span> {a<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>, b<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">2</span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#8be9fd;font-style:italic">let</span> y <span style="color:#ff79c6">=</span> x;     <span style="color:#6272a4">// y가 x를 참조하고 있는 것
+</span></span></span></code></pre></div><p>const는 가리키고 있는 위치를 바꿀 수 는 없지만 그 안에 있는 값은 바꿀 수 있는 것이다.</p>
+<h1 id="27-callback과-promise-비교">2.7 Callback과 Promise 비교</h1>
+<h2 id="전형적인-콜백-코드">전형적인 콜백 코드</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>, (err, user) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">if</span> (err) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">return</span> console.error(err);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>})
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>console.log(<span style="color:#f1fa8c">&#39;다 찾았니?&#39;</span>);
+</span></span></code></pre></div><p>예를들어, 데이터 베이스에 <code>Users</code> 라는 폴더가 있고 <code>findOne</code> 이 <code>zero</code> 라는 한 사람을 찾아오는 것이라고 한다면,</p>
+<p><code>zero</code> 를 찾았을 때 콜백이 실행되는 것이다.  ( <code>(err, user) =&gt; { ....</code> 이하가 콜백)</p>
+<p>콜백을 쓰는 이유는 코드가 non-blocking으로 작동하기 때문이다.</p>
+<p><code>console.log(user);</code> 보다 <code>console.log('다 찾았니?');</code> 가 먼저 뜨게 된다. 왜냐하면 <code>Users.findOne('zero'</code> 은 네트워크를 통해서 데이터 베이스에서 검색하므로 시간이 얼마나 걸릴 지 모르기 때문에 Non blocking 방식으로 먼저 요청만 보내놓고 그 다음 코드를 실행하기 때문이다.</p>
+<p>다 찾은 경우 event loop로 콜백을 넣어줘서 실행되는 것이다. 찾는 과정에서 에러가 있다면 <code>console.error(error);</code> 가 실행되는 것이다.</p>
+<p>단점은 순서가 매우 애매하다. 콜백이 연달아 있는 경우 실행순서가 어떻게 흘러가는지 파악하기 어려운 문제가 있다. (callback hell)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>, (err, user) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">if</span> (err) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#ff79c6">return</span> console.error(err);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    Users.update(<span style="color:#f1fa8c">&#39;zero&#39;</span>, <span style="color:#f1fa8c">&#39;nero&#39;</span>, (err, updatedUser)=&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        console.log(updateUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        Users.remove(<span style="color:#f1fa8c">&#39;nero&#39;</span>, (err, removeUser) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            <span style="color:#ff79c6">if</span> (err) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                <span style="color:#ff79c6">return</span> console.error(err);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            console.log(removeUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>console.log(<span style="color:#f1fa8c">&#39;다 찾았니?&#39;</span>);
+</span></span></code></pre></div><h2 id="promise">Promise</h2>
+<p>위 코드에 Promise를 적용하면 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .then((user) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#ff79c6">return</span> Users.update(<span style="color:#f1fa8c">&#39;zero&#39;</span>, <span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    .then((updatedUser) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>      console.log(updatedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>      <span style="color:#ff79c6">return</span> Users.remove(<span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    .then((removedUser) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>      console.log(removeUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  .<span style="color:#ff79c6">catch</span>((err) =&gt; {        <span style="color:#6272a4">// 에러처리는 마지막에 한번
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"></span>    console.error(error);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  console.log(<span style="color:#f1fa8c">&#39;다 찾았니?&#39;</span>); 
+</span></span></code></pre></div><h1 id="28-promise-이해하기">2.8 Promise 이해하기</h1>
+<h2 id="promise를-만드는-방법">Promise를 만드는 방법</h2>
+<p>함수의 맨 첫글자가 대문자이면 생성자라는 의미이다. 앞에 <code>new</code> 를 써서 생성가능하다는 것을 알려준다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>&gt; Promise
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  Promise<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span> <span style="color:#ff79c6">[</span>native code<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h3 id="promise-생성-구조">Promise 생성 구조</h3>
+<p>Promise를 생성할 때 구조는 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; { 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#6272a4">// resolve와 reject가 매개변수인 함수를 넣는다 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>plus
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    .then(() =&gt; {  <span style="color:#6272a4">// resolve가 되면 then이 실행되고
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    .<span style="color:#ff79c6">catch</span>(() =&gt; {    <span style="color:#6272a4">// reject가 되면 catch가 실행된다
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  })
+</span></span></code></pre></div><h4 id="example">Example</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> plust <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; { 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">const</span> a <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#ff79c6">const</span> b <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">+</span> b <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">2</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        resolve(a <span style="color:#ff79c6">+</span> b);   <span style="color:#6272a4">// resolve( 성공 메시지 )
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        reject(a <span style="color:#ff79c6">+</span> b);    <span style="color:#6272a4">// reject( 실패 메시지 )
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>plus
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  .then((success) =&gt; {  <span style="color:#6272a4">// resolve가 되면 then 실행
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"></span>    console.log(success);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  .<span style="color:#ff79c6">catch</span>((fail) =&gt; {    <span style="color:#6272a4">// reject가 되면 catch 실행
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#6272a4"></span>    console.log(fail);    
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  })
+</span></span></code></pre></div><p><code>.then</code> , <code>.catch</code> 는 함수 내부적으로 이미 <code>promise</code> 를 return 하도록 정의되어 있기 때문에 사용할 수 있는 것이다. 즉, 내부적으로 promise 지원 되는 것들만 적용할 수 있다. 왠만한 라이브러리들은 모두 지원한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> condition <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>; <span style="color:#6272a4">// true면 resolve, false면 reject
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> promise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#ff79c6">if</span> (condition) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        resolve(<span style="color:#f1fa8c">&#39;성공&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        reject(<span style="color:#f1fa8c">&#39;실패&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>promise
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  .then(message) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    console.log(message); <span style="color:#6272a4">// 성공(resolve)한 경우 실행
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4"></span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  .<span style="color:#ff79c6">catch</span>((error) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    console.error(error);  <span style="color:#6272a4">// 실패(reject)한 경우 실행      
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4"></span>  })
+</span></span></code></pre></div><h2 id="then이-여러개인-구조">then이 여러개인 구조</h2>
+<p>then에 <strong><!-- raw HTML omitted -->리턴값이 있으면<!-- raw HTML omitted --> 다음 then으로 넘어간다.</strong> Promise를 리턴하면 resolve나 reject되어 넘어간다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>promise
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .then(message) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        resolve(message2);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  .then(message2) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        resolve(message3);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  .then(message3) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        resolve(message3);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  .<span style="color:#ff79c6">catch</span>((error) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    console.error(error); 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>  });
+</span></span></code></pre></div><h1 id="29-promise-api">2.9 Promise API</h1>
+<p>무조건 성공하거나 실패하는 Promise는 아래와 같이 줄일 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// 무조건 성공
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> successPromise <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Promise</span>.resolve(<span style="color:#f1fa8c">&#39;성공&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  .then();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4">// 무조건 실패
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> failurePromise <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Promise</span>.reject(<span style="color:#f1fa8c">&#39;실패&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  .<span style="color:#ff79c6">catch</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4">// 아래 코드를 줄인 것
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> promise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((res, rej) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    rej(<span style="color:#f1fa8c">&#39;실패&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>});
+</span></span></code></pre></div><h2 id="promise의-장점">Promise의 장점</h2>
+<p><code>Promise.all</code> 을 이용해서 한꺼번에 실행 가능하다. 다만, 하나라도 실패하면 모두 에러가 되는 단점이 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">Promise</span>.all([Users.findOne(), Users.remove(), Users.update()])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  .then((results) =&gt; {})
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  .<span style="color:#ff79c6">catch</span>((error) =&gt; {})
+</span></span></code></pre></div><h2 id="정리-및-활용">정리 및 활용</h2>
+<p>Promise는 결과를 실행했는데 바깥에 표시를 안해준 것이라고 생각하면 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> promise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((res, rej) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    res(<span style="color:#f1fa8c">&#39;성공&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>});
+</span></span></code></pre></div><p>promise 변수는 이미 성공했다는 것을 이미 알고 있지만 바깥으로 꺼내지 않은 것이다. <code>promise.then(() =&gt; {})</code> 으로 꺼낼 때 바깥으로 드러난다. 이것의 장점은 바로 꺼내지 않았기 때문에 언제든지 필요할 때 쓸 수 있는 것이다. (비장의 카드 느낌?!) 결과를 갖고 있는 부분과 드러내는 부분이 분리된다는 것도 장점이다.</p>
+<p>아래 콜백 코드의 문제점은 바로 결과를 사용하는 부분이 이어지게 된다. 중간에 다른 코드 삽입 불가.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>, (err, user) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>})
+</span></span></code></pre></div><p>Promise로 바꾸면,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> zero <span style="color:#ff79c6">=</span> Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4">// 다른 로직...
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>zero.then((z) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    console.log(z);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>});
+</span></span></code></pre></div><h1 id="210-async--await">2.10 async / await</h1>
+<p>콜백이 한번 콜백으로 넘어가면 모두 콜백 안에서 로직이 구성되어야 하는 것 처럼,</p>
+<p><code>Promise</code> 도 한번 <code>.then</code> 이나 <code>.catch</code> 로 넘어가면 모든 로직이 <code>.then</code>, <code>.catch</code> 안에서 이루어져야 하는 문제점이 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .then((user) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#ff79c6">return</span> Users.update(<span style="color:#f1fa8c">&#39;zero&#39;</span>, <span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    .then((updatedUser) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>      console.log(updatedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>      <span style="color:#ff79c6">return</span> Users.remove(<span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  })
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    .then((removedUser) =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>      console.log(removedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  .<span style="color:#ff79c6">catch</span>((err) =&gt; {        
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    console.error(error);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  });
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  console.log(<span style="color:#f1fa8c">&#39;다 찾았니?&#39;</span>); 
+</span></span></code></pre></div><p><code>console.log('다 찾았니?'); </code> 는 첫 번째 <code>.then</code> 보다 먼저 실행된다. 즉, Promise로 가독성을 높였다고는 하지만  순서대로 실행되지 않는다는 것은 동일하다. 그래서 <code>*</code>, <code> yield</code> 생성자가 만들어졌다가 ES6부터 <code>async</code> / <code>await</code> 가 공식적으로 등록 되었다. 순서대로 실행되는 것 처럼 보이게 만들 수 있다.</p>
+<p>위 코드를 <code>async</code> / <code>await</code> 으로 바꾸면 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">async</span> func() =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">try</span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>      <span style="color:#ff79c6">const</span> user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>      console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>      <span style="color:#ff79c6">const</span> updatedUser <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> Users.update(<span style="color:#f1fa8c">&#39;zero&#39;</span>, <span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>      console.log(updatedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>      <span style="color:#ff79c6">const</span> removedUser <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> Users.remove(<span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>      console.log(removedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>      console.log(<span style="color:#f1fa8c">&#39;다 찾았니?&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    } <span style="color:#ff79c6">catch</span> (err) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>       console.error(error);   <span style="color:#6272a4">// 이 경우 에러가 나도 어느 부분인지 알 수 없다. 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>func();
+</span></span></code></pre></div><p><code>await</code> 쓸 때는 함수가 필요하다. 함수 이름 앞에 <code>async</code> 를 붙여주면 된다. 익명함수도 가능.</p>
+<p>어느 부분에서 에러가 낫는지 알고 싶으면 try-catch를 개별적으로 해줘야 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">async</span> func() =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#ff79c6">try</span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>      <span style="color:#ff79c6">const</span> user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> Users.findOne(<span style="color:#f1fa8c">&#39;zero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>      console.log(user);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    } <span style="color:#ff79c6">catch</span> (err) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>       console.error(error);   
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#ff79c6">try</span>{ 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>      <span style="color:#ff79c6">const</span> updatedUser <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> Users.update(<span style="color:#f1fa8c">&#39;zero&#39;</span>, <span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>      console.log(updatedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>      <span style="color:#ff79c6">const</span> removedUser <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> Users.remove(<span style="color:#f1fa8c">&#39;nero&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>      console.log(removedUser);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>      console.log(<span style="color:#f1fa8c">&#39;다 찾았니?&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    } <span style="color:#ff79c6">catch</span> (err) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>       console.error(error);   
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>func();
+</span></span></code></pre></div><h1 id="31-node-module-system">3.1 Node Module System</h1>
+<h2 id="module-system">Module System</h2>
+<p><strong>모듈 시스템</strong>은 ES2015에서 나온 획기적인 변화이다. 자바스크립트는 예전부터 리소스 관리가 어려워서 말이 많았다. 리소스는 웹 페이지를 구성하는 자원들이다. 현재 웹에서는 해당 페이지에 필요한 모든 파일을 미리 불러와야 하고, 그 파일들이 사용하는 변수가 겹치지 않나 잘 살펴봐야 한다. 이런 부분을 해결한 것이 모듈 시스템이다.</p>
+<h2 id="모듈-만들기">모듈 만들기</h2>
+<p>아래 만든 JS파일을 다른 프로그램에서 쓰고 싶다면 어떻게 해야 할까?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// var.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> odd <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;홀수입니다.&#34;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ff79c6">const</span> even <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;짝수입니다.&#34;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>console.log(odd);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>even <span style="color:#ff79c6">=</span> even <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39;zero&#39;</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// func.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>console.log(odd);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>console.log(even);
+</span></span></code></pre></div><h3 id="html">HTML</h3>
+<p>프론트엔드 방식(HTML)이면 아래처럼 불러들여서 사용한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">&lt;!-- example.html --&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;var.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;func.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span></code></pre></div><h3 id="javascript">Javascript</h3>
+<p>먼저 불러들여지는 파일에서 export가 가능하도록 <code>module.exports</code> 를 입력해준다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// var.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> odd <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;홀수입니다.&#34;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ff79c6">const</span> even <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;짝수입니다.&#34;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#6272a4">// 모듈로 만들어질 준비가 되었다는 선언
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#6272a4"></span>module.exports <span style="color:#ff79c6">=</span> {    <span style="color:#6272a4">// ES6의 문법. 이전에는 module.exports={ odd: odd, even:even }으로 입력
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#6272a4"></span>    odd,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    even,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>};
+</span></span></code></pre></div><p>위 코드의 모듈 선언과 동일한 의미로 아래와 같이 작성할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 위 코드와 동일한 의미로 아래와 같이 쓸 수도 있다.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>exports.odd <span style="color:#ff79c6">=</span> odd;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>exports.even <span style="color:#ff79c6">=</span> even;
+</span></span></code></pre></div><p><code>module.exports === exports</code> .</p>
+<p>exports는 <strong>객체 속성만</strong> 담을 수 있다. 그러므로 아래 코드에서 <code>module.exports = checkOddEven;</code> 는 위 코드처럼 <code>exports.checkOddEven = checkOddEven</code> 으로 바꿀 수 없다.</p>
+<p><code>var.js</code> 에 있는 변수 odd와 even을 <code>require</code> 를 통해서 불러온다. 변수로 불러들이게 되면 문제가 발생했을 때 역추적이 용이하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// func.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> { odd, even } <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./var.js&#39;</span>);  <span style="color:#6272a4">// var.js 에 있는 변수 odd와 even을 불러온다.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>console.log(odd);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>console.log(even);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#8be9fd;font-style:italic">function</span> checkOddEven(num) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#ff79c6">if</span> (num <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">2</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#ff79c6">return</span> odd;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#ff79c6">return</span> even;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>module.exports <span style="color:#ff79c6">=</span> checkOddEven;
+</span></span></code></pre></div><p>위 코드처럼 비구조화 할당을 하지 않게 되면 아래처럼 통째로 불러들인 후 매개변수를 통해서 읽어들어야 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">const</span> variable <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./var.js&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>console.log(variable.odd);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>console.log(variable.even);
+</span></span></code></pre></div><p>아래 코드는 <code>var.js</code> 변수와 <code>fund.js</code> 의 checkNumber를 모두 가져왔다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// index.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> { odd, even } <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./var.js&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">const</span> checkNumber <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./func.js&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#8be9fd;font-style:italic">function</span> checkStringOddEven(str) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#ff79c6">if</span> (str.length <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">2</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#ff79c6">return</span> odd;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#ff79c6">return</span> even;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>console.log(checkNumber(<span style="color:#bd93f9">10</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>console.log(checkStringOddEven(<span style="color:#f1fa8c">&#39;hello&#39;</span>));
+</span></span></code></pre></div><h1 id="32-global-객체">3.2 global 객체</h1>
+<h2 id="브라우저의-내장-객체">브라우저의 내장 객체</h2>
+<p>Node의 전역 객체는 <code>global</code> 이다. (window 아님. 최신 브라우저는 node와 통일하기 위해 global이 반영 됨.)</p>
+<p>(global은 사용하지 않는 것이 가장 좋다. 프로그래밍에서 리스크가 매우 크다.)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// globalA.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>module.exports <span style="color:#ff79c6">=</span> () =&gt; global.message;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// globalB.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> A <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./globalA,js&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>global.message <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;안녕하세요&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>console.log(A());    <span style="color:#6272a4">// 안녕하세요
+</span></span></span></code></pre></div><h1 id="33-console-객체">3.3 console 객체</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">&gt;</span> console
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>console {debug<span style="color:#ff79c6">:</span> ƒ, error<span style="color:#ff79c6">:</span> ƒ, info<span style="color:#ff79c6">:</span> ƒ, log<span style="color:#ff79c6">:</span> ƒ, warn<span style="color:#ff79c6">:</span> ƒ, …}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>assert<span style="color:#ff79c6">:</span>ƒ assert()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>clear<span style="color:#ff79c6">:</span>ƒ clear()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>context<span style="color:#ff79c6">:</span>ƒ context()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>count<span style="color:#ff79c6">:</span>ƒ count()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>debug<span style="color:#ff79c6">:</span>ƒ debug()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>dir<span style="color:#ff79c6">:</span>ƒ dir()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>dirxml<span style="color:#ff79c6">:</span>ƒ dirxml()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>error<span style="color:#ff79c6">:</span>ƒ error()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>group<span style="color:#ff79c6">:</span>ƒ group()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>groupCollapsed<span style="color:#ff79c6">:</span>ƒ groupCollapsed()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>groupEnd<span style="color:#ff79c6">:</span>ƒ groupEnd()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>info<span style="color:#ff79c6">:</span>ƒ info()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>log<span style="color:#ff79c6">:</span>ƒ log()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>markTimeline<span style="color:#ff79c6">:</span>ƒ markTimeline()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>memory<span style="color:#ff79c6">:</span>(...)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>profile<span style="color:#ff79c6">:</span>ƒ profile()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>profileEnd<span style="color:#ff79c6">:</span>ƒ profileEnd()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>table<span style="color:#ff79c6">:</span>ƒ table()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>time<span style="color:#ff79c6">:</span>ƒ time()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>...
+</span></span></code></pre></div><h3 id="example-1">Example</h3>
+<ul>
+<li><code>console.time()</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>console.time(<span style="color:#f1fa8c">&#39;전체시간&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>console.log(<span style="color:#f1fa8c">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>console.log(<span style="color:#f1fa8c">&#39;b&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>console.time(<span style="color:#f1fa8c">&#39;시간측정&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">100000</span>; i<span style="color:#ff79c6">++</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#ff79c6">continue</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>console.timeEnd(<span style="color:#f1fa8c">&#39;시간측정&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>console.timeEnd(<span style="color:#f1fa8c">&#39;전체시간&#39;</span>);
+</span></span></code></pre></div><p><code>console.time('인자')</code>, <code>console.timeEnd(인자)</code> 에서 인자가 같아야 그 사이의 시간을 측정한다.</p>
+<ul>
+<li><code>console.dir()</code> : 객체 전용 로그</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> obj <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    outside<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        inside<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            key<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;value&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>console.dir(obj, {color<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>, depth<span style="color:#ff79c6">:</span><span style="color:#bd93f9">2</span>});
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>console.dir(obj, {color<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>, depth<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>});
+</span></span></code></pre></div><ul>
+<li><code>console.trace()</code> : 호출되는 경로를 추적해준다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">function</span> b(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    console.trace(<span style="color:#f1fa8c">&#39;에러 위치 추적&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#8be9fd;font-style:italic">function</span> a(){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    b();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>a();
+</span></span></code></pre></div><h1 id="34-타이머--settimeout-setinterval-setimmediate">3.4 타이머 : setTimeout, setInterval, setImmediate</h1>
+<h3 id="settimeout-setinterval">setTimeout, setInterval</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> timeout <span style="color:#ff79c6">=</span> setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    console.log(<span style="color:#f1fa8c">&#39;1.5초 후 실행&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>}, <span style="color:#bd93f9">1500</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">const</span> interval <span style="color:#ff79c6">=</span> setInverval(() =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    console.log(<span style="color:#f1fa8c">&#39;1초마다 실행&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>}, <span style="color:#bd93f9">1000</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#ff79c6">const</span> timeout2 <span style="color:#ff79c6">=</span> setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    console.log(<span style="color:#f1fa8c">&#39;실행되지 않습니다.&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>}, <span style="color:#bd93f9">3000</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    clearTimeout(timeout2);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    clearInterval(interval);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>}, <span style="color:#bd93f9">2500</span>);
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>clearTimeout(timeout); <span style="color:#6272a4">// ex) 비밀번호 맞추면 타이머 해제
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>clearInterval(interval); 
+</span></span></code></pre></div><h3 id="setimmediate">setImmediate()</h3>
+<p>Node에는 setImmediate도 있다. 안에 들어 있는 함수를 이벤트루프로 보내줘서 비동기로 실행순서가 달라질 수 있어서 setImmediate를 사용한다. 즉, 바로 이벤트루프로 보내고 싶을 때 사용한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>cost im <span style="color:#ff79c6">=</span> setImmediate(() =&gt; console.log(<span style="color:#f1fa8c">&#39;즉시 실행&#39;</span>));
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>clearImmediate(im);
+</span></span></code></pre></div><h1 id="35-______filename-__dirname-process">3.5 ______filename, __dirname, process</h1>
+<h2 id="______filename-__dirname">______filename, __dirname</h2>
+<ul>
+<li><code>__filename</code> : 현재 파일경로</li>
+<li><code>__dirname</code> : 현재 파일이 들어 있는 경로</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>console.log(__filename);   <span style="color:#6272a4">// /Users/gouda/dev/JavaScript/exercise/test1.js
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>console.log(__dirname);    <span style="color:#6272a4">// /Users/gouda/dev/JavaScript/exercise 
+</span></span></span></code></pre></div><p>node는 브라우저 바깥에서 작동되므로 위 코드로 파일이 어디에서 실행되고 있는지 알 수 있다.</p>
+<h2 id="process">process</h2>
+<p><code>global.process</code> = <code>process</code></p>
+<p>스레드보다 좀더 큰 개념이 process.</p>
+<p>하나의 프로그램이라고 생각해도 무방.</p>
+<p>현재 노드가 실행하고 있는 JS 프로그램에 대한 정보들이 process에 담겨 있는 것이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>&gt; proecess.version    <span style="color:#6272a4"># node version</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>&gt; process.arch        <span style="color:#6272a4"># bit</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>&gt; process.platform    <span style="color:#6272a4"># mac, windows 등 platform 정보</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>&gt; process.pid         <span style="color:#6272a4"># process id</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>&gt; process.uptime<span style="color:#ff79c6">()</span>    <span style="color:#6272a4"># node 프로그램이 실행된지 얼마나 지났는지 알려줌</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>&gt; process.cwd<span style="color:#ff79c6">()</span>       <span style="color:#6272a4"># node를 어디에서 실행했는지</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>&gt; process.execPath    <span style="color:#6272a4"># node가 설치된 경로</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>&gt; process.cpuUsage<span style="color:#ff79c6">()</span>  <span style="color:#6272a4"># 현재 CPU 사용량</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>&gt; process.exit<span style="color:#ff79c6">()</span>      <span style="color:#6272a4"># process 종료</span>
+</span></span></code></pre></div><h1 id="36-os-모듈">3.6 OS 모듈</h1>
+<p>OS 모듈은 내장 모듈. 운영체제와 관련된 모듈.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>require(<span style="color:#f1fa8c">&#39;os&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">const</span> os <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;os&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>os.arch()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>os.type()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>os.uptime()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>os.hostname()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>os.release()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>os.homedir()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>os.tmpdir()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>os.freemem()   <span style="color:#6272a4">// 추가로 사용 가능한 메모리
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#6272a4"></span>os.totalmem()  <span style="color:#6272a4">// 전체 사용 가능한 메모리
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>os.cpus()      <span style="color:#6272a4">// cpu 정보 알려줌
+</span></span></span></code></pre></div><h1 id="37-path-">3.7 path 💡</h1>
+<p>매우 빈번하게 쓰이고 중요.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> path <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>path.sep         <span style="color:#6272a4">// 경로 구분자
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>path.deilimiter  <span style="color:#6272a4">// 환경변수 구분자
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4"></span>path.dirname     <span style="color:#6272a4">// 파일에서 사용가능
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>path.extname     <span style="color:#6272a4">// 확장자
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span>path.basename    <span style="color:#6272a4">// 파일명
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>path.parce       <span style="color:#6272a4">// 구조 분해
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"></span>path.format      <span style="color:#6272a4">// parsing 했던 것을 다시 합쳐줌
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>path.normalize   <span style="color:#6272a4">// 경로 잘못 친 부분 수정해서 입력해줌
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#6272a4"></span>path.isAbsolute  <span style="color:#6272a4">// 절대경로인지 상대경로인지 알려줌
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>path.relative    <span style="color:#6272a4">// 첫 번째 경로에서 두번째 경로로 가는 상대 경로를 알려줌
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4"></span>path.join        <span style="color:#6272a4">// 조각난 경로들을 하나로 합쳐줌 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"></span>path.resolve     <span style="color:#6272a4">// join과 비교 해보기. resolve는 절대 경로 고려하고 합침
+</span></span></span></code></pre></div><h1 id="38-url-모듈-">3.8 url 모듈 💡</h1>
+<h2 id="url-구조">URL 구조</h2>
+<p>위 쪽은 기존 방식의 주소 체계 (<strong>url.parse</strong>)</p>
+<!-- raw HTML omitted -->
+<p>아래쪽은 WHATWGQ방식의 주소 체계(<strong>url.URL</strong>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;url&#39;</span>);  <span style="color:#6272a4">// url 모듈을 불러옴
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">const</span> URL <span style="color:#ff79c6">=</span> url.URL;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">const</span> myURL <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> URL(<span style="color:#f1fa8c">&#34;https://www.youtube.com/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>console.log(myURL); 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4">// output
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"></span>URL {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  href<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>   <span style="color:#f1fa8c">&#39;https://www.youtube.com/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  origin<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;https://www.youtube.com&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  protocol<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;https:&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  username<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  password<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  host<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;www.youtube.com&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  hostname<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;www.youtube.com&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  port<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>  pathname<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/watch&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  search<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>   <span style="color:#f1fa8c">&#39;?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>  searchParams<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>   URLSearchParams {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>  <span style="color:#f1fa8c">&#39;v&#39;</span> =&gt; <span style="color:#f1fa8c">&#39;m8C37nS8zh8&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  <span style="color:#f1fa8c">&#39;list&#39;</span> =&gt; <span style="color:#f1fa8c">&#39;PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>  <span style="color:#f1fa8c">&#39;index&#39;</span> =&gt; <span style="color:#f1fa8c">&#39;23&#39;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>  hash<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>console.log(url.format(myURL));
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span><span style="color:#6272a4">// output
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span><span style="color:#6272a4"></span>https<span style="color:#ff79c6">:</span><span style="color:#6272a4">//www.youtube.com/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> parsedUrl <span style="color:#ff79c6">=</span> url.parse(<span style="color:#f1fa8c">&#39;https://www.youtube.com/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>console.log(parsedUrl)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4">// output
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>Url {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  protocol<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;https:&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  slashes<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  auth<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">null</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  host<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;www.youtube.com&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  port<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">null</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  hostname<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;www.youtube.com&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  hash<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">null</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  search<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>   <span style="color:#f1fa8c">&#39;?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  query<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>   <span style="color:#f1fa8c">&#39;v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  pathname<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/watch&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>  path<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>   <span style="color:#f1fa8c">&#39;/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>  href<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>   <span style="color:#f1fa8c">&#39;https://www.youtube.com/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#39;</span> }
+</span></span></code></pre></div><p>📌 기존 방식(url.parse)은 호스트가 없을 때도 쓸 수 있다. WHATWG방식(url.URL)은 search 처리가 편리하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;url&#39;</span>);  <span style="color:#6272a4">// url 모듈을 불러옴
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">const</span> URL <span style="color:#ff79c6">=</span> url.URL;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">const</span> myURL <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> URL(<span style="color:#f1fa8c">&#34;https://www.youtube.com/watch?v=m8C37nS8zh8&amp;list=PLcqDmjxt30RsbFOspFG3EsxMwhFSnGFLw&amp;index=23&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>console.log(myURL.searchParams);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>myURL.searchParams.getAll(<span style="color:#f1fa8c">&#39;category&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>myURL.searchParams.get(<span style="color:#f1fa8c">&#39;list&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>myURL.searachParams.has(<span style="color:#f1fa8c">&#39;page&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>myURL.searachParams.keys();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>myURL.searachParams.values();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>myURL.searachParams.append(<span style="color:#f1fa8c">&#39;filter&#39;</span>, <span style="color:#f1fa8c">&#39;es3&#39;</span>);   <span style="color:#6272a4">// &amp;filter=es3 이 주소에 추가 됨
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4"></span>myURL.searachParams.append(<span style="color:#f1fa8c">&#39;filter&#39;</span>, <span style="color:#f1fa8c">&#39;es5&#39;</span>);   <span style="color:#6272a4">// append는 기존에 있던 것에 추가
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#6272a4"></span>myURL.searachParams.getAll(<span style="color:#f1fa8c">&#39;filter&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>myURL.searachParams.set(<span style="color:#f1fa8c">&#39;filter&#39;</span>, <span style="color:#f1fa8c">&#39;es6&#39;</span>); <span style="color:#6272a4">// set은 기존 것을 지우고 수정
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#6272a4"></span>myURL.searachParams.getAll(<span style="color:#f1fa8c">&#39;filter&#39;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>myURL.serachParams.toString();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>myURL.search <span style="color:#ff79c6">=</span> myURL.searchParams.toString();
+</span></span></code></pre></div><h1 id="39-querystring-모듈">3.9 querystring 모듈</h1>
+<h1 id="310-crypto-단방향-암호화해시">3.10 crypto 단방향 암호화(해시)</h1>
+<h1 id="311-crypto-양방향-암호화">3.11 crypto 양방향 암호화</h1>
+<h1 id="312">3.12</h1>
+<h1 id="313">3.13</h1>
+<h1 id="314">3.14</h1>
+<h1 id="315">3.15</h1>
+<h1 id="316">3.16</h1>
+<h1 id="317">3.17</h1>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#node의-핵심-개념-3가지">Node의 핵심 개념 3가지</a></li>
+    <li><a href="#이벤트-루프">이벤트 루프</a>
+      <ul>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#task-queue">Task Queue</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#생각해보기">생각해보기</a></li>
+      </ul>
+    </li>
+    <li><a href="#event-driven">Event Driven</a></li>
+    <li><a href="#non-blocking-io">Non Blocking I/O</a>
+      <ul>
+        <li><a href="#non-blocking">Non Blocking</a></li>
+        <li><a href="#io-input-output">I/O (Input Output)</a></li>
+      </ul>
+    </li>
+    <li><a href="#single-thread">Single Thread</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#함수-선언문">함수 선언문</a></li>
+        <li><a href="#함수표현식">함수표현식</a></li>
+      </ul>
+    </li>
+    <li><a href="#function-이-살아남은-이유">function() 이 살아남은 이유</a>
+      <ul>
+        <li><a href="#function과-화살표-함수의-가장-큰-차이--this">function()과 화살표 함수의 가장 큰 차이 : this</a>
+          <ul>
+            <li><a href="#function-사용한-경우-this-동작">function() 사용한 경우 this 동작</a></li>
+            <li><a href="#화살표-함수-사용한-경우-this-동작">화살표 함수 사용한 경우 this 동작</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#객체에서-비구조화-할당">객체에서 비구조화 할당</a></li>
+    <li><a href="#배열에서-비구조화-할당">배열에서 비구조화 할당</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#rest-문법">rest 문법</a></li>
+        <li><a href="#참조">참조</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#전형적인-콜백-코드">전형적인 콜백 코드</a></li>
+    <li><a href="#promise">Promise</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#promise를-만드는-방법">Promise를 만드는 방법</a>
+      <ul>
+        <li><a href="#promise-생성-구조">Promise 생성 구조</a>
+          <ul>
+            <li><a href="#example">Example</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#then이-여러개인-구조">then이 여러개인 구조</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#promise의-장점">Promise의 장점</a></li>
+    <li><a href="#정리-및-활용">정리 및 활용</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#module-system">Module System</a></li>
+    <li><a href="#모듈-만들기">모듈 만들기</a>
+      <ul>
+        <li><a href="#html">HTML</a></li>
+        <li><a href="#javascript">Javascript</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#브라우저의-내장-객체">브라우저의 내장 객체</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#example-1">Example</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#settimeout-setinterval">setTimeout, setInterval</a></li>
+        <li><a href="#setimmediate">setImmediate()</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#______filename-__dirname">______filename, __dirname</a></li>
+    <li><a href="#process">process</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#url-구조">URL 구조</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&text=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&title=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&is_video=false&description=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&title=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&title=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&name=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac&description=1.1%20Node.js%20%ec%a0%95%ec%9d%98%20%20%20Node.js%20%ec%a0%95%ec%9d%98%0aChrome%20V8%20Javascript%20%ec%97%94%ec%a7%84%ec%9c%bc%eb%a1%9c%20%eb%b9%8c%eb%93%9c%eb%90%9c%20Javascript%20runtime%ec%9d%b4%eb%8b%a4.%0a%20%20Runtime%20%ec%a0%95%ec%9d%98%0a%ec%bb%b4%ed%93%a8%ed%84%b0%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%b4%20%ec%8b%a4%ed%96%89%eb%90%98%ea%b3%a0%20%ec%9e%88%eb%8a%94%20%eb%8f%99%ec%95%88%ec%9d%98%20%eb%8f%99%ec%9e%91.%0a%20%20Runtime%20Environment%20%ec%a0%95%ec%9d%98%0a%ec%bb%b4%ed%93%a8%ed%84%b0%ea%b0%80%20%ec%8b%a4%ed%96%89%eb%90%98%eb%8a%94%20%eb%8f%99%ec%95%88%20%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%eb%82%98%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%84%20%ec%9c%84%ed%95%9c%20%ec%86%8c%ed%94%84%ed%8a%b8%ec%9b%a8%ec%96%b4%20%ec%84%9c%eb%b9%84%ec%8a%a4%eb%a5%bc%20%ec%a0%9c%ea%b3%b5%ed%95%98%eb%8a%94%20%ea%b0%80%ec%83%81%20%eb%a8%b8%ec%8b%a0%ec%9d%98%20%ec%83%81%ed%83%9c%0a%20%20%ec%a6%89%2c%20%eb%85%b8%eb%93%9c%eb%8a%94%20%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%eb%b4%90%eb%8f%84%20%eb%90%9c%eb%8b%a4.%20%ec%8b%a4%ec%a0%9c%eb%a1%9c%20Node%20%ec%95%88%ec%97%90%20%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0%ec%9d%b4%20%eb%93%a4%ec%96%b4%20%ec%9e%88%eb%8b%a4.%20%eb%9f%b0%ed%83%80%ec%9e%84%ec%9d%80%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%eb%a5%bc%20%ec%9b%b9%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%20%eb%b0%94%ea%b9%a5%ec%97%90%ec%84%9c%20%eb%8f%99%ec%9e%91%ed%95%a0%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%ed%95%b4%ec%a3%bc%eb%8a%94%20%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%ec%83%9d%ea%b0%81%ed%95%b4%eb%8f%84%20%eb%ac%b4%eb%b0%a9%ed%95%98%eb%8b%a4.%20%ec%9b%90%eb%9e%98%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%eb%8a%94%20%ec%9b%b9%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%20%ec%95%88%ec%97%90%ec%84%9c%20%eb%8f%8c%ec%95%84%ea%b0%80%eb%8a%94%20%ec%96%b8%ec%96%b4%ec%98%80%ea%b3%a0%20%eb%85%b8%eb%93%9c%ec%9d%98%20%eb%93%b1%ec%9e%a5%ec%9c%bc%eb%a1%9c%20%ec%9e%90%eb%b0%94%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8%ea%b0%80%20%ec%9b%b9%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80%20%eb%b0%94%ea%b9%a5%ec%97%90%ec%84%9c%eb%8f%84%20%eb%8f%99%ec%9e%91%ed%95%a0%20%ec%88%98%20%ec%9e%88%ea%b2%8c%20%eb%90%98%ec%97%88%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fnodejs%2f2018-10-17-nodejs-note%2f&t=%5bNode.js%5d%20Node.js%20%ed%95%99%ec%8a%b5%20%eb%b0%8f%20%ec%a0%95%eb%a6%ac" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

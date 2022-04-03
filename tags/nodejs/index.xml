@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nodejs on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/nodejs/</link>
+    <description>Recent content in nodejs on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright><atom:link href="https://lifeisgouda.github.io/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Node.js] Node.js 학습 및 정리</title>
+      <link>https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/programming/nodejs/2018-10-17-nodejs-note/</guid>
+      <description>1.1 Node.js 정의   Node.js 정의
+Chrome V8 Javascript 엔진으로 빌드된 Javascript runtime이다.
+  Runtime 정의
+컴퓨터 프로그램이 실행되고 있는 동안의 동작.
+  Runtime Environment 정의
+컴퓨터가 실행되는 동안 프로세스나 프로그램을 위한 소프트웨어 서비스를 제공하는 가상 머신의 상태
+  즉, 노드는 가상머신이라고 봐도 된다. 실제로 Node 안에 가상머신이 들어 있다. 런타임은 자바스크립트를 웹브라우저 바깥에서 동작할 수 있게 해주는 프로그램이라고 생각해도 무방하다. 원래 자바스크립트는 웹브라우저 안에서 돌아가는 언어였고 노드의 등장으로 자바스크립트가 웹브라우저 바깥에서도 동작할 수 있게 되었다.</description>
+    </item>
+    
+  </channel>
+</rss>

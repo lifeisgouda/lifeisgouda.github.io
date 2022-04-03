@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithms on Fourier Dev</title>
+    <link>https://lifeisgouda.github.io/tags/algorithms/</link>
+    <description>Recent content in algorithms on Fourier Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>fourierdev</copyright>
+    <lastBuildDate>Sat, 31 Mar 2018 23:49:58 +0900</lastBuildDate><atom:link href="https://lifeisgouda.github.io/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Algorithms] BFS(Breadth-First Search 너비우선탐색)</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-03-01-bfs/</link>
+      <pubDate>Sat, 31 Mar 2018 23:49:58 +0900</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-03-01-bfs/</guid>
+      <description>Graph Algorithms shortest-path problem(최단경로 문제)을 해결할 때 사용한다.
+순서  문제를 그래프로 모형화 너비 우선탐색으로 문제 해결  그래프 연결 집합을 모형화한 것을 그래프라고 한다.
+node와 edge로 이루어져 있다.
+출처 : http://mathworld.wolfram.com/GraphEdge.html
+너비우선탐색 개념 그래프 전체를 탐색하는 방법 중 하나이다. 너비우선탐색, 깊이우선탐색이 있다.
+Facebook에서 연결되는 사람(촌) 중에 과자 회사에 다니고 있는 사람이 있는지 찾으려고 한다고 가정해보자.
+A는 시작점인 &amp;lsquo;나&amp;rsquo;자신이고, B, C, D는 1촌, E, F, G, H는 2촌, I, J, K는 3촌이 된다.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] JavaScript Stack 구현</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-19-stack-javascript/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-19-stack-javascript/</guid>
+      <description>Stack 구현 1function Stack(){ 2 let items = []; 3 4 this.push = function(element) { 5 items.push(element); 6 }; 7 8 this.pop = function() { 9 return items.pop(); 10 }; 11 12 this.peek = function() { 13 return items[items.length-1]; 14 }; 15 16 this.isEmpty = function(){ 17 return items.length === 0; 18 }; 19 20 this.size = function(){ 21 return items.length; 22 }; 23 24 this.clear = function(){ 25 items = []; 26 }; 27 28 this.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] 1. Two Sum</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-02-14-leetcode_1_two_sum/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-02-14-leetcode_1_two_sum/</guid>
+      <description>https://leetcode.com/problems/two-sum/description/
+ Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+주어진 정수 배열을 이용하여, 임의의 두 수 합계가 타겟(target) 값이 되는 두 숫자의 인덱스를 반환해라.
+각 입력에는 정확히 하나의 솔루션이 있다고 가정 할 수 있으며, 동일한 원소를 두 번 사용할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] FizzBuzz in Javascript</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-05-27-fizzbuzz_algorithm_in_javascript/</guid>
+      <description>문제 3으로 나누어떨어지는 수일 때는 fizz, 5로 나누어떨어지는 수일 때는 buzz, 3과 5 둘 다 나누어떨어질 때는 fizzbuzz로 숫자를 대체한다.
+Modulus Operator 나누어서 나머지를 출력해주는 연산자로 &amp;lsquo;%&amp;lsquo;를 사용할 수 있다.
+1console.log(100%30); // 10 2console.log(7%3) // 1 Algorithm 먼저 문제를 해결할 function을 만든다.
+1function fizzbuzz(num){} 예를들어, 20이 주어지면 결과가 1부터 20까지 출력되고, 위 조건의 숫자만 fizz, buzz, fizzbuzz로 대체 된다. 그러므로 1부터 20까지 출력될 수 있는 for문을 작성한다.
+1function fizzbuzz(num){ 2 for(let i=1; i &amp;lt;= num; i++){ 3 /* each number which is represented by the variable i */ 4 } 5} num이나 i가 3으로 나누어 떨어지면 숫자 대신에 fizz, 5로 나누어 떨어지면 buzz, 3과 5 둘다 나누어 떨어지는 수이면 fizzbuzz가 출력되어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] Harmless Ransom Note in Javascript</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-06-04-harmless_ransom_note_in_javascript/</guid>
+      <description>문제 Harmless ransom note algorithm은 두개의 parameter를 갖는다.
+첫번째 parameter인 noteText는 string과 같은 텍스트를 받을 수 있다. 두번째 parameter인 magazineText에도 string 같은 텍스트가 들어간다.
+예를들어, 아래와 같이 note와 meagazine이 쓰여있다
+ Note : &amp;rsquo;this si a secret note for you from a secret admirer.&#39;
+  Magazine : &amp;lsquo;puerto rico is a great place you must hike far from town to find a secret waterfall that i am an admirer of but note that it is not as hard it seems this my advice for you&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] LeetCode 812. Largest Triangle Area</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-08-07-leetcode_812_largest_triangle_area/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-08-07-leetcode_812_largest_triangle_area/</guid>
+      <description>You have a list of points in the plane. Return the area of the largest triangle that can be formed by any 3 of the points.
+ 비행기 좌표가 찍힌 목록이 있다. 임의의 3개의 점으로 그려질 수 있는 가장 큰 삼각형 면적을 반환해라.
+ Example: Input: points = [[0,0],[0,1],[1,0],[0,2],[2,0]] Output: 2 Explanation: The five points are show in the figure below. The red triangle is the largest. 다섯개 점의 그림은 아래와 같다.</description>
+    </item>
+    
+    <item>
+      <title>[Algorithms] Two Fer</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2018-08-14-algorithms_two_fer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2018-08-14-algorithms_two_fer/</guid>
+      <description>[Algorithms] Two Fer Introduction Two-fer or 2-fer is short for two for one. One for you and one for me.
+&amp;#34;One for X, one for me.&amp;#34; When X is a name or &amp;ldquo;you&amp;rdquo;.
+If the given name is &amp;ldquo;Alice&amp;rdquo;, the result should be &amp;ldquo;One for Alice, one for me.&amp;rdquo;
+If no name is given, the result should be &amp;ldquo;One for you, one for me.&amp;rdquo;
+Solutions 1var TwoFer = function () {}; 2 3TwoFer.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] Circular Queue</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/2019-06-09-circular_queue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/2019-06-09-circular_queue/</guid>
+      <description>python3로 Circular Queue 구현하기 __ init __() 먼저 데이터 구조의 초깃값을 정한다. Queue의 크기를 k로 두고, 값을 담을 수 있게 길이가 k인 리스트 queue_list 를 만든다.
+Queue에는 두개의 포인터가 필요하다. 한개는 Front를 가리켜야 하고, 다른 하나는 Back을 가리켜야 한다.
+1def __init__(self, k: int): 2 self.size = 0 # 처음 리스트의 길이 3 self.max_size = k # 리스트의 길이 4 self.queue_list = [0] * k # Queue를 담을 리스트 5 self.front = self.</description>
+    </item>
+    
+    <item>
+      <title>[Data Structure] Graph</title>
+      <link>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lifeisgouda.github.io/posts/algorithms/data_structure/2018-08-22-data_structure_graph/</guid>
+      <description>정의 네트워크 구조를 추상화한 모델. 간선(edge)으로 연결된 노드(node)의 집합이다.
+그래프에 대한 설명과 구현은 이 곳에 잘 나와있다.
+http://blog.benoitvallon.com/data-structures-in-javascript/the-graph-data-structure/
+그래프의 용어를 그림 하나로 정리해보면 아래와 같다.
+동적 그래프 자료구조는 인접리스트(adjacency list)로 표현 가능하다.
+위 그래프를 인접리스트로 나타낸 것이다.
+ A : B C D
+B : A E F
+C : A D G
+D : A C G H
+E : B I
+G : C D
+H : D</description>
+    </item>
+    
+  </channel>
+</rss>

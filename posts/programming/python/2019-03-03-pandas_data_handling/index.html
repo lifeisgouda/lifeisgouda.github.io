@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [python] Pandas를 이용한 데이터 전처리 1 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[python] Pandas를 이용한 데이터 전처리 1" />
+<meta property="og:description" content="특정 단어가 포함 되었는지 확인하기 1. contains를 이용한 매칭 1import pandas as pd 2word = pd.Series([&#39;과일&#39;, &#39;사과2개&#39;, &#39;사과2개, 배1개&#39;, &#39;배1개, 오렌지3개&#39;, &#39;배한개, 딸기두개&#39;]) 3word.str.contains(&#39;사과&#39;, regex=False) 4--------------------------- 50 False 61 True 72 True 83 False 94 False 10dtype: bool 두가지 단어 비교 1import pandas as pd 2word = pd.Series([&#39;과일&#39;, &#39;사과2개&#39;, &#39;사과2개, 배1개&#39;, &#39;배1개, 오렌지3개&#39;, &#39;배한개, 딸기두개&#39;]) 3word.str.contains(&#39;사과|배&#39;, regex = True) 4---------------------------- 50 False 61 True 72 True 83 True 94 True 10dtype: bool regex = True 로 설정해주어야 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[python] Pandas를 이용한 데이터 전처리 1"/>
+<meta name="twitter:description" content="특정 단어가 포함 되었는지 확인하기 1. contains를 이용한 매칭 1import pandas as pd 2word = pd.Series([&#39;과일&#39;, &#39;사과2개&#39;, &#39;사과2개, 배1개&#39;, &#39;배1개, 오렌지3개&#39;, &#39;배한개, 딸기두개&#39;]) 3word.str.contains(&#39;사과&#39;, regex=False) 4--------------------------- 50 False 61 True 72 True 83 False 94 False 10dtype: bool 두가지 단어 비교 1import pandas as pd 2word = pd.Series([&#39;과일&#39;, &#39;사과2개&#39;, &#39;사과2개, 배1개&#39;, &#39;배1개, 오렌지3개&#39;, &#39;배한개, 딸기두개&#39;]) 3word.str.contains(&#39;사과|배&#39;, regex = True) 4---------------------------- 50 False 61 True 72 True 83 True 94 True 10dtype: bool regex = True 로 설정해주어야 한다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/programming/python/2019-03-03-pandas_data_handling_2/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/python/django/2018-04-19-django/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&text=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&is_video=false&description=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&name=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201&description=%ed%8a%b9%ec%a0%95%20%eb%8b%a8%ec%96%b4%ea%b0%80%20%ed%8f%ac%ed%95%a8%20%eb%90%98%ec%97%88%eb%8a%94%ec%a7%80%20%ed%99%95%ec%9d%b8%ed%95%98%ea%b8%b0%201.%20contains%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%a7%a4%ec%b9%ad%201import%20pandas%20as%20pd%202word%20%3d%20pd.Series%28%5b%26%2339%3b%ea%b3%bc%ec%9d%bc%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%2c%20%eb%b0%b01%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b01%ea%b0%9c%2c%20%ec%98%a4%eb%a0%8c%ec%a7%803%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b0%ed%95%9c%ea%b0%9c%2c%20%eb%94%b8%ea%b8%b0%eb%91%90%ea%b0%9c%26%2339%3b%5d%29%203word.str.contains%28%26%2339%3b%ec%82%ac%ea%b3%bc%26%2339%3b%2c%20regex%3dFalse%29%204---------------------------%2050%20False%2061%20True%2072%20True%2083%20False%2094%20False%2010dtype%3a%20bool%20%eb%91%90%ea%b0%80%ec%a7%80%20%eb%8b%a8%ec%96%b4%20%eb%b9%84%ea%b5%90%201import%20pandas%20as%20pd%202word%20%3d%20pd.Series%28%5b%26%2339%3b%ea%b3%bc%ec%9d%bc%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%2c%20%eb%b0%b01%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b01%ea%b0%9c%2c%20%ec%98%a4%eb%a0%8c%ec%a7%803%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b0%ed%95%9c%ea%b0%9c%2c%20%eb%94%b8%ea%b8%b0%eb%91%90%ea%b0%9c%26%2339%3b%5d%29%203word.str.contains%28%26%2339%3b%ec%82%ac%ea%b3%bc%7c%eb%b0%b0%26%2339%3b%2c%20regex%20%3d%20True%29%204----------------------------%2050%20False%2061%20True%2072%20True%2083%20True%2094%20True%2010dtype%3a%20bool%20regex%20%3d%20True%20%eb%a1%9c%20%ec%84%a4%ec%a0%95%ed%95%b4%ec%a3%bc%ec%96%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&t=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#특정-단어가-포함-되었는지-확인하기">특정 단어가 포함 되었는지 확인하기</a>
+      <ul>
+        <li><a href="#1-contains를-이용한-매칭">1. <code>contains</code>를 이용한 매칭</a>
+          <ul>
+            <li><a href="#두가지-단어-비교">두가지 단어 비교</a></li>
+            <li><a href="#숫자가-들어간-것-찾기">숫자가 들어간 것 찾기</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-research-or--rematch-이용">2. <code>re.search</code> or  <code>re.match</code> 이용</a>
+          <ul>
+            <li><a href="#research-이용"><code>re.search</code> 이용</a></li>
+            <li><a href="#rematch-이용"><code>re.match</code> 이용</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [python] Pandas를 이용한 데이터 전처리 1
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          10 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="특정-단어가-포함-되었는지-확인하기">특정 단어가 포함 되었는지 확인하기</h2>
+<h3 id="1-contains를-이용한-매칭">1. <code>contains</code>를 이용한 매칭</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>word <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>Series([<span style="color:#f1fa8c">&#39;과일&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개, 배1개&#39;</span>, <span style="color:#f1fa8c">&#39;배1개, 오렌지3개&#39;</span>, <span style="color:#f1fa8c">&#39;배한개, 딸기두개&#39;</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>word<span style="color:#ff79c6">.</span>str<span style="color:#ff79c6">.</span>contains(<span style="color:#f1fa8c">&#39;사과&#39;</span>, regex<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">---------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#bd93f9">0</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#bd93f9">1</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#bd93f9">2</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#bd93f9">3</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#bd93f9">4</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>dtype: <span style="color:#8be9fd;font-style:italic">bool</span>
+</span></span></code></pre></div><h4 id="두가지-단어-비교">두가지 단어 비교</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>word <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>Series([<span style="color:#f1fa8c">&#39;과일&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개, 배1개&#39;</span>, <span style="color:#f1fa8c">&#39;배1개, 오렌지3개&#39;</span>, <span style="color:#f1fa8c">&#39;배한개, 딸기두개&#39;</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>word<span style="color:#ff79c6">.</span>str<span style="color:#ff79c6">.</span>contains(<span style="color:#f1fa8c">&#39;사과|배&#39;</span>, regex <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">----------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#bd93f9">0</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#bd93f9">1</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#bd93f9">2</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#bd93f9">3</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#bd93f9">4</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>dtype: <span style="color:#8be9fd;font-style:italic">bool</span>
+</span></span></code></pre></div><p><code>regex = True</code> 로 설정해주어야 한다. <code>False</code> 로 설정할 경우 정규표현식이 작동하지 않아서 False를 반환한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4"># regex = False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>word <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>Series([<span style="color:#f1fa8c">&#39;과일&#39;</span>, <span style="color:#f1fa8c">&#39;사과|배&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개, 배1개&#39;</span>, <span style="color:#f1fa8c">&#39;배1개, 오렌지3개&#39;</span>, <span style="color:#f1fa8c">&#39;배한개, 딸기두개&#39;</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>word<span style="color:#ff79c6">.</span>str<span style="color:#ff79c6">.</span>contains(<span style="color:#f1fa8c">&#39;사과|배&#39;</span>, regex<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">----------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#bd93f9">0</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#bd93f9">1</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#bd93f9">2</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#bd93f9">3</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#bd93f9">4</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#bd93f9">5</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>dtype: <span style="color:#8be9fd;font-style:italic">bool</span>
+</span></span></code></pre></div><h4 id="숫자가-들어간-것-찾기">숫자가 들어간 것 찾기</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>word <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>Series([<span style="color:#f1fa8c">&#39;과일&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개&#39;</span>, <span style="color:#f1fa8c">&#39;사과2개, 배1개&#39;</span>, <span style="color:#f1fa8c">&#39;배1개, 오렌지3개&#39;</span>, <span style="color:#f1fa8c">&#39;배한개, 딸기두개&#39;</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>word<span style="color:#ff79c6">.</span>str<span style="color:#ff79c6">.</span>contains(<span style="color:#f1fa8c">&#39;\d&#39;</span>, regex<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">----------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#bd93f9">0</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#bd93f9">1</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#bd93f9">2</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#bd93f9">3</span>     <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#bd93f9">4</span>    <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>dtype: <span style="color:#8be9fd;font-style:italic">bool</span>
+</span></span></code></pre></div><h3 id="2-research-or--rematch-이용">2. <code>re.search</code> or  <code>re.match</code> 이용</h3>
+<h4 id="research-이용"><code>re.search</code> 이용</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> re
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>compile_val <span style="color:#ff79c6">=</span> re<span style="color:#ff79c6">.</span>compile(<span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;라이언|무지|콘&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>text <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;라이언과 무지는 친구이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>       <span style="color:#f1fa8c">&#39;라이언과 콘도 친구이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>       <span style="color:#f1fa8c">&#39;프로도와 네오는 연인이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>       <span style="color:#f1fa8c">&#39;콘은 크로코다일과 콩알이 조합한 이름이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>       <span style="color:#f1fa8c">&#39;무지는 토끼옷 입은 단무지이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>       <span style="color:#f1fa8c">&#39;튜브는 소심한 오리이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>       <span style="color:#f1fa8c">&#39;어피치는 유전자 변형으로 자웅동주가 된 것을 알고 복숭아 나무에서 탈출하였다.&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> text:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#ff79c6">if</span> compile_val<span style="color:#ff79c6">.</span>search(i):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(i)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;FALSE&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#ff79c6">---------------------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>라이언과 무지는 친구이다<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>라이언과 콘도 친구이다<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>콘은 크로코다일과 콩알이 조합한 이름이다<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>무지는 토끼옷 입은 단무지이다<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>FALSE
+</span></span></code></pre></div><ul>
+<li>
+<p>if문에 직접 정규표현식을 넣으면 <strong>매번 새로 compile 되므로</strong> 변수에 할당해준 후 for문을 순환하는 것이 속도가 빠르다.</p>
+<p>0.0002초 밖에 안난다고 생각할 수 있지만, 정규식이 복잡해지고, 데이터가 수십만 건으로 늘어나서 for문 순환하게 되면 실행시간의 차이가 크다.</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4"># 정규표현식 컴파일을 변수에 할당한 후 for문 실행</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> time
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>start <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4">#------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">import</span> re
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>compile_val <span style="color:#ff79c6">=</span> re<span style="color:#ff79c6">.</span>compile(<span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;라이언|무지|콘&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>text <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;라이언과 무지는 친구이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>       <span style="color:#f1fa8c">&#39;라이언과 콘도 친구이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>       <span style="color:#f1fa8c">&#39;프로도와 네오는 연인이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>       <span style="color:#f1fa8c">&#39;콘은 크로코다일과 콩알이 조합한 이름이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>       <span style="color:#f1fa8c">&#39;무지는 토끼옷 입은 단무지이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>       <span style="color:#f1fa8c">&#39;튜브는 소심한 오리이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>       <span style="color:#f1fa8c">&#39;어피치는 유전자 변형으로 자웅동주가 된 것을 알고 복숭아 나무에서 탈출하였다.&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> text:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#ff79c6">if</span> compile_val<span style="color:#ff79c6">.</span>search(i):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(i)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;FALSE&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#6272a4">#------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>end <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>elapsed <span style="color:#ff79c6">=</span> end <span style="color:#ff79c6">-</span> start
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#8be9fd;font-style:italic">print</span>(elapsed)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#6272a4">#------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#bd93f9">0.0005469322204589844</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4"># 정규표현식 for문에 넣고 실행</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> time
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>start <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4">#------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">import</span> re
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>text <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;라이언과 무지는 친구이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>       <span style="color:#f1fa8c">&#39;라이언과 콘도 친구이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>       <span style="color:#f1fa8c">&#39;프로도와 네오는 연인이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>       <span style="color:#f1fa8c">&#39;콘은 크로코다일과 콩알이 조합한 이름이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>       <span style="color:#f1fa8c">&#39;무지는 토끼옷 입은 단무지이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>       <span style="color:#f1fa8c">&#39;튜브는 소심한 오리이다.&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>       <span style="color:#f1fa8c">&#39;어피치는 유전자 변형으로 자웅동주가 된 것을 알고 복숭아 나무에서 탈출하였다.&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> text:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#ff79c6">if</span> re<span style="color:#ff79c6">.</span>compile(<span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;라이언|무지|콘&#39;</span>)<span style="color:#ff79c6">.</span>search(i):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(i)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;FALSE&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#6272a4">#------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>end <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>elapsed <span style="color:#ff79c6">=</span> end <span style="color:#ff79c6">-</span> start
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#8be9fd;font-style:italic">print</span>(elapsed)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#6272a4">#------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#bd93f9">0.0007700920104980469</span>
+</span></span></code></pre></div><h4 id="rematch-이용"><code>re.match</code> 이용</h4>
+<p><code>re.search</code> 는 포함관계에 있으면 True를 반환한다.</p>
+<p><code>re.match</code> 는 공백 기준으로 완벽하게 일치해야 True를 반환한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> re
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>compile_val <span style="color:#ff79c6">=</span> re<span style="color:#ff79c6">.</span>compile(<span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;라이언|무지|콘&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>text <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;라이언&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#f1fa8c">&#39;라이어&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#f1fa8c">&#39;모지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#f1fa8c">&#39;무지는 무지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#f1fa8c">&#39;라무지언&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>       <span style="color:#f1fa8c">&#39;라이언 무지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>       <span style="color:#f1fa8c">&#39;라이언무지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>       <span style="color:#f1fa8c">&#39;콘 무지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>       <span style="color:#f1fa8c">&#39;라이언무지콘&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>       <span style="color:#f1fa8c">&#39;라이언콘무지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>       <span style="color:#f1fa8c">&#39;라이언 콘 무지&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>       <span style="color:#f1fa8c">&#39;어피치 프로도&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>       <span style="color:#f1fa8c">&#39;제이지 라이&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>       <span style="color:#f1fa8c">&#39;어피치 네오&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> text:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#ff79c6">if</span> compile_val<span style="color:#ff79c6">.</span>match(i):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(i)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;FALSE&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#ff79c6">----------------------------------</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>라이언
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>무지는 무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>라이언무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>콘 무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>라이언무지콘
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>라이언콘무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>라이언 콘 무지
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>FALSE
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>FALSE
+</span></span></code></pre></div><ul>
+<li><code>라무지언</code> 의 경우 <code>무지</code>, <code>라이언</code> 과 정확하게 일치 하지 않으므로 FALSE가 반환된다. 앞에서 부터 매칭 시키기 때문에 중간에 <code>무지</code> 가 있어도 FALSE가 반환되는 것이다.</li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#특정-단어가-포함-되었는지-확인하기">특정 단어가 포함 되었는지 확인하기</a>
+      <ul>
+        <li><a href="#1-contains를-이용한-매칭">1. <code>contains</code>를 이용한 매칭</a>
+          <ul>
+            <li><a href="#두가지-단어-비교">두가지 단어 비교</a></li>
+            <li><a href="#숫자가-들어간-것-찾기">숫자가 들어간 것 찾기</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-research-or--rematch-이용">2. <code>re.search</code> or  <code>re.match</code> 이용</a>
+          <ul>
+            <li><a href="#research-이용"><code>re.search</code> 이용</a></li>
+            <li><a href="#rematch-이용"><code>re.match</code> 이용</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&text=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&is_video=false&description=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&title=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&name=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201&description=%ed%8a%b9%ec%a0%95%20%eb%8b%a8%ec%96%b4%ea%b0%80%20%ed%8f%ac%ed%95%a8%20%eb%90%98%ec%97%88%eb%8a%94%ec%a7%80%20%ed%99%95%ec%9d%b8%ed%95%98%ea%b8%b0%201.%20contains%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%a7%a4%ec%b9%ad%201import%20pandas%20as%20pd%202word%20%3d%20pd.Series%28%5b%26%2339%3b%ea%b3%bc%ec%9d%bc%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%2c%20%eb%b0%b01%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b01%ea%b0%9c%2c%20%ec%98%a4%eb%a0%8c%ec%a7%803%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b0%ed%95%9c%ea%b0%9c%2c%20%eb%94%b8%ea%b8%b0%eb%91%90%ea%b0%9c%26%2339%3b%5d%29%203word.str.contains%28%26%2339%3b%ec%82%ac%ea%b3%bc%26%2339%3b%2c%20regex%3dFalse%29%204---------------------------%2050%20False%2061%20True%2072%20True%2083%20False%2094%20False%2010dtype%3a%20bool%20%eb%91%90%ea%b0%80%ec%a7%80%20%eb%8b%a8%ec%96%b4%20%eb%b9%84%ea%b5%90%201import%20pandas%20as%20pd%202word%20%3d%20pd.Series%28%5b%26%2339%3b%ea%b3%bc%ec%9d%bc%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%ec%82%ac%ea%b3%bc2%ea%b0%9c%2c%20%eb%b0%b01%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b01%ea%b0%9c%2c%20%ec%98%a4%eb%a0%8c%ec%a7%803%ea%b0%9c%26%2339%3b%2c%20%26%2339%3b%eb%b0%b0%ed%95%9c%ea%b0%9c%2c%20%eb%94%b8%ea%b8%b0%eb%91%90%ea%b0%9c%26%2339%3b%5d%29%203word.str.contains%28%26%2339%3b%ec%82%ac%ea%b3%bc%7c%eb%b0%b0%26%2339%3b%2c%20regex%20%3d%20True%29%204----------------------------%2050%20False%2061%20True%2072%20True%2083%20True%2094%20True%2010dtype%3a%20bool%20regex%20%3d%20True%20%eb%a1%9c%20%ec%84%a4%ec%a0%95%ed%95%b4%ec%a3%bc%ec%96%b4%ec%95%bc%20%ed%95%9c%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fprogramming%2fpython%2f2019-03-03-pandas_data_handling%2f&t=%5bpython%5d%20Pandas%eb%a5%bc%20%ec%9d%b4%ec%9a%a9%ed%95%9c%20%eb%8d%b0%ec%9d%b4%ed%84%b0%20%ec%a0%84%ec%b2%98%eb%a6%ac%201" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

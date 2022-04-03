@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> [Algorithms] LeetCode 812. Largest Triangle Area | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/algorithms/2018-08-07-leetcode_812_largest_triangle_area/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="[Algorithms] LeetCode 812. Largest Triangle Area" />
+<meta property="og:description" content="You have a list of points in the plane. Return the area of the largest triangle that can be formed by any 3 of the points.
+ 비행기 좌표가 찍힌 목록이 있다. 임의의 3개의 점으로 그려질 수 있는 가장 큰 삼각형 면적을 반환해라.
+ Example: Input: points = [[0,0],[0,1],[1,0],[0,2],[2,0]] Output: 2 Explanation: The five points are show in the figure below. The red triangle is the largest. 다섯개 점의 그림은 아래와 같다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/algorithms/2018-08-07-leetcode_812_largest_triangle_area/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithms] LeetCode 812. Largest Triangle Area"/>
+<meta name="twitter:description" content="You have a list of points in the plane. Return the area of the largest triangle that can be formed by any 3 of the points.
+ 비행기 좌표가 찍힌 목록이 있다. 임의의 3개의 점으로 그려질 수 있는 가장 큰 삼각형 면적을 반환해라.
+ Example: Input: points = [[0,0],[0,1],[1,0],[0,2],[2,0]] Output: 2 Explanation: The five points are show in the figure below. The red triangle is the largest. 다섯개 점의 그림은 아래와 같다."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/algorithms/2018-09-10-programmers_2016/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/algorithms/2018-08-21-leetcode_189_rotate-array/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&text=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&title=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&is_video=false&description=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&title=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&title=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&name=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area&description=You%20have%20a%20list%20of%20points%20in%20the%20plane.%20Return%20the%20area%20of%20the%20largest%20triangle%20that%20can%20be%20formed%20by%20any%203%20of%20the%20points.%0a%20%eb%b9%84%ed%96%89%ea%b8%b0%20%ec%a2%8c%ed%91%9c%ea%b0%80%20%ec%b0%8d%ed%9e%8c%20%eb%aa%a9%eb%a1%9d%ec%9d%b4%20%ec%9e%88%eb%8b%a4.%20%ec%9e%84%ec%9d%98%ec%9d%98%203%ea%b0%9c%ec%9d%98%20%ec%a0%90%ec%9c%bc%eb%a1%9c%20%ea%b7%b8%eb%a0%a4%ec%a7%88%20%ec%88%98%20%ec%9e%88%eb%8a%94%20%ea%b0%80%ec%9e%a5%20%ed%81%b0%20%ec%82%bc%ea%b0%81%ed%98%95%20%eb%a9%b4%ec%a0%81%ec%9d%84%20%eb%b0%98%ed%99%98%ed%95%b4%eb%9d%bc.%0a%20Example%3a%20Input%3a%20points%20%3d%20%5b%5b0%2c0%5d%2c%5b0%2c1%5d%2c%5b1%2c0%5d%2c%5b0%2c2%5d%2c%5b2%2c0%5d%5d%20Output%3a%202%20Explanation%3a%20The%20five%20points%20are%20show%20in%20the%20figure%20below.%20The%20red%20triangle%20is%20the%20largest.%20%eb%8b%a4%ec%84%af%ea%b0%9c%20%ec%a0%90%ec%9d%98%20%ea%b7%b8%eb%a6%bc%ec%9d%80%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&t=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</a></li>
+    <li><a href="#soultion--javascript">Soultion : Javascript</a>
+      <ul>
+        <li><a href="#최종-코드">최종 코드</a></li>
+        <li><a href="#출력-결과-">출력 결과 :</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        [Algorithms] LeetCode 812. Largest Triangle Area
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          8 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/algorithms" rel="tag">algorithms</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>You have a list of points in the plane. Return the area of the largest triangle that can be formed by any 3 of the points.</p>
+<blockquote>
+<p>비행기 좌표가 찍힌 목록이 있다. 임의의 3개의 점으로 그려질 수 있는 가장 큰 삼각형 면적을 반환해라.</p>
+</blockquote>
+<pre tabindex="0"><code>Example:
+Input: points = [[0,0],[0,1],[1,0],[0,2],[2,0]]
+Output: 2
+Explanation: 
+The five points are show in the figure below. The red triangle is the largest.
+다섯개 점의 그림은 아래와 같다. 빨간색 삼각형이 가장 크다.
+</code></pre><p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/04/1027.png" alt="img"></p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><code>3 &lt;= points.length &lt;= 50</code>.</li>
+<li>No points will be duplicated.</li>
+<li><code>-50 &lt;= points[i][j] &lt;= 50</code>.</li>
+<li>Answers within <code>10^-6</code> of the true value will be accepted as correct.</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</h2>
+<p><strong>Intuition</strong></p>
+<p>For each possible triangle, check it&rsquo;s area and keep the area of the largest.</p>
+<blockquote>
+<p>각각 가능한 삼각형 영역에 대해 면적을 확인하고 가장 큰 면적을 유지한다.</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<p><strong>Algorithm</strong></p>
+<p>We will have 3 for loops to cycle through each choice of 3 points in the array.</p>
+<blockquote>
+<p>배열의 3개의 점에서 각각의 선택을 순환하기 위해 for 루프 3개를 갖게 된다.</p>
+</blockquote>
+<p>After, we&rsquo;ll need a function to calculate the area given 3 points. Here we have some options:</p>
+<blockquote>
+<p>이후, 주어진 3점의 면적을 계산하는 함수가 필요하다. 여기에 몇 가지 옵션이 있다.</p>
+</blockquote>
+<ul>
+<li>
+<p>We can use the Shoelace formula directly, which tells us the area given the 3 points;</p>
+<blockquote>
+<p><code>신발끈 수식</code>을 직접 사용할 수 있다.이 수식은 세 점이 주어진 영역을 알려준다.</p>
+</blockquote>
+</li>
+<li>
+<p>We can use Heron&rsquo;s formula, which requires the 3 side lengths which we can get by taking the distance of two points;</p>
+<blockquote>
+<p><code>헤론의 공식</code> 을 사용할 수 있다. 헤론의 공식은 두 점의 거리를 취하여 얻을 수 있는 3면의 길이가 필요하다.</p>
+</blockquote>
+</li>
+<li>
+<p>We can use the formula <code>area = 0.5 * a * b * sin(C)</code> and calculate the angle <code>C</code> with trigonometry.</p>
+<blockquote>
+<p>공식 <code>area = 0.5 * a * b * sin (C)</code>를 사용하여 삼각법으로 각도 C를 계산할 수 있다.</p>
+</blockquote>
+</li>
+</ul>
+<p>Our implementation illustrates the use of the shoelace formula.</p>
+<blockquote>
+<p>우리의 구현은 신발 끈 수식을 사용한다.</p>
+</blockquote>
+<p>If we did not know the shoelace formula, we could derive it for triangles with the following approach:</p>
+<blockquote>
+<p>신발 끈 수식을 모른다면 다음과 같은 방법으로 삼각형을 도출 할 수 있다.</p>
+</blockquote>
+<p>starting with points <code>(px, py), (qx, qy), (rx, ry)</code>, the area of this triangle is the same under a translation by <code>(-rx, -ry)</code>, so that the points become <code>(px-rx, py-ry), (qx-rx, qy-ry), (0, 0)</code>.</p>
+<blockquote>
+<p>점 <code>(px, py), (qx, qy), (rx, ry)</code> 로 시작하면이 삼각형의 면적은 <code>(-rx, -ry)</code> 에 의한 변환에서 동일하므로 점이 <code>(px-rx , py-ry), (qx-rx, qy-ry), (0, 0)</code> 이다.</p>
+</blockquote>
+<p>From there, we could draw a square around the triangle with sides touching the coordinate axes, and calculate the area of the square minus the area of the right triangles surrounding the inner triangle.</p>
+<blockquote>
+<p>거기에서 우리는 좌표축을 만지는면이있는 삼각형 주위를 사각형으로 그릴 수 있고, 사각형의 면적에서 내부 삼각형을 둘러싼 직사각형의 면적을 뺀 값을 계산할 수 있다.</p>
+</blockquote>
+<p>For more on this approach, see the <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Wikipedia entry for the Shoelace formula</a>.</p>
+<blockquote>
+<p>이 접근에 대한 자세한 내용은 신발 끈 수식에 대한 Wikipedia 항목을 참조.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">largestTriangleArea</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">[][]</span> points<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#8be9fd">int</span> N <span style="color:#ff79c6">=</span> points<span style="color:#ff79c6">.</span><span style="color:#50fa7b">length</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        <span style="color:#8be9fd">double</span> ans <span style="color:#ff79c6">=</span> 0<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0<span style="color:#ff79c6">;</span> i <span style="color:#ff79c6">&lt;</span> N<span style="color:#ff79c6">;</span> <span style="color:#ff79c6">++</span>i<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> i<span style="color:#ff79c6">+</span>1<span style="color:#ff79c6">;</span> j <span style="color:#ff79c6">&lt;</span> N<span style="color:#ff79c6">;</span> <span style="color:#ff79c6">++</span>j<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> k <span style="color:#ff79c6">=</span> j<span style="color:#ff79c6">+</span>1<span style="color:#ff79c6">;</span> k <span style="color:#ff79c6">&lt;</span> N<span style="color:#ff79c6">;</span> <span style="color:#ff79c6">++</span>k<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                    ans <span style="color:#ff79c6">=</span> Math<span style="color:#ff79c6">.</span><span style="color:#50fa7b">max</span><span style="color:#ff79c6">(</span>ans<span style="color:#ff79c6">,</span> area<span style="color:#ff79c6">(</span>points<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">],</span> points<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">],</span> points<span style="color:#ff79c6">[</span>k<span style="color:#ff79c6">]));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#ff79c6">return</span> ans<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">area</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> P<span style="color:#ff79c6">,</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> Q<span style="color:#ff79c6">,</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> R<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        <span style="color:#ff79c6">return</span> 0<span style="color:#ff79c6">.</span><span style="color:#50fa7b">5</span> <span style="color:#ff79c6">*</span> Math<span style="color:#ff79c6">.</span><span style="color:#50fa7b">abs</span><span style="color:#ff79c6">(</span>P<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]*</span>Q<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+</span> Q<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]*</span>R<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+</span> R<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]*</span>P<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>                             <span style="color:#ff79c6">-</span>P<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]*</span>Q<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">-</span> Q<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]*</span>R<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">-</span> R<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]*</span>P<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">largestTriangleArea</span>(self, points):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">area</span>(p, q, r):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">.5</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">abs</span>(p[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>q[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">+</span>q[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>r[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">+</span>r[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p[<span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>                           <span style="color:#ff79c6">-</span>p[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">*</span>q[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">-</span>q[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">*</span>r[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">-</span>r[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">*</span>p[<span style="color:#bd93f9">0</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>        <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">max</span>(area(<span style="color:#ff79c6">*</span>triangle)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>            <span style="color:#ff79c6">for</span> triangle <span style="color:#ff79c6">in</span> itertools<span style="color:#ff79c6">.</span>combinations(points, <span style="color:#bd93f9">3</span>))
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: O(N^3), where N is the length of <code>points</code>. We use three for-loops of length O(N), and our work calculating the area of a single triangle is O(1).</li>
+<li>Space Complexity: O(1).</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="soultion--javascript">Soultion : Javascript</h2>
+<p>Leetcode의 Solution에 소개된 <strong>신발 끈 이론</strong>을 이용해서 풀었다.</p>
+<p>입력값이 <code>let points = [[0,0],[0,1],[1,0]];</code> 라고 가정하고 풀어본다.</p>
+<!-- raw HTML omitted -->
+<p>다중 for문을 3중으로 넣어서 모든 배열을 순회하게 할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p1 <span style="color:#ff79c6">of</span> points){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p2 <span style="color:#ff79c6">of</span> points){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p3 <span style="color:#ff79c6">of</span> points){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>신발끈 공식은 삼각형의 넓이를 구할 때 쓰는 공식인데 아래와 같이 함수로 만들 수 있다.</p>
+<!-- raw HTML omitted -->
+<p>공식에서 <code>x1 = p1[0]</code>, <code>x2 = p2[0]</code>, <code>x3 = p3[0]</code>, <code> y1 = p1[1]</code>, <code>y2 = p2[1]</code>, <code>y3 = p3[1] </code> 가 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> shoelace <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(p1, p2, p3) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0.5</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">Math</span>.abs(p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>면적은 공식의 결과 값과 앞에 area에 저장된 앞의 넓이 값 중에 큰 값이 면적으로 남는다. 면적의 초깃값은 0으로 설정해둔다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">let</span> area <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>area <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.max(area, shoelace(p1, p2, p3));
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="최종-코드">최종 코드</h3>
+<p>위 내용을 정리하면 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">let</span> points <span style="color:#ff79c6">=</span> [[<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">0</span>],[<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">1</span>],[<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">0</span>]];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#8be9fd;font-style:italic">var</span> largestTriangleArea <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(points) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> area <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p1 <span style="color:#ff79c6">of</span> points){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p2 <span style="color:#ff79c6">of</span> points){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p3 <span style="color:#ff79c6">of</span> points){
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                area <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.max(area, shoelace(p1, p2, p3));
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#ff79c6">return</span> area;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#8be9fd;font-style:italic">let</span> shoelace <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(p1, p2, p3) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0.5</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">Math</span>.abs(p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>}
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p>중간 결과를 콘솔로그로 출력해보면 이해하기 쉽다.</p>
+<p>코드 중간에 출력을 위해 아래 내용을 입력하여 연산되는 값을 확인해본다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>console.log(<span style="color:#f1fa8c">`p1[0]:</span><span style="color:#f1fa8c">${</span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p1[1]:</span><span style="color:#f1fa8c">${</span>p1[<span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p2[0]:</span><span style="color:#f1fa8c">${</span>p2[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p2[1]:</span><span style="color:#f1fa8c">${</span>p2[<span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p3[0]:</span><span style="color:#f1fa8c">${</span>p3[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p3[1]:</span><span style="color:#f1fa8c">${</span>p3[<span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>console.log(<span style="color:#bd93f9">0.5</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">Math</span>.abs(p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>])
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">let</span> points <span style="color:#ff79c6">=</span> [[<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">0</span>],[<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">1</span>],[<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">0</span>]];
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#8be9fd;font-style:italic">var</span> largestTriangleArea <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(points) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#8be9fd;font-style:italic">let</span> res <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p1 <span style="color:#ff79c6">of</span> points)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p2 <span style="color:#ff79c6">of</span> points)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> p3 <span style="color:#ff79c6">of</span> points)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>                res <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.max(res, help(p1, p2, p3));
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#8be9fd;font-style:italic">var</span> help <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(p1, p2, p3) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    console.log(<span style="color:#f1fa8c">`p1[0]:</span><span style="color:#f1fa8c">${</span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p1[1]:</span><span style="color:#f1fa8c">${</span>p1[<span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p2[0]:</span><span style="color:#f1fa8c">${</span>p2[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p2[1]:</span><span style="color:#f1fa8c">${</span>p2[<span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p3[0]:</span><span style="color:#f1fa8c">${</span>p3[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, p3[1]:</span><span style="color:#f1fa8c">${</span>p3[<span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    console.log(<span style="color:#bd93f9">0.5</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">Math</span>.abs(p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0.5</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">Math</span>.abs(p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p1[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p2[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">*</span>p3[<span style="color:#bd93f9">1</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>largestTriangleArea(points);
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="출력-결과-">출력 결과 :</h3>
+<p>for문이 순회하는 것과 각 값이 얼마가 대입되었는지, 면적이 얼마가 구해졌는지 알 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#bd93f9">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#bd93f9">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#bd93f9">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span><span style="color:#bd93f9">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span><span style="color:#bd93f9">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span><span style="color:#bd93f9">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>p1[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p1[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p2[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p2[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>, p3[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>, p3[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span><span><span style="color:#bd93f9">0</span>
+</span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</a></li>
+    <li><a href="#soultion--javascript">Soultion : Javascript</a>
+      <ul>
+        <li><a href="#최종-코드">최종 코드</a></li>
+        <li><a href="#출력-결과-">출력 결과 :</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&text=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&title=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&is_video=false&description=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&title=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&title=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&name=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area&description=You%20have%20a%20list%20of%20points%20in%20the%20plane.%20Return%20the%20area%20of%20the%20largest%20triangle%20that%20can%20be%20formed%20by%20any%203%20of%20the%20points.%0a%20%eb%b9%84%ed%96%89%ea%b8%b0%20%ec%a2%8c%ed%91%9c%ea%b0%80%20%ec%b0%8d%ed%9e%8c%20%eb%aa%a9%eb%a1%9d%ec%9d%b4%20%ec%9e%88%eb%8b%a4.%20%ec%9e%84%ec%9d%98%ec%9d%98%203%ea%b0%9c%ec%9d%98%20%ec%a0%90%ec%9c%bc%eb%a1%9c%20%ea%b7%b8%eb%a0%a4%ec%a7%88%20%ec%88%98%20%ec%9e%88%eb%8a%94%20%ea%b0%80%ec%9e%a5%20%ed%81%b0%20%ec%82%bc%ea%b0%81%ed%98%95%20%eb%a9%b4%ec%a0%81%ec%9d%84%20%eb%b0%98%ed%99%98%ed%95%b4%eb%9d%bc.%0a%20Example%3a%20Input%3a%20points%20%3d%20%5b%5b0%2c0%5d%2c%5b0%2c1%5d%2c%5b1%2c0%5d%2c%5b0%2c2%5d%2c%5b2%2c0%5d%5d%20Output%3a%202%20Explanation%3a%20The%20five%20points%20are%20show%20in%20the%20figure%20below.%20The%20red%20triangle%20is%20the%20largest.%20%eb%8b%a4%ec%84%af%ea%b0%9c%20%ec%a0%90%ec%9d%98%20%ea%b7%b8%eb%a6%bc%ec%9d%80%20%ec%95%84%eb%9e%98%ec%99%80%20%ea%b0%99%eb%8b%a4." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2falgorithms%2f2018-08-07-leetcode_812_largest_triangle_area%2f&t=%5bAlgorithms%5d%20LeetCode%20812.%20Largest%20Triangle%20Area" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

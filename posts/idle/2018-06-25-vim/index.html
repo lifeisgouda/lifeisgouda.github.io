@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> vim을 유용하게 사용하기 위한 설정 | Fourier Dev</title>
+  <link rel = 'canonical' href = 'https://lifeisgouda.github.io/posts/idle/2018-06-25-vim/'>
+  <meta name="description" content="데이터">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="vim을 유용하게 사용하기 위한 설정" />
+<meta property="og:description" content="vim 설정에 도움받은 사이트  https://bluesh55.github.io/2016/10/09/vim-ide/ https://agvim.wordpress.com/2017/09/05/vim-plugins-50/  내가 사용중인 .vimrc 처음 vim 설정을 해본 결과 하나씩 익숙해치면서 각자 상황에 맞게 추가해 나가는 것이 답이라고 본다.
+1set nocompatible &#34; be iMproved, required 2filetype off &#34; required 3 4&#34; set the runtime path to include Vundle and initialize 5set rtp&#43;=~/.vim/bundle/Vundle.vim 6call vundle#begin() 78&#34; let Vundle manage Vundle, required 9Plugin &#39;VundleVim/Vundle.vim&#39; 10Plugin &#39;vim-airline/vim-airline&#39; 11Plugin &#39;scrooloose/nerdtree&#39; 12Plugin &#39;vim-airline/vim-airline&#39; 13Plugin &#34;airblade/vim-gitgutter&#34; 14Plugin &#39;tpope/vim-fugitive&#39; 15Plugin &#34;scrooloose/syntastic&#34; 16Plugin &#34;ctrpvim/ctrlp." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lifeisgouda.github.io/posts/idle/2018-06-25-vim/" /><meta property="article:section" content="posts" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vim을 유용하게 사용하기 위한 설정"/>
+<meta name="twitter:description" content="vim 설정에 도움받은 사이트  https://bluesh55.github.io/2016/10/09/vim-ide/ https://agvim.wordpress.com/2017/09/05/vim-plugins-50/  내가 사용중인 .vimrc 처음 vim 설정을 해본 결과 하나씩 익숙해치면서 각자 상황에 맞게 추가해 나가는 것이 답이라고 본다.
+1set nocompatible &#34; be iMproved, required 2filetype off &#34; required 3 4&#34; set the runtime path to include Vundle and initialize 5set rtp&#43;=~/.vim/bundle/Vundle.vim 6call vundle#begin() 78&#34; let Vundle manage Vundle, required 9Plugin &#39;VundleVim/Vundle.vim&#39; 10Plugin &#39;vim-airline/vim-airline&#39; 11Plugin &#39;scrooloose/nerdtree&#39; 12Plugin &#39;vim-airline/vim-airline&#39; 13Plugin &#34;airblade/vim-gitgutter&#34; 14Plugin &#39;tpope/vim-fugitive&#39; 15Plugin &#34;scrooloose/syntastic&#34; 16Plugin &#34;ctrpvim/ctrlp."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://lifeisgouda.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://lifeisgouda.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://lifeisgouda.github.io/posts/idle/2019-02-24-personal_wiki/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://lifeisgouda.github.io/posts/programming/python/django/2018-04-22-python_django_day9/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&text=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&title=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&is_video=false&description=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&title=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&title=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&name=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95&description=vim%20%ec%84%a4%ec%a0%95%ec%97%90%20%eb%8f%84%ec%9b%80%eb%b0%9b%ec%9d%80%20%ec%82%ac%ec%9d%b4%ed%8a%b8%20%20https%3a%2f%2fbluesh55.github.io%2f2016%2f10%2f09%2fvim-ide%2f%20https%3a%2f%2fagvim.wordpress.com%2f2017%2f09%2f05%2fvim-plugins-50%2f%20%20%eb%82%b4%ea%b0%80%20%ec%82%ac%ec%9a%a9%ec%a4%91%ec%9d%b8%20.vimrc%20%ec%b2%98%ec%9d%8c%20vim%20%ec%84%a4%ec%a0%95%ec%9d%84%20%ed%95%b4%eb%b3%b8%20%ea%b2%b0%ea%b3%bc%20%ed%95%98%eb%82%98%ec%94%a9%20%ec%9d%b5%ec%88%99%ed%95%b4%ec%b9%98%eb%a9%b4%ec%84%9c%20%ea%b0%81%ec%9e%90%20%ec%83%81%ed%99%a9%ec%97%90%20%eb%a7%9e%ea%b2%8c%20%ec%b6%94%ea%b0%80%ed%95%b4%20%eb%82%98%ea%b0%80%eb%8a%94%20%ea%b2%83%ec%9d%b4%20%eb%8b%b5%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%eb%b3%b8%eb%8b%a4.%0a1set%20nocompatible%20%26%2334%3b%20be%20iMproved%2c%20required%202filetype%20off%20%26%2334%3b%20required%203%204%26%2334%3b%20set%20the%20runtime%20path%20to%20include%20Vundle%20and%20initialize%205set%20rtp%2b%3d~%2f.vim%2fbundle%2fVundle.vim%206call%20vundle%23begin%28%29%2078%26%2334%3b%20let%20Vundle%20manage%20Vundle%2c%20required%209Plugin%20%26%2339%3bVundleVim%2fVundle.vim%26%2339%3b%2010Plugin%20%26%2339%3bvim-airline%2fvim-airline%26%2339%3b%2011Plugin%20%26%2339%3bscrooloose%2fnerdtree%26%2339%3b%2012Plugin%20%26%2339%3bvim-airline%2fvim-airline%26%2339%3b%2013Plugin%20%26%2334%3bairblade%2fvim-gitgutter%26%2334%3b%2014Plugin%20%26%2339%3btpope%2fvim-fugitive%26%2339%3b%2015Plugin%20%26%2334%3bscrooloose%2fsyntastic%26%2334%3b%2016Plugin%20%26%2334%3bctrpvim%2fctrlp." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&t=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#vim-설정에-도움받은-사이트">vim 설정에 도움받은 사이트</a></li>
+    <li><a href="#내가-사용중인-vimrc">내가 사용중인 .vimrc</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        vim을 유용하게 사용하기 위한 설정
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          1 minute read
+        </div>
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/vim" rel="tag">vim</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="vim-설정에-도움받은-사이트">vim 설정에 도움받은 사이트</h2>
+<ul>
+<li><a href="https://bluesh55.github.io/2016/10/09/vim-ide/">https://bluesh55.github.io/2016/10/09/vim-ide/</a></li>
+<li><a href="https://agvim.wordpress.com/2017/09/05/vim-plugins-50/">https://agvim.wordpress.com/2017/09/05/vim-plugins-50/</a></li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="내가-사용중인-vimrc">내가 사용중인 .vimrc</h2>
+<p>처음 vim 설정을 해본 결과 하나씩 익숙해치면서 각자 상황에 맞게 추가해 나가는 것이 답이라고 본다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#8be9fd;font-style:italic">set</span> nocompatible              <span style="color:#f1fa8c">&#34; be iMproved, required
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#f1fa8c">filetype off                  &#34;</span> required
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#f1fa8c">&#34; set the runtime path to include Vundle and initialize
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#f1fa8c">set rtp+=~/.vim/bundle/Vundle.vim
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#f1fa8c">call vundle#begin()
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#f1fa8c">&#34;</span> <span style="color:#8be9fd;font-style:italic">let</span> Vundle manage Vundle, required
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>Plugin <span style="color:#f1fa8c">&#39;VundleVim/Vundle.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>Plugin <span style="color:#f1fa8c">&#39;vim-airline/vim-airline&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>Plugin <span style="color:#f1fa8c">&#39;scrooloose/nerdtree&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>Plugin <span style="color:#f1fa8c">&#39;vim-airline/vim-airline&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>Plugin <span style="color:#f1fa8c">&#34;airblade/vim-gitgutter&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>Plugin <span style="color:#f1fa8c">&#39;tpope/vim-fugitive&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>Plugin <span style="color:#f1fa8c">&#34;scrooloose/syntastic&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>Plugin <span style="color:#f1fa8c">&#34;ctrpvim/ctrlp.vim&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>Plugin <span style="color:#f1fa8c">&#39;nanotech/jellybeans.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>Plugin <span style="color:#f1fa8c">&#39;kchmck/vim-coffee-script&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>Plugin <span style="color:#f1fa8c">&#39;VundleVim/Vundle.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>Plugin <span style="color:#f1fa8c">&#39;Lokaltog/vim-easymotion&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>Plugin <span style="color:#f1fa8c">&#39;scrooloose/nerdcommenter&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>Plugin <span style="color:#f1fa8c">&#39;edkolev/promptline.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>Plugin <span style="color:#f1fa8c">&#39;surround.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>Plugin <span style="color:#f1fa8c">&#39;textobj-user&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>Plugin <span style="color:#f1fa8c">&#39;mattn/vim-textobj-url&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>Plugin <span style="color:#f1fa8c">&#39;textobj-entire&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>Plugin <span style="color:#f1fa8c">&#39;textobj-line&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>Plugin <span style="color:#f1fa8c">&#39;vim-indent-object&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>Plugin <span style="color:#f1fa8c">&#39;ctrlpvim/ctrlp.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>Plugin <span style="color:#f1fa8c">&#39;iwataka/ctrlproj.vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>Plugin <span style="color:#f1fa8c">&#39;mattn/emmet-vim&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>Plugin <span style="color:#f1fa8c">&#39;HTML.zip&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>Plugin <span style="color:#f1fa8c">&#39;matchit.zip&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>Plugin <span style="color:#f1fa8c">&#39;chrisbra/NrrwRgn&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>Plugin <span style="color:#f1fa8c">&#39;MultipleSearch&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>Plugin <span style="color:#f1fa8c">&#39;peterrincker/vim-argumentative&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>call vundle#end<span style="color:#ff79c6">()</span>            <span style="color:#f1fa8c">&#34; required
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span><span style="color:#f1fa8c">filetype plugin indent on    &#34;</span> required
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span><span style="color:#f1fa8c">&#34; NERDTree ON 단축키를 &#34;</span><span style="color:#f1fa8c">\n</span>t<span style="color:#f1fa8c">&#34;로 설정
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span><span style="color:#f1fa8c">map &lt;Leader&gt;nt &lt;ESC&gt;:NERDTree&lt;CR&gt;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span><span style="color:#f1fa8c">let g:ctrlp_custom_ignore = {
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span><span style="color:#f1fa8c">  \ &#39;dir&#39;:  &#39;\.git</span>$<span style="color:#f1fa8c">\|public</span>$<span style="color:#f1fa8c">\|log</span>$<span style="color:#f1fa8c">\|tmp</span>$<span style="color:#f1fa8c">\|vendor</span>$<span style="color:#f1fa8c">&#39;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span><span style="color:#f1fa8c">  \ &#39;file&#39;: &#39;\v\.(exe|so|dll)</span>$<span style="color:#f1fa8c">&#39;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span><span style="color:#f1fa8c">  \ }
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span><span style="color:#f1fa8c">color jellybeans
+</span></span></span></code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#vim-설정에-도움받은-사이트">vim 설정에 도움받은 사이트</a></li>
+    <li><a href="#내가-사용중인-vimrc">내가 사용중인 .vimrc</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&text=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&title=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&is_video=false&description=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95&body=Check out this article: https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&title=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&title=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&name=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95&description=vim%20%ec%84%a4%ec%a0%95%ec%97%90%20%eb%8f%84%ec%9b%80%eb%b0%9b%ec%9d%80%20%ec%82%ac%ec%9d%b4%ed%8a%b8%20%20https%3a%2f%2fbluesh55.github.io%2f2016%2f10%2f09%2fvim-ide%2f%20https%3a%2f%2fagvim.wordpress.com%2f2017%2f09%2f05%2fvim-plugins-50%2f%20%20%eb%82%b4%ea%b0%80%20%ec%82%ac%ec%9a%a9%ec%a4%91%ec%9d%b8%20.vimrc%20%ec%b2%98%ec%9d%8c%20vim%20%ec%84%a4%ec%a0%95%ec%9d%84%20%ed%95%b4%eb%b3%b8%20%ea%b2%b0%ea%b3%bc%20%ed%95%98%eb%82%98%ec%94%a9%20%ec%9d%b5%ec%88%99%ed%95%b4%ec%b9%98%eb%a9%b4%ec%84%9c%20%ea%b0%81%ec%9e%90%20%ec%83%81%ed%99%a9%ec%97%90%20%eb%a7%9e%ea%b2%8c%20%ec%b6%94%ea%b0%80%ed%95%b4%20%eb%82%98%ea%b0%80%eb%8a%94%20%ea%b2%83%ec%9d%b4%20%eb%8b%b5%ec%9d%b4%eb%9d%bc%ea%b3%a0%20%eb%b3%b8%eb%8b%a4.%0a1set%20nocompatible%20%26%2334%3b%20be%20iMproved%2c%20required%202filetype%20off%20%26%2334%3b%20required%203%204%26%2334%3b%20set%20the%20runtime%20path%20to%20include%20Vundle%20and%20initialize%205set%20rtp%2b%3d~%2f.vim%2fbundle%2fVundle.vim%206call%20vundle%23begin%28%29%2078%26%2334%3b%20let%20Vundle%20manage%20Vundle%2c%20required%209Plugin%20%26%2339%3bVundleVim%2fVundle.vim%26%2339%3b%2010Plugin%20%26%2339%3bvim-airline%2fvim-airline%26%2339%3b%2011Plugin%20%26%2339%3bscrooloose%2fnerdtree%26%2339%3b%2012Plugin%20%26%2339%3bvim-airline%2fvim-airline%26%2339%3b%2013Plugin%20%26%2334%3bairblade%2fvim-gitgutter%26%2334%3b%2014Plugin%20%26%2339%3btpope%2fvim-fugitive%26%2339%3b%2015Plugin%20%26%2334%3bscrooloose%2fsyntastic%26%2334%3b%2016Plugin%20%26%2334%3bctrpvim%2fctrlp." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2flifeisgouda.github.io%2fposts%2fidle%2f2018-06-25-vim%2f&t=vim%ec%9d%84%20%ec%9c%a0%ec%9a%a9%ed%95%98%ea%b2%8c%20%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0%20%ec%9c%84%ed%95%9c%20%ec%84%a4%ec%a0%95" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  fourierdev 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>
